@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/auth.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:makeitcode/page/login_page.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:makeitcode/page/home_page.dart';
+import 'package:makeitcode/widget/tree.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -41,30 +42,47 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-Future<void> createUserWithEmailAndPassword() async {
-  if (emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty || pseudoController.text.isEmpty) {
-    setState(() {
-      errormessage = 'Tous les champs doivent être remplis';
-    });
-    print('Erreur: Tous les champs doivent être remplis');
-    return;
-  }
-  if (passwordController.text != confirmPasswordController.text) {
-    setState(() {
-      errormessage = 'Les mots de passe ne correspondent pas';
-    });
-    print('Erreur: Les mots de passe ne correspondent pas');
-    return;
-  }
-      try {
+  Future<void> createUserWithEmailAndPassword() async {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty || pseudoController.text.isEmpty) {
+      setState(() {
+        errormessage = 'Tous les champs doivent être remplis';
+      });
+      print('Erreur: Tous les champs doivent être remplis');
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      setState(() {
+        errormessage = 'Les mots de passe ne correspondent pas';
+      });
+      print('Erreur: Les mots de passe ne correspondent pas');
+      return;
+    }
+
+    try {
+      print('Tentative de création de compte...');
       await Auth().createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      print('Compte créé avec succès');
+
+      await Auth().signInWhithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      print('Connexion réussie');
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       setState(() {
         errormessage = e.message;
       });
+      print('FirebaseAuthException: ${e.message}');
+    } catch (e) {
+      setState(() {
+        errormessage = 'Une erreur s\'est produite';
+      });
+      print('Erreur: $e');
     }
   }
 
@@ -83,12 +101,12 @@ Future<void> createUserWithEmailAndPassword() async {
         child: TextField(
           focusNode: focusNode,
           controller: controller,
-          obscureText: title == 'Mot de passe' ? isPasswordVisible : false || title == 'Confirmation du mot de passe' ? isConfirmPasswordVisible : false,
+          obscureText: title == 'Mot de passe' ? isPasswordVisible : title == 'Confirmation du mot de passe' ? isConfirmPasswordVisible : false,
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             suffixIcon: (title == 'Mot de passe' || title == 'Confirmation du mot de passe')
                 ? IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       setState(() {
                         if (title == 'Mot de passe') {
                           isPasswordVisible = !isPasswordVisible;
@@ -128,29 +146,26 @@ Future<void> createUserWithEmailAndPassword() async {
   Widget _submitButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          minimumSize: const Size(double.infinity, 55),
-          backgroundColor: const Color.fromRGBO(95, 194, 186, 1),
-        ),
-        onPressed: () => createUserWithEmailAndPassword(),
-        child: Text(
-          'INSCRIPTION',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'Montserrat',
+      child: Builder(
+        builder: (context) => TextButton(
+          style: TextButton.styleFrom(
+            minimumSize: const Size(double.infinity, 55),
+            backgroundColor: const Color.fromRGBO(95, 194, 186, 1),
+          ),
+          onPressed: ()  {
+             createUserWithEmailAndPassword();
+          },
+          child: Text(
+            'INSCRIPTION',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              fontFamily: 'Montserrat',
+            ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _errorMessage() {
-    return Text(
-      errormessage == '' ? '' : 'Erreur: $errormessage',
-      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -231,7 +246,6 @@ Future<void> createUserWithEmailAndPassword() async {
                             _entryField('Confirmation du mot de passe', confirmPasswordController, Icons.lock, confirmPasswordFocusNode, 3),
                             const SizedBox(height: 20),
                             _submitButton(),
-                            _errorMessage(),
                           ],
                         ),
                       ),

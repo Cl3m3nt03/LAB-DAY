@@ -34,7 +34,9 @@ class _LoginPageState extends State <LoginPage>{
         errormessage = e.message;
       });
     }
-  }
+  }         
+  
+      
 
   Widget _entryField(String title, TextEditingController controller,prefixIcons ){
     
@@ -84,9 +86,7 @@ class _LoginPageState extends State <LoginPage>{
     );
   }
 
-  Widget _errorMessage(){
-    return Text(errormessage == ''? '' :'Erreur ? ',style: TextStyle(color: Colors.white),); 
-  }
+
 
   Widget _passwordForgotten(){
     return Row(
@@ -190,6 +190,7 @@ class _LoginPageState extends State <LoginPage>{
 }
 
 
+
   @override
   Widget build (BuildContext context){
     return Scaffold(
@@ -227,7 +228,7 @@ class _LoginPageState extends State <LoginPage>{
             const SizedBox(height: 20),
             _moreConnexionButton(),
             const SizedBox(height: 10),
-            _noAccount()
+            _noAccount(),
           ],
         )
         ),

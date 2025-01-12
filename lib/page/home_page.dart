@@ -9,14 +9,21 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Page'),
       ),
-      body: Center(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(Auth().currentUser?.email ?? 'No email available'),
+          Center(
         child: IconButton(
           icon: Icon(Icons.logout),
           onPressed: () {
             Auth().signOut();
           },
-
         ),
+        ),
+        
+        
+        ],
       ),
     );
   }
