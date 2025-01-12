@@ -24,18 +24,17 @@ class _LoginPageState extends State <LoginPage>{
 
 
   Future<void> signInWithEmailAndPassword() async {
-    try{
-      await Auth().signInWithEmailAndPassword(
+    try {
+      await Auth().signInWhithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-  } on FirebaseAuthException catch (e){
-    setState(() {
-      errormessage = e.message;
-    });
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errormessage = e.message;
+      });
+    }
   }
-  }
-
 
   Widget _entryField(String title, TextEditingController controller,prefixIcons ){
     
@@ -72,13 +71,15 @@ class _LoginPageState extends State <LoginPage>{
     );
   }
   Widget _submitButton(){
-    return TextButton(
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: 40),
+    child:TextButton(
     style: TextButton.styleFrom(
       minimumSize: const Size(double.infinity, 55),
       backgroundColor: const Color.fromRGBO(95,194, 186, 1),
     ),
     onPressed:  signInWithEmailAndPassword,
     child: Text( 'CONNEXION' ,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold ,fontSize: 20,fontFamily: 'Monsterrat'),
+    ),
     ),
     );
   }
@@ -89,7 +90,7 @@ class _LoginPageState extends State <LoginPage>{
 
   Widget _passwordForgotten(){
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
           onPressed: (){},
@@ -101,7 +102,7 @@ class _LoginPageState extends State <LoginPage>{
     Widget _title(){
     return Text(
       "Connectez-vous",style: TextStyle(
-        color: Colors.white, 
+        color: Colors.white.withOpacity(1), 
         fontSize: 31, 
         fontWeight: FontWeight.bold,
         fontFamily: 'Poppins',      
@@ -192,10 +193,10 @@ class _LoginPageState extends State <LoginPage>{
   @override
   Widget build (BuildContext context){
     return Scaffold(
-      body:SingleChildScrollView(
-      child: Container(
+      resizeToAvoidBottomInset: false, 
+      body:Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+          decoration: BoxDecoration(
           gradient: RadialGradient(
             colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)], 
             stops: [0.1, 0.9], 
@@ -203,7 +204,7 @@ class _LoginPageState extends State <LoginPage>{
              radius: 0.8,
         ),
         ),
- 
+      child: SingleChildScrollView(
       child: Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20),
@@ -211,7 +212,7 @@ class _LoginPageState extends State <LoginPage>{
           children: [
            SizedBox(height: MediaQuery.of(context).size.height / 13),
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
             child:_title(),
             ),
             const SizedBox(height: 30),
