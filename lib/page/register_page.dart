@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,8 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
+
+
   Future<void> createUserWithEmailAndPassword() async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty || pseudoController.text.isEmpty) {
       setState(() {
@@ -66,12 +69,24 @@ class _RegisterPageState extends State<RegisterPage> {
         password: passwordController.text,
       );
       print('Compte créé avec succès');
-
       await Auth().signInWhithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+
       print('Connexion réussie');
+
+      CollectionReference pseudoRef = 
+      FirebaseFirestore.instance
+      .collection('Users')
+      .doc(Auth().currentUser?.uid)
+      .collection('Informations Utilisateur');
+      await pseudoRef.add({
+        'uid': Auth().currentUser?.uid,
+        'email': emailController.text,
+        'name': pseudoController.text,
+       }
+      );
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       setState(() {
