@@ -15,6 +15,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool isPasswordVisible = true;
+  bool isConfirmPasswordVisible = true;
   String? errormessage = '';
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -82,17 +83,21 @@ Future<void> createUserWithEmailAndPassword() async {
         child: TextField(
           focusNode: focusNode,
           controller: controller,
-          obscureText: (title == 'Mot de passe' || title == 'Confirmation du mot de passe') ? isPasswordVisible : false,
+          obscureText: title == 'Mot de passe' ? isPasswordVisible : false || title == 'Confirmation du mot de passe' ? isConfirmPasswordVisible : false,
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
             suffixIcon: (title == 'Mot de passe' || title == 'Confirmation du mot de passe')
                 ? IconButton(
                     onPressed: () {
                       setState(() {
-                        isPasswordVisible = !isPasswordVisible;
+                        if (title == 'Mot de passe') {
+                          isPasswordVisible = !isPasswordVisible;
+                        } else if (title == 'Confirmation du mot de passe') {
+                          isConfirmPasswordVisible = !isConfirmPasswordVisible;
+                        }
                       });
                     },
-                    icon: isPasswordVisible
+                    icon: (title == 'Mot de passe' && isPasswordVisible) || (title == 'Confirmation du mot de passe' && isConfirmPasswordVisible)
                         ? Icon(CupertinoIcons.eye, color: Colors.white.withOpacity(0.5))
                         : Icon(CupertinoIcons.eye_slash, color: Colors.white.withOpacity(0.5)),
                   )

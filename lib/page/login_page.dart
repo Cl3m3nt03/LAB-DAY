@@ -40,7 +40,7 @@ class _LoginPageState extends State <LoginPage>{
     
     return TextField(
       controller:controller,
-      obscureText: title == 'Mot de passe' ? isPasswordVisible : false,
+      
       style: TextStyle(
         color: Colors.white,
       ),
