@@ -84,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
       await pseudoRef.add({
         'uid': Auth().currentUser?.uid,
         'email': emailController.text,
-        'name': pseudoController.text,
+        'pseudo': pseudoController.text,
        }
       );
       Navigator.pop(context);
