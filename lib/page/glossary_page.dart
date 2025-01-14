@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage2 extends StatefulWidget {
-  final String title;
+class GlossaryPage extends StatefulWidget {
 
-  const HomePage2({super.key, required this.title});
   @override
   State<StatefulWidget> createState() {
-    return _HomePageState2();
+    return _GlossaryPage();
   }
 }
 
 
-class _HomePageState2 extends State<HomePage2> {
+class _GlossaryPage extends State<GlossaryPage> {
   void onButtonPressed() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => GlossaryPage()),
+      MaterialPageRoute(builder: (context) => GlossaryContentPage()),
     );
   }
 
@@ -38,7 +36,7 @@ class _HomePageState2 extends State<HomePage2> {
 
 
 
-class GlossaryPage extends StatelessWidget {
+class GlossaryContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
