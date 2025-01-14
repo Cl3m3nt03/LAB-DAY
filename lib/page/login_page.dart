@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/auth.dart';
 import 'package:makeitcode/page/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
+import 'package:makeitcode/widget/toastMessage.dart';
+
 
 
 class LoginPage extends StatefulWidget {
@@ -22,6 +24,8 @@ class _LoginPageState extends State <LoginPage>{
   String? errormessage = '';
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final ToastMessage toast = ToastMessage();
+
 
 
 
@@ -31,15 +35,15 @@ class _LoginPageState extends State <LoginPage>{
         email: emailController.text,
         password: passwordController.text,
       );
+      toast.showToast(context,'Connexion réussie', isError: false);
+
     } on FirebaseAuthException catch (e) {
       setState(() {
         errormessage = e.message;
+        toast.showToast(context,'Email ou mot de passe incorrect. Veuillez réessayer !', isError: true);
       });
     }
   }         
-  
-      
-
 
   Widget _submitButton(){
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -62,7 +66,8 @@ class _LoginPageState extends State <LoginPage>{
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-          onPressed: (){},
+          onPressed: (){
+          },
           child: Text('Mot de passe oublié ?',style: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),
         ),
       ],
@@ -187,9 +192,9 @@ class _LoginPageState extends State <LoginPage>{
             child:_title(),
             ),
             const SizedBox(height: 30),
-            EntryField(title: 'Email',controller: emailController,prefixIcons: Icons.email,),
+            EntryField(title: 'Email',controller: emailController,prefixIcons: Icons.email,height: 20,),
             const SizedBox(height: 20),
-            EntryField(title: 'Mot de passe',controller: passwordController,prefixIcons: Icons.lock,),
+            EntryField(title: 'Mot de passe',controller: passwordController,prefixIcons: Icons.lock,height: 20,),
             _passwordForgotten(),
             const SizedBox(height: 10),
             _submitButton(),

@@ -1,6 +1,9 @@
+// Permet de verifier si l'utilisateur est connecté ou non et de rediriger vers la page de connexion 
+//ou la page principale
+
 import 'package:flutter/material.dart';
 import 'package:makeitcode/auth.dart';
-import 'package:makeitcode/page/home_page.dart';
+import 'package:makeitcode/widget/PageManagement.dart';
 import 'package:makeitcode/page/login_page.dart';
 import 'package:makeitcode/page/register_page.dart';
 
@@ -19,7 +22,7 @@ class _WidgetTreeState extends State<WidgetTree>{
       stream: Auth().authStateChanges,
       builder: (context, snapshot){
         if(snapshot.hasData){
-          return HomePage();
+          return PageManagement();
       }else{
         return LoginPage();
       }
