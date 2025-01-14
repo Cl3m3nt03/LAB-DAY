@@ -5,8 +5,9 @@ class EntryField extends StatefulWidget {
   final String title;
   final TextEditingController controller;
   final IconData prefixIcons;
+  final double height;
 
-  EntryField({required this.title, required this.controller, required this.prefixIcons});
+  EntryField({required this.title, required this.controller, required this.prefixIcons, required this.height});
 
   @override
   _EntryFieldState createState() => _EntryFieldState();
@@ -38,7 +39,7 @@ class _EntryFieldState extends State<EntryField> {
               )
             : null,
         prefixIcon: Icon(widget.prefixIcons, color: Colors.white.withOpacity(0.5)),
-        contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+        contentPadding: EdgeInsets.symmetric(vertical: widget.height, horizontal: 30.0),
         label: Text(
           widget.title,
           style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.bold),

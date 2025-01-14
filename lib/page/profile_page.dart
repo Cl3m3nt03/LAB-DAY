@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/page/editprofile_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -179,7 +180,15 @@ class ProfilePage extends StatelessWidget {
                                 children: [
                                   Icon(Icons.key),
                                   SizedBox(width: 15),
-                                  Text("About" , style: TextStyle(color: Colors.white),),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  EditCompte()),
+                                      );
+                                    },
+                                    child: const Text("About", style: TextStyle(color: Colors.white),),
+                                  )
                                 ],
                               ), 
                             ),
