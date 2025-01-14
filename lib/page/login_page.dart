@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/auth.dart';
 import 'package:makeitcode/page/register_page.dart';
+import 'package:makeitcode/widget/textField.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -38,41 +40,7 @@ class _LoginPageState extends State <LoginPage>{
   
       
 
-  Widget _entryField(String title, TextEditingController controller,prefixIcons ){
-    
-    return TextField(
-      controller:controller,
-      obscureText: title == 'Mot de passe' ? isPasswordVisible : false,
-      
-      style: TextStyle(
-        color: Colors.white,
-      ),
-      decoration: InputDecoration(
-        suffixIcon: title == 'Mot de passe' ? IconButton(
-          onPressed: (){
-            setState(() {
-              isPasswordVisible = !isPasswordVisible;
-            });
-          },
-          icon: isPasswordVisible ? Icon(CupertinoIcons.eye, color: Colors.white.withOpacity(0.5)) : Icon(CupertinoIcons.eye_slash, color: Colors.white.withOpacity(0.5)),
-          color: Colors.white.withOpacity(0.5),
-        ) : null,
-        prefixIcon: Icon(prefixIcons, color: Colors.white.withOpacity(0.5),),
-        contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
-        label: Text(title, style: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),
-        filled: true,
-        fillColor: Color.fromRGBO(50, 50, 79, 1),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
-  }
+
   Widget _submitButton(){
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 40),
     child:TextButton(
@@ -199,11 +167,12 @@ class _LoginPageState extends State <LoginPage>{
       body:Container(
         height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-          gradient: RadialGradient(
+          gradient: LinearGradient(
             colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)], 
-            stops: [0.1, 0.9], 
-            center: Alignment(-0.7, 0.7),
-             radius: 0.8,
+            stops: [0.2, 0.9],
+            begin: Alignment.bottomCenter,
+            end: Alignment.center, 
+            
         ),
         ),
       child: SingleChildScrollView(
@@ -218,9 +187,9 @@ class _LoginPageState extends State <LoginPage>{
             child:_title(),
             ),
             const SizedBox(height: 30),
-            _entryField('Adresse email', emailController, Icons.mail),
+            EntryField(title: 'Email',controller: emailController,prefixIcons: Icons.email,),
             const SizedBox(height: 20),
-            _entryField('Mot de passe', passwordController, Icons.lock),
+            EntryField(title: 'Mot de passe',controller: passwordController,prefixIcons: Icons.lock,),
             _passwordForgotten(),
             const SizedBox(height: 10),
             _submitButton(),

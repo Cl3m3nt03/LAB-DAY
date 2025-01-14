@@ -7,6 +7,8 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:makeitcode/page/home_page.dart';
 import 'package:makeitcode/widget/tree.dart';
+import 'package:makeitcode/widget/textField.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -106,57 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _scrollController.scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
   }
 
-  Widget _entryField(String title, TextEditingController controller, IconData prefixIcon, FocusNode focusNode, int index) {
-    return AutoScrollTag(
-      key: ValueKey(index),
-      controller: _scrollController,
-      index: index,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: TextField(
-          focusNode: focusNode,
-          controller: controller,
-          obscureText: title == 'Mot de passe' ? isPasswordVisible : title == 'Confirmation du mot de passe' ? isConfirmPasswordVisible : false,
-          style: TextStyle(color: Colors.white),
-          decoration: InputDecoration(
-            suffixIcon: (title == 'Mot de passe' || title == 'Confirmation du mot de passe')
-                ? IconButton(
-                    onPressed: () async {
-                      setState(() {
-                        if (title == 'Mot de passe') {
-                          isPasswordVisible = !isPasswordVisible;
-                        } else if (title == 'Confirmation du mot de passe') {
-                          isConfirmPasswordVisible = !isConfirmPasswordVisible;
-                        }
-                      });
-                    },
-                    icon: (title == 'Mot de passe' && isPasswordVisible) || (title == 'Confirmation du mot de passe' && isConfirmPasswordVisible)
-                        ? Icon(CupertinoIcons.eye, color: Colors.white.withOpacity(0.5))
-                        : Icon(CupertinoIcons.eye_slash, color: Colors.white.withOpacity(0.5)),
-                  )
-                : null,
-            prefixIcon: Icon(prefixIcon, color: Colors.white.withOpacity(0.5)),
-            contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
-            labelText: title,
-            labelStyle: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
-            filled: true,
-            fillColor: Color.fromRGBO(50, 50, 79, 1),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          onTap: () {
-            _scrollToIndex(index);
-          },
-        ),
-      ),
-    );
-  }
+ 
 
   Widget _submitButton() {
     return Padding(
@@ -255,10 +207,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                         child: Column(
                           children: [
-                            _entryField('Pseudo', pseudoController, Icons.person, pseudoFocusNode, 0),
-                            _entryField('Adresse email', emailController, Icons.mail, emailFocusNode, 1),
-                            _entryField('Mot de passe', passwordController, Icons.lock, passwordFocusNode, 2),
-                            _entryField('Confirmation du mot de passe', confirmPasswordController, Icons.lock, confirmPasswordFocusNode, 3),
+                            EntryField(title: 'Pseudo',controller: pseudoController,prefixIcons: Icons.person,),
+                            const SizedBox(height: 20),
+                            EntryField(title: 'Email',controller: emailController,prefixIcons: Icons.email,),
+                            const SizedBox(height: 20),
+                            EntryField(title: 'Mot de passe',controller: passwordController,prefixIcons: Icons.lock,),
+                            const SizedBox(height: 20),
+                            EntryField(title: 'Confirmer le mot de passe',controller: confirmPasswordController,prefixIcons: Icons.lock,),
                             const SizedBox(height: 20),
                             _submitButton(),
                           ],
