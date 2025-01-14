@@ -84,19 +84,24 @@ class ProfilePage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                             child: Column(
                               children: [
-                                SizedBox(height: 20),
                                 Container(
                                   child: Row(
                                     children: [
                                       Icon(Icons.person),
-                                      SizedBox(width: 15), 
-                                      Text("Mon Compte", style: TextStyle(color: Colors.white)),
+                                      TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  EditCompte()),
+                                      );
+                                    },
+                                    child: const Text("Mon Compte", style: TextStyle(color: Colors.white),),
+                                  )
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 5),
-                                Divider(color: const Color.fromARGB(70, 255, 255, 255)), 
-                                SizedBox(height: 5),
+                                Divider(color: const Color.fromARGB(70, 255, 255, 255)),
+                                SizedBox(height: 10), 
                                 Container(
                                   child: Row(
                                     children: [
@@ -106,9 +111,9 @@ class ProfilePage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                SizedBox(height: 10),
                                 Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                SizedBox(height: 5),
+                                SizedBox(height: 10),
                                 Container(
                                   child: Row(
                                     children: [
@@ -180,15 +185,7 @@ class ProfilePage extends StatelessWidget {
                                 children: [
                                   Icon(Icons.key),
                                   SizedBox(width: 15),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) =>  EditCompte()),
-                                      );
-                                    },
-                                    child: const Text("About", style: TextStyle(color: Colors.white),),
-                                  )
+                                  Text("About", style: TextStyle(color: Colors.white)),
                                 ],
                               ), 
                             ),
