@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:makeitcode/page/profile_page.dart';
 import 'package:makeitcode/widget/tree.dart';
 
 
@@ -10,7 +11,7 @@ Future<void> main () async{
 }
 
 class Myapp extends StatelessWidget{
-  const Myapp({Key? key}) : super(key: key);
+  const Myapp({super.key});
 
   @override
   Widget build(BuildContext context){
@@ -20,7 +21,7 @@ class Myapp extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WidgetTree(),
+      home:  ProfilePage(),
     );
   }
 }
