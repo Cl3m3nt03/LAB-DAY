@@ -18,19 +18,15 @@ class _GlossaryPage extends State<GlossaryPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
+    return FloatingActionButton(
         onPressed: onButtonPressed,
         backgroundColor: Color.fromARGB(255, 209, 223, 255),
         foregroundColor: Color(0xFF5E4F73),
         elevation: 1,
         child: const Icon(Icons.menu_book, size: 30),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-    );
+      );
   }
 }
 
