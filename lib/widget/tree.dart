@@ -3,6 +3,7 @@ import 'package:makeitcode/auth.dart';
 import 'package:makeitcode/page/home_page.dart';
 import 'package:makeitcode/page/login_page.dart';
 import 'package:makeitcode/page/register_page.dart';
+import 'package:makeitcode/page/projects_page.dart';
 
 
 class WidgetTree extends StatefulWidget{
@@ -21,7 +22,7 @@ class _WidgetTreeState extends State<WidgetTree>{
         if(snapshot.hasData){
           return HomePage();
       }else{
-        return LoginPage();
+        return ProjectsPage();
       }
     },
     );
