@@ -54,12 +54,7 @@ class EditCompte extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProfilePage()),
-                                      );
+                                      Navigator.pop(context);
                                     },
                                     icon: Icon(Icons.arrow_back_ios,
                                         color: Colors.white),

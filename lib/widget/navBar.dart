@@ -13,7 +13,8 @@ class CustomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
+      child : Container(
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(color: const Color.fromARGB(255, 19, 19, 25).withOpacity(0.2), width: 1),
@@ -67,10 +68,10 @@ class CustomNavbar extends StatelessWidget {
             ],
             selectedIndex: selectedIndex,
             onTabChange: onTabChange,
-
           ),
         ),
       ),
+    ),
     );
   }
 }
