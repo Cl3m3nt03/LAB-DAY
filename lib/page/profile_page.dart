@@ -10,6 +10,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+        child : SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -23,7 +24,8 @@ class ProfilePage extends StatelessWidget {
 
                 ),
                 ),
-              child:  SingleChildScrollView(child: Center(
+              child:  SingleChildScrollView(
+                child: Center(
                 child: Column(
                   children: [
                     Container(
@@ -190,17 +192,20 @@ class ProfilePage extends StatelessWidget {
                               ), 
                             ),
                           ),
-                          SizedBox(height: 50),
+                          SizedBox(height: 100),
                         ],
                       ),
+                        
                     )
                   ],
                 ),
+                
               ),
-              )
+              ),
             ),
           ],
         ),
+      ),
       ),
     );
   }

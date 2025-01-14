@@ -4,11 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:makeitcode/auth.dart';
-import 'package:makeitcode/page/glossary.dart';
+import 'package:makeitcode/page/glossary_page.dart';
 import 'package:makeitcode/page/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
-import 'glossary.dart';
+import 'glossary_page.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});

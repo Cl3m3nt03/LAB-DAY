@@ -1,7 +1,7 @@
 //Permet de faire la gestion de la page principale avec la NavBar et les différentes pages
 
 import 'package:flutter/material.dart';
-import 'package:makeitcode/page/glossary.dart';
+import 'package:makeitcode/page/glossary_page.dart';
 import 'package:makeitcode/page/home_page.dart';
 import 'package:makeitcode/page/login_page.dart';
 import 'package:makeitcode/page/profile_page.dart';
