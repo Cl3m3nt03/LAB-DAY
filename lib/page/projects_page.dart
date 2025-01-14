@@ -4,9 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:makeitcode/auth.dart';
+import 'package:makeitcode/page/glossary.dart';
 import 'package:makeitcode/page/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
+import 'glossary.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -16,6 +18,14 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
+
+    void _onButtonPressed() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => GlossaryPage()),
+      );
+    }
+
   final Stream<QuerySnapshot> _projectsStreamBegan =
       FirebaseFirestore.instance.collection('Projects').where('state', isEqualTo: 'began').snapshots();
   final Stream<QuerySnapshot> _projectsStreamUnlocked =
@@ -244,6 +254,14 @@ class _ProjectsPageState extends State<ProjectsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onButtonPressed,
+        backgroundColor: Color.fromARGB(255, 209, 223, 255),
+        foregroundColor: Color(0xFF5E4F73),
+        elevation: 1,
+        child: const Icon(Icons.menu_book, size: 30),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(

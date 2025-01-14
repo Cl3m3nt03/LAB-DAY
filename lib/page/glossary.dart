@@ -11,19 +11,21 @@ class HomePage2 extends StatefulWidget {
   }
 }
 
+
 class _HomePageState2 extends State<HomePage2> {
-  void _onButtonPressed() {
+  void onButtonPressed() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => GlossaryPage()),
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: _onButtonPressed,
+        onPressed: onButtonPressed,
         backgroundColor: Color.fromARGB(255, 209, 223, 255),
         foregroundColor: Color(0xFF5E4F73),
         elevation: 1,
