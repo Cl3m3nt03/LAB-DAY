@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/page/home_page.dart';
 import 'package:makeitcode/page/login_page.dart';
 import 'package:makeitcode/page/profile_page.dart';
+import 'package:makeitcode/page/projects_page.dart';
 import 'package:makeitcode/widget/navBar.dart';
 import 'package:makeitcode/widget/tree.dart'; 
 
@@ -20,7 +21,7 @@ class _PageManagementState extends State<PageManagement> {
 
   final List<Widget> _pages = [
     Center(child: Text('Communauté', style: TextStyle(fontSize: 24))),
-    Center(child: Text('Projets', style: TextStyle(fontSize: 24))),
+    ProjectsPage(),
     HomePage(),
     Center(child: Text('Classement', style: TextStyle(fontSize: 24))),
     ProfilePage(),
