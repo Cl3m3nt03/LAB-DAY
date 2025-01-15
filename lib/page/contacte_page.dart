@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/MenuItem.dart';
+import 'package:makeitcode/widget/textField.dart';
 import 'package:popover/popover.dart';
 
 class ContactePage extends StatefulWidget {
@@ -10,8 +11,6 @@ class ContactePage extends StatefulWidget {
 }
 
 class _ContactePageState extends State<ContactePage> {
-  bool light = true;
-  bool light1 = true; 
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class _ContactePageState extends State<ContactePage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20),
+                              SizedBox(height: 20), 
                               Row(
                                 children: [
                                   IconButton(
@@ -64,7 +63,7 @@ class _ContactePageState extends State<ContactePage> {
                                         color: Colors.white),
                                   ),
                                   Text(
-                                    "Contact",
+                                    "Contactez-nous",
                                     style: TextStyle(
                                       color: Color.fromARGB(250, 175, 142, 88),
                                       fontSize: 20,
@@ -98,6 +97,27 @@ class _ContactePageState extends State<ContactePage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 90),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        children: [
+                          EntryField(
+                              title: 'Email',
+                              controller: TextEditingController(),
+                              prefixIcons: Icons.mail,
+                              height: 20),
+                          SizedBox(height: 20),
+                          
+                          SizedBox(height: 40),
+                          EntryField(
+                              title: 'Bio',
+                              controller: TextEditingController(),
+                              prefixIcons: Icons.question_answer,
+                              height: 60),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
