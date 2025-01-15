@@ -589,6 +589,7 @@ class GlossaryContentPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
+              
               HighlightView(
               code ,
               language: langage, // Définir le bon langage ici
