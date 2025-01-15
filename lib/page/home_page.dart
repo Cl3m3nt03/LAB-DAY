@@ -56,7 +56,10 @@ class HomePage extends StatelessWidget {
                 Auth().signOut();
               },
             ),
-            Text('Votre email est $emailVerified', style: TextStyle(color: Colors.white),),
+            Text(Auth().currentUser?.email ?? 'No email available', style: TextStyle(color: Colors.white),),
+            Text(Auth().currentUser?.displayName ?? 'No uid available', style: TextStyle(color: Colors.white),),
+
+            
           ],
         ),
         ],

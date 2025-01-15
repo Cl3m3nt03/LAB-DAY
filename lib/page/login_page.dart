@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/auth.dart';
+import 'package:makeitcode/page/password_forgotten_page.dart';
 import 'package:makeitcode/page/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
@@ -49,8 +50,10 @@ class _LoginPageState extends State <LoginPage>{
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 40),
     child:TextButton(
     style: TextButton.styleFrom(
+      shadowColor: Colors.black,
+      elevation: 5,
       minimumSize: const Size(double.infinity, 55),
-      backgroundColor: const Color.fromRGBO(95,194, 186, 1),
+      backgroundColor: Color.fromARGB(249, 161, 119, 51),
     ),
     onPressed:  signInWithEmailAndPassword,
     child: Text( 'CONNEXION' ,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold ,fontSize: 20,fontFamily: 'Monsterrat'),
@@ -67,8 +70,9 @@ class _LoginPageState extends State <LoginPage>{
       children: [
         TextButton(
           onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>  PasswordForgottenPage()));
           },
-          child: Text('Mot de passe oublié ?',style: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),
+          child: Text('Mot de passe oublié ?',style: TextStyle(color: Color.fromARGB(249, 161, 119, 51),fontWeight: FontWeight.bold),),
         ),
       ],
     );
@@ -97,11 +101,12 @@ class _LoginPageState extends State <LoginPage>{
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
           },
-          child: Text('Inscrivez-vous',style: TextStyle(color: const Color.fromRGBO(95,194, 186, 1),fontWeight: FontWeight.bold),),
+          child: Text('Inscrivez-vous',style: TextStyle(color: Color.fromARGB(248, 211, 157, 70),fontWeight: FontWeight.bold),),
         ),
       ],
     );
   }
+
 
       Widget _moreConnexionButton(){
   return Row(
@@ -110,6 +115,8 @@ class _LoginPageState extends State <LoginPage>{
       child: TextButton(
         onPressed: () {},
         style: TextButton.styleFrom(
+          shadowColor: Colors.black,
+          elevation: 5,
           backgroundColor: const Color.fromRGBO(21, 49, 104, 1),
           padding: const EdgeInsets.symmetric(vertical: 15),
         ),
@@ -133,8 +140,12 @@ class _LoginPageState extends State <LoginPage>{
       const SizedBox(width: 10), 
     Expanded(
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Auth().signInWithGoogle(context);
+        },
         style: TextButton.styleFrom(
+          shadowColor: Colors.black,
+          elevation: 5,
           backgroundColor: const Color.fromRGBO(166, 32, 54, 1),
           padding: const EdgeInsets.symmetric(vertical: 15), 
         ),
@@ -147,9 +158,8 @@ class _LoginPageState extends State <LoginPage>{
               height: 25,
             ),
             const SizedBox(width: 10),
-            const Text(
-              'GOOGLE',
-              style: TextStyle(
+            Text(Auth().currentUser == null ? 'GOOGLE' : 'Déconnexion',
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -196,7 +206,7 @@ class _LoginPageState extends State <LoginPage>{
             const SizedBox(height: 20),
             EntryField(title: 'Mot de passe',controller: passwordController,prefixIcons: Icons.lock,height: 20,),
             _passwordForgotten(),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             _submitButton(),
             const SizedBox(height: 20),
             _moreConnexion(),

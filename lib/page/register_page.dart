@@ -142,8 +142,10 @@ class _RegisterPageState extends State<RegisterPage> {
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextButton(
         style: TextButton.styleFrom(
+          shadowColor: Colors.black,
+          elevation: 5,
           minimumSize: const Size(double.infinity, 55),
-          backgroundColor: const Color.fromRGBO(95, 194, 186, 1),
+          backgroundColor: Color.fromARGB(249, 161, 119, 51),
         ),
         onPressed: () async {
           await createUserWithEmailAndPassword();

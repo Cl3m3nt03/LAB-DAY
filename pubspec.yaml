@@ -45,6 +45,9 @@ dependencies:
   swipeable_button_view: ^0.0.2
   google_nav_bar: ^5.0.7
   delightful_toast: ^1.1.0
+  popover: ^0.3.1
+  flutter_emoji: ^2.5.1
+  google_sign_in: ^6.2.2
 
 dev_dependencies:
   flutter_test:
