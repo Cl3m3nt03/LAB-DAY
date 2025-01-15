@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/editprofile_page.dart';
 import 'package:makeitcode/page/securite_page.dart';
+import 'package:makeitcode/page/settings_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -77,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            height: 210,
+                            height: 216,
                             width: MediaQuery.of(context).size.width -50,
                             decoration:BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -122,13 +123,20 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                SizedBox(height: 10),
                                 Container(
                                   child: Row(
                                     children: [
                                       Icon(Icons.settings, color: Colors.white),
                                       SizedBox(width: 15),
-                                      Text("Réglages", style: TextStyle(color: Colors.white)),
+                                      TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  SettingsPage()),
+                                      );
+                                    },
+                                    child: const Text("Réglages", style: TextStyle(color: Colors.white),),
+                                  )
                                     ],
                                   ),
                                 ),
