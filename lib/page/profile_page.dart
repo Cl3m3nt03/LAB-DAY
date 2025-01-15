@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/editprofile_page.dart';
+import 'package:makeitcode/page/securite_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -76,7 +77,7 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            height: 200,
+                            height: 210,
                             width: MediaQuery.of(context).size.width -50,
                             decoration:BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -89,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.person),
+                                      Icon(Icons.person , color: Colors.white,),
                                       TextButton(
                                     onPressed: () {
                                       Navigator.push(
@@ -103,23 +104,29 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                SizedBox(height: 10), 
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.key),
+                                      Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
-                                      Text("Sécurité", style: TextStyle(color: Colors.white)),
+                                      TextButton(
+                                      onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  SecuritePage()),
+                                      );
+                                    },
+                                    child: const Text("Sécurité", style: TextStyle(color: Colors.white),),
+                                  )
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 10),
                                 Divider(color: const Color.fromARGB(70, 255, 255, 255)),
                                 SizedBox(height: 10),
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.settings),
+                                      Icon(Icons.settings, color: Colors.white),
                                       SizedBox(width: 15),
                                       Text("Réglages", style: TextStyle(color: Colors.white)),
                                     ],
@@ -145,7 +152,7 @@ class ProfilePage extends StatelessWidget {
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.person),
+                                      Icon(Icons.person, color: Colors.white),
                                       SizedBox(width: 15), 
                                       Text(
                                         "Politique de confidentialité",
@@ -160,7 +167,7 @@ class ProfilePage extends StatelessWidget {
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.contact_mail), 
+                                      Icon(Icons.contact_mail, color: Colors.white), 
                                       SizedBox(width: 15),
                                       Text(
                                         "Contactez-nous",
@@ -185,7 +192,7 @@ class ProfilePage extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                               child: Row(
                                 children: [
-                                  Icon(Icons.key),
+                                  Icon(Icons.key, color: Colors.white),
                                   SizedBox(width: 15),
                                   Text("About", style: TextStyle(color: Colors.white)),
                                 ],
