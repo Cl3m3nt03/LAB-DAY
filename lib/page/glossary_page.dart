@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_highlight/flutter_highlight.dart';
+import 'package:makeitcode/widget/style_editor.dart';
+
 
 class GlossaryPage extends StatefulWidget {
 
@@ -333,10 +336,16 @@ class GlossaryContentPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                description,
-                style: const TextStyle(fontSize: 16, color: Color.fromARGB(255, 44, 3, 65)),
+              HighlightView(
+              description,
+              language: 'html', // Définir le bon langage ici
+              theme: shadesOfPurpleTheme,  // Appliquer le thème personnalisé
+              padding: const EdgeInsets.all(12),
+              textStyle: const TextStyle(
+                fontFamily: 'Monospace',
+                fontSize: 16,
               ),
+            ),
             ],
           ),
         );
