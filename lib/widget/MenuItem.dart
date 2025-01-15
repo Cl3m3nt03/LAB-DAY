@@ -43,10 +43,25 @@ class Listitem extends StatelessWidget {
                               Text("Anglais", style: TextStyle(color: Colors.white, fontSize: 20),),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
+                  Divider(),
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              Text('🇫🇷'),
+                              Text("Français", style: TextStyle(color: Colors.white, fontSize: 20),),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ],

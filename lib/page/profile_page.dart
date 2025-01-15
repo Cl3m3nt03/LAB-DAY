@@ -127,7 +127,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Icon(Icons.settings, color: Colors.white),
-                                      SizedBox(width: 15),
+                                      SizedBox(width: 5),
                                       TextButton(
                                     onPressed: () {
                                       Navigator.push(
