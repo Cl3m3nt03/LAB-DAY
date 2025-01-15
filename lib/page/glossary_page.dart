@@ -559,8 +559,8 @@ class GlossaryContentPage extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
       ),
       builder: (BuildContext context) {
-        return Container(
-          height: 500,
+        return SingleChildScrollView(
+        child :  Container(
           width: double.maxFinite,
           decoration: const BoxDecoration(
             color: Color.fromARGB(255, 169, 186, 220), // Couleur de fond
@@ -602,6 +602,7 @@ class GlossaryContentPage extends StatelessWidget {
             ),
             ],
           ),
+        ),
         );
       },
     );
