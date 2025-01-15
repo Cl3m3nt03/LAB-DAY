@@ -10,6 +10,10 @@ class Auth {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   User? get currentUser => _auth.currentUser;
+  String? get uid => _auth.currentUser!.uid;
+  String? get email => _auth.currentUser!.email;
+  String? get username => _auth.currentUser!.displayName;
+
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
@@ -32,6 +36,17 @@ class Auth {
       email: email,
       password: password,
     );
+  }
+
+  Future<void>initializeUser({
+    required String email,
+    required String username,
+  }) async{
+    await _firestore.collection('Users').doc( Auth().uid).set({
+      'uid': Auth().uid,
+      'email': email,
+      'pseudo': username,
+    });
   }
 
   Future<void> sendPasswordResetEmail(String email, context) async {
@@ -62,6 +77,7 @@ Future<void> signInWithGoogle( context) async {
     );
     await _auth.signInWithCredential(credential);
     toast.showToast(context, 'Connexion réussie', isError: false);
+    initializeUser(email:  Auth().email ?? '', username: Auth().username ?? '');
   } on FirebaseAuthException catch (e) {
 
     toast.showToast(context, 'Erreur de connexion : ${e.message}', isError: true);

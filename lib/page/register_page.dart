@@ -106,14 +106,14 @@ class _RegisterPageState extends State<RegisterPage> {
       if (user != null) {
         await user.sendEmailVerification();
       }
+
+      Auth().initializeUser(
+        email: emailController.text,
+        username: pseudoController.text,
+      );
       
 
-      CollectionReference usersRef = FirebaseFirestore.instance.collection('Users');
-      await usersRef.doc(Auth().currentUser?.uid).set({
-        'uid': Auth().currentUser?.uid,
-        'email': emailController.text,
-        'pseudo': pseudoController.text,
-      });
+
 
       toast.showToast(context,'Compte créé avec succès');
       _resetFields();
