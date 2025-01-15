@@ -21,7 +21,6 @@ class ProfilePage extends StatelessWidget {
                 stops: [0.2, 0.9],
                 begin: Alignment.topCenter,
                 end: Alignment.center, 
-
                 ),
                 ),
               child:  SingleChildScrollView(

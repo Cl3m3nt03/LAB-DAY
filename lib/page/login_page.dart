@@ -47,13 +47,16 @@ class _LoginPageState extends State <LoginPage>{
   }         
 
   Widget _submitButton(){
-    return Padding(padding: const EdgeInsets.symmetric(horizontal: 40),
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: 0),
     child:TextButton(
     style: TextButton.styleFrom(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       shadowColor: Colors.black,
       elevation: 5,
       minimumSize: const Size(double.infinity, 55),
+
       backgroundColor: Color.fromARGB(249, 161, 119, 51),
+
     ),
     onPressed:  signInWithEmailAndPassword,
     child: Text( 'CONNEXION' ,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold ,fontSize: 20,fontFamily: 'Monsterrat'),
@@ -109,41 +112,16 @@ class _LoginPageState extends State <LoginPage>{
 
 
       Widget _moreConnexionButton(){
-  return Row(
+  return Padding(padding: const EdgeInsets.symmetric(horizontal: 0),
+    child : Row(
   children: [
-    Expanded(
-      child: TextButton(
-        onPressed: () {},
-        style: TextButton.styleFrom(
-          shadowColor: Colors.black,
-          elevation: 5,
-          backgroundColor: const Color.fromRGBO(21, 49, 104, 1),
-          padding: const EdgeInsets.symmetric(vertical: 15),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center, 
-          children: [
-            const Icon(Icons.facebook, color: Colors.white,size: 25,), 
-            const SizedBox(width: 10),
-            const Text(
-              'FACEBOOK',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-      const SizedBox(width: 10), 
     Expanded(
       child: TextButton(
         onPressed: () {
           Auth().signInWithGoogle(context);
         },
         style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           shadowColor: Colors.black,
           elevation: 5,
           backgroundColor: const Color.fromRGBO(166, 32, 54, 1),
@@ -170,6 +148,7 @@ class _LoginPageState extends State <LoginPage>{
       ),
     ),
   ],
+),
 );
 }
 

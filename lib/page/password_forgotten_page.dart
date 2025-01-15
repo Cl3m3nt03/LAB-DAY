@@ -17,7 +17,6 @@ class PasswordForgottenPage extends StatelessWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-
             return SingleChildScrollView(
               padding: EdgeInsets.only(bottom: bottomInset),
               child: ConstrainedBox(
@@ -27,14 +26,14 @@ class PasswordForgottenPage extends StatelessWidget {
                 child: IntrinsicHeight(
                   child: Container(
                     decoration: const BoxDecoration(
-                      gradient: RadialGradient(
+                      gradient: LinearGradient(
                         colors: [
                           Color.fromRGBO(0, 113, 152, 1),
                           Color.fromARGB(255, 11, 22, 44),
                         ],
-                        stops: [0.1, 0.9],
-                        center: Alignment(-0.7, 0.7),
-                        radius: 0.8,
+                        stops: [0.2, 0.9],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.center,
                       ),
                     ),
                     child: Padding(
@@ -67,8 +66,11 @@ class PasswordForgottenPage extends StatelessWidget {
                           const SizedBox(height: 20),
                           Center(
                             child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                shadowColor: Colors.black,
+                                elevation: 5,
+                                minimumSize: const Size(double.infinity, 55),
                                 backgroundColor: const Color.fromARGB(249, 161, 119, 51),
                               ),
                               onPressed: () {
