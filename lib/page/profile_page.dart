@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/page/Politique_page.dart';
+import 'package:makeitcode/page/contacte_page.dart';
 import 'package:makeitcode/page/editprofile_page.dart';
 import 'package:makeitcode/page/securite_page.dart';
 import 'package:makeitcode/page/settings_page.dart';
@@ -154,31 +156,38 @@ class ProfilePage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                             child: Column(
                               children: [
-                                SizedBox(height: 10),
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.person, color: Colors.white),
-                                      SizedBox(width: 15), 
-                                      Text(
-                                        "Politique de confidentialité",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                      Icon(Icons.policy, color: Colors.white),
+                                      SizedBox(width: 10), 
+                                      TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  PrivacyPolicyPage()),
+                                      );
+                                    },
+                                    child: const Text("Politique de confidentialité", style: TextStyle(color: Colors.white),),
+                                  ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 20),
                                 Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                SizedBox(height: 20), 
                                 Container(
                                   child: Row(
                                     children: [
                                       Icon(Icons.contact_mail, color: Colors.white), 
                                       SizedBox(width: 15),
-                                      Text(
-                                        "Contactez-nous",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                      TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>  ContactePage()),
+                                        );
+                                      },
+                                      child: const Text("Contactez-nous", style: TextStyle(color: Colors.white),),
+                                    ),
                                     ],
                                   ),
                                 ),
