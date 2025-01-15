@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.1"
+  code_editor:
+    dependency: "direct main"
+    description:
+      name: code_editor
+      sha256: "491976f97328764b6a6ef7b2db287def1ee81046cc447ff150bfd0fb668a728e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   collection:
     dependency: transitive
     description:
@@ -174,6 +182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.2"
+  flutter_highlight:
+    dependency: "direct main"
+    description:
+      name: flutter_highlight
+      sha256: "7b96333867aa07e122e245c033b8ad622e4e3a42a1a2372cbb098a2541d8782c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.0"
   flutter_keyboard_visibility:
     dependency: "direct main"
     description:
@@ -248,6 +264,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: transitive
+    description:
+      name: font_awesome_flutter
+      sha256: d3a89184101baec7f4600d58840a764d2ef760fe1c5a20ef9e6b0e9b24a07a3a
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.8.0"
   google_fonts:
     dependency: "direct main"
     description:
