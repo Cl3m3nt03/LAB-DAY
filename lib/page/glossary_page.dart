@@ -589,17 +589,19 @@ class GlossaryContentPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              
-              HighlightView(
-              code ,
-              language: langage, // Définir le bon langage ici
-              theme: shadesOfPurpleTheme,  // Appliquer le thème personnalisé
-              padding: const EdgeInsets.all(12),
-              textStyle: const TextStyle(
-                fontFamily: 'Monospace',
-                fontSize: 16,
+              SingleChildScrollView(
+                child: HighlightView(
+                code ,
+                language: langage, // Définir le bon langage ici
+                theme: shadesOfPurpleTheme,  // Appliquer le thème personnalisé
+                padding: const EdgeInsets.all(12),
+                textStyle: const TextStyle(
+                  fontFamily: 'Monospace',
+                  fontSize: 16,
               ),
             ),
+            )
+              
             ],
           ),
         );
