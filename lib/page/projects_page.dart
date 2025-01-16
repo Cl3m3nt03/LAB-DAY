@@ -19,13 +19,20 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-
-  final Stream<QuerySnapshot> _projectsStreamBegan =
-      FirebaseFirestore.instance.collection('Projects').where('state', isEqualTo: 'began').snapshots();
-  final Stream<QuerySnapshot> _projectsStreamUnlocked =
-      FirebaseFirestore.instance.collection('Projects').where('state', isEqualTo: 'unlocked').snapshots();
-  final Stream<QuerySnapshot> _projectsStreamBlocked =
-      FirebaseFirestore.instance.collection('Projects').where('state', isEqualTo: 'blocked').snapshots();
+  final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
+      .collection('Projects')
+      .where('state', isEqualTo: 'began')
+      .snapshots();
+  final Stream<QuerySnapshot> _projectsStreamUnlocked = FirebaseFirestore
+      .instance
+      .collection('Projects')
+      .where('state', isEqualTo: 'unlocked')
+      .snapshots();
+  final Stream<QuerySnapshot> _projectsStreamBlocked = FirebaseFirestore
+      .instance
+      .collection('Projects')
+      .where('state', isEqualTo: 'blocked')
+      .snapshots();
 
   Widget _title() {
     return Text(
@@ -44,7 +51,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
       builder: (BuildContext context, SearchController controller) {
         return SearchBar(
           controller: controller,
-          padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(horizontal: 16)),
+          padding: const WidgetStatePropertyAll<EdgeInsets>(
+              EdgeInsets.symmetric(horizontal: 16)),
           onTap: () {
             controller.openView();
           },
@@ -84,7 +92,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
   }
 
   Widget _projectsCard(projet) {
-    double percentageCompletion = (projet['actualStep'] / projet['nbSteps']) * 100;
+    double percentageCompletion =
+        (projet['actualStep'] / projet['nbSteps']) * 100;
     return Container(
       height: 300,
       width: 150,
@@ -108,94 +117,92 @@ class _ProjectsPageState extends State<ProjectsPage> {
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.bottomCenter,
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                        height: 60,
-                        width: 130,
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.6),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                projet['name'],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Monsterrat',
-                                  fontSize: 13,
-                                ),
+              alignment: Alignment.bottomCenter,
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    height: 60,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            projet['name'],
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Monsterrat',
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          if (projet['state'] == 'began')
+                            Container(
+                              height: 15,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(50),
                               ),
-                              SizedBox(height: 5),
-
-                              if(projet['state'] == 'began')
-                              Container(
-                                height: 15,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    if (percentageCompletion > 30)
-                                      Container(
-                                        height: double.maxFinite,
-                                        width: percentageCompletion,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffE8B228),
-                                          borderRadius: BorderRadius.circular(50),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(right: 4),
-                                          child: Align(
-                                            alignment: Alignment.topRight,
-                                            child: Text(
-                                              '${percentageCompletion.truncate()}%',
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.black,
-                                              ),
+                              child: Stack(
+                                children: [
+                                  if (percentageCompletion > 30)
+                                    Container(
+                                      height: double.maxFinite,
+                                      width: percentageCompletion,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffE8B228),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 4),
+                                        child: Align(
+                                          alignment: Alignment.topRight,
+                                          child: Text(
+                                            '${percentageCompletion.truncate()}%',
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.black,
                                             ),
                                           ),
                                         ),
                                       ),
-                                    if (percentageCompletion <= 30)
-                                      Container(
-                                        height: double.maxFinite,
-                                        width: percentageCompletion,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffE8B228),
-                                          borderRadius: BorderRadius.circular(50),
+                                    ),
+                                  if (percentageCompletion <= 30)
+                                    Container(
+                                      height: double.maxFinite,
+                                      width: percentageCompletion,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffE8B228),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                    ),
+                                  if (percentageCompletion <= 30)
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        '${percentageCompletion.truncate()}%',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.white,
                                         ),
                                       ),
-                                    if (percentageCompletion <= 30)
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          '${percentageCompletion.truncate()}%',
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
+                                    ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
+                            ),
+                        ],
                       ),
-              ),
-            )
-          )
+                    ),
+                  ),
+                ),
+              ))
         ],
       ),
     );
@@ -212,7 +219,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
         SizedBox(height: 16),
         StreamBuilder<QuerySnapshot>(
           stream: Stream,
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text(
                 'Une erreur est survenue',
@@ -234,7 +242,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
                 spacing: 30,
                 runSpacing: 30,
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                  Map<String, dynamic> projet = document.data()! as Map<String, dynamic>;
+                  Map<String, dynamic> projet =
+                      document.data()! as Map<String, dynamic>;
                   return _projectsCard(projet);
                 }).toList(),
               ),
@@ -254,7 +263,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+            colors: [
+              Color.fromRGBO(0, 113, 152, 1),
+              Color.fromARGB(255, 11, 22, 44)
+            ],
             stops: [0.2, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.center,
@@ -274,7 +286,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
                   _SearchBar(),
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
-                  _projects('En cours',_projectsStreamBegan),
+                  _projects('En cours', _projectsStreamBegan),
                   _projects('Débloqués', _projectsStreamUnlocked),
                 ],
               ),

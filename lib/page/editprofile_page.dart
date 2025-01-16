@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
 import 'package:makeitcode/widget/textField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<String> getUserPseudo(String uid) async {
-  final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+  final userDoc =
+      await FirebaseFirestore.instance.collection('Users').doc(uid).get();
   if (userDoc.exists) {
     return userDoc.data()?['pseudo'] ?? 'No pseudo found';
   }
@@ -25,7 +27,8 @@ class EditCompte extends StatelessWidget {
   Future<void> updateUserBio(String uid) async {
     try {
       print('updateUserBio called with uid: $uid');
-      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
       if (userDoc.exists) {
         await FirebaseFirestore.instance.collection('Users').doc(uid).update({
           'bio': EditBioController.text,
@@ -43,7 +46,8 @@ class EditCompte extends StatelessWidget {
   Future<void> updateUserPseudo(String uid) async {
     try {
       print('updateUserPseudo called with uid: $uid');
-      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
       if (userDoc.exists) {
         await FirebaseFirestore.instance.collection('Users').doc(uid).update({
           'pseudo': EditPseudoController.text,
@@ -61,7 +65,8 @@ class EditCompte extends StatelessWidget {
   Future<void> updateUserEmail(String uid) async {
     try {
       print('updateUserEmail called with uid: $uid');
-      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
       if (userDoc.exists) {
         await FirebaseFirestore.instance.collection('Users').doc(uid).update({
           'email': EditEmailController.text,
@@ -77,7 +82,7 @@ class EditCompte extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String uid = 'PS3zCWTZA4cS6gXFrqRPNdT17JG3'; // Remplacez par l'ID utilisateur réel
+    final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
 
     return Scaffold(
       body: Center(
@@ -137,7 +142,8 @@ class EditCompte extends StatelessWidget {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(
                                   thickness: 1.5,
                                   color: Colors.white.withOpacity(0.5),
@@ -153,7 +159,8 @@ class EditCompte extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 50,
-                                backgroundImage: AssetImage('assets/icons/baka.png'),
+                                backgroundImage:
+                                    AssetImage('assets/icons/baka.png'),
                               ),
                               Positioned(
                                 bottom: 0,
@@ -200,22 +207,28 @@ class EditCompte extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           ElevatedButton(
-                            onPressed: () {
-                              updateUserBio(uid);
+                            onPressed: () async {
+                              final String uid =
+                                  FirebaseAuth.instance.currentUser?.uid ?? '';
+
+                              if (EditBioController.text.isNotEmpty) {
+                                await updateUserBio(uid);
+                              }
+                              if (EditPseudoController.text.isNotEmpty) {
+                                await updateUserPseudo(uid);
+                              }
+                              if (EditEmailController.text.isNotEmpty) {
+                                await updateUserEmail(uid);
+                              }
                             },
-                            child: Text("Enregistrer la bio"),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              updateUserPseudo(uid);
-                            },
-                            child: Text("Enregistrer le pseudo"),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              updateUserEmail(uid);
-                            },
-                            child: Text("Enregistrer l'email"),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(250, 175, 142, 88),
+                            ),
+                            child: Text(
+                              "Enregistrer les modifications",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
