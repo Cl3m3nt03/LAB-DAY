@@ -1,0 +1,15 @@
+# flutter_launcher_icons: 
+  #android : "launcher_icon"
+  #image_path : "assets/symbol3.png"
+  #ios : true 
+  #background_color : "#2471A3"
+  #android: true
+  #adaptive_icon_background: "#2471A3" # Couleur d'arrière-plan pour Android
+  #adaptive_icon_foreground: "assets/symbol3.png" # Image principale avec fond transparent
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/splashscreen/icon2.png" # Image principale pour iOS
+  adaptive_icon_background: "#CBE2F1" # Couleur de fond pour Android
+  adaptive_icon_foreground: "assets/splashscreen/icon2.png" # Image principale avec fond transparent pour Android
