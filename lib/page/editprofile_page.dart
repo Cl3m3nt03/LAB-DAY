@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
+import 'package:makeitcode/widget/edit_avatar.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -80,6 +83,13 @@ class EditCompte extends StatelessWidget {
     }
   }
 
+  File? _selectedAvatar;
+
+  void _onAvatarSelected(File? image) {
+    _selectedAvatar = image;
+    // Ici, vous pouvez sauvegarder l'image dans Firebase Storage et mettre à jour le lien dans Firestore
+  }
+
   @override
   Widget build(BuildContext context) {
     final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
@@ -153,30 +163,9 @@ class EditCompte extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          bottom: -50,
+                         bottom: -50,
                           left: MediaQuery.of(context).size.width / 2 - 65,
-                          child: Stack(
-                            children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/icons/baka.png'),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: EditAvatar(onImageSelected: _onAvatarSelected),
                         ),
                       ],
                     ),
