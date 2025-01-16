@@ -93,19 +93,6 @@ class _SecuritePageState extends State<SecuritePage> {
                                 backgroundImage:
                                     AssetImage('assets/icons/baka.png'),
                               ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),

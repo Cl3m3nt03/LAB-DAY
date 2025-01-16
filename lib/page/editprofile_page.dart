@@ -1,6 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
 import 'package:makeitcode/widget/textField.dart';
+
+Future<String> getUserPseudo(String uid) async {
+  final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+  if (userDoc.exists) {
+    return userDoc.data()?['pseudo'] ?? 'No pseudo found';
+  }
+  return 'No pseudo found';
+}
 
 class EditCompte extends StatelessWidget {
    EditCompte({super.key});
@@ -113,23 +122,17 @@ class EditCompte extends StatelessWidget {
                       child: Column(
                         children: [
                           EntryField(
-                              title: 'Prenom',
+                              title: 'Pseudo',
                               controller: TextEditingController(),
                               prefixIcons: Icons.person,
                               height: 20),
                           SizedBox(height: 20),
                           EntryField(
-                              title: 'Nom',
+                              title: 'Email',
                               controller: TextEditingController(),
                               prefixIcons: Icons.person,
                               height: 20),
                           SizedBox(height: 20),
-                          EntryField(
-                              title: 'Number',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.phone,
-                              height: 20),
-                          SizedBox(height: 40),
                           EntryField(
                               title: 'Bio',
                               controller: TextEditingController(),

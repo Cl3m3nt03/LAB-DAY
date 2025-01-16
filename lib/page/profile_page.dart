@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/auth.dart';
 import 'package:makeitcode/page/Politique_page.dart';
 import 'package:makeitcode/page/contacte_page.dart';
 import 'package:makeitcode/page/editprofile_page.dart';
 import 'package:makeitcode/page/securite_page.dart';
 import 'package:makeitcode/page/settings_page.dart';
 import 'package:makeitcode/widget/textField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+Future<String> getUserPseudo(String uid) async {
+  final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+  if (userDoc.exists) {
+    return userDoc.data()?['pseudo'] ?? 'No pseudo found';
+  }
+  return 'No pseudo found';
+}
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -55,8 +67,18 @@ class ProfilePage extends StatelessWidget {
                               ),
                               Column(
                                 children: [
-                                  Text('Clément Hanji', style: TextStyle(color: Colors.white, fontSize: 15),),
-                                  Text('+33 6 52 54 52 45', style: TextStyle(color: Color.fromRGBO(145, 141, 141, 1), fontSize: 15),),
+                                  FutureBuilder<String>(
+                                    future: getUserPseudo(Auth().currentUser?.uid ?? ''),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState == ConnectionState.waiting) {
+                                        return CircularProgressIndicator();
+                                      } else if (snapshot.hasError) {
+                                        return Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white));
+                                      } else {
+                                        return Text(snapshot.data ?? 'No pseudo available', style: TextStyle(color: Colors.white));
+                                      }
+                                    },
+                                  ),
                                 ],
                               ),
                               ElevatedButton(
@@ -65,7 +87,12 @@ class ProfilePage extends StatelessWidget {
                                   backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(250, 175, 142, 88)),
                                   foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                                 ),
-                                onPressed: () { },
+                                onPressed: () {
+                                  Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  EditCompte()),
+                                      );
+                                 },
                                 child: Text('Edit Profile', style: TextStyle(color: Colors.white , fontSize: 10),),
                               ),        
                             ],
