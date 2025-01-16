@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 
-// Fonction pour obtenir le pseudo de l'utilisateur à partir de Firestore
 Future<String> getUserPseudo(String uid) async {
   final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
   if (userDoc.exists) {
@@ -15,27 +14,64 @@ Future<String> getUserPseudo(String uid) async {
 class EditCompte extends StatelessWidget {
   EditCompte({super.key});
 
-  // Contrôleurs pour les champs de texte
   final TextEditingController EditPrenomController = TextEditingController();
   final TextEditingController EditNomController = TextEditingController();
   final TextEditingController EditNumberController = TextEditingController();
-  final TextEditingController EditBioController = TextEditingController(); // Ajout du contrôleur pour la bio
+  final TextEditingController EditBioController = TextEditingController();
+  final TextEditingController EditPseudoController = TextEditingController();
+  final TextEditingController EditEmailController = TextEditingController();
 
   // Fonction pour mettre à jour la bio de l'utilisateur dans Firestore
   Future<void> updateUserBio(String uid) async {
     try {
-      print('updateUserBio called with uid: $uid'); // Message de débogage
+      print('updateUserBio called with uid: $uid');
       final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
       if (userDoc.exists) {
         await FirebaseFirestore.instance.collection('Users').doc(uid).update({
           'bio': EditBioController.text,
         });
-        print('Bio updated successfully'); // Message de débogage
+        print('Bio updated successfully');
       } else {
         print('Document utilisateur non trouvé');
       }
     } catch (e) {
       print('Erreur lors de la mise à jour de la bio: $e');
+    }
+  }
+
+  // Fonction pour mettre à jour le pseudo de l'utilisateur dans Firestore
+  Future<void> updateUserPseudo(String uid) async {
+    try {
+      print('updateUserPseudo called with uid: $uid');
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'pseudo': EditPseudoController.text,
+        });
+        print('Pseudo updated successfully');
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour du pseudo: $e');
+    }
+  }
+
+  // Fonction pour mettre à jour l'email de l'utilisateur dans Firestore
+  Future<void> updateUserEmail(String uid) async {
+    try {
+      print('updateUserEmail called with uid: $uid');
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'email': EditEmailController.text,
+        });
+        print('Email updated successfully');
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'email: $e');
     }
   }
 
@@ -144,29 +180,42 @@ class EditCompte extends StatelessWidget {
                         children: [
                           EntryField(
                             title: 'Pseudo',
-                            controller: TextEditingController(),
+                            controller: EditPseudoController,
                             prefixIcons: Icons.person,
                             height: 20,
                           ),
                           SizedBox(height: 20),
                           EntryField(
                             title: 'Email',
-                            controller: TextEditingController(),
+                            controller: EditEmailController,
                             prefixIcons: Icons.person,
                             height: 20,
                           ),
                           SizedBox(height: 20),
                           EntryField(
                             title: 'Bio',
-                            controller: EditBioController, // Utilisation du contrôleur pour la bio
+                            controller: EditBioController,
                             prefixIcons: Icons.question_answer,
                             height: 60,
                           ),
+                          SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () {
                               updateUserBio(uid);
                             },
                             child: Text("Enregistrer la bio"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              updateUserPseudo(uid);
+                            },
+                            child: Text("Enregistrer le pseudo"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              updateUserEmail(uid);
+                            },
+                            child: Text("Enregistrer l'email"),
                           ),
                         ],
                       ),
