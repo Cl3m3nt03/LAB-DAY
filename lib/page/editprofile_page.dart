@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 
+// Fonction pour obtenir le pseudo de l'utilisateur à partir de Firestore
 Future<String> getUserPseudo(String uid) async {
   final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
   if (userDoc.exists) {
@@ -12,14 +13,36 @@ Future<String> getUserPseudo(String uid) async {
 }
 
 class EditCompte extends StatelessWidget {
-   EditCompte({super.key});
+  EditCompte({super.key});
 
+  // Contrôleurs pour les champs de texte
   final TextEditingController EditPrenomController = TextEditingController();
   final TextEditingController EditNomController = TextEditingController();
   final TextEditingController EditNumberController = TextEditingController();
+  final TextEditingController EditBioController = TextEditingController(); // Ajout du contrôleur pour la bio
+
+  // Fonction pour mettre à jour la bio de l'utilisateur dans Firestore
+  Future<void> updateUserBio(String uid) async {
+    try {
+      print('updateUserBio called with uid: $uid'); // Message de débogage
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'bio': EditBioController.text,
+        });
+        print('Bio updated successfully'); // Message de débogage
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de la bio: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final String uid = 'PS3zCWTZA4cS6gXFrqRPNdT17JG3'; // Remplacez par l'ID utilisateur réel
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -58,7 +81,7 @@ class EditCompte extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20), 
+                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   IconButton(
@@ -78,8 +101,7 @@ class EditCompte extends StatelessWidget {
                                 ],
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(
                                   thickness: 1.5,
                                   color: Colors.white.withOpacity(0.5),
@@ -95,8 +117,7 @@ class EditCompte extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/icons/baka.png'),
+                                backgroundImage: AssetImage('assets/icons/baka.png'),
                               ),
                               Positioned(
                                 bottom: 0,
@@ -122,25 +143,34 @@ class EditCompte extends StatelessWidget {
                       child: Column(
                         children: [
                           EntryField(
-                              title: 'Pseudo',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.person,
-                              height: 20),
+                            title: 'Pseudo',
+                            controller: TextEditingController(),
+                            prefixIcons: Icons.person,
+                            height: 20,
+                          ),
                           SizedBox(height: 20),
                           EntryField(
-                              title: 'Email',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.person,
-                              height: 20),
+                            title: 'Email',
+                            controller: TextEditingController(),
+                            prefixIcons: Icons.person,
+                            height: 20,
+                          ),
                           SizedBox(height: 20),
                           EntryField(
-                              title: 'Bio',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.question_answer,
-                              height: 60),
+                            title: 'Bio',
+                            controller: EditBioController, // Utilisation du contrôleur pour la bio
+                            prefixIcons: Icons.question_answer,
+                            height: 60,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              updateUserBio(uid);
+                            },
+                            child: Text("Enregistrer la bio"),
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
