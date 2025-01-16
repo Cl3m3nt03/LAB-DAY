@@ -10,6 +10,6 @@
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/splashscreen/icon2.png" # Image principale pour iOS
+  image_path: "assets/splashscreen/icon.png" # Image principale pour iOS
   adaptive_icon_background: "#CBE2F1" # Couleur de fond pour Android
-  adaptive_icon_foreground: "assets/splashscreen/icon2.png" # Image principale avec fond transparent pour Android
+  adaptive_icon_foreground: "assets/splashscreen/icon.png" # Image principale avec fond transparent pour Android
