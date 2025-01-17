@@ -1,6 +1,7 @@
 //Permet de faire la gestion de la page principale avec la NavBar et les différentes pages
 
 import 'package:flutter/material.dart';
+import 'package:makeitcode/page/global_chat_page.dart';
 import 'package:makeitcode/page/glossary_page.dart';
 import 'package:makeitcode/page/home_page.dart';
 import 'package:makeitcode/page/login_page.dart';
@@ -21,7 +22,7 @@ class _PageManagementState extends State<PageManagement> {
   final PageController _pageController = PageController(initialPage: 2);
 
   final List<Widget> _pages = [
-    Center(child: Text('Communauté', style: TextStyle(fontSize: 24))),
+    GlobalChatPage(),
     ProjectsPage(),
     HomePage(),
     GlossaryPage(),

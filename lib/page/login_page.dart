@@ -54,11 +54,10 @@ class _LoginPageState extends State <LoginPage>{
       shadowColor: Colors.black,
       elevation: 5,
       minimumSize: const Size(double.infinity, 55),
-
       backgroundColor: Color.fromARGB(249, 161, 119, 51),
 
     ),
-    onPressed:  signInWithEmailAndPassword,
+    onPressed:  signInWithEmailAndPassword, 
     child: Text( 'CONNEXION' ,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold ,fontSize: 20,fontFamily: 'Monsterrat'),
     ),
     ),
@@ -164,7 +163,7 @@ class _LoginPageState extends State <LoginPage>{
           gradient: LinearGradient(
             colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)], 
             stops: [0.2, 0.9],
-            begin: Alignment.bottomCenter,
+            begin: Alignment.topCenter,
             end: Alignment.center, 
             
         ),

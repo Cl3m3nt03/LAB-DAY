@@ -13,9 +13,14 @@ class Auth {
   String? get uid => _auth.currentUser!.uid;
   String? get email => _auth.currentUser!.email;
   String? get username => _auth.currentUser!.displayName;
+  String? pseudo;
+
 
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+
+
 
   Future<void> signInWhithEmailAndPassword({
     required String email,
@@ -37,6 +42,23 @@ class Auth {
       password: password,
     );
   }
+
+
+Future<String?> recoveryPseudo() async {
+  try {
+    DocumentSnapshot<Map<String, dynamic>> doc = 
+        await _firestore.collection('Users').doc(Auth().uid).get();
+
+    if (doc.exists && doc.data() != null) {
+      return doc.data()?['pseudo'] as String?;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    print('Erreur lors de la récupération du pseudo : $e');
+    return null;
+  }
+}
 
   Future<void>initializeUser({
     required String email,
@@ -89,4 +111,5 @@ Future<void> signInWithGoogle( context) async {
   Future<void> signOut() async{
     await _auth.signOut();
   }
+  
 }
