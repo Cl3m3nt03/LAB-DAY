@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/textField.dart';
-import 'package:makeitcode/auth.dart';
+import 'package:makeitcode/widget/auth.dart';
 
 class PasswordForgottenPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();

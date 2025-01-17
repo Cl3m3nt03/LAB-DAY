@@ -1,13 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:makeitcode/page/private_message.dart'; 
+import 'package:makeitcode/page/community/private_message.dart'; 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:makeitcode/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class ContactPage extends StatelessWidget {
   final String uid1;

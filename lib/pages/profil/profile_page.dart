@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:makeitcode/auth.dart';
-import 'package:makeitcode/page/Politique_page.dart';
-import 'package:makeitcode/page/contacte_page.dart';
-import 'package:makeitcode/page/editprofile_page.dart';
-import 'package:makeitcode/page/securite_page.dart';
-import 'package:makeitcode/page/settings_page.dart';
-import 'package:makeitcode/widget/textField.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:makeitcode/widget/auth.dart';
+import 'package:makeitcode/page/profile/Politique_page.dart';
+import 'package:makeitcode/page/profile/contacte_page.dart';
+import 'package:makeitcode/page/profile/editprofile_page.dart';
+import 'package:makeitcode/page/profile/securite_page.dart';
+import 'package:makeitcode/page/profile/settings_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 

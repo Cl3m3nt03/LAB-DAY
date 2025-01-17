@@ -3,8 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:makeitcode/page/login_page.dart';
-import 'package:makeitcode/widget/PageManagement.dart';
 import 'package:makeitcode/widget/tree.dart';
 
 Future<void> main() async {

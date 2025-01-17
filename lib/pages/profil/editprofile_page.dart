@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:makeitcode/page/profile_page.dart';
 import 'package:makeitcode/widget/edit_avatar.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';

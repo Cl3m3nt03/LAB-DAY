@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:makeitcode/auth.dart';
+import 'package:makeitcode/widget/auth.dart';
 
 
 class HomePage extends StatefulWidget {

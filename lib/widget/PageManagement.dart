@@ -1,14 +1,12 @@
 //Permet de faire la gestion de la page principale avec la NavBar et les différentes pages
 
 import 'package:flutter/material.dart';
-import 'package:makeitcode/page/global_chat_page.dart';
+import 'package:makeitcode/page/community/global_chat_page.dart';
 import 'package:makeitcode/page/glossary_page.dart';
 import 'package:makeitcode/page/home_page.dart';
-import 'package:makeitcode/page/login_page.dart';
-import 'package:makeitcode/page/profile_page.dart';
-import 'package:makeitcode/page/projects_page.dart';
+import 'package:makeitcode/page/profile/profile_page.dart';
+import 'package:makeitcode/page/projects/projects_page.dart';
 import 'package:makeitcode/widget/navBar.dart';
-import 'package:makeitcode/widget/tree.dart'; 
 
 class PageManagement extends StatefulWidget {
 const PageManagement({Key? key}) : super(key: key);

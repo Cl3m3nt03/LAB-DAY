@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/MenuItem.dart';
-import 'package:popover/popover.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;

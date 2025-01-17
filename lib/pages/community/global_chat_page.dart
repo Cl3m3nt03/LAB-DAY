@@ -2,17 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:makeitcode/auth.dart';
-import 'package:makeitcode/page/home_page.dart';
+import 'package:makeitcode/widget/auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:popover/popover.dart';
-import 'package:makeitcode/widget/MenuItem.dart';
-import 'package:makeitcode/page/private_message.dart';
-import 'package:makeitcode/page/contact_page.dart';
+import 'package:makeitcode/page/community/private_message.dart';
+import 'package:makeitcode/page/community/list_message_page.dart';
 
 
 class GlobalChatPage extends StatefulWidget {
+  const GlobalChatPage({super.key});
+
   @override
   _GlobalChatPageState createState() => _GlobalChatPageState();
 }
@@ -20,7 +19,6 @@ class GlobalChatPage extends StatefulWidget {
 class _GlobalChatPageState extends State<GlobalChatPage> {
   final TextEditingController _controller = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final uid = FirebaseAuth.instance.currentUser!.uid;
   String? pseudo;
 

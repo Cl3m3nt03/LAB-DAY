@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:makeitcode/auth.dart';
-import 'package:makeitcode/page/password_forgotten_page.dart';
-import 'package:makeitcode/page/register_page.dart';
+import 'package:makeitcode/widget/auth.dart';
+import 'package:makeitcode/page/login_register/password_forgotten_page.dart';
+import 'package:makeitcode/page/login_register/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 

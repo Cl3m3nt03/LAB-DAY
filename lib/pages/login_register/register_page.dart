@@ -1,9 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:makeitcode/auth.dart';
+import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/textField.dart';
 
 class RegisterPage extends StatefulWidget {

@@ -1,16 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:makeitcode/auth.dart';
 import 'package:makeitcode/page/glossary_page.dart';
-import 'package:makeitcode/page/register_page.dart';
-import 'package:makeitcode/widget/textField.dart';
-import 'package:makeitcode/page/project_detail_page.dart';
-import 'package:swipeable_button/swipeable_button.dart';
-import 'glossary_page.dart';
+import 'package:makeitcode/page/projects/project_detail_page.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 
 class ProjectsPage extends StatefulWidget {
