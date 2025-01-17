@@ -248,7 +248,7 @@ Widget showMore(){
               )
             ],
             image: DecorationImage(
-              image: NetworkImage(projet['image'].toString()),
+              image: AssetImage('assets/images/${projet['name']}.jpg'),
               fit: BoxFit.cover,
             ),
           ),
