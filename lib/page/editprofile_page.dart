@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
@@ -83,11 +82,35 @@ class EditCompte extends StatelessWidget {
     }
   }
 
-  File? _selectedAvatar;
+  // Fonction pour mettre à jour l'avatar de l'utilisateur dans Firestore
+  Future<void> updateUserAvatar(String uid, String? base64Avatar) async {
+    try {
+      print('updateUserAvatar called with uid: $uid');
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        if (base64Avatar != null) {
+          await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+            'avatar': base64Avatar,
+          });
+          print('Avatar updated successfully');
+        } else {
+          print('No avatar to update');
+        }
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'avatar: $e');
+    }
+  }
 
-  void _onAvatarSelected(File? image) {
+  File? _selectedAvatar;
+  String? _base64Avatar;
+
+  void _onAvatarSelected(File? image, String? base64String) {
     _selectedAvatar = image;
-    // Ici, vous pouvez sauvegarder l'image dans Firebase Storage et mettre à jour le lien dans Firestore
+    _base64Avatar = base64String;
   }
 
   @override
@@ -163,7 +186,7 @@ class EditCompte extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                         bottom: -50,
+                          bottom: -50,
                           left: MediaQuery.of(context).size.width / 2 - 65,
                           child: EditAvatar(onImageSelected: _onAvatarSelected),
                         ),
@@ -216,6 +239,26 @@ class EditCompte extends StatelessWidget {
                             ),
                             child: Text(
                               "Enregistrer les modifications",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final String uid =
+                                  FirebaseAuth.instance.currentUser?.uid ?? '';
+                              if (_base64Avatar != null) {
+                                await updateUserAvatar(uid, _base64Avatar);
+                              } else {
+                                print('No avatar selected');
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(250, 175, 142, 88),
+                            ),
+                            child: Text(
+                              "Enregistrer l'avatar",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
