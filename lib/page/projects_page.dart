@@ -169,8 +169,8 @@ Widget _buildSearchResults() {
         // Image en arrière-plan
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            projet['image'].toString(),
+          child: Image(
+            image: AssetImage('assets/images/${projet['name']}.jpg'),
             fit: BoxFit.cover,
             height: _projectCardHeight,
             width: _projectCardWidth,
@@ -249,7 +249,7 @@ Widget showMore(){
               )
             ],
             image: DecorationImage(
-              image: NetworkImage(projet['image'].toString()),
+              image: AssetImage('assets/images/${projet['name']}.jpg'),
               fit: BoxFit.cover,
             ),
           ),

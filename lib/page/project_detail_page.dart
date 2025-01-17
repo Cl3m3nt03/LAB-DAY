@@ -54,7 +54,7 @@ Widget _ImagePoster(){
                 decoration: BoxDecoration(
                   color: Colors.black,
                   image: DecorationImage(
-                      image: NetworkImage(widget.projet['image'].toString()),
+                      image: AssetImage('assets/images/${widget.projet['name']}.jpg'),
                       fit: BoxFit.cover,
                   )
                 ),
