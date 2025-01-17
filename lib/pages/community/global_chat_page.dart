@@ -5,8 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:makeitcode/page/community/private_message.dart';
-import 'package:makeitcode/page/community/list_message_page.dart';
+import 'package:makeitcode/pages/community/private_message.dart';
+import 'package:makeitcode/pages/community/list_message_page.dart';
 
 
 class GlobalChatPage extends StatefulWidget {

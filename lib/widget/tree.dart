@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/PageManagement.dart';
-import 'package:makeitcode/page/login_register/login_page.dart';
+import 'package:makeitcode/pages/login_register/login_page.dart';
 
 
 

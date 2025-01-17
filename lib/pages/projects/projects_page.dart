@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:makeitcode/page/glossary_page.dart';
-import 'package:makeitcode/page/projects/project_detail_page.dart';
+import 'package:makeitcode/pages/glossary_page.dart';
+import 'package:makeitcode/pages/projects/project_detail_page.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 
 class ProjectsPage extends StatefulWidget {
