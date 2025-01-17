@@ -44,6 +44,7 @@ dependencies:
   delightful_toast: ^1.1.0
   swipeable_button: ^0.2.0
   flutter_polygon: ^0.3.0+2
+  material_floating_search_bar_2: ^0.5.0
 
 dev_dependencies:
   flutter_test:
