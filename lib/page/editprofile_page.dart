@@ -1,16 +1,122 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
+import 'package:makeitcode/widget/edit_avatar.dart';
 import 'package:makeitcode/widget/textField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+Future<String> getUserPseudo(String uid) async {
+  final userDoc =
+      await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+  if (userDoc.exists) {
+    return userDoc.data()?['pseudo'] ?? 'No pseudo found';
+  }
+  return 'No pseudo found';
+}
 
 class EditCompte extends StatelessWidget {
-   EditCompte({super.key});
+  EditCompte({super.key});
 
   final TextEditingController EditPrenomController = TextEditingController();
   final TextEditingController EditNomController = TextEditingController();
   final TextEditingController EditNumberController = TextEditingController();
+  final TextEditingController EditBioController = TextEditingController();
+  final TextEditingController EditPseudoController = TextEditingController();
+  final TextEditingController EditEmailController = TextEditingController();
+
+  // Fonction pour mettre à jour la bio de l'utilisateur dans Firestore
+  Future<void> updateUserBio(String uid) async {
+    try {
+      print('updateUserBio called with uid: $uid');
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'bio': EditBioController.text,
+        });
+        print('Bio updated successfully');
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de la bio: $e');
+    }
+  }
+
+  // Fonction pour mettre à jour le pseudo de l'utilisateur dans Firestore
+  Future<void> updateUserPseudo(String uid) async {
+    try {
+      print('updateUserPseudo called with uid: $uid');
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'pseudo': EditPseudoController.text,
+        });
+        print('Pseudo updated successfully');
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour du pseudo: $e');
+    }
+  }
+
+  // Fonction pour mettre à jour l'email de l'utilisateur dans Firestore
+  Future<void> updateUserEmail(String uid) async {
+    try {
+      print('updateUserEmail called with uid: $uid');
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'email': EditEmailController.text,
+        });
+        print('Email updated successfully');
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'email: $e');
+    }
+  }
+
+  // Fonction pour mettre à jour l'avatar de l'utilisateur dans Firestore
+  Future<void> updateUserAvatar(String uid, String? base64Avatar) async {
+    try {
+      print('updateUserAvatar called with uid: $uid');
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        if (base64Avatar != null) {
+          await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+            'avatar': base64Avatar,
+          });
+          print('Avatar updated successfully');
+        } else {
+          print('No avatar to update');
+        }
+      } else {
+        print('Document utilisateur non trouvé');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'avatar: $e');
+    }
+  }
+
+  File? _selectedAvatar;
+  String? _base64Avatar;
+
+  void _onAvatarSelected(File? image, String? base64String) {
+    _selectedAvatar = image;
+    _base64Avatar = base64String;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -49,7 +155,7 @@ class EditCompte extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20), 
+                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   IconButton(
@@ -82,28 +188,7 @@ class EditCompte extends StatelessWidget {
                         Positioned(
                           bottom: -50,
                           left: MediaQuery.of(context).size.width / 2 - 65,
-                          child: Stack(
-                            children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/icons/baka.png'),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: EditAvatar(onImageSelected: _onAvatarSelected),
                         ),
                       ],
                     ),
@@ -113,31 +198,73 @@ class EditCompte extends StatelessWidget {
                       child: Column(
                         children: [
                           EntryField(
-                              title: 'Prenom',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.person,
-                              height: 20),
+                            title: 'Pseudo',
+                            controller: EditPseudoController,
+                            prefixIcons: Icons.person,
+                            height: 20,
+                          ),
                           SizedBox(height: 20),
                           EntryField(
-                              title: 'Nom',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.person,
-                              height: 20),
+                            title: 'Email',
+                            controller: EditEmailController,
+                            prefixIcons: Icons.person,
+                            height: 20,
+                          ),
                           SizedBox(height: 20),
                           EntryField(
-                              title: 'Number',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.phone,
-                              height: 20),
-                          SizedBox(height: 40),
-                          EntryField(
-                              title: 'Bio',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.question_answer,
-                              height: 60),
+                            title: 'Bio',
+                            controller: EditBioController,
+                            prefixIcons: Icons.question_answer,
+                            height: 60,
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final String uid =
+                                  FirebaseAuth.instance.currentUser?.uid ?? '';
+
+                              if (EditBioController.text.isNotEmpty) {
+                                await updateUserBio(uid);
+                              }
+                              if (EditPseudoController.text.isNotEmpty) {
+                                await updateUserPseudo(uid);
+                              }
+                              if (EditEmailController.text.isNotEmpty) {
+                                await updateUserEmail(uid);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(250, 175, 142, 88),
+                            ),
+                            child: Text(
+                              "Enregistrer les modifications",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final String uid =
+                                  FirebaseAuth.instance.currentUser?.uid ?? '';
+                              if (_base64Avatar != null) {
+                                await updateUserAvatar(uid, _base64Avatar);
+                              } else {
+                                print('No avatar selected');
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(250, 175, 142, 88),
+                            ),
+                            child: Text(
+                              "Enregistrer l'avatar",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

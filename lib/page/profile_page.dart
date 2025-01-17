@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/auth.dart';
+import 'package:makeitcode/page/Politique_page.dart';
+import 'package:makeitcode/page/contacte_page.dart';
 import 'package:makeitcode/page/editprofile_page.dart';
 import 'package:makeitcode/page/securite_page.dart';
 import 'package:makeitcode/page/settings_page.dart';
 import 'package:makeitcode/widget/textField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+Future<String> getUserPseudo(String uid) async {
+  final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+  if (userDoc.exists) {
+    return userDoc.data()?['pseudo'] ?? 'No pseudo found';
+  }
+  return 'No pseudo found';
+}
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -52,8 +66,18 @@ class ProfilePage extends StatelessWidget {
                               ),
                               Column(
                                 children: [
-                                  Text('Clément Hanji', style: TextStyle(color: Colors.white, fontSize: 15),),
-                                  Text('+33 6 52 54 52 45', style: TextStyle(color: Color.fromRGBO(145, 141, 141, 1), fontSize: 15),),
+                                  FutureBuilder<String>(
+                                    future: getUserPseudo(Auth().currentUser?.uid ?? ''),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState == ConnectionState.waiting) {
+                                        return CircularProgressIndicator();
+                                      } else if (snapshot.hasError) {
+                                        return Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white));
+                                      } else {
+                                        return Text(snapshot.data ?? 'No pseudo available', style: TextStyle(color: Colors.white));
+                                      }
+                                    },
+                                  ),
                                 ],
                               ),
                               ElevatedButton(
@@ -62,7 +86,12 @@ class ProfilePage extends StatelessWidget {
                                   backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(250, 175, 142, 88)),
                                   foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                                 ),
-                                onPressed: () { },
+                                onPressed: () {
+                                  Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  EditCompte()),
+                                      );
+                                 },
                                 child: Text('Edit Profile', style: TextStyle(color: Colors.white , fontSize: 10),),
                               ),        
                             ],
@@ -153,31 +182,38 @@ class ProfilePage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                             child: Column(
                               children: [
-                                SizedBox(height: 10),
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(Icons.person, color: Colors.white),
-                                      SizedBox(width: 15), 
-                                      Text(
-                                        "Politique de confidentialité",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                      Icon(Icons.policy, color: Colors.white),
+                                      SizedBox(width: 10), 
+                                      TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>  PrivacyPolicyPage()),
+                                      );
+                                    },
+                                    child: const Text("Politique de confidentialité", style: TextStyle(color: Colors.white),),
+                                  ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 20),
                                 Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                SizedBox(height: 20), 
                                 Container(
                                   child: Row(
                                     children: [
                                       Icon(Icons.contact_mail, color: Colors.white), 
                                       SizedBox(width: 15),
-                                      Text(
-                                        "Contactez-nous",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                      TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>  ContactePage()),
+                                        );
+                                      },
+                                      child: const Text("Contactez-nous", style: TextStyle(color: Colors.white),),
+                                    ),
                                     ],
                                   ),
                                 ),

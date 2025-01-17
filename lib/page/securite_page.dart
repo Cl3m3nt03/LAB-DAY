@@ -1,15 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/textField.dart';
 
 class SecuritePage extends StatefulWidget {
+  const SecuritePage({super.key});
+
   @override
   _SecuritePageState createState() => _SecuritePageState();
-  
-  final TextEditingController LastMDPController = TextEditingController();
-  final TextEditingController NewMDPController = TextEditingController();
-  final TextEditingController ConfirmMDPController = TextEditingController();
-  
-
 }
 
 class _SecuritePageState extends State<SecuritePage> {
@@ -53,7 +50,7 @@ class _SecuritePageState extends State<SecuritePage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20), 
+                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   IconButton(
@@ -73,8 +70,8 @@ class _SecuritePageState extends State<SecuritePage> {
                                 ],
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
                                 child: Divider(
                                   thickness: 1.5,
                                   color: Colors.white.withOpacity(0.5),
@@ -93,68 +90,125 @@ class _SecuritePageState extends State<SecuritePage> {
                                 backgroundImage:
                                     AssetImage('assets/icons/baka.png'),
                               ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
                     SizedBox(height: 120),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          EntryField(
-                              title: 'Ancien Mot de Passe',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.lock,
-                              height: 20),
-                          SizedBox(height: 50),
-                          EntryField(
-                              title: 'Nouveau Mot de Passe',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.person,
-                              height: 20),
-                          SizedBox(height: 50),
-                          EntryField(
-                              title: 'Confirmer Mot de Passe',
-                              controller: TextEditingController(),
-                              prefixIcons: Icons.phone,
-                              height: 20),
-                          SizedBox(height: 50),
-                          SizedBox(
-                                width: MediaQuery.of(context).size.width - 80,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(250, 175, 142, 88)),
-                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                  ),
-                                  onPressed: () { },
-                                  child: Text('Confirmer', style: TextStyle(color: Colors.white , fontSize:20),),
-                                ),
-                              ), 
-                        ],
-                      ),
-                    )
+                    // Intégration de ton widget ici
+                    UpdatePasswordWidget(),
                   ],
                 ),
               ),
             ),
           ],
         ),
-      )
+      ),
+    );
+  }
+}
+
+class UpdatePasswordWidget extends StatefulWidget {
+  @override
+  _UpdatePasswordWidgetState createState() => _UpdatePasswordWidgetState();
+}
+
+class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
+  final TextEditingController lastPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    lastPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          EntryField(
+            controller: lastPasswordController,
+            title: 'Ancien Mot de Passe',
+            prefixIcons: Icons.lock,
+            height: 20,
+          ),
+          SizedBox(height: 20),
+          EntryField(
+            controller: newPasswordController,
+            title: 'Nouveau Mot de Passe',
+            prefixIcons: Icons.lock,
+            height: 20,
+          ),
+          SizedBox(height: 20),
+          EntryField(
+            controller: confirmPasswordController,
+            title: 'Confirmer le Mot de Passe',
+            prefixIcons: Icons.lock,
+            height: 20,
+          ),
+          SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () async {
+              final oldPassword = lastPasswordController.text.trim();
+              final newPassword = newPasswordController.text.trim();
+              final confirmPassword = confirmPasswordController.text.trim();
+
+              // Vérification des champs
+              if (newPassword.isEmpty || confirmPassword.isEmpty || oldPassword.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Veuillez remplir tous les champs.')),
+                );
+                return;
+              }
+
+              if (newPassword != confirmPassword) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Les mots de passe ne correspondent pas.')),
+                );
+                return;
+              }
+
+              try {
+                final user = FirebaseAuth.instance.currentUser;
+
+                final cred = EmailAuthProvider.credential(
+                  email: user!.email!,
+                  password: oldPassword,
+                );
+
+                await user.reauthenticateWithCredential(cred);
+                await user.updatePassword(newPassword);
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Mot de passe mis à jour avec succès !')),
+                );
+
+                lastPasswordController.clear();
+                newPasswordController.clear();
+                confirmPasswordController.clear();
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Erreur : ${e.toString()}')),
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color.fromARGB(250, 175, 142, 88),
+            ),
+            child: Text(
+              'Confirmer',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
