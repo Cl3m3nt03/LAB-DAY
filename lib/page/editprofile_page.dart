@@ -1,10 +1,15 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/page/profile_page.dart';
+import 'package:makeitcode/widget/dialog_mdp.dart';
 import 'package:makeitcode/widget/edit_avatar.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 Future<String> getUserPseudo(String uid) async {
   final userDoc =
@@ -64,21 +69,66 @@ class EditCompte extends StatelessWidget {
   }
 
   // Fonction pour mettre à jour l'email de l'utilisateur dans Firestore
-  Future<void> updateUserEmail(String uid) async {
+  Future<void> updateUserEmail(String newEmail, String password) async {
     try {
-      print('updateUserEmail called with uid: $uid');
-      final userDoc =
-          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-      if (userDoc.exists) {
-        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
-          'email': EditEmailController.text,
-        });
-        print('Email updated successfully');
-      } else {
-        print('Document utilisateur non trouvé');
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        print("Aucun utilisateur connecté.");
+        return;
       }
+
+      // Récupérer le fournisseur d'authentification
+      String providerId = user.providerData[0].providerId;
+
+      // Réauthentification requise avant la mise à jour de l'email
+      if (providerId == "password") {
+        // L'utilisateur s'est inscrit avec email/mot de passe
+        AuthCredential credential = EmailAuthProvider.credential(
+          email: user.email!,
+          password: password,
+        );
+
+        await user.reauthenticateWithCredential(credential);
+        print("Réauthentification réussie avec le mot de passe.");
+      } else if (providerId == "google.com") {
+        final GoogleSignIn googleSignIn = GoogleSignIn();
+        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+        if (googleUser == null) {
+          print("L'utilisateur a annulé la connexion Google.");
+          return;
+        }
+
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        await user.reauthenticateWithCredential(credential);
+        print("Réauthentification réussie avec Google.");
+      } else {
+        print("Fournisseur d'authentification non géré : $providerId");
+        return;
+      }
+
+      // Mise à jour de l'email dans Firebase Auth
+      await user.updateEmail(newEmail);
+      print("Email mis à jour dans Firebase Auth.");
+
+      // Mise à jour de l'email dans Firestore
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user.uid)
+          .update({
+        'email': newEmail,
+      });
+
+      print("Email mis à jour avec succès dans Firestore.");
     } catch (e) {
-      print('Erreur lors de la mise à jour de l\'email: $e');
+      print("Erreur lors de la mise à jour de l'email : $e");
     }
   }
 
@@ -230,7 +280,10 @@ class EditCompte extends StatelessWidget {
                                 await updateUserPseudo(uid);
                               }
                               if (EditEmailController.text.isNotEmpty) {
-                                await updateUserEmail(uid);
+                                showPasswordDialog(context, (String password) {
+                                  updateUserEmail(
+                                      EditEmailController.text, password);
+                                });
                               }
                             },
                             style: ElevatedButton.styleFrom(
