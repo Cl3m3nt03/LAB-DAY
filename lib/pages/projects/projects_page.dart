@@ -8,6 +8,7 @@ import 'package:makeitcode/pages/projects/project_detail_page.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 import 'package:makeitcode/widget/project_card.dart';
+import 'package:makeitcode/widget/searchBar.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -41,17 +42,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
   bool _isScrolled = false;
 
 
-@override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();  // Ne pas oublier de disposer du controller
-    super.dispose();
-  }
-
   String _searchQuery = ''; // Variable pour la requête utilisateur
 
   Widget _title() {
@@ -65,53 +55,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
       ),
     );
   }
-
-Widget _searchBar() {
-  return FloatingSearchBar(
-      hint: 'Cherche un projet...',
-      scrollPadding: const EdgeInsets.only(top: 13, bottom: 56),
-      transitionDuration: const Duration(milliseconds: 800),
-      transitionCurve: Curves.easeInOut,
-      debounceDelay: const Duration(milliseconds: 500),
-      physics: const BouncingScrollPhysics(),
-      controller: controller,
-      automaticallyImplyBackButton: false,
-      backdropColor: Colors.transparent,
-      closeOnBackdropTap: true,
-      onQueryChanged: (query) {
-        setState(() {
-          _searchQuery = query.trim().toLowerCase();
-        });
-      },
-      actions: [
-        FloatingSearchBarAction(
-          showIfOpened: false,
-          child: CircularButton(
-            icon: Icon(Icons.search), 
-            onPressed: (){})
-          ),
-        FloatingSearchBarAction(
-          showIfOpened: true,
-          showIfClosed: false,
-          child: CircularButton(
-            icon: Icon(CupertinoIcons.clear), 
-            onPressed: (){  
-              controller.close();
-            })
-          ),
-      ],
-      builder: (context, transition) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Material(
-            color: Colors.white,
-            elevation: 0,
-            child: _buildSearchResults(),
-          ),
-        );
-      },
-    );
-}
 
 Widget _buildSearchResults() {
   return StreamBuilder<QuerySnapshot>(
@@ -330,16 +273,9 @@ Widget build(BuildContext context) {
             ),
           ),
         ),
-        
-        if(_isScrolled)
-          Align(
-            alignment: Alignment.center,
-            child: _searchBar(),
-          ),
-        if(!_isScrolled)
           Align(
             alignment: Alignment.topCenter,
-            child: _searchBar(),
+            child: Searchbar(searchBuilder: _buildSearchResults()),
           ),
       ],
     ),
