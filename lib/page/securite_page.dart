@@ -37,7 +37,7 @@ class _SecuritePageState extends State<SecuritePage> {
                       clipBehavior: Clip.none,
                       children: [
                         Container(
-                          height: 150,
+                          height: 110,
                           width: MediaQuery.of(context).size.width - 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -70,25 +70,12 @@ class _SecuritePageState extends State<SecuritePage> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(
                                   thickness: 1.5,
                                   color: Colors.white.withOpacity(0.5),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: -50,
-                          left: MediaQuery.of(context).size.width / 2 - 65,
-                          child: Stack(
-                            children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/icons/baka.png'),
                               ),
                             ],
                           ),
@@ -117,7 +104,8 @@ class UpdatePasswordWidget extends StatefulWidget {
 class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
   final TextEditingController lastPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
@@ -161,7 +149,9 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
               final confirmPassword = confirmPasswordController.text.trim();
 
               // Vérification des champs
-              if (newPassword.isEmpty || confirmPassword.isEmpty || oldPassword.isEmpty) {
+              if (newPassword.isEmpty ||
+                  confirmPassword.isEmpty ||
+                  oldPassword.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Veuillez remplir tous les champs.')),
                 );
@@ -170,7 +160,8 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
 
               if (newPassword != confirmPassword) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Les mots de passe ne correspondent pas.')),
+                  SnackBar(
+                      content: Text('Les mots de passe ne correspondent pas.')),
                 );
                 return;
               }
@@ -187,7 +178,8 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
                 await user.updatePassword(newPassword);
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Mot de passe mis à jour avec succès !')),
+                  SnackBar(
+                      content: Text('Mot de passe mis à jour avec succès !')),
                 );
 
                 lastPasswordController.clear();

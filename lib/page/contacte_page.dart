@@ -11,7 +11,6 @@ class ContactePage extends StatefulWidget {
 }
 
 class _ContactePageState extends State<ContactePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +38,7 @@ class _ContactePageState extends State<ContactePage> {
                       clipBehavior: Clip.none,
                       children: [
                         Container(
-                          height: 150,
+                          height: 110,
                           width: MediaQuery.of(context).size.width - 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -52,7 +51,7 @@ class _ContactePageState extends State<ContactePage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20), 
+                              SizedBox(height: 20),
                               Row(
                                 children: [
                                   IconButton(
@@ -82,19 +81,6 @@ class _ContactePageState extends State<ContactePage> {
                             ],
                           ),
                         ),
-                        Positioned(
-                          bottom: -50,
-                          left: MediaQuery.of(context).size.width / 2 - 65,
-                          child: Stack(
-                            children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/icons/baka.png'),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                     SizedBox(height: 90),
@@ -107,8 +93,6 @@ class _ContactePageState extends State<ContactePage> {
                               controller: TextEditingController(),
                               prefixIcons: Icons.mail,
                               height: 20),
-                          SizedBox(height: 20),
-                          
                           SizedBox(height: 40),
                           EntryField(
                               title: 'Bio',
@@ -117,7 +101,18 @@ class _ContactePageState extends State<ContactePage> {
                               height: 60),
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () async {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(250, 175, 142, 88),
+                      ),
+                      child: Text(
+                        "Envoyer le message",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),
