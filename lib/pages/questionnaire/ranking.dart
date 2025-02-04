@@ -4,33 +4,16 @@ import 'package:flutter/material.dart';
 class RankingPage extends StatefulWidget {
 
   @override
-  State<StatefulWidget> createState() {
-    return _Classement();
-  }
+  _RankingPageState createState() => _RankingPageState();
 }
 
-class _Classement extends State<RankingPage> {
-
-  void onButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ClassementPage()),
-    );
-  }
-
+class _RankingPageState extends State<RankingPage> {
   @override
   Widget build(BuildContext context) {
-    
-    return Scaffold(
-      
-      floatingActionButton: FloatingActionButton(
-        onPressed: onButtonPressed,
-        tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events),
-      ), 
-    );
+    return ClassementPage();
   }
 }
+
 class ClassementPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

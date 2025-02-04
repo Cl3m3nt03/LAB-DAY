@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'package:makeitcode/widget/customRadioTile.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:makeitcode/pages/questionnaire/ranking.dart';
 
 class QuestionnaireListPage extends StatefulWidget {
 
@@ -27,7 +27,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
 
     Future<void> loadQuestions() async {
     try {
-      final String response = await rootBundle.loadString('lib/games/questionnaire/list_questionnaire/list_questionnaire.json');
+      final String response = await rootBundle.loadString('lib/pages/questionnaire/list_questionnaire/list_questionnaire.json');
       final List<dynamic> data = json.decode(response);
       setState(() {
         questionnaire = data.map((questionnaire) {
@@ -38,18 +38,27 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
       print('Erreur lors du chargement des questions : $e');
     }
     }
-
-
-
+      
+    void onButtonPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ClassementPage()),
+    );
+  }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+        onPressed: onButtonPressed,
+        tooltip: 'Classement',
+        child: const Icon(Icons.emoji_events),
+      ), 
       appBar: AppBar(
       title: Text("Questionnaires", style: TextStyle(color: Colors.white)),
       centerTitle: true,
       iconTheme: const IconThemeData(color: Colors.white),
       backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+      
     ),
       body: Container(
         color: const Color.fromARGB(255, 11, 22, 44),
@@ -83,7 +92,6 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
             ),
             ),
             );
-            
           },
         );
       }),
