@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/pages/questionnaire/questionnaire_list_page.dart';
 import 'package:makeitcode/pages/community/global_chat_page.dart';
-import 'package:makeitcode/pages/glossary_page.dart';
+import 'package:makeitcode/pages/projects/glossary_page.dart';
 import 'package:makeitcode/pages/home_page.dart';
 import 'package:makeitcode/pages/profil/profile_page.dart';
 import 'package:makeitcode/pages/projects/projects_page.dart';
