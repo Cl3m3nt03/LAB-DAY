@@ -6,6 +6,7 @@ import 'package:makeitcode/pages/projects/glossary_page.dart';
 import 'package:makeitcode/pages/home_page.dart';
 import 'package:makeitcode/pages/profil/profile_page.dart';
 import 'package:makeitcode/pages/projects/projects_page.dart';
+import 'package:makeitcode/pages/ranking.dart';
 import 'package:makeitcode/widget/navBar.dart';
 
 class PageManagement extends StatefulWidget {
@@ -23,7 +24,7 @@ class _PageManagementState extends State<PageManagement> {
     GlobalChatPage(),
     ProjectsPage(),
     HomePage(),
-    GlossaryPage(),
+    RankingPage(),
     ProfilePage(),
   ];
 

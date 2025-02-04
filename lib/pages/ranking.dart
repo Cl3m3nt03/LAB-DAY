@@ -1,3 +1,7 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 
@@ -10,7 +14,8 @@ class RankingPage extends StatefulWidget {
 }
 
 class _Classement extends State<RankingPage> {
-
+  
+  
   void onButtonPressed() {
     Navigator.push(
       context,
@@ -32,6 +37,8 @@ class _Classement extends State<RankingPage> {
   }
 }
 class ClassementPage extends StatelessWidget {
+  final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance.collection('Users').orderBy("totalpoints", descending: true ).snapshots();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +71,31 @@ class ClassementPage extends StatelessWidget {
                 ),
               ),
             ),
+            StreamBuilder<QuerySnapshot>(
+        stream: _rankingStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Something went wrong: ${snapshot.error}'));
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          int rank = 1; 
+          for (int i=1 ;  i<=20 ; i++){
+            rank+=1; 
+          }
+          return Column(
+            children: snapshot.data!.docs.asMap().entries.map((entry) {
+            int rank = entry.key + 1; // Numérotation des rangs
+            DocumentSnapshot document = entry.value;
+            Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+            return classementCard(rank: rank, name: data['pseudo'], url: "debug-master", points: data['totalpoints'].toString());
+            
+            }).toList(),
+          );
+        },
+      ), /*
             Container(
               margin: const EdgeInsets.all(10),
               child: Column(
@@ -78,7 +110,7 @@ class ClassementPage extends StatelessWidget {
                   classementCard(rank: 8, name: "Samouraï du Terminal", url: "terminal-samurai", points: "1850"),
                 ],
               ),
-            ),
+            ),*/
           ],
         ),
       ),
@@ -89,6 +121,8 @@ class ClassementPage extends StatelessWidget {
 }
 
 Widget classementCard({required int rank, required String name, required String url, required String points}) {
+  
+
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
     padding: const EdgeInsets.all(12.0),
