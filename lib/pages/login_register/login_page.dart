@@ -6,6 +6,7 @@ import 'package:makeitcode/pages/login_register/password_forgotten_page.dart';
 import 'package:makeitcode/pages/login_register/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -58,13 +59,11 @@ class _LoginPageState extends State <LoginPage>{
 
     ),
     onPressed:  signInWithEmailAndPassword, 
-    child: Text( 'CONNEXION' ,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold ,fontSize: 20,fontFamily: 'Monsterrat'),
+    child: Text( 'CONNEXION' ,style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),)
     ),
     ),
     );
   }
-
-
 
   Widget _passwordForgotten(){
     return Row(
@@ -74,36 +73,36 @@ class _LoginPageState extends State <LoginPage>{
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) =>  PasswordForgottenPage()));
           },
-          child: Text('Mot de passe oublié ?',style: TextStyle(color: Color.fromARGB(249, 161, 119, 51),fontWeight: FontWeight.bold),),
+          child: Text('Mot de passe oublié ?',style: GoogleFonts.montserrat(textStyle: TextStyle(color: Color.fromARGB(249, 161, 119, 51),fontWeight: FontWeight.bold),),),
         ),
       ],
     );
   }
     Widget _title(){
     return Text(
-      "Connectez-vous",style: TextStyle(
+      "Connectez-vous",style:GoogleFonts.montserrat(textStyle: TextStyle(
         color: Colors.white.withOpacity(1), 
-        fontSize: 31, 
-        fontWeight: FontWeight.bold,
-        fontFamily: 'Poppins',      
+        fontSize: 30, 
+        fontWeight: FontWeight.bold,     
+      ),
       ),
     );
   }
 
     Widget _moreConnexion(){
-    return  Text('Ou connectez-vous avec',style: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),);
+    return  Text('Ou connectez-vous avec',style:GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),);
   }
 
       Widget _noAccount(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Vous n'avez pas de compte ?",style: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold,fontSize: 13),),
+        Text("Vous n'avez pas de compte ?",style: GoogleFonts.montserrat(textStyle:TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold,fontSize: 11.5),),),
         TextButton(
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
           },
-          child: Text('Inscrivez-vous',style: TextStyle(color: Color.fromARGB(248, 211, 157, 70),fontWeight: FontWeight.bold),),
+          child: Text('Inscrivez-vous',style: GoogleFonts.montserrat(textStyle:TextStyle(color: Color.fromARGB(248, 211, 157, 70),fontWeight: FontWeight.bold,fontSize: 12.5),),),
         ),
       ],
     );
@@ -136,11 +135,7 @@ class _LoginPageState extends State <LoginPage>{
             ),
             const SizedBox(width: 10),
             Text(Auth().currentUser == null ? 'GOOGLE' : 'Déconnexion',
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),)
             ),
           ],
         ),

@@ -198,7 +198,6 @@ Widget _buildSearchResults() {
                 style: TextStyle(color: Colors.white),
               );
             }
-
             return Center(
               child: Wrap(
                 spacing: 30,
@@ -226,7 +225,7 @@ Widget _buildSearchResults() {
       style: TextStyle(
         fontFamily: 'Monsterrat',
         color: Colors.white,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w600,
         fontSize: 25,
       ),
     );
@@ -235,22 +234,30 @@ Widget _buildSearchResults() {
 @override
 Widget build(BuildContext context) {
   return Scaffold(
+    appBar: AppBar(
+      title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+),
+      backgroundColor: Color.fromARGB(255, 11, 22, 44),
+      centerTitle: true,
+    ),
     floatingActionButton: GlossaryPage(),
     floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
     resizeToAvoidBottomInset: false, // Nous désactivons l'ajustement de la taille lors de l'apparition du clavier
     body: Stack(
       children: [
-        // Le contenu principal (background, projets, etc.)
-        Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
-              stops: [0.2, 0.9],
-              begin: Alignment.topCenter,
-              end: Alignment.center,
+          Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  Color.fromRGBO(0, 113, 152, 1),
+                  Color.fromARGB(255, 11, 22, 44),
+                ],
+                stops: [0.1, 0.9],
+                center: Alignment(-0.7, 0.7),
+                radius: 0.8,
+              ),
             ),
-          ),
           child: SingleChildScrollView(
             child: Center(
               child: Padding(
@@ -258,11 +265,6 @@ Widget build(BuildContext context) {
                 child: Column(
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height / 11),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: _title(),
-                    ),
-                    
                     SizedBox(height: MediaQuery.of(context).size.height / 30),
                     _projects('En cours', _projectsStreamBegan),
                     _projects('Débloqués', _projectsStreamUnlocked),

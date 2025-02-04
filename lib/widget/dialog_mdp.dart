@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 Future<void> showPasswordDialog(
     BuildContext context, Function(String) onPasswordEntered) async {
@@ -10,13 +12,12 @@ Future<void> showPasswordDialog(
       return AlertDialog(
         backgroundColor: const Color.fromARGB(197, 51, 53, 196),
         title: Text("Confirmer votre identité",
-            style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255))),
+                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text("Veuillez entrer votre mot de passe pour continuer",
-                style:
-                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255))),
+                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.clip,fontSize: 15,color: Colors.white),),),
             TextField(
               controller: passwordController,
               obscureText: true,
@@ -31,8 +32,8 @@ Future<void> showPasswordDialog(
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
             child: Text("Annuler",
-                style:
-                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255))),
+             style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
+
           ),
           TextButton(
             onPressed: () {
@@ -44,8 +45,7 @@ Future<void> showPasswordDialog(
               }
             },
             child: Text("Valider",
-                style:
-                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255))),
+            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
           ),
         ],
       );

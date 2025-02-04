@@ -100,9 +100,9 @@ Future<void> getLevel() async {
 
   getlvlRank(int level){
     if(level >= 0 || level <= 5){
-      return 'Débutant';
+      return 'DEBUTANT';
     }
-    return 'Novice';
+    return 'NOVICE';
   }
 
   getlvlBadge(int level){
@@ -120,10 +120,10 @@ Widget _title(){
     children: [
         Text(
           'Salut, $pseudo 👋',
-          style: GoogleFonts.aBeeZee(
+          style: GoogleFonts.montserrat(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 27,
+              fontSize: MediaQuery.of(context).size.width * 0.06,
               fontWeight: FontWeight.w700
             )
           ),
@@ -132,11 +132,11 @@ Widget _title(){
         SizedBox(height: 5,),
         Text(
           "Code en t'amusant",
-          style: GoogleFonts.nokora(
+          style: GoogleFonts.montserrat(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
+              fontSize: 17,
+              fontWeight: FontWeight.w400
             )
           )
         )
@@ -149,10 +149,9 @@ Widget _profilePicture(){
   return CircleAvatar(
     backgroundImage: AssetImage('assets/icons/baka.png'),
     radius: 35,
+
   );
 }
-
-
 Widget _playerLevel(){
   return Container(
       padding: EdgeInsets.all(15),
@@ -178,8 +177,8 @@ Widget _playerLevel(){
                     style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 19,
                       )
                     ),
                   ),
@@ -213,11 +212,12 @@ Widget _playerLevel(){
                               ),
                               TextSpan(
                                 text: '$lvl', 
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(textStyle:  TextStyle(
                                   color: Colors.black, 
                                   fontWeight: FontWeight.w800, 
                                   fontSize: 17, 
                                 ),
+                              ),
                               ),
                             ],
                           ),
@@ -264,7 +264,6 @@ Widget _playerLevel(){
       ),
   );
 }
-
 Widget _projects(stream){
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
@@ -329,7 +328,9 @@ Widget _projects(stream){
             ),
           ),
           SafeArea(
-            child: Padding(
+            child: SingleChildScrollView(
+            child: 
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -390,6 +391,7 @@ Widget _projects(stream){
                 ],
               ),
             ),
+           ),
           ),
         ],
       ),

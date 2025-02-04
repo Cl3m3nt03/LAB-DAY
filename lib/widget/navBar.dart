@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomNavbar extends StatelessWidget {
   final int selectedIndex;
@@ -37,32 +38,37 @@ class CustomNavbar extends StatelessWidget {
             tabs: [
               GButton(
                 icon: Icons.chat,
-                text: 'Communauté',
-                textStyle: TextStyle(fontFamily: 'aBeeZee', color: Colors.white, fontWeight: FontWeight.bold),
+                text: 'Chat',
+                textStyle: GoogleFonts.montserrat(textStyle: TextStyle( color: Colors.white, fontWeight: FontWeight.bold,fontSize: 13),),
                 iconColor: Colors.white,
               ),
               GButton(
                 icon: Icons.school,
                 text: 'Projets',
-                textStyle: TextStyle(fontFamily: 'aBeeZee', color: Colors.white, fontWeight: FontWeight.bold),
+                textStyle: GoogleFonts.montserrat(textStyle: TextStyle( color: Colors.white, fontWeight: FontWeight.bold,fontSize: 13),),
                 iconColor: Colors.white,
               ),
               GButton(
+                  leading: Image.asset(
+                  'assets/icons/logo.png',
+                  width: 29, 
+                  height: 29,
+                ),
                 icon: Icons.home,
                 text: 'Accueil',
-                textStyle: TextStyle(fontFamily: 'aBeeZee', color: Colors.white, fontWeight: FontWeight.bold),
+                textStyle: GoogleFonts.montserrat(textStyle: TextStyle( color: Colors.white, fontWeight: FontWeight.bold,fontSize: 13),),
                 iconColor: Colors.white,
               ),
               GButton(
-                icon: Icons.emoji_events,
-                text: 'Classement',
-                textStyle: TextStyle(fontFamily: 'aBeeZee', color: Colors.white, fontWeight: FontWeight.bold),
+                icon: Icons.games,
+                text: 'Jeux',
+                textStyle: GoogleFonts.montserrat(textStyle: TextStyle( color: Colors.white, fontWeight: FontWeight.bold,fontSize: 13),),
                 iconColor: Colors.white,
               ),
               GButton(
                 icon: Icons.person,
-                text: 'Profil',
-                textStyle: TextStyle(fontFamily: 'aBeeZee', color: Colors.white, fontWeight: FontWeight.bold),
+                text: 'Profile',
+                textStyle: GoogleFonts.montserrat(textStyle: TextStyle( color: Colors.white, fontWeight: FontWeight.bold,fontSize: 13),),
                 iconColor: Colors.white,
               ),
             ],

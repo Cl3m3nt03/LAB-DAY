@@ -6,6 +6,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:makeitcode/pages/questionnaire/ranking.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionnaireListPage extends StatefulWidget {
 
@@ -54,14 +55,25 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
         child: const Icon(Icons.emoji_events),
       ), 
       appBar: AppBar(
-      title: Text("Questionnaires", style: TextStyle(color: Colors.white)),
+      title: Text('QUESTIONNAIRE',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),),
       centerTitle: true,
       iconTheme: const IconThemeData(color: Colors.white),
       backgroundColor: const Color.fromARGB(255, 11, 22, 44),
       
     ),
-      body: Container(
-        color: const Color.fromARGB(255, 11, 22, 44),
+      body:Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  Color.fromRGBO(0, 113, 152, 1),
+                  Color.fromARGB(255, 11, 22, 44),
+                ],
+                stops: [0.1, 0.9],
+                center: Alignment(-0.7, 0.7),
+                radius: 0.8,
+              ),
+            ),
         child : 
       Builder(builder: (context) {
         return ListView.builder(
@@ -73,14 +85,13 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
               color: Colors.blue,
               child:
             ListTile(
-              title: Text(questionnaire[index]['title'], style:  TextStyle(fontSize: 20, color: Colors.white)),
+              title: Text(questionnaire[index]['title'], style: GoogleFonts.montserrat(textStyle:TextStyle(fontSize: 18,fontWeight: FontWeight.w600, color: Colors.white)),),
               subtitle: Text("10 / 100", style: TextStyle(color: Colors.white),),
               trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
               leading: CircleAvatar(
                 backgroundColor: Colors.blue,
                 child: Image.asset(questionnaire[index]['image']),
                 ),
-              
               onTap: () {
                   Navigator.push(
                     context,

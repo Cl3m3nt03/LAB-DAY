@@ -8,7 +8,9 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:makeitcode/pages/community/list_message_page.dart';
-import 'package:makeitcode/pages/community/open_profil.dart';
+import 'package:makeitcode/pages/profil/open_profil.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 
 class GlobalChatPage extends StatefulWidget {
@@ -51,22 +53,9 @@ void getpseudo() async {
       }
     } catch (e) {
       print('Erreur lors de la récupération du pseudo : $e');
-      if (mounted) {
-        setState(() {
-          pseudo = 'Anonyme';
-        });
-      }
-    }
-  } else {
-    if (mounted) {
-      setState(() {
-        pseudo = 'Anonyme';
-      });
-    }
   }
+ }
 }
-
-
   void _sendMessage() async {
     if (_controller.text.isNotEmpty) {
       player.play(AssetSource('sound/sent_message.wav'));
@@ -85,12 +74,10 @@ void getpseudo() async {
       }
     }
   }
-
   Widget _buildMessageItem(Map<String, dynamic> messageData) {
     final bool isCurrentUser = messageData['uid'] == Auth().uid;
     String formattedDate = DateFormat('dd/MM/yyyy à HH:mm', 'fr_FR')
         .format((messageData['date'] as Timestamp).toDate());
-
     return Align(
       alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -109,12 +96,8 @@ void getpseudo() async {
                 children: [
                   Text(
                     messageData['pseudo'] ?? 'Anonyme',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                    style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 15),
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                   PopupMenuButton<String>(
                     icon: Icon(
@@ -161,19 +144,18 @@ void getpseudo() async {
             ),
             Text(
               messageData['message'] ?? '',
-              style: TextStyle(fontSize: 16, color: Colors.black),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.ellipsis,fontSize: 14),),
             ),
             SizedBox(height: 5),
             Text(
               formattedDate,
-              style: TextStyle(fontSize: 10, color: Colors.black54),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis,fontSize: 10),),
             ),
           ],
         ),
       ),
     );
   }
-
   Widget _listenToMessages() {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore
@@ -199,7 +181,6 @@ void getpseudo() async {
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,14 +189,15 @@ void getpseudo() async {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "Chat global",
-          style: TextStyle(color: Colors.white),
+          "CHAT GLOBAL",
+          style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+
         ),
         centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.message, color: Colors.white),
-            padding: EdgeInsets.only(right: 50),
+            padding: EdgeInsets.only(right: 40),
             onPressed: () {
               Navigator.push(
                 context,
@@ -231,17 +213,18 @@ void getpseudo() async {
         children: [
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromRGBO(0, 113, 152, 1),
-                    Color.fromARGB(255, 11, 22, 44)
-                  ],
-                  stops: [0.2, 0.5],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  Color.fromRGBO(0, 113, 152, 1),
+                  Color.fromARGB(255, 11, 22, 44),
+                ],
+                stops: [0.1, 0.9],
+                center: Alignment(-0.7, 0.7),
+                radius: 0.8,
               ),
+            ),
             ),
           ),
           SafeArea(

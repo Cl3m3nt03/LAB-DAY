@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ContactPage extends StatefulWidget {
   final String uid1;
@@ -148,7 +149,7 @@ class _ContactPageState extends State<ContactPage> {
           children: [
             Text(
               "MESSAGES",
-              style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 30,color: Colors.white),),
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -266,11 +267,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 children: [
                                                   Text(
                                                     userData['pseudo'] ?? 'Pseudo inconnu',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 16,
-                                                    ),
+                                                    style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 17,color: Colors.white),),
                                                   ),
                                                 ],
                                               );
@@ -285,10 +282,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 builder: (context, unreadSnapshot) {
                                                   return Text(
                                                     snapshot.data ?? 'Aucun message',
-                                                    style: TextStyle(
-                                                      color: (unreadSnapshot.data ?? 0) > 0 ? Colors.white : Colors.white70,
-                                                      fontSize: 14,
-                                                    ),
+                                                    style: GoogleFonts.montserrat(textStyle: TextStyle( color: (unreadSnapshot.data ?? 0) > 0 ? Colors.white : Colors.white70,fontWeight: FontWeight.w500,overflow: TextOverflow.ellipsis,fontSize: 14),),
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
                                                   );
@@ -309,10 +303,7 @@ class _ContactPageState extends State<ContactPage> {
                                             builder: (context, snapshot) {
                                               return Text(
                                                 snapshot.data ?? '00:00',
-                                                style: TextStyle(
-                                                  color: Colors.white70,
-                                                  fontSize: 14,
-                                                ),
+                                                    style: GoogleFonts.montserrat(textStyle: TextStyle( color:Colors.white70,fontWeight: FontWeight.w500,overflow: TextOverflow.ellipsis,fontSize: 13),),
                                               );
                                             },
                                           ),

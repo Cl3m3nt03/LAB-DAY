@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Progressbar extends StatefulWidget {
   final double percentageCompletion;
@@ -42,11 +43,7 @@ class _ProgressbarState extends State<Progressbar> {
                 alignment: Alignment.center,
                 child: Text(
                   '${widget.percentageCompletion.truncate()}%',
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
-                      fontSize: 10,
-                      
-                    )
+                    style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w600,overflow: TextOverflow.ellipsis,fontSize: 10),
                   )
                 ),
               ),

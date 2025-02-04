@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class popoverMenu extends StatelessWidget {
@@ -43,7 +44,7 @@ class Listitem extends StatelessWidget {
                               SizedBox(width: 10),
                               Text('🇬🇧'),
                               SizedBox(width: 20,),
-                              Text("Anglais", style: TextStyle(color: Colors.white, fontSize: 20),),
+                              Text("Anglais", style:  GoogleFonts.montserrat(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 18),),),
                             SizedBox(width: MediaQuery.of(context).size.width - 230),
                               Switch(
                                 value: true,
@@ -67,7 +68,7 @@ class Listitem extends StatelessWidget {
                               SizedBox(width: 10),
                               Text('🇫🇷'),
                               SizedBox(width: 20,),
-                              Text("Français", style: TextStyle(color: Colors.white, fontSize: 20),),
+                              Text("Français", style:GoogleFonts.montserrat(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 18),),),
                             SizedBox(width: MediaQuery.of(context).size.width - 240),
                               Switch(
                                 value: true,
@@ -91,7 +92,7 @@ class Listitem extends StatelessWidget {
                               SizedBox(width: 10),
                               Text('🇨🇳'),
                               SizedBox(width: 20,),
-                              Text("Chinois", style: TextStyle(color: Colors.white, fontSize: 20),),
+                              Text("Chinois", style:GoogleFonts.montserrat(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 18),),),
                             SizedBox(width: MediaQuery.of(context).size.width - 230),
                               Switch(
                                 value: true,

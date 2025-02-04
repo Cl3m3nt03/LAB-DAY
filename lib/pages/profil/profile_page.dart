@@ -9,6 +9,7 @@ import 'package:makeitcode/pages/profil/settings_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<String> getUserPseudo(String uid) async {
   final userDoc =
@@ -57,7 +58,6 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,14 +68,14 @@ class _ProfilePageState extends State<ProfilePage> {
               Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: RadialGradient(
                     colors: [
                       Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44)
+                      Color.fromARGB(255, 11, 22, 44),
                     ],
-                    stops: [0.2, 0.9],
-                    begin: Alignment.topCenter,
-                    end: Alignment.center,
+                    stops: [0.1, 0.9],
+                    center: Alignment(-0.7, 0.7),
+                    radius: 0.8,
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -98,10 +98,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               SizedBox(height: 20),
                               Text(
                                 "Profile",
-                                style: TextStyle(
-                                  color: Color.fromARGB(250, 175, 142, 88),
-                                  fontSize: 20,
-                                ),
+                                  style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                    color: Color.fromARGB(250, 175, 142, 88),
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  ),
                               ),
                               Divider(),
                               Row(
@@ -133,8 +135,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                             return Text(
                                                 snapshot.data ??
                                                     'No pseudo available',
-                                                style: TextStyle(
-                                                    color: Colors.white));
+                                                style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            );
                                           }
                                         },
                                       ),
@@ -159,8 +166,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                     },
                                     child: Text(
                                       'Edit Profile',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 10),
+                                      style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                          color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),),
                                     ),
                                   ),
                                 ],
@@ -198,10 +205,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           EditCompte()),
                                                 );
                                               },
-                                              child: const Text(
+                                              child:  Text(
                                                 "Mon Compte",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600),),
                                               ),
                                             )
                                           ],
@@ -225,10 +233,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           SecuritePage()),
                                                 );
                                               },
-                                              child: const Text(
+                                              child:  Text(
                                                 "Sécurité",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600),),
                                               ),
                                             )
                                           ],
@@ -252,10 +261,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           SettingsPage()),
                                                 );
                                               },
-                                              child: const Text(
+                                              child: Text(
                                                 "Réglages",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600),),
                                               ),
                                             )
                                           ],
@@ -293,10 +303,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           PrivacyPolicyPage()),
                                                 );
                                               },
-                                              child: const Text(
+                                              child: Text(
                                                 "Politique de confidentialité",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600),),
                                               ),
                                             ),
                                           ],
@@ -320,10 +331,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           ContactePage()),
                                                 );
                                               },
-                                              child: const Text(
+                                              child: Text(
                                                 "Contactez-nous",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600),),
                                               ),
                                             ),
                                           ],
@@ -349,8 +361,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
                                       Text("About",
-                                          style:
-                                              TextStyle(color: Colors.white)),
+                                      style:GoogleFonts.montserrat(textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600),),),
                                     ],
                                   ),
                                 ),

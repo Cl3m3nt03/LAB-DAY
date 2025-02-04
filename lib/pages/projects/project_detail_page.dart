@@ -104,7 +104,7 @@ Widget _title(screenHeight){
                   children: [
                     Text(
                       widget.projet['name'], 
-                      style: GoogleFonts.aBeeZee(
+                      style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,
@@ -112,14 +112,14 @@ Widget _title(screenHeight){
                         ),
                       )
                     ),
-                    SizedBox(width: 100),
+                    SizedBox(width: 85),
                     Center(
                       child: Text(
                         'Gratuit',
-                        style: GoogleFonts.sora(
+                        style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                             color: Color(0xffE8B228),
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             fontSize: 18,
                           ),
                         )
@@ -136,10 +136,10 @@ Widget _title(screenHeight){
                     SizedBox(width: 4),
                     Text(
                       '4.3',
-                      style: GoogleFonts.sora(
+                      style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
                           color: Colors.white.withOpacity(0.7),
-                          fontWeight: FontWeight.w400
+                          fontWeight: FontWeight.w600
                         ),
                       )
                     )
@@ -214,12 +214,12 @@ Widget _selector(screenHeight) {
                   alignment: Alignment.center,
                   child: Text(
                     text,
-                    style: GoogleFonts.sora(
+                    style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
                         color: _selectedIndex == index
                             ? Colors.white
                             : Colors.white,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
@@ -235,7 +235,7 @@ Widget _selector(screenHeight) {
 
 // Fonction pour calculer la largeur dynamique d'un bouton avec un padding
 double _calculateButtonWidth(int index, List<String> buttonTexts) {
-  final TextStyle textStyle = GoogleFonts.sora().copyWith(fontWeight: FontWeight.w600);
+  final TextStyle textStyle = GoogleFonts.montserrat().copyWith(fontWeight: FontWeight.bold);
   final TextPainter textPainter = TextPainter(
     text: TextSpan(text: buttonTexts[index], style: textStyle),
     textDirection: TextDirection.ltr,

@@ -5,6 +5,7 @@ import 'package:makeitcode/widget/auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PrivateChatPage extends StatefulWidget {
   final String recipiaentuid;
@@ -116,21 +117,16 @@ Future<void> _initializeChat() async {
           children: [
             Text(
               messageData['pseudo'] ?? 'Anonyme',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 15,color: Colors.black),),
               overflow: TextOverflow.ellipsis,
             ),
             Text(
               messageData['message'] ?? '',
-              style: TextStyle(fontSize: 16),
-            ),
+            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.ellipsis,fontSize: 14),)),
             SizedBox(height: 5),
             Text(
               formattedDate,
-              style: TextStyle(fontSize: 10, color: Colors.black54),
-            ),
+               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis,fontSize: 10),)),
           ],
         ),
       ),
@@ -177,7 +173,8 @@ Future<void> _initializeChat() async {
         centerTitle: true,
         backgroundColor:Colors.blue,
         iconTheme: IconThemeData(color: Colors.white),
-        title: Text(recipientPseudo ?? 'Chargement ...',style: TextStyle(color: Colors.white),),
+        title: Text(recipientPseudo ?? 'Chargement ...', style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+        ),
       ),
       body: Stack(
         children: [

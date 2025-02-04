@@ -85,11 +85,10 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/images/language/
-    - lib/pages/questionnaire/list_questionnaire/
-    - lib/pages/questionnaire/
+    - lib//pages/questionnaire/list_questionnaire/
     - assets/sound/
     #   - images/a_dot_ham.jpeg
-  # An image asset can refer to one or more resolution-specific "variants", see
+  # An image asset can referZ to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see

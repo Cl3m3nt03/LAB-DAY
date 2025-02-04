@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:makeitcode/pages/projects/project_detail_page.dart';
 import 'package:makeitcode/widget/progressBar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProjectCard extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -67,11 +68,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 children: [
                                   Text(
                                     widget.projet['name'],
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Monsterrat',
-                                      fontSize: 13,
-                                    ),
+                                    style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),
                                   ),
                                   SizedBox(height: 5),
 
@@ -123,10 +120,7 @@ class _ProjectCardState extends State<ProjectCard> {
         onPressed: (){}, 
         child: Text(
           'Commencer',
-          style: TextStyle(
-            fontSize: 10,
-            color: Colors.white
-            ),
+            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w600,overflow: TextOverflow.ellipsis,fontSize:9,color: Colors.white),),
           )
         )
     );

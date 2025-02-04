@@ -607,7 +607,6 @@ class GlossaryContentPage extends StatelessWidget {
       },
     );
   }
-
 }
 
 Text titreGlossaire({required String texte}){

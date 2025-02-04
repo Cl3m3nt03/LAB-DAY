@@ -4,6 +4,7 @@ import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/textField.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -128,28 +129,23 @@ class _RegisterPageState extends State<RegisterPage> {
         onPressed: () async {
           await createUserWithEmailAndPassword();
         },
-        child: const Text(
+        child:  Text(
           'INSCRIPTION',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'Montserrat',
-          ),
+            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),)
         ),
       ),
     );
   }
 
   Widget _title() {
-    return const Text(
+    return  Text(
       "Créer votre compte",
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 31,
-        fontWeight: FontWeight.bold,
-        fontFamily: 'Poppins',
+        style:GoogleFonts.montserrat(textStyle: TextStyle(
+        color: Colors.white.withOpacity(1), 
+        fontSize: 29, 
+        fontWeight: FontWeight.bold,     
       ),
+        ),
     );
   }
 

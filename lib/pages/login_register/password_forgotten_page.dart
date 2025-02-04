@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PasswordForgottenPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -41,15 +42,15 @@ class PasswordForgottenPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          const Text(
+                          Text(
                             'Vous avez oublié votre mot de passe ?',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            style: GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold)),
                           ),
                           const Divider(color: Colors.amber),
                           const SizedBox(height: 15),
-                          const Text(
+                             Text(
                             'Saisissez l\'adresse email associée à votre compte MakeitCode ',
-                            style: TextStyle(fontSize: 15, color: Colors.white),
+                            style:GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 15, color: Colors.white,fontWeight: FontWeight.w500,),),
                           ),
                           const SizedBox(height: 20),
                           const Text(
@@ -79,12 +80,9 @@ class PasswordForgottenPage extends StatelessWidget {
                                   context,
                                 );
                               },
-                              child: const Text(
+                              child:Text(
                                 'Valider',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                ),
+                                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),)
                               ),
                             ),
                           ),

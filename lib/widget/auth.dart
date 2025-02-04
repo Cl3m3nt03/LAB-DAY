@@ -71,11 +71,11 @@ Future<String?> recoveryPseudo() async {
       'bio': 'L/Utilisateur n/a pas encore défini de bio',
       'curentlevel': 1,
       'currentxp': 0,
+      'totalpoints': 0,
     });
   }
 
   Future<void> sendPasswordResetEmail(String email, context) async {
-    
     try {
       await _auth.sendPasswordResetEmail(email: email);
       toast.showToast(context,'Un email de réinitialisation de mot de passe a été envoyé à $email', isError: false);
@@ -90,7 +90,6 @@ Future<void> signInWithGoogle( context) async {
     await GoogleSignIn().signOut();
 
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
     if (googleUser == null) {
       toast.showToast(context, 'Connexion annulée', isError: true);
       return; 

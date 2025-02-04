@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class RankingPage extends StatefulWidget {
 
@@ -39,11 +39,12 @@ class ClassementPage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(10),
               child: Text(
-                "Classement des Meilleurs Codeurs",
-                style: TextStyle(
+                "LES MEILLEURS CODEURS",
+                style:  GoogleFonts.montserrat(textStyle:TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: MediaQuery.of(context).size.width / 16,
                   fontWeight: FontWeight.bold,
+                ),
                 ),
               ),
             ),
@@ -84,11 +85,12 @@ Widget classementCard({required int rank, required String name, required String 
       children: [
         Text(
           "$rank.",
-          style: TextStyle(
-            fontSize: 20,
+          style: GoogleFonts.montserrat(textStyle:TextStyle(
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: rank <= 3 ? Colors.amber : Colors.white,
           ),
+        ),
         ),
         const SizedBox(width: 12),
         CircleAvatar(

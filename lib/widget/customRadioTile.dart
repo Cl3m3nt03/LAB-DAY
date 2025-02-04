@@ -15,7 +15,7 @@ class CustomRadioTile extends StatelessWidget {
     required this.value,
     required this.groupValue,
     required this.onChanged,
-    required this.selected,
+    required this.selected, required TextStyle style,
   }) : super(key: key);
 
   @override

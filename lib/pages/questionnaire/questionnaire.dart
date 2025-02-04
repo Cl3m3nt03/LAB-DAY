@@ -4,7 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:audioplayers/audioplayers.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionnairePage extends StatefulWidget {
   final String questionnaireName;
@@ -62,15 +62,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
           question['selected'] = question['selected'] ?? -1;
           return question;
         }).toList();
-        for (var question in questions) {
-          print(question['question']);
-        }
         });
     } catch (e) {
       print('Erreur lors du chargement des questions : $e');
     }
   }
-
   Widget submitAnswer(Map<String, dynamic> question) {
     return Container(
       width: double.infinity,
@@ -98,21 +94,23 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
                             const SizedBox(width: 8),
                             Text(
                               widget.validationMessage,
-                              style: const TextStyle(
+                              style:  GoogleFonts.montserrat(textStyle:  TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 220, 53, 69),
                               ),
+                            ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 8),
                         Text(
                           question['explication']['text'],
-                          style: const TextStyle(
+                          style:  GoogleFonts.montserrat(textStyle:  TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Color.fromARGB(255, 220, 53, 69),
+                          ),
                           ),
                         ),
                       ],
@@ -156,10 +154,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
               },
               child: Text(
                 error ? 'Continuer' : 'Valider',
-                style: const TextStyle(
+                style:  GoogleFonts.montserrat(textStyle: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18),
+                    fontSize: 20),
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -208,10 +207,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
                   children: [
                     Text(
                       'Score : $score / ${questions.length}',
-                      style: const TextStyle(
+                      style:  GoogleFonts.montserrat(textStyle:  TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
@@ -266,10 +266,11 @@ Widget buildQuestionCard() {
               child: Text(
                 question['question'] ?? 'Question non chargée',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
+                style:  GoogleFonts.montserrat(textStyle: TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                ),
                 ),
               ),
             ),
@@ -285,6 +286,11 @@ Widget buildQuestionCard() {
                     error: error,
                     selected: question['solved'],
                     title: option['text'],
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                     value: optionIndex,
                     groupValue: question['selected'] ?? -1,
                     onChanged:error ? (value) {
@@ -324,7 +330,7 @@ Widget buildQuestionCard() {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 11, 22, 44),
-        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
+        title: Text(widget.title, style:  GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 25)),),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
