@@ -1,0 +1,1902 @@
+[  
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    },
+    {
+      "question": "Quelle est la méthode pour ajouter un élément à une liste en Python ?",
+      "options": [
+        {
+          "text": "list.add(element)"
+        },
+        {
+          "text": "list.append(element)"
+        },
+        {
+          "text": "list.insert(element)"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La méthode append() ajoute un élément à la fin d'une liste."
+      }
+    },
+    {
+      "question": "Quelle est l'extension d'un fichier Python ?",
+      "options": [
+        {
+          "text": ".py"
+        },
+        {
+          "text": ".python"
+        },
+        {
+          "text": ".pt"
+        }
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {
+        "text": "Les fichiers Python ont l'extension .py."
+      }
+    },
+    {
+      "question": "Quelle fonction est utilisée pour afficher un message en Python ?",
+      "options": [
+        {
+          "text": "echo()"
+        },
+        {
+          "text": "print()"
+        },
+        {
+          "text": "display()"
+        }
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {
+        "text": "La fonction print() est utilisée pour afficher des messages à l'écran."
+      }
+    }
+  ]

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class PrivateChatPage extends StatefulWidget {
   final String recipiaentuid;
@@ -18,7 +19,7 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _controller = TextEditingController();
-
+  final player = AudioPlayer();
   String? senderPseudo;
   String? recipientPseudo;
 
@@ -135,32 +136,40 @@ Future<void> _initializeChat() async {
       ),
     );
   }
+    void _sendMessage() async {
+      if (_controller.text.isNotEmpty) {
+        String chatId = _getChatId(Auth().uid!, widget.recipiaentuid);
+        player.play(AssetSource('sound/sent_message.wav'));
+        try {
+          
+          DocumentReference chatDoc = _firestore.collection('Private_Chat').doc(chatId);
+          DocumentSnapshot chatSnapshot = await chatDoc.get();
 
+          Map<String, dynamic>? unreadCountData = (chatSnapshot.data() as Map<String, dynamic>?)?['unreadCount'] as Map<String, dynamic>? ?? {};
+          
+          unreadCountData[widget.recipiaentuid] = (unreadCountData[widget.recipiaentuid] ?? 0) + 1;
 
-  void _sendMessage() async {
-    if (_controller.text.isNotEmpty) {
-      String chatId = _getChatId(Auth().uid!, widget.recipiaentuid);
-      try {
-        await _firestore
-            .collection('Private_Chat')
-            .doc(chatId)
-            .collection('messages')
-            .add({
-          'date': Timestamp.now(),
-          'uid': Auth().uid,
-          'message': _controller.text,
-          'pseudo': senderPseudo,
-          'viewed': false,
-        });
-        _controller.clear();
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Erreur lors de l\'envoi du message.')),
-        );
+          await chatDoc.collection('messages').add({
+            'date': Timestamp.now(),
+            'uid': Auth().uid,
+            'message': _controller.text,
+            'pseudo': senderPseudo ?? 'Utilisateur',
+          });
+          await chatDoc.update({
+            'unreadCount': unreadCountData,
+          });
+            await chatDoc.update({
+            'visibility': FieldValue.delete(),
+            });
+          _controller.clear();
+          
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Erreur lors de l\'envoi du message : $e')),
+          );
+        }
       }
     }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

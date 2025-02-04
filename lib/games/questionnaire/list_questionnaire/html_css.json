@@ -1,0 +1,355 @@
+[
+
+  {
+    "question": "Quelle balise HTML est utilisée pour définir un lien hypertexte ?",
+    "options": [
+      {"text": "<a>"},
+      {"text": "<link>"},
+      {"text": "<href>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <a> est utilisée pour créer des liens hypertexte."}
+  },
+  {
+    "question": "Quelle propriété CSS est utilisée pour centrer un texte ?",
+    "options": [
+      {"text": "align-center"},
+      {"text": "text-align"},
+      {"text": "vertical-align"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La propriété text-align permet de centrer le texte."}
+  },
+  {
+    "question": "Quelle est la balise correcte pour insérer une image en HTML ?",
+    "options": [
+      {"text": "<img>"},
+      {"text": "<image>"},
+      {"text": "<src>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <img> est utilisée pour insérer une image."}
+  },
+  {
+    "question": "Quel attribut HTML est utilisé pour définir une image alternative ?",
+    "options": [
+      {"text": "src"},
+      {"text": "alt"},
+      {"text": "title"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "L'attribut alt est utilisé pour définir un texte alternatif."}
+  },
+  {
+    "question": "Quel est l'attribut HTML utilisé pour définir une classe CSS ?",
+    "options": [
+      {"text": "id"},
+      {"text": "class"},
+      {"text": "style"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "L'attribut class est utilisé pour associer des styles CSS."}
+  },
+  {
+    "question": "Quelle propriété CSS est utilisée pour changer la couleur de fond d'un élément ?",
+    "options": [
+      {"text": "background"},
+      {"text": "background-color"},
+      {"text": "color"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La propriété background-color définit la couleur de fond."}
+  },
+  {
+    "question": "Quelle balise HTML est utilisée pour insérer une liste non ordonnée ?",
+    "options": [
+      {"text": "<ul>"},
+      {"text": "<ol>"},
+      {"text": "<li>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <ul> permet de créer une liste non ordonnée."}
+  },
+  {
+    "question": "Quel est le rôle de la balise <title> en HTML ?",
+    "options": [
+      {"text": "Afficher le titre principal de la page dans le corps"},
+      {"text": "Définir le titre affiché dans l'onglet du navigateur"},
+      {"text": "Définir un sous-titre pour un article"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La balise <title> définit le titre affiché dans l'onglet."}
+  },
+  {
+    "question": "Quelle balise est utilisée pour un bouton cliquable ?",
+    "options": [
+      {"text": "<btn>"},
+      {"text": "<button>"},
+      {"text": "<click>"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La balise <button> est utilisée pour créer un bouton cliquable."}
+  },
+  {
+    "question": "Quelle balise est utilisée pour le texte en italique ?",
+    "options": [
+      {"text": "<italic>"},
+      {"text": "<em>"},
+      {"text": "<i>"}
+    ],
+    "solved": 2,
+    "selected": null,
+    "explication": {"text": "Les balises <i> et <em> rendent le texte en italique."}
+  },
+  {
+    "question": "Quelle propriété CSS contrôle la taille de police d'un texte ?",
+    "options": [
+      {"text": "text-size"},
+      {"text": "font-size"},
+      {"text": "size"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La propriété font-size détermine la taille de la police."}
+  },
+  {
+    "question": "Quelle balise HTML est utilisée pour insérer une vidéo ?",
+    "options": [
+      {"text": "<video>"},
+      {"text": "<media>"},
+      {"text": "<movie>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <video> est utilisée pour insérer une vidéo."}
+  },
+  {
+    "question": "Quelle propriété CSS est utilisée pour définir un espace intérieur autour d'un élément ?",
+    "options": [
+      {"text": "margin"},
+      {"text": "padding"},
+      {"text": "border"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La propriété padding définit l'espace intérieur autour d'un élément."}
+  },
+  {
+    "question": "Quel est le rôle de l'attribut 'target=\"_blank\"' dans une balise <a> ?",
+    "options": [
+      {"text": "Ouvrir le lien dans la même fenêtre"},
+      {"text": "Ouvrir le lien dans un nouvel onglet"},
+      {"text": "Ouvrir le lien dans une popup"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "L'attribut target=\"_blank\" ouvre le lien dans un nouvel onglet."}
+  },
+  {
+    "question": "Quel est le sélecteur CSS pour cibler un élément par son identifiant ?",
+    "options": [
+      {"text": "."},
+      {"text": "#"},
+      {"text": "*"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "Le sélecteur # cible un élément par son identifiant."}
+  },
+  {
+    "question": "Quelle balise HTML est utilisée pour un tableau ?",
+    "options": [
+      {"text": "<table>"},
+      {"text": "<tr>"},
+      {"text": "<td>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <table> définit un tableau en HTML."}
+  },
+  {
+    "question": "Quelle est la valeur par défaut de la propriété 'position' en CSS ?",
+    "options": [
+      {"text": "absolute"},
+      {"text": "relative"},
+      {"text": "static"}
+    ],
+    "solved": 2,
+    "selected": null,
+    "explication": {"text": "La valeur par défaut de position est static."}
+  },
+  {
+    "question": "Quelle propriété CSS permet de transformer un élément en flex container ?",
+    "options": [
+      {"text": "display: block;"},
+      {"text": "display: flex;"},
+      {"text": "flex: 1;"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La propriété display: flex; transforme un élément en conteneur flex."}
+  },
+  {
+    "question": "Quelle balise HTML est utilisée pour insérer un champ de saisie ?",
+    "options": [
+      {"text": "<input>"},
+      {"text": "<textarea>"},
+      {"text": "<field>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <input> est utilisée pour insérer des champs de saisie."}
+  },
+  {
+    "question": "Quelle propriété CSS permet de définir une ombre sur un texte ?",
+    "options": [
+      {"text": "text-shadow"},
+      {"text": "box-shadow"},
+      {"text": "shadow-text"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La propriété text-shadow permet d'ajouter une ombre au texte."}
+  },
+  {
+    "question": "Quel attribut HTML est utilisé pour inclure un fichier externe JavaScript ?",
+    "options": [
+      {"text": "src"},
+      {"text": "href"},
+      {"text": "script-src"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "L'attribut src est utilisé pour inclure un fichier JavaScript externe."}
+  },
+  {
+    "question": "Quel est l'effet de la propriété CSS 'display: none;' ?",
+    "options": [
+      {"text": "Masque l'élément sans modifier la mise en page"},
+      {"text": "Cache l'élément et le retire du flux de mise en page"},
+      {"text": "Réduit la taille de l'élément à 0"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "display: none; cache l'élément et le retire du flux de mise en page."}
+  },
+  {
+    "question": "Quelle balise HTML est utilisée pour créer une section de navigation ?",
+    "options": [
+      {"text": "<nav>"},
+      {"text": "<menu>"},
+      {"text": "<header>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <nav> est utilisée pour définir une section de navigation."}
+  },
+  {
+    "question": "Quelle est la syntaxe correcte pour inclure une feuille de style CSS externe ?",
+    "options": [
+      {"text": "<link href='style.css' rel='stylesheet'>"},
+      {"text": "<stylesheet src='style.css'>"},
+      {"text": "<css src='style.css'>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "<link href='style.css' rel='stylesheet'> est la syntaxe correcte."}
+  },
+  {
+    "question": "Comment définir la couleur d'un texte en CSS ?",
+    "options": [
+      {"text": "color: red;"},
+      {"text": "text-color: red;"},
+      {"text": "font-color: red;"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La propriété color: red; définit la couleur du texte."}
+  },
+  {
+    "question": "Quel est l'effet de la propriété CSS 'position: absolute;' ?",
+    "options": [
+      {"text": "Positionne l'élément par rapport à son parent le plus proche."},
+      {"text": "Positionne l'élément de manière fixe par rapport à la fenêtre."},
+      {"text": "Positionne l'élément par rapport à la page entière."}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "position: absolute; place l'élément par rapport à son parent le plus proche."}
+  },
+  {
+    "question": "Quelle est la balise HTML utilisée pour créer une liste ordonnée ?",
+    "options": [
+      {"text": "<ol>"},
+      {"text": "<ul>"},
+      {"text": "<li>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La balise <ol> est utilisée pour créer une liste ordonnée."}
+  },
+  {
+    "question": "Quel est l'attribut CSS pour définir la largeur d'un élément ?",
+    "options": [
+      {"text": "width"},
+      {"text": "height"},
+      {"text": "size"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La propriété width définit la largeur d'un élément."}
+  },
+  {
+    "question": "Quelle est la propriété CSS utilisée pour modifier l'espacement entre les lettres ?",
+    "options": [
+      {"text": "letter-spacing"},
+      {"text": "line-height"},
+      {"text": "text-spacing"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La propriété letter-spacing ajuste l'espacement entre les lettres."}
+  },
+  {
+    "question": "Quelle est la balise HTML utilisée pour insérer une table des matières ?",
+    "options": [
+      {"text": "<table>"},
+      {"text": "<toc>"},
+      {"text": "<nav>"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Il n'existe pas de balise spécifique pour une table des matières en HTML."}
+  },
+  {
+    "question": "Quel est le rôle de la balise <footer> en HTML ?",
+    "options": [
+      {"text": "Définir le pied de page de la page ou du document"},
+      {"text": "Définir l'en-tête du document"},
+      {"text": "Définir la navigation principale"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "<footer> définit le pied de page du document."}
+  },
+  {
+    "question": "Quelle propriété CSS permet de définir un fond transparent ?",
+    "options": [
+      {"text": "background: transparent;"},
+      {"text": "background-color: rgba(0, 0, 0, 0);"},
+      {"text": "color: transparent;"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "background-color: rgba(0, 0, 0, 0); définit un fond transparent."}
+  }
+]

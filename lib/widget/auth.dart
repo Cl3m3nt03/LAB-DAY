@@ -65,9 +65,12 @@ Future<String?> recoveryPseudo() async {
     required String username,
   }) async{
     await _firestore.collection('Users').doc( Auth().uid).set({
-      'uid': Auth().uid,
       'email': email,
+      'uid': Auth().uid,
       'pseudo': username,
+      'bio': 'L/Utilisateur n/a pas encore défini de bio',
+      'curentlevel': 1,
+      'currentxp': 0,
     });
   }
 

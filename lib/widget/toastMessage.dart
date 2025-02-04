@@ -1,7 +1,7 @@
 // Comment utiliser les messages toast signé Mateis le bg :
   /// Importez le fichier toastMessage.dart dans votre fichier.
   
-  /// import 'package:makeitcode/toast_message.dart';
+  /// import 'package:makeitcode/widget/toastMessage.dart';
 
   /// Créez une instance de la classe ToastMessage.
   

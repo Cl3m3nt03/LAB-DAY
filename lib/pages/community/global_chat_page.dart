@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:makeitcode/pages/community/list_message_page.dart';
+import 'package:makeitcode/pages/community/open_profil.dart';
 
 
 class GlobalChatPage extends StatefulWidget {
@@ -20,6 +22,7 @@ class _GlobalChatPageState extends State<GlobalChatPage> {
   final TextEditingController _controller = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser!.uid;
+  final player = AudioPlayer();
   String? pseudo;
 
   @override
@@ -66,6 +69,7 @@ void getpseudo() async {
 
   void _sendMessage() async {
     if (_controller.text.isNotEmpty) {
+      player.play(AssetSource('sound/sent_message.wav'));
       try {
         await _firestore.collection('global_chat').add({
           'date': Timestamp.now(),
@@ -120,11 +124,15 @@ void getpseudo() async {
                     ),
                     onSelected: (String value) {
                       if (value == 'profil') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Ouvrir la page de profil')),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OpenProfilePage(
+                                uid: messageData['uid'] as String,
+                              ),
+                            ),
                           );
-
-                      } else if (value == 'message') {
+                        } else if (value == 'message') {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -229,7 +237,7 @@ void getpseudo() async {
                     Color.fromRGBO(0, 113, 152, 1),
                     Color.fromARGB(255, 11, 22, 44)
                   ],
-                  stops: [0.2, 0.9],
+                  stops: [0.2, 0.5],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
