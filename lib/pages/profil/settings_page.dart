@@ -10,7 +10,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool light = true;
-  bool light1 = true; 
+  bool light1 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       clipBehavior: Clip.none,
                       children: [
                         Container(
-                          height: 150,
+                          height: 110,
                           width: MediaQuery.of(context).size.width - 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -82,32 +82,6 @@ class _SettingsPageState extends State<SettingsPage> {
                             ],
                           ),
                         ),
-                        Positioned(
-                          bottom: -50,
-                          left: MediaQuery.of(context).size.width / 2 - 65,
-                          child: Stack(
-                            children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/icons/baka.png'),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.black,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                     SizedBox(height: 110),
@@ -132,7 +106,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                       children: [
                                         Icon(
                                           Icons.light_mode,
-                                          color: Color.fromARGB(250, 175, 142, 88),
+                                          color:
+                                              Color.fromARGB(250, 175, 142, 88),
                                         ),
                                         SizedBox(width: 10),
                                         Text("Activer le mode sombre",
@@ -143,71 +118,85 @@ class _SettingsPageState extends State<SettingsPage> {
                                         SizedBox(width: 10),
                                         Switch(
                                           value: light,
-                                          activeColor: Color.fromARGB(250, 175, 142, 88),
+                                          activeColor:
+                                              Color.fromARGB(250, 175, 142, 88),
                                           onChanged: (bool value) {
                                             setState(() {
-                                              light = value; 
+                                              light = value;
                                             });
                                           },
                                         ),
                                       ],
                                     ),
                                   ),
-                                Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                Container(
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.notifications,
-                                        color: Color.fromARGB(250, 175, 142, 88),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Text("Activer les notifications",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                          )),
-                                      SizedBox(width: 10),
-                                      Switch(
-                                        value: light1,
-                                        activeColor: Color.fromARGB(250, 175, 142, 88),
-                                        onChanged: (bool value) {
-                                          setState(() {
-                                            light1 = value; 
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Divider(color: const Color.fromARGB(70, 255, 255, 255)),
-                                Container(
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 10),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                              Icons.language,
-                                              color: Color.fromARGB(250, 175, 142, 88),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Text("Langue",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                )),
-                                            SizedBox(width: MediaQuery.of(context).size.width - 220),
-                                            popoverMenu(),
-                                            ],
-                                          ) 
+                                  Divider(
+                                      color: const Color.fromARGB(
+                                          70, 255, 255, 255)),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.notifications,
+                                          color:
+                                              Color.fromARGB(250, 175, 142, 88),
                                         ),
-                                      ),
-                                    ],
+                                        SizedBox(width: 10),
+                                        Text("Activer les notifications",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            )),
+                                        SizedBox(width: 10),
+                                        Switch(
+                                          value: light1,
+                                          activeColor:
+                                              Color.fromARGB(250, 175, 142, 88),
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              light1 = value;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                  Divider(
+                                      color: const Color.fromARGB(
+                                          70, 255, 255, 255)),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.language,
+                                                    color: Color.fromARGB(
+                                                        250, 175, 142, 88),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Text("Langue",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16,
+                                                      )),
+                                                  SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width -
+                                                              220),
+                                                  popoverMenu(),
+                                                ],
+                                              )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

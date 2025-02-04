@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:makeitcode/games/questionnaire/questionnaire.dart';
+import 'package:makeitcode/pages/questionnaire/questionnaire.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
