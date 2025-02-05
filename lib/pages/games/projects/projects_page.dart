@@ -242,7 +242,7 @@ Widget build(BuildContext context) {
     ),
     floatingActionButton: GlossaryPage(),
     floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-    resizeToAvoidBottomInset: false, // Nous désactivons l'ajustement de la taille lors de l'apparition du clavier
+    resizeToAvoidBottomInset: false,
     body: Stack(
       children: [
           Container(

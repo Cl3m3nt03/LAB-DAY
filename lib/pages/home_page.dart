@@ -7,6 +7,7 @@ import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   int lvl = 0;
   int xp = 90;
   int objXp = 100;
+  
 
 
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
@@ -41,6 +43,8 @@ class _HomePageState extends State<HomePage> {
     checkEmailVerification();
     fetchPseudo();
   }
+
+  
 
 Future<void> fetchPseudo() async {
   try {
@@ -112,6 +116,7 @@ Future<void> getLevel() async {
     }
     return '${path}BronzeIcon.png';
   }
+
 
 
 Widget _title(){
@@ -367,7 +372,7 @@ Widget _projects(stream){
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProjectsPage(),
+                                builder: (context) =>  ProjectsPage() //ProjectsPage(),
                               ),
                             );
                           }, 
