@@ -299,10 +299,13 @@ class EditCompte extends StatelessWidget {
                           SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () async {
-                              final String uid =
-                                  FirebaseAuth.instance.currentUser?.uid ?? '';
+                              final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
                               if (_base64Avatar != null) {
                                 await updateUserAvatar(uid, _base64Avatar);
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => EditCompte()),
+                                );
                               } else {
                                 print('No avatar selected');
                               }

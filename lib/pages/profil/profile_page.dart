@@ -46,6 +46,11 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
+    getUserAvatar(Auth().currentUser?.uid ?? '').then((value) {
+      setState(() {
+        _avatarImage = value;
+      });
+    });
     _loadAvatar();
   }
 
@@ -58,6 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,44 +104,80 @@ class _ProfilePageState extends State<ProfilePage> {
                               SizedBox(height: 20),
                               Text(
                                 "Profile",
-                                  style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
                                     color: Color.fromARGB(250, 175, 142, 88),
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  ),
+                                ),
                               ),
                               Divider(),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  CircleAvatar(
-                                    radius: 20,
-                                    backgroundImage: _avatarImage != null
-                                        ? MemoryImage(_avatarImage!)
-                                        : AssetImage('assets/icons/logo.png')
-                                            as ImageProvider,
+                                  StreamBuilder<DocumentSnapshot>(
+                                    stream: FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(Auth().currentUser?.uid ?? '')
+                                        .snapshots(),
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData ||
+                                          snapshot.data == null) {
+                                        return CircleAvatar(
+                                          radius: 20,
+                                          backgroundImage: AssetImage(
+                                              'assets/icons/logo.png'),
+                                        );
+                                      }
+
+                                      var userData = snapshot.data!.data()
+                                          as Map<String, dynamic>?;
+
+                                      if (userData == null ||
+                                          !userData.containsKey('avatar')) {
+                                        return CircleAvatar(
+                                          radius: 20,
+                                          backgroundImage: AssetImage(
+                                              'assets/icons/logo.png'),
+                                        );
+                                      }
+
+                                      Uint8List avatarBytes =
+                                          base64Decode(userData['avatar']);
+                                      return CircleAvatar(
+                                        radius: 20,
+                                        backgroundImage:
+                                            MemoryImage(avatarBytes),
+                                      );
+                                    },
                                   ),
                                   Column(
                                     children: [
-                                      FutureBuilder<String>(
-                                        future: getUserPseudo(
-                                            Auth().currentUser?.uid ?? ''),
+                                      StreamBuilder<DocumentSnapshot>(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Users')
+                                            .doc(Auth().currentUser?.uid ?? '')
+                                            .snapshots(),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState ==
                                               ConnectionState.waiting) {
                                             return CircularProgressIndicator();
                                           } else if (snapshot.hasError) {
                                             return Text(
-                                                'Error: ${snapshot.error}',
-                                                style: TextStyle(
-                                                    color: Colors.white));
+                                              'Error: ${snapshot.error}',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            );
                                           } else {
+                                            var userData = snapshot.data!.data()
+                                                as Map<String, dynamic>?;
                                             return Text(
-                                                snapshot.data ??
-                                                    'No pseudo available',
-                                                style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                              userData?['pseudo'] ??
+                                                  'No pseudo available',
+                                              style: GoogleFonts.montserrat(
+                                                textStyle: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 17,
                                                   fontWeight: FontWeight.bold,
@@ -161,13 +203,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => EditCompte()),
+                                            builder: (context) =>
+                                                EditCompte()),
                                       );
                                     },
                                     child: Text(
                                       'Edit Profile',
-                                      style: GoogleFonts.montserrat(textStyle:TextStyle(
-                                          color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),),
+                                      style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -205,11 +253,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           EditCompte()),
                                                 );
                                               },
-                                              child:  Text(
+                                              child: Text(
                                                 "Mon Compte",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -233,11 +284,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           SecuritePage()),
                                                 );
                                               },
-                                              child:  Text(
+                                              child: Text(
                                                 "Sécurité",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -263,9 +317,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               child: Text(
                                                 "Réglages",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -305,9 +362,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               child: Text(
                                                 "Politique de confidentialité",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -333,9 +393,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               child: Text(
                                                 "Contactez-nous",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -360,10 +423,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
-                                      Text("About",
-                                      style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600),),),
+                                      Text(
+                                        "About",
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
