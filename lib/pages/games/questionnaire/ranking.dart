@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
 
@@ -36,7 +37,6 @@ class _Classement extends State<RankingPage> {
     );
   }
 }
-
 class ClassementPage extends StatelessWidget {
   final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance
       .collection('Users')
@@ -56,6 +56,11 @@ class ClassementPage extends StatelessWidget {
   Future<Uint8List?> getAvatarForUser(String uid) async {
     // Charger l'avatar de l'utilisateur ici
     return AvatarService.getUserAvatar(uid);
+  }
+
+  Future<String> getCurrentUid() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    return user?.uid ?? '';
   }
 
   @override
@@ -139,6 +144,8 @@ class ClassementPage extends StatelessWidget {
                                 points: data['totalpoints'].toString(),
                                 textColor: textColor,
                                 avatarImage: avatarImage,  // Pass avatar image to the card
+                                context: context,
+                                playerUid: playerUid, // Pass player UID to the card
                               );
                             },
                           );
@@ -163,15 +170,18 @@ Widget classementCard({
   required String points,
   required Color textColor,
   required Uint8List? avatarImage,
+  required BuildContext context, 
+  required String playerUid, // UID ajouté ici
 }) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-    padding: const EdgeInsets.all(12.0),
+    padding: const EdgeInsets.all(8.0),
     decoration: BoxDecoration(
       color: const Color(0xFF5E4F73).withOpacity(0.85),
       borderRadius: BorderRadius.circular(12),
       border: rank <= 3 ? Border.all(color: Colors.amber, width: 2) : null,
     ),
+    
     child: Row(
       children: [
         Text(
@@ -182,17 +192,18 @@ Widget classementCard({
             color: rank <= 3 ? Colors.amber : Colors.white,
           )),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 10 ,),
         CircleAvatar(
-          radius: 24,
+          radius: 28,
           backgroundImage: avatarImage != null
               ? MemoryImage(avatarImage)
               : const AssetImage("assets/splashscreen/icon.png") as ImageProvider,
         ),
-        const SizedBox(width: 15),
+        const SizedBox(width: 15,),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            
             children: [
               Text(
                 name,
@@ -210,13 +221,29 @@ Widget classementCard({
                   fontSize: 16,
                 ),
               ),
-              Text(
-                "Voir le profil",
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 16,
-                ),
+              SizedBox(height: 5,),
+              TextButton(
+                style: TextButton.styleFrom(
+                //backgroundColor: const Color.fromARGB(255, 243, 33, 229),
+                padding: EdgeInsets.zero,
+                minimumSize: Size.zero, // Supprime la taille minimale
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Réduit la marge
+                
+  
               ),
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OpenProfilePage(uid: playerUid), // Passer l'uid au constructeur
+                    ),
+                  );
+                },
+                child : Text(
+                  "Voir le profil", 
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+              )
             ],
           ),
         ),
