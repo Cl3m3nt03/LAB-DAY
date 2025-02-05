@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:three_d_slider/three_d_slider.dart';
 import 'package:makeitcode/widget/progressBar.dart';
@@ -9,10 +10,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Rewardscreen extends StatefulWidget {
   final int stepIndex;
   final Map<String, dynamic> projet;
-  const Rewardscreen({super.key, required this.stepIndex, required this.projet});
+  final int xpToAdd;
+  const Rewardscreen({super.key, required this.stepIndex, required this.projet, required this.xpToAdd});
 
   @override
   State<Rewardscreen> createState() => _RewardscreenState();
+
+  static void updateXp(int i) {}
 }
 
 class _RewardscreenState extends State<Rewardscreen> {
@@ -31,7 +35,58 @@ class _RewardscreenState extends State<Rewardscreen> {
       super.initState();
       getLevel();
       getStepByIndex();
+      updateXp();
   }
+
+
+Future<void> updateXp() async {
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    String uid = user.uid;
+
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        int currentXp = userDoc.data()?['currentXp'] ?? 0;
+        int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
+
+        int newXp = currentXp + widget.xpToAdd;
+        int newLvl = currentLvl;
+        int newObjXp = userDoc.data()?['objectiveXp'] ?? 0;
+
+
+        if(newXp >= objXp){
+          newXp -= objXp;
+          newObjXp *= 2;
+          newLvl++;
+        }
+
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'currentXp': newXp,
+          'currentLvl': newLvl,
+          'objectiveXp': newObjXp
+        });
+
+        setState(() {
+          xp = newXp;
+          lvl = newLvl;
+          objXp = newObjXp;
+        });
+
+        getLevel();
+
+        print("XP mis à jour avec succès !");
+      } else {
+        print('Le document utilisateur n\'existe pas');
+      }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'XP : $e');
+    }
+  }
+}
+
+
+
 
   Future<void> getLevel() async {
   User? user = FirebaseAuth.instance.currentUser;
@@ -40,7 +95,8 @@ class _RewardscreenState extends State<Rewardscreen> {
 
     try {
       final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-      print(userDoc.data()?['currentLvl']);
+      print('current xp: ${userDoc.data()?['currentXp']}');
+      print('objective xp: ${userDoc.data()?['objectiveXp']}');
       if (userDoc.exists) {
         setState(() {
           lvl = userDoc.data()?['currentLvl'] ?? 0; 
@@ -70,7 +126,6 @@ Future<void> getStepByIndex() async {
       final stepDoc = querySnapshot.docs[widget.stepIndex -1];
       final stepData = stepDoc.data();
     
-
       setState(() {
         stepName = stepData['name'] ?? "Nom non trouvé";
         stepDesc = stepData['desc'] ?? "Description non trouvée";
@@ -82,15 +137,6 @@ Future<void> getStepByIndex() async {
     stepName = "❌ Erreur lors de la récupération du document : $e";
   }
 }
-
-
-
-
-
-
-
-
-
 
   Widget _title(){
     return Center(
@@ -110,7 +156,7 @@ Future<void> getStepByIndex() async {
   Widget _subTitle(){
     return Center(
       child: Text(
-        'Niveau 2 débloqués',
+        'Niveau ${widget.stepIndex} débloqué',
         style: GoogleFonts.sora(
           textStyle: TextStyle(
             fontWeight: FontWeight.w500,
@@ -123,9 +169,61 @@ Future<void> getStepByIndex() async {
   }
 
   Widget _slider(){
-    return Center(
-      child: ThreeDSlider(
-      cards: Badges.map((url) => Image.asset(url)).toList(),
+    return SizedBox(
+      height: 250,
+      child: Align(
+        child: Stack(
+          children: [
+            if(widget.stepIndex - 1 >= 0 && widget.stepIndex - 1 < Badges.length)
+            Positioned(
+              left: 10,
+              top: 60,
+              child: Image(
+                height: 120,
+                image: AssetImage(Badges[widget.stepIndex-1])
+              )
+            ),
+            if (widget.stepIndex + 1 < Badges.length)
+            Positioned(
+              right: 0,
+              top: 60,
+              child: Image(
+                height: 120,
+                image: AssetImage(Badges[widget.stepIndex+1])
+              )
+            ),
+            Positioned(
+              left: 115,
+              top: 25,
+              child: Image(
+                height: 200,
+                image: AssetImage(Badges[widget.stepIndex])
+              )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /*
+ThreeDSlider(
+      cards: Badges.asMap().entries.map((entry) {
+          int index = entry.key; 
+          String url = entry.value;
+
+          if (index <= widget.stepIndex) {
+            return Image.asset(url);
+          } else {
+            return ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.9), // Applique un filtre noir semi-transparent
+                BlendMode.srcATop,
+              ),
+              child: Image.asset(url),
+            );
+          }
+        }).toList(),
       frameHeight: 300, 
       frameWidth: 165,
       selectedIndex: widget.stepIndex,
@@ -139,8 +237,7 @@ Future<void> getStepByIndex() async {
         color: Color(0xfffdfffd),
       ),
       ),
-    );
-  }
+  */
 
   Widget _stepTitle(){
     return Center(
@@ -170,6 +267,13 @@ Future<void> getStepByIndex() async {
         ),
       ),
     );
+  }
+
+
+  Widget _xpAdded(){
+    return Text(
+      'data'
+      );
   }
 
 Widget _progressBar() {
@@ -268,6 +372,7 @@ Widget build(BuildContext context) {
               SizedBox(height: 8),
               _stepDesc(),
               SizedBox(height: 40),
+              _xpAdded(),
               _progressBar(),
               SizedBox(height: 45),
               _continueButton(),

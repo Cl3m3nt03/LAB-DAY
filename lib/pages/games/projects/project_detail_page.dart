@@ -390,13 +390,13 @@ Widget _confirmButton(screenHeight) {
             // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
             projectData['id'] = projectId;
 
-            // Passer les données du projet à Rewardscreen
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => Rewardscreen(
                   stepIndex: 1,
                   projet: projectData, 
+                  xpToAdd: 2,
                 ),
               ),
             );
