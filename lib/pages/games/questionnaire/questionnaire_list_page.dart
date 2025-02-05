@@ -28,7 +28,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
 
     Future<void> loadQuestions() async {
     try {
-      final String response = await rootBundle.loadString('lib/pages/questionnaire/list_questionnaire/list_questionnaire.json');
+      final String response = await rootBundle.loadString('lib/pages/games/questionnaire/list_questionnaire/list_questionnaire.json');
       final List<dynamic> data = json.decode(response);
       setState(() {
         questionnaire = data.map((questionnaire) {
