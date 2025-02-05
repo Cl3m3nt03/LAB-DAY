@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -371,10 +372,48 @@ Widget _confirmButton(screenHeight) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),
-        shadowColor: const Color(0xff121B38).withOpacity(0.6), // Couleur de l'ombre
-        elevation: 8, // Intensité de l'ombre
+        shadowColor: const Color(0xff121B38).withOpacity(0.6), // Ombre
+        elevation: 8,
       ),
-      onPressed: () {},
+      onPressed: () async {
+        try {
+          // Récupérer le document correspondant au projet actuel
+          QuerySnapshot projectSnapshot = await FirebaseFirestore.instance
+              .collection('Projects')
+              .where('name', isEqualTo: widget.projetName)
+              .get();
+
+          if (projectSnapshot.docs.isNotEmpty) {
+            DocumentSnapshot projectDoc = projectSnapshot.docs.first;
+            Map<String, dynamic> projectData = projectDoc.data() as Map<String, dynamic>;
+            String projectId = projectDoc.id; // ID du projet
+
+            // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
+            projectData['id'] = projectId;
+
+            // Passer les données du projet à Rewardscreen
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Rewardscreen(
+                  stepIndex: 1,
+                  projet: projectData, // Maintenant c'est bien une Map<String, dynamic>
+                ),
+              ),
+            );
+          } else {
+            // Afficher une erreur si aucun projet trouvé
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Projet introuvable")),
+            );
+          }
+        } catch (e) {
+          // Gestion des erreurs Firestore
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Erreur: ${e.toString()}")),
+          );
+        }
+      },
       child: Text(
         'Continuer',
         style: GoogleFonts.montserrat(
@@ -387,6 +426,8 @@ Widget _confirmButton(screenHeight) {
     ),
   );
 }
+
+
 
 
 

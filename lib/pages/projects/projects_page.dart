@@ -237,10 +237,9 @@ Widget build(BuildContext context) {
   return Scaffold(
     floatingActionButton: GlossaryPage(),
     floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-    resizeToAvoidBottomInset: false, // Nous désactivons l'ajustement de la taille lors de l'apparition du clavier
+    resizeToAvoidBottomInset: false,
     body: Stack(
       children: [
-        // Le contenu principal (background, projets, etc.)
         Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
