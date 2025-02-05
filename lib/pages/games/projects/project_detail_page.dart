@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:makeitcode/pages/games/rewardScreen.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -396,7 +396,7 @@ Widget _confirmButton(screenHeight) {
               MaterialPageRoute(
                 builder: (context) => Rewardscreen(
                   stepIndex: 1,
-                  projet: projectData, // Maintenant c'est bien une Map<String, dynamic>
+                  projet: projectData, 
                 ),
               ),
             );
