@@ -72,6 +72,7 @@ Future<String?> recoveryPseudo() async {
       'curentlevel': 1,
       'currentxp': 0,
       'totalpoints': 0,
+      'objectiveXp':100,
     });
   }
 

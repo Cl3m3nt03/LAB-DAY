@@ -27,7 +27,7 @@ class CustomNavbar extends StatelessWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12),
           child: GNav(
             gap: 8,
             activeColor: Colors.white,

@@ -118,15 +118,19 @@ Widget _title(){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-        Text(
+      SizedBox(
+        width: MediaQuery.of(context).size.width *0.6 ,
+        child: Text(
           'Salut, $pseudo 👋',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
               color: Colors.white,
               fontSize: MediaQuery.of(context).size.width * 0.06,
-              fontWeight: FontWeight.w700
+              fontWeight: FontWeight.w700,
+              overflow: TextOverflow.clip
             )
           ),
+        )
 
         ),
         SizedBox(height: 5,),
@@ -148,7 +152,7 @@ Widget _title(){
 Widget _profilePicture(){
   return CircleAvatar(
     backgroundImage: AssetImage('assets/icons/baka.png'),
-    radius: 35,
+    radius: 45,
 
   );
 }
@@ -203,7 +207,7 @@ Widget _playerLevel(){
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Lvl. ',
+                                text: 'Niv. ',
                                 style: TextStyle(
                                   color: Colors.black.withOpacity(0.5), 
                                   fontWeight: FontWeight.normal, 
