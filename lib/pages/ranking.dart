@@ -1,128 +1,61 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
-class RankingPage extends StatefulWidget {
-
-  @override
-  State<StatefulWidget> createState() {
-    return _Classement();
-  }
-}
-
-class _Classement extends State<RankingPage> {
-  
-  
-  void onButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ClassementPage()),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return Scaffold(
-      
-      floatingActionButton: FloatingActionButton(
-        onPressed: onButtonPressed,
-        tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events),
-      ), 
-    );
-  }
-}
 class ClassementPage extends StatelessWidget {
-  final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance.collection('Users').orderBy("totalpoints", descending: true ).snapshots();
+  final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance.collection('Users').orderBy('totalpoints', descending: true).snapshots();
+
+  Future<String?> getCurrentUserPseudo() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) return null;
+
+    DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('Users').doc(user.uid).get();
+    return userDoc.exists ? userDoc['pseudo'] as String? : null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     // backgroundColor: const Color(0xFF0B162C),
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(0, 113, 152, 1),
-        foregroundColor: Colors.white,
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
-            stops: [0.2, 0.9],
-            begin: Alignment.topCenter,
-            end: Alignment.center,
-          ),
-        ),
-        child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: Text(
-                "Classement des Meilleurs Codeurs",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            StreamBuilder<QuerySnapshot>(
-        stream: _rankingStream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Something went wrong: ${snapshot.error}'));
-          }
+    return FutureBuilder<String?>(
+      future: getCurrentUserPseudo(),
+      builder: (context, userSnapshot) {
+        if (userSnapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        String? currentUserPseudo = userSnapshot.data;
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          int rank = 1; 
-          for (int i=1 ;  i<=20 ; i++){
-            rank+=1; 
-          }
-          return Column(
-            children: snapshot.data!.docs.asMap().entries.map((entry) {
-            int rank = entry.key + 1; // Numérotation des rangs
-            DocumentSnapshot document = entry.value;
-            Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-            return classementCard(rank: rank, name: data['pseudo'], url: "debug-master", points: data['totalpoints'].toString());
-            
-            }).toList(),
-          );
-        },
-      ), /*
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  classementCard(rank: 1, name: "Maître du Debug", url: "debug-master", points: "2500"),
-                  classementCard(rank: 2, name: "Hacker Nocturne", url: "night-hacker", points: "2300"),
-                  classementCard(rank: 3, name: "Bug Slayer", url: "bug-slayer", points: "2200"),
-                  classementCard(rank: 4, name: "Compilateur Humain", url: "human-compiler", points: "2100"),
-                  classementCard(rank: 5, name: "Code Alchimiste", url: "code-alchemist", points: "2000"),
-                  classementCard(rank: 6, name: "Architecte du Cloud", url: "cloud-architect", points: "1950"),
-                  classementCard(rank: 7, name: "Guru des Algorithmes", url: "algo-guru", points: "1900"),
-                  classementCard(rank: 8, name: "Samouraï du Terminal", url: "terminal-samurai", points: "1850"),
-                ],
-              ),
-            ),*/
-          ],
-        ),
-      ),
+        return StreamBuilder<QuerySnapshot>(
+          stream: _rankingStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Erreur: ${snapshot.error}'));
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-      ),
+            return Column(
+              children: snapshot.data!.docs.asMap().entries.map((entry) {
+                int rank = entry.key + 1;
+                DocumentSnapshot document = entry.value;
+                Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+
+                return classementCard(
+                  rank: rank,
+                  name: data['pseudo'],
+                  url: "debug-master",
+                  points: data['totalpoints'].toString(),
+                  isCurrentUser: data['pseudo'] == currentUserPseudo,
+                );
+              }).toList(),
+            );
+          },
+        );
+      },
     );
   }
 }
 
-Widget classementCard({required int rank, required String name, required String url, required String points}) {
-  
-
+Widget classementCard({required int rank, required String name, required String url, required String points, required bool isCurrentUser,}) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
     padding: const EdgeInsets.all(12.0),
@@ -143,7 +76,6 @@ Widget classementCard({required int rank, required String name, required String 
         ),
         const SizedBox(width: 12),
         CircleAvatar(
-          
           radius: 24,
           backgroundImage: AssetImage("assets/$url.jpg"),
         ),
@@ -155,7 +87,7 @@ Widget classementCard({required int rank, required String name, required String 
               Text(
                 name,
                 style: TextStyle(
-                  color: name == "Hacker Nocturne" ? Color.fromARGB(255, 148, 199, 229) : Colors.white,
+                  color: isCurrentUser ? Color.fromARGB(255, 148, 199, 229) : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -164,13 +96,13 @@ Widget classementCard({required int rank, required String name, required String 
                 "$points points",
                 style: const TextStyle(
                   color: Colors.white70,
-                  fontStyle: FontStyle.italic, 
+                  fontStyle: FontStyle.italic,
                   fontSize: 16,
                 ),
               ),
-              Text(
+              const Text(
                 "Voir le profil",
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white70,
                   fontSize: 16,
                 ),
