@@ -58,19 +58,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
     }
   }
   
-  //function to get the user avatar
-//   Future<Uint8List?> getUserAvatar(String uid) async {
-//   try {
-//     final userDoc =
-//         await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-//     if (userDoc.exists) {
-//       return base64Decode(userDoc['avatar']);
-//     }
-//   } catch (e) {
-//     print("Erreur lors de la récupération de l'avatar : $e");
-//   }
-//   return null;
-// }
+
 
   Future<void> getProfile() async {
     setState(() {
