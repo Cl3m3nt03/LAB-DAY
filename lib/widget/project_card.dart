@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'package:makeitcode/pages/projects/project_detail_page.dart';
+import 'package:makeitcode/pages/games/projects/project_detail_page.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:google_fonts/google_fonts.dart';
 

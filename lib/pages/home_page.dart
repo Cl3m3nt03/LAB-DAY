@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:makeitcode/widget/project_card.dart';
-import 'package:makeitcode/pages/projects/projects_page.dart';
+import 'package:makeitcode/pages/games/projects/projects_page.dart';
 
 
 class HomePage extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:makeitcode/pages/questionnaire/questionnaire.dart';
+import 'package:makeitcode/pages/games/questionnaire/questionnaire.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'package:makeitcode/widget/customRadioTile.dart';
-import 'package:makeitcode/pages/questionnaire/ranking.dart';
+import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionnaireListPage extends StatefulWidget {
