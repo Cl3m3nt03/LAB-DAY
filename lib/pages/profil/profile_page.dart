@@ -165,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       );
                                     },
                                     child: Text(
-                                      'Edit Profil',
+                                      'Modifier le profil',
                                       style: GoogleFonts.montserrat(textStyle:TextStyle(
                                           color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),),
                                     ),
@@ -262,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 );
                                               },
                                               child: Text(
-                                                "Réglages",
+                                                "Réglage",
                                                 style:GoogleFonts.montserrat(textStyle: TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.w600),),
@@ -360,7 +360,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
-                                      Text("About",
+                                      Text("À propos",
                                       style:GoogleFonts.montserrat(textStyle: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w600),),),

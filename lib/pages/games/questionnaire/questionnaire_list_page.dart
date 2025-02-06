@@ -51,8 +51,10 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
         onPressed: onButtonPressed,
+        backgroundColor: Color.fromARGB(255, 209, 223, 255),
+        foregroundColor: Color(0xFF5E4F73),
         tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events),
+        child: const Icon(Icons.emoji_events, size: 30,),
       ), 
       appBar: AppBar(
       title: Text('QUESTIONNAIRE',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),),

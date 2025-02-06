@@ -67,7 +67,7 @@ class CustomNavbar extends StatelessWidget {
               ),
               GButton(
                 icon: Icons.person,
-                text: 'Profile',
+                text: 'Profil',
                 textStyle: GoogleFonts.montserrat(textStyle: TextStyle( color: Colors.white, fontWeight: FontWeight.bold,fontSize: 13),),
                 iconColor: Colors.white,
               ),

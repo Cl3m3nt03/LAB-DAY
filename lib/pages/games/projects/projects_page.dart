@@ -235,13 +235,12 @@ Widget _buildSearchResults() {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+      title: Text('PROJETS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
 ),
       backgroundColor: Color.fromARGB(255, 11, 22, 44),
       centerTitle: true,
     ),
     floatingActionButton: GlossaryPage(),
-    floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
     resizeToAvoidBottomInset: false,
     body: Stack(
       children: [

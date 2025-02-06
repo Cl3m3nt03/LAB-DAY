@@ -31,12 +31,17 @@ class _Classement extends State<RankingPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: onButtonPressed,
+        backgroundColor: Color.fromARGB(255, 209, 223, 255),
+        foregroundColor: Color(0xFF5E4F73),
         tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events),
+        child: const Icon(Icons.emoji_events, size: 30,),
       ),
     );
   }
 }
+
+
+
 class ClassementPage extends StatelessWidget {
   final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance
       .collection('Users')
