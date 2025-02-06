@@ -97,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "Profile",
+                                "Profil",
                                   style: GoogleFonts.montserrat(textStyle:TextStyle(
                                     color: Color.fromARGB(250, 175, 142, 88),
                                     fontSize: 22,
@@ -165,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       );
                                     },
                                     child: Text(
-                                      'Edit Profile',
+                                      'Edit Profil',
                                       style: GoogleFonts.montserrat(textStyle:TextStyle(
                                           color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),),
                                     ),

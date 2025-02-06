@@ -130,7 +130,7 @@ void getpseudo() async {
                       return [
                         PopupMenuItem(
                           value: 'profil',
-                          child: Text('Profile'),
+                          child: Text('Profil'),
                         ),
                         PopupMenuItem(
                           value: 'message',

@@ -110,7 +110,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                 'Pour toute question ou préoccupation concernant cette politique de confidentialité, veuillez nous contacter à :'),
             _buildBulletPoints([
               'Email : [makeitcode@gmail.com]',
-              'Adresse : [Coding Factory,75000 Paris]',
+              'Adresse : [Coding Factory (Matéis Bourlet, Clément Seurrin-le-Goffic, Mathys Sclafer & Inès Charfi), 95000 Cergy]',
             ]),
           ],
         ),

@@ -94,7 +94,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
         });
       }
     } catch (e) {
-      print('Error fetching profile: $e');
+      print('Error fetching profil: $e');
     }
   }
 
@@ -418,7 +418,7 @@ Widget _Museum(){
                                     color: Colors.white),
                               ),
                               Text(
-                                "Profile",
+                                "Profil",
                                 style: TextStyle(
                                   color: const Color.fromARGB(250, 175, 142, 88),
                                   fontSize: 30,
