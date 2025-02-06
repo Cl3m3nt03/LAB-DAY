@@ -344,7 +344,85 @@ Widget _stepsCardGeneration() {
   );
 }
 
-Widget _allStepsCard(screenHeight) {
+Widget _descriptionTextGeneration() {
+  return StreamBuilder<QuerySnapshot>(
+    stream: FirebaseFirestore.instance
+        .collection('Projects')
+        .where('name', isEqualTo: widget.projetName)
+        .snapshots(),
+    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      if (snapshot.hasError) {
+        return Center(child: Text('Erreur: ${snapshot.error}'));
+      }
+      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+        return const Center(child: Text('Aucun projet trouvé', style: TextStyle(color: Colors.white)));
+      }
+
+      // On prend le premier projet trouvé (supposant qu'un seul correspond au nom donné)
+      var project = snapshot.data!.docs.first.data()! as Map<String, dynamic>;
+      return Padding(
+        padding: const EdgeInsets.all(10),
+        child: _descriptionText(context , project['description'] ?? 'Pas de description disponible'),
+      );
+    },
+  );
+}
+
+
+Widget _descriptionText(BuildContext context, String desc) {
+  return Align(
+    alignment: Alignment.center,
+    child: Container(
+      //constraints: const BoxConstraints(maxWidth: 300, maxHeight: 200), // Taille max
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromRGBO(141, 117, 179, 0.702),
+            Color.fromRGBO(70, 46, 109, 0.851)
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: Offset(3, 6),
+          ),
+          BoxShadow(
+            color: Colors.white.withOpacity(0.1),
+            blurRadius: 8,
+            spreadRadius: -2,
+            offset: Offset(-3, -3),
+          ),
+        ],
+      ),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Text(
+            desc,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 225, 240, 254),
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+
+Widget _allStepsCard(double screenHeight) {
   return Positioned(
     top: screenHeight / 1.6,
     left: (MediaQuery.of(context).size.width - 270) / 2,
@@ -352,13 +430,17 @@ Widget _allStepsCard(screenHeight) {
       height: 200,
       width: 270,
       child: _selectedIndex == 0
-          ? _stepsCardGeneration() // Affiche les étapes si le bouton "Etapes" est sélectionné
+          ? _stepsCardGeneration() // Affiche les étapes si "Etapes" est sélectionné
           : _selectedIndex == 1
-              ? Center(child: Text('Description du projet', style: TextStyle(color: Colors.white)))
-              : Center(child: Text('Avis des utilisateurs', style: TextStyle(color: Colors.white))),
+              ? _descriptionTextGeneration()
+              : const Center(
+                  child: Text('Avis des utilisateurs', style: TextStyle(color: Colors.white)),
+                ),
     ),
   );
 }
+
+
 
 Widget _confirmButton(screenHeight) {
   return Positioned(
