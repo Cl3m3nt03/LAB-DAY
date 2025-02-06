@@ -21,6 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
               Container(
                 height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [

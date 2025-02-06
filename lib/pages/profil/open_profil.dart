@@ -103,7 +103,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
         ),
         SizedBox(height: 5,),
         Text(
-          bio.isNotEmpty ? bio : 'No bio available.',
+          bio.isNotEmpty ? bio : 'No bio',
           style: GoogleFonts.nokora(
             textStyle: TextStyle(
               color: Colors.white,
@@ -111,7 +111,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
               fontWeight: FontWeight.w500
             )
           )
-        )
+        ),
     ],
   );
 }
@@ -143,6 +143,7 @@ Widget _profilePicture(){
 
   Widget _playerLevel(){
   return Container(
+    width: MediaQuery.of(context).size.width - 25,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Color(0xff0692C2),
