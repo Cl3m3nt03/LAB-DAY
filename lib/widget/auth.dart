@@ -69,8 +69,8 @@ Future<String?> recoveryPseudo() async {
       'uid': Auth().uid,
       'pseudo': username,
       'bio': 'L/Utilisateur n/a pas encore défini de bio',
-      'curentlevel': 1,
-      'currentxp': 0,
+      'currentLvl': 1,
+      'currentXp': 0,
       'totalpoints': 0,
       'objectiveXp':100,
     });

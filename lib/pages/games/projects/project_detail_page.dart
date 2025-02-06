@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:makeitcode/pages/games/rewardScreen.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -390,13 +390,13 @@ Widget _confirmButton(screenHeight) {
             // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
             projectData['id'] = projectId;
 
-            // Passer les données du projet à Rewardscreen
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => Rewardscreen(
                   stepIndex: 1,
-                  projet: projectData, // Maintenant c'est bien une Map<String, dynamic>
+                  projet: projectData, 
+                  xpToAdd: 2,
                 ),
               ),
             );

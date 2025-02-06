@@ -7,6 +7,7 @@ import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   int lvl = 0;
   int xp = 90;
   int objXp = 100;
+  
 
 
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
@@ -41,6 +43,8 @@ class _HomePageState extends State<HomePage> {
     checkEmailVerification();
     fetchPseudo();
   }
+
+  
 
 Future<void> fetchPseudo() async {
   try {
@@ -80,7 +84,8 @@ Future<void> getLevel() async {
 
     try {
       final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-      print(userDoc.data()?['currentLvl']);
+
+      print('utilisateur: ${userDoc.data()}');
       if (userDoc.exists) {
         setState(() {
           lvl = userDoc.data()?['currentLvl'] ?? 0; 
@@ -112,6 +117,7 @@ Future<void> getLevel() async {
     }
     return '${path}BronzeIcon.png';
   }
+
 
 
 Widget _title(){
@@ -156,118 +162,142 @@ Widget _profilePicture(){
 
   );
 }
-Widget _playerLevel(){
-  return Container(
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Color(0xff0692C2),
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0xff0692C2).withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3), 
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-                  Text(
-                    getlvlRank(lvl),
-                    style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 19,
-                      )
+Widget _playerLevel() {
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+
+  return StreamBuilder<DocumentSnapshot>(
+    stream: FirebaseFirestore.instance.collection('Users').doc(uid).snapshots(),
+    builder: (context, snapshot) {
+      if (!snapshot.hasData || !snapshot.data!.exists) {
+        return Center(child: Text("Chargement..."));
+      }
+
+      // Récupération des données Firestore en temps réel
+      var userData = snapshot.data!.data() as Map<String, dynamic>;
+      int currentLvl = userData['currentLvl'] ?? 0;
+      int currentXp = userData['currentXp'] ?? 0;
+      int objectiveXp = userData['objectiveXp'] ?? 100;
+
+      return Container(
+        padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: Color(0xff0692C2),
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff0692C2).withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  getlvlRank(currentLvl),
+                  style: GoogleFonts.montserrat(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 19,
                     ),
                   ),
-                  Spacer(),
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: Color(0xffE6E6E6).withOpacity(0.64),
-                        borderRadius:  BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: Offset(0, 3), 
-                          ),
-                        ],
-                    ),
-                    child: Row(
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Niv. ',
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(0.5), 
-                                  fontWeight: FontWeight.normal, 
-                                  fontSize: 16, 
+                ),
+                Spacer(),
+                Container(
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: Color(0xffE6E6E6).withOpacity(0.64),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Niv. ',
+                              style: TextStyle(
+                                color: Colors.black.withOpacity(0.5),
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '$currentLvl',
+                              style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 17,
                                 ),
                               ),
-                              TextSpan(
-                                text: '$lvl', 
-                                style: GoogleFonts.montserrat(textStyle:  TextStyle(
-                                  color: Colors.black, 
-                                  fontWeight: FontWeight.w800, 
-                                  fontSize: 17, 
-                                ),
-                              ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        SizedBox(width: 5,),
-                        Image(
-                          image: AssetImage(getlvlBadge(lvl)),
-                          height: 25,
-                        )
-                      ],
-                    )
-                  )
-            ],
-          ),
-          SizedBox(height: 10,),
-          SizedBox(
-            height: 25,
-            child: Progressbar(percentageCompletion: (xp/objXp)*100, showPercentage:  false),
-          ),
-          Row(
-            children: [
-              Text(
-                "$xp xp",
-                style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  )
+                      ),
+                      SizedBox(width: 5),
+                      Image(
+                        image: AssetImage(getlvlBadge(currentLvl)),
+                        height: 25,
+                      ),
+                    ],
+                  ),
                 ),
+              ],
+            ),
+            SizedBox(height: 10),
+            SizedBox(
+              height: 25,
+              child: Progressbar(
+                percentageCompletion: (currentXp / objectiveXp) * 100,
+                showPercentage: false,
               ),
-              Spacer(),
-              Text(
-                "$objXp xp",
-                style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  )
+            ),
+            Row(
+              children: [
+                Text(
+                  "$currentXp xp",
+                  style: GoogleFonts.montserrat(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
+                Spacer(),
+                Text(
+                  "$objectiveXp xp",
+                  style: GoogleFonts.montserrat(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
   );
 }
+
+
+
 Widget _projects(stream){
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
@@ -367,7 +397,7 @@ Widget _projects(stream){
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProjectsPage(),
+                                builder: (context) =>  ProjectsPage() //ProjectsPage(),
                               ),
                             );
                           }, 
