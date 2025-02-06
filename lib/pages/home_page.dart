@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +10,7 @@ import 'package:makeitcode/widget/progressBar.dart';
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:makeitcode/widget/system_getAvatar.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -24,8 +27,18 @@ class _HomePageState extends State<HomePage> {
   int lvl = 0;
   int xp = 90;
   int objXp = 100;
+  Uint8List? _avatarImage;
   
 
+    Future<void> _loadAvatar() async {
+    String? uid = Auth().currentUser?.uid;
+    if (uid != null) {
+      Uint8List? avatar = await AvatarService.getUserAvatar(uid);
+      setState(() {
+        _avatarImage = avatar;
+      });
+    }
+  }
 
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
       .collection('Projects')
@@ -41,6 +54,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     getLevel();
     checkEmailVerification();
+    _loadAvatar();
     fetchPseudo();
   }
 
@@ -157,9 +171,11 @@ Widget _title(){
 
 Widget _profilePicture(){
   return CircleAvatar(
-    backgroundImage: AssetImage('assets/icons/baka.png'),
+    backgroundImage:_avatarImage != null
+        ? MemoryImage(_avatarImage!)
+        : AssetImage('assets/icons/logo.png')
+            as ImageProvider,
     radius: 45,
-
   );
 }
 Widget _playerLevel() {

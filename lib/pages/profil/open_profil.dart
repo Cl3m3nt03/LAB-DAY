@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -95,24 +96,29 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
           style: GoogleFonts.aBeeZee(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 27,
+              fontSize: 30,
               fontWeight: FontWeight.w700
             )
           ),
 
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10),
+        SizedBox(
+          width: MediaQuery.of(context).size.width*0.6,
+          child:
         Text(
           bio.isNotEmpty ? bio : 'No bio',
           style: GoogleFonts.nokora(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
-            )
-          )
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              overflow: TextOverflow.clip,
+            ),
+          ),
         ),
-    ],
+        ),
+      ],
   );
 }
 
@@ -137,7 +143,7 @@ Widget _profilePicture(){
     ? MemoryImage(_avatarImage!)
     : AssetImage('assets/icons/logo.png')
         as ImageProvider,
-    radius: 35,
+    radius: 50,
   );
 }
 
@@ -431,7 +437,6 @@ Widget _Museum(){
                     child: Row(
                       children: [
                         _title(),
-                        Spacer(),
                         _profilePicture()
                       ],
                     ),

@@ -76,6 +76,7 @@ class _EditAvatarState extends State<EditAvatar> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: _pickImage,
       child: CircleAvatar(
         radius: 50,
