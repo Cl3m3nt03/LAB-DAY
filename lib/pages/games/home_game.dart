@@ -53,7 +53,6 @@ class _HomeGamePageState extends State<HomeGamePage> {
       ),
       body: Center(
         child: Container(
-          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
@@ -67,82 +66,86 @@ class _HomeGamePageState extends State<HomeGamePage> {
           ),
           child: game.isEmpty
               ? Center(child: CircularProgressIndicator())
-              : CarouselSlider.builder(
-                  itemCount: game.length,
-                  options: CarouselOptions(
-                    height: 550,
-                    enlargeCenterPage: true,
-                    enableInfiniteScroll: true,
-                    viewportFraction: 0.8,
-                  ),
-                  itemBuilder: (context, index, realIndex) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Container(
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25),
-                                ),
-                                child: Image.asset(
-                                  game[index]['image'],
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                game[index]['title'],
-                                style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            // Utilisation de Center pour centrer le texte
-                            Center(
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  game[index]['description'],
-                                  textAlign:
-                                      TextAlign.center, // Centrer le texte
-                                  style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromRGBO(11, 153, 253, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                              ),
-                              onPressed: () {
-                                // Action à faire en cliquant sur "Jouer"
-                              },
-                              child: Text("Jouer",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  )),
-                            ),
-                          ],
+              : Column(
+                  children: [
+                    Expanded(
+                      child: CarouselSlider.builder(
+                        itemCount: game.length,
+                        options: CarouselOptions(
+                          height: MediaQuery.of(context).size.height * 0.8, 
+                          enlargeCenterPage: true,
+                          enableInfiniteScroll: true,
+                          viewportFraction: 0.8,
+
+                          // HAHHAHAH BIG PRANK !!
+                          autoPlay: true,
+                          // GROS NOUBZZZZZZ
+                          autoPlayInterval: Duration(milliseconds: 100),
                         ),
+                        itemBuilder: (context, index, realIndex) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              color: Colors.white,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: ClipRRect(
+                                      child: Image.asset(
+                                        game[index]['image'],
+                                        fit: BoxFit.cover,
+                                        width: MediaQuery.of(context).size.width,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      game[index]['title'],
+                                      style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        game[index]['description'],
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(fontSize: 16),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Color.fromRGBO(11, 153, 253, 1),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                    },
+                                    child: Text("Jouer",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
         ),
       ),
