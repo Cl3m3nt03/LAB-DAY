@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:makeitcode/pages/games/home_game.dart';
 import 'package:makeitcode/pages/profil/Politique_page.dart';
 import 'package:makeitcode/pages/profil/contacte_page.dart';
 import 'package:makeitcode/pages/profil/editprofile_page.dart';
@@ -203,8 +204,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditCompte()),
+                                            builder: (context) => EditCompte()),
                                       );
                                     },
                                     child: Text(
@@ -423,14 +423,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
-                                      Text(
-                                        "About",
-                                        style: GoogleFonts.montserrat(
-                                          textStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomeGamePage()),
+                                            );
+                                          },
+                                          child: Text(
+                                            "About",
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          )),
                                     ],
                                   ),
                                 ),

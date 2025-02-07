@@ -1,8 +1,9 @@
-// Permet de lancer l'application et de definir que la page de départ est la page 
+// Permet de lancer l'application et de definir que la page de départ est la page
 //de connexion(Widget Tree) sans la NavBar
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:makeitcode/pages/games/home_game.dart';
 import 'package:makeitcode/widget/tree.dart';
 
 Future<void> main() async {
@@ -29,4 +30,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
