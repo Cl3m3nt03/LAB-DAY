@@ -76,57 +76,70 @@ class _HomeGamePageState extends State<HomeGamePage> {
                     viewportFraction: 0.8,
                   ),
                   itemBuilder: (context, index, realIndex) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(25),
-                              child: Image.asset(
-                                game[index]['image'],
-                                fit: BoxFit.cover,
-                                width: double.infinity,
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: Container(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                ),
+                                child: Image.asset(
+                                  game[index]['image'],
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              game[index]['title'],
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                game[index]['title'],
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(7.0),
-                            child: Divider(
-                              color: const Color.fromARGB(255, 119, 119, 119),
-                              thickness: 1,
-                            ),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(11, 152, 253, 1),
-                            ),
-                            onPressed: () {
-                              // Action à faire en cliquant sur "Jouer"
-                            },
-                            child: Text(
-                              "Jouer",
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                                color: Colors.white,
+                            // Utilisation de Center pour centrer le texte
+                            Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  game[index]['description'],
+                                  textAlign:
+                                      TextAlign.center, // Centrer le texte
+                                  style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(fontSize: 16),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromRGBO(11, 153, 253, 1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                              ),
+                              onPressed: () {
+                                // Action à faire en cliquant sur "Jouer"
+                              },
+                              child: Text("Jouer",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
