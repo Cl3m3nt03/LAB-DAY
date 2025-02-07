@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:makeitcode/widget/textField.dart';
 
 Future<void> showPasswordDialog(
     BuildContext context, Function(String) onPasswordEntered) async {
@@ -10,42 +10,73 @@ Future<void> showPasswordDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: const Color.fromARGB(197, 51, 53, 196),
-        title: Text("Confirmer votre identité",
-                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),),
+        backgroundColor: Color.fromRGBO(0, 113, 152, 0.9),
+        shadowColor: Color.fromRGBO(2, 163, 217, 0.898),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: Icon(Icons.close, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          
           children: [
-            Text("Veuillez entrer votre mot de passe pour continuer",
-                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.clip,fontSize: 15,color: Colors.white),),),
-            TextField(
+            Center(
+              child: Image.asset(
+                "assets/icons/Lock.png",
+                height: 100,
+                width: 100,
+              ),
+            ),
+            SizedBox(height: 20),
+            Center(
+              child: Text(
+                "Confirme ton identitée",
+                style: GoogleFonts.roboto(color: Colors.white, fontSize: 20),
+              ),
+            ),
+            SizedBox(height: 10),
+            Center(
+              child: Text(
+                "Veuillez entrer votre mot de passe pour continuer",
+                style: GoogleFonts.roboto(color: Colors.white, fontSize: 12),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 20),
+            EntryField(
+              title: 'Confirmation ',
               controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: "Mot de passe",
-                  labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 255, 255, 255))),
+              prefixIcons: Icons.lock,
+              height: 20,
             ),
           ],
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text("Annuler",
-             style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
-
-          ),
-          TextButton(
-            onPressed: () {
-              //On envoie passwordController à notre fonction updatemail
-              String password = passwordController.text;
-              if (password.isNotEmpty) {
-                onPasswordEntered(password);
-                Navigator.of(context).pop();
-              }
-            },
-            child: Text("Valider",
-            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
+          Center(
+            child: SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                onPressed: () {
+                  onPasswordEntered(passwordController.text);
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                child: Text(
+                  'Valider',
+                  style: GoogleFonts.roboto(color: Colors.white , fontSize: 20),
+                ),
+              ),
+            ),
           ),
         ],
       );

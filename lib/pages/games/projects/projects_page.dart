@@ -235,6 +235,7 @@ Widget _buildSearchResults() {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
+      iconTheme: IconThemeData(color: Colors.white),
       title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
 ),
       backgroundColor: Color.fromARGB(255, 11, 22, 44),

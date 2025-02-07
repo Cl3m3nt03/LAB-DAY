@@ -59,6 +59,7 @@ dependencies:
   webview_flutter: ^4.10.0
   three_d_slider: ^1.0.0
   rive: ^0.13.20
+  flutter_inappwebview: ^6.1.5
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,8 @@ flutter:
     - lib//pages/games/questionnaire/list_questionnaire/
     - assets/sound/
     - assets/rive/
+    - assets/project_template/portfolio/
+
     #   - images/a_dot_ham.jpeg
   # An image asset can referZ to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

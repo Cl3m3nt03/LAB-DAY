@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -17,6 +18,7 @@ class ProjectDetailPage extends StatefulWidget {
 
 class _ProjectDetailPageState extends State<ProjectDetailPage> {
   late final Stream<QuerySnapshot> _projectDetail;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   int _selectedIndex = 0;
 
   void _cheangeIndex(int index){
@@ -33,8 +35,25 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
     .collection('Projects')
     .where('name', isEqualTo: widget.projetName)
     .snapshots();
+    initProject();
    }
 
+Future<void> initProject() async {
+  final docRef = _firestore
+      .collection('Users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection("Projects")
+      .doc(widget.projetName);
+
+  final docSnapshot = await docRef.get();
+  if (!docSnapshot.exists) {
+    await docRef.set({
+      'title':"title",
+      'description':"description",
+      });
+  } else {
+  }
+}
 Widget _ImagePoster(){
   return Positioned(
             top: -150, 
@@ -151,6 +170,8 @@ Widget _title(screenHeight){
             ),
           );
 }
+
+
 
 
 Widget _selector(screenHeight) {

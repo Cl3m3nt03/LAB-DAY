@@ -10,6 +10,7 @@ import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:makeitcode/pages/community/list_message_page.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/pages/web_view/loadWebView.dart'; // Add this import
 
 
 
@@ -208,6 +209,15 @@ void getpseudo() async {
             },
           ),
         ],
+        leading: IconButton(
+          icon: Icon(Icons.bug_report, color: Colors.white),
+          onPressed: () {
+                 Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WebViewPage()),
+              );
+          },
+        ),
       ),
       body: Stack(
         children: [
