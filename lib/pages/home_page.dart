@@ -8,6 +8,7 @@ import 'package:makeitcode/widget/progressBar.dart';
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:makeitcode/pages/games/projects/levelMap.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -288,7 +289,7 @@ Widget _playerLevel() {
                   ),
                 ),
               ],
-            ),
+            ),  
           ],
         ),
       );
@@ -344,7 +345,7 @@ Widget _projects(stream){
   Widget build(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;
 
-    return Scaffold(
+    return Levelmap(); /*Scaffold(
       body: Stack(
         children: [
           Container(
@@ -429,6 +430,6 @@ Widget _projects(stream){
           ),
         ],
       ),
-    );
+    );*/
   }
 }
