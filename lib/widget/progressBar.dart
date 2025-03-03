@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Progressbar widget that shows the completion percentage with an optional label.
 class Progressbar extends StatefulWidget {
   final double percentageCompletion;
   final bool showPercentage;
@@ -13,6 +14,7 @@ class Progressbar extends StatefulWidget {
   State<Progressbar> createState() => _ProgressbarState();
 }
 
+/// Manages the state of the Progressbar, including the progress width and percentage display.
 class _ProgressbarState extends State<Progressbar> {
   @override
   Widget build(BuildContext context) {

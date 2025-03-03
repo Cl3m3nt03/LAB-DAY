@@ -6,6 +6,8 @@ import 'package:makeitcode/widget/progressBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
+/// Screen that displays the user's progress, step details, and rewards for a project.
 class Rewardscreen extends StatefulWidget {
   final int stepIndex;
   final Map<String, dynamic> projet;
@@ -15,6 +17,7 @@ class Rewardscreen extends StatefulWidget {
   State<Rewardscreen> createState() => _RewardscreenState();
 }
 
+/// Manages the state of the Rewardscreen, including level, XP, and project step details.
 class _RewardscreenState extends State<Rewardscreen> {
 
   int lvl = 0;
@@ -27,12 +30,14 @@ class _RewardscreenState extends State<Rewardscreen> {
   var Badges = ["assets/icons/BronzeMedal.png", "assets/icons/SilverMedal.png", "assets/icons/GoldMedal.png"];
 
   @override
+  /// Initializes user level and step data when the screen is loaded.
   void initState(){
       super.initState();
       getLevel();
       getStepByIndex();
   }
 
+  /// Fetches the current user level and XP from Firestore.
   Future<void> getLevel() async {
   User? user = FirebaseAuth.instance.currentUser;
   if (user != null) {
@@ -56,6 +61,7 @@ class _RewardscreenState extends State<Rewardscreen> {
   }
 }
 
+/// Retrieves the step details from Firestore based on the provided step index.
 Future<void> getStepByIndex() async {
   try {
     final projectId = widget.projet['id'];
@@ -86,12 +92,7 @@ Future<void> getStepByIndex() async {
 
 
 
-
-
-
-
-
-
+  /// Displays the main title of the screen.
   Widget _title(){
     return Center(
       child: Text(
@@ -106,7 +107,7 @@ Future<void> getStepByIndex() async {
       ),
     );
   }
-
+  /// Displays the subtitle with the unlocked level.
   Widget _subTitle(){
     return Center(
       child: Text(
@@ -122,6 +123,7 @@ Future<void> getStepByIndex() async {
     );
   }
 
+  /// Displays the 3D slider with badges for the progress.
   Widget _slider(){
     return Center(
       child: ThreeDSlider(
@@ -142,6 +144,7 @@ Future<void> getStepByIndex() async {
     );
   }
 
+  /// Displays the title of the current project step.
   Widget _stepTitle(){
     return Center(
       child: Text(
@@ -157,6 +160,7 @@ Future<void> getStepByIndex() async {
     );
   }
 
+  /// Displays the description of the current project step.
   Widget _stepDesc(){
     return Center(
       child: Text(
@@ -172,6 +176,7 @@ Future<void> getStepByIndex() async {
     );
   }
 
+/// Displays the progress bar indicating the user's current progress.
 Widget _progressBar() {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 40),
@@ -220,6 +225,7 @@ Widget _progressBar() {
   );
 }
 
+/// Displays the button to continue to the next screen or step.
 Widget _continueButton(){
   return ElevatedButton(
     onPressed: () {},
@@ -248,7 +254,7 @@ Widget _continueButton(){
 
 }
 
-
+/// Builds the entire rewards screen, including the scrollable content and back button.
 @override
 Widget build(BuildContext context) {
   return Scaffold(

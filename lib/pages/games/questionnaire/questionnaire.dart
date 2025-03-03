@@ -6,6 +6,7 @@ import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Widget to display the questionnaire page with questions and answers.
 class QuestionnairePage extends StatefulWidget {
   final String questionnaireName;
   final String title;
@@ -52,6 +53,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
     _animationController.dispose();
     super.dispose();
   }
+  /// Loads questions from a JSON file and shuffles them.
   Future<void> loadQuestions(String questionnaireName) async {
     try {
       final String response = await rootBundle.loadString(questionnaireName);
@@ -67,6 +69,8 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       print('Erreur lors du chargement des questions : $e');
     }
   }
+  /// Widget for submitting the selected answer with validation and animation.
+
   Widget submitAnswer(Map<String, dynamic> question) {
     return Container(
       width: double.infinity,
@@ -167,6 +171,8 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       ),
     );
   }
+  /// Validates the selected answer and updates score or shows error.
+
   void validateAnswer() {
     final question = questions[actuallyquestion];
     setState(() {
@@ -185,6 +191,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       }
     });
   }
+  /// Moves to the next question or finishes the quiz if no more questions are left.
   void nextQuestion() {
     setState(() {
       if (actuallyquestion < questions.length - 1) {
@@ -229,6 +236,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       }
     });
   }
+  /// Displays the progress bar for the current question.
     Widget progressIndicatorRow(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
@@ -243,7 +251,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       ),
     );
   }
-
+/// Builds the question card with options for the user to select.
 Widget buildQuestionCard() {
   final question = questions[actuallyquestion];
   final options = question['options'] ?? [];
@@ -312,6 +320,8 @@ Widget buildQuestionCard() {
     ),
   );
 }
+/// Builds the main UI of the questionnaire page, showing the question and answer options.
+
   @override
   Widget build(BuildContext context) {
     if (questions.isEmpty) {

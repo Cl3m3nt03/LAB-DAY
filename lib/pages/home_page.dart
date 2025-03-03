@@ -9,33 +9,40 @@ import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
 
-
+/// The HomePage widget is the main screen of the app, displaying user information,
+/// level progress, and ongoing projects.
 class HomePage extends StatefulWidget {
+  // Creates the state for HomePage.
   @override
   _HomePageState createState() => _HomePageState();
-
+  // Fetches the pseudo for the user.
   void fetchPseudo() {}
+  // Retrieves the user's level.
   void getLevel() {}
 }
 
+// State for HomePage, handles UI and data fetching
 class _HomePageState extends State<HomePage> {
-  String emailVerified = '';
-  String pseudo = '';
-  int lvl = 0;
-  int xp = 90;
-  int objXp = 100;
+  String emailVerified = '';   // Stores the email verification status.
+  String pseudo = '';  // Stores the user's pseudo.
+  int lvl = 0;   // Stores the user's current level.
+  int xp = 90;   // Stores the user's current XP.
+  int objXp = 100;   // Stores the required XP for the next level.
+
   
-
-
+  // Stream for projects that have begun.
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
       .collection('Projects')
       .where('state', isEqualTo: 'began')
       .snapshots();
+
+  // Stream for unlocked projects.
   final Stream<QuerySnapshot> _projectsStreamUnlocked = FirebaseFirestore.instance
       .collection('Projects')
       .where('state', isEqualTo: 'unlocked')
       .snapshots();
-
+  
+  // Initializes the state and fetches necessary data.
   @override
   void initState() {
     super.initState();
@@ -45,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   
-
+// Fetches the user's pseudo from authentication service.
 Future<void> fetchPseudo() async {
   try {
     String? fetchedPseudo = await Auth().recoveryPseudo();
@@ -63,7 +70,7 @@ Future<void> fetchPseudo() async {
     }
   }
 }
-
+  // Checks if the user's email is verified.
   void checkEmailVerification() {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -77,6 +84,7 @@ Future<void> fetchPseudo() async {
     }
   }
 
+// Fetches the user's level and XP data from Firestore.
 Future<void> getLevel() async {
   User? user = FirebaseAuth.instance.currentUser;
   if (user != null) {
@@ -101,7 +109,7 @@ Future<void> getLevel() async {
 }
 
 
-
+  // Returns the rank based on the user's level.
   getlvlRank(int level){
     if(level >= 0 || level <= 5){
       return 'DEBUTANT';
@@ -109,6 +117,7 @@ Future<void> getLevel() async {
     return 'NOVICE';
   }
 
+  // Returns the badge icon based on the user's level.
   getlvlBadge(int level){
     String path = 'assets/icons/';
     if(level >= 0 || level <= 5){
@@ -118,7 +127,7 @@ Future<void> getLevel() async {
   }
 
 
-
+// Displays the greeting and message for the user.
 Widget _title(){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +162,7 @@ Widget _title(){
   );
 }
 
-
+// Displays the user's profile picture.
 Widget _profilePicture(){
   return CircleAvatar(
     backgroundImage: AssetImage('assets/icons/baka.png'),
@@ -161,6 +170,8 @@ Widget _profilePicture(){
 
   );
 }
+
+// Displays the user's level and XP progress.
 Widget _playerLevel(){
   return Container(
       padding: EdgeInsets.all(15),
@@ -273,6 +284,7 @@ Widget _playerLevel(){
       ),
   );
 }
+// Displays projects from a given stream.
 Widget _projects(stream){
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
@@ -314,7 +326,7 @@ Widget _projects(stream){
     ),
   );
 }
-
+  // Builds the HomePage widget.
   @override
   Widget build(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;

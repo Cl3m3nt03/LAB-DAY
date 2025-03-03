@@ -117,6 +117,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds the section title with bold text.
 
   Widget _buildSectionTitle(String title) {
     return Text(
@@ -127,6 +128,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds the sub-section title with bold text and some padding.
 
   Widget _buildSubSection(String title) {
     return Padding(
@@ -140,6 +142,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds a paragraph of text with some vertical padding.
 
   Widget _buildParagraph(String content) {
     return Padding(
@@ -150,6 +153,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds bullet points from the provided list of strings.
 
   Widget _buildBulletPoints(List<String> points) {
     return Column(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Custom Navbar widget with tabs for navigation and styling.
 class CustomNavbar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTabChange;
@@ -11,7 +12,7 @@ class CustomNavbar extends StatelessWidget {
     required this.selectedIndex,
     required this.onTabChange,
   }) : super(key: key);
-
+  /// Builds the custom navbar with icons and labels, styled using Google Fonts.
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Page widget for displaying a contact form.
 class ContactePage extends StatefulWidget {
   const ContactePage({super.key});
 
@@ -9,7 +10,10 @@ class ContactePage extends StatefulWidget {
   _ContactePageState createState() => _ContactePageState();
 }
 
+/// State class for the ContactePage widget.
 class _ContactePageState extends State<ContactePage> {
+  /// Builds the UI for the contact page, including a gradient background,
+  /// a header with a back button, and input fields for email and bio.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

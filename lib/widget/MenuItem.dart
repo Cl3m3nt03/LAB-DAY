@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
+/// A custom popover menu widget triggered by a tap event.
 class popoverMenu extends StatelessWidget {
   const popoverMenu({super.key});
 
@@ -18,7 +18,7 @@ class popoverMenu extends StatelessWidget {
   }
 }
 
-
+/// A list of language options in the popover, each with a switch to toggle the language.
 class Listitem extends StatelessWidget {
   const Listitem({super.key});
 

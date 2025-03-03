@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
+/// A function to show a dialog asking for the user's password to confirm identity.
 Future<void> showPasswordDialog(
     BuildContext context, Function(String) onPasswordEntered) async {
   TextEditingController passwordController = TextEditingController();
 
   return showDialog(
     context: context,
+    /// Displays the dialog to input the password and invokes the callback upon validation.
     builder: (context) {
       return AlertDialog(
         backgroundColor: const Color.fromARGB(197, 51, 53, 196),
@@ -18,6 +19,7 @@ Future<void> showPasswordDialog(
           children: [
             Text("Veuillez entrer votre mot de passe pour continuer",
                 style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.clip,fontSize: 15,color: Colors.white),),),
+            /// The text input for the password is obscured, with a label for clarity.
             TextField(
               controller: passwordController,
               obscureText: true,
@@ -29,6 +31,7 @@ Future<void> showPasswordDialog(
           ],
         ),
         actions: [
+          /// The dialog buttons for cancelling or validating the password entry.
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
             child: Text("Annuler",

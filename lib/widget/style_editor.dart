@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+/// Theme containing text styles with various shades of purple.
 
 const shadesOfPurpleTheme = {
   'root': TextStyle(backgroundColor: Color(0xFF2B2D42), color: Color(0xFFBFBFBF)),

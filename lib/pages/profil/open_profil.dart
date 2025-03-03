@@ -8,8 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 
+// Widget representing the user's profile page.
 class OpenProfilePage extends StatefulWidget {
-  final String uid;
+  final String uid; // User ID for fetching profile data.
 
   OpenProfilePage({required this.uid});
 
@@ -29,7 +30,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
   int objXp = 100;
   Uint8List? _avatarImage;
 
-  // Récupérer les données du profil
+  /// Initializes the profile page and fetches the profile data and avatar.
   @override
   void initState() {
     super.initState();
@@ -42,12 +43,12 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
   void didUpdateWidget(covariant OpenProfilePage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.uid != widget.uid) {
-      // Si l'UID a changé, récupérer le nouveau profil
+     /// Updates the profile data if the UID changes.
       getProfile();
     }
   }
 
-//function to load the avatar
+  /// Loads the avatar image for the user.
     Future<void> _loadAvatar() async {
     String? uid = Auth().currentUser?.uid;
     if (uid != null) {
@@ -72,9 +73,10 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
 //   return null;
 // }
 
+    /// Fetches the profile data from Firestore for the given UID.
   Future<void> getProfile() async {
     setState(() {
-      // Réinitialisation pour éviter d'afficher de vieilles données
+    //Reset to avoid showing old data      
       bio = '';
       name = '';
       level = 0;
@@ -98,6 +100,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
     }
   }
 
+  /// Returns the title section with name and bio.
   Widget _title(){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,14 +130,14 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
     ],
   );
 }
-
+  /// Determines the rank based on the player's level.
   getlvlRank(int lvl){
     if(level >= 0 || level <= 5){
       return 'Débutant';
     }
     return 'Novice';
   }
-
+  /// Returns the badge icon path based on the player's level.
   getlvlBadge(int level){
     String path = 'assets/icons/';
     if(level >= 0 || level <= 5){
@@ -143,6 +146,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
     return '${path}BronzeIcon.png';
   }
 
+/// Returns the profile picture widget with the user's avatar.
 Widget _profilePicture(){
   return CircleAvatar(
     backgroundImage: _avatarImage != null
@@ -152,7 +156,7 @@ Widget _profilePicture(){
     radius: 35,
   );
 }
-
+  /// Displays the player's level with experience progress.
   Widget _playerLevel(){
   return Container(
       padding: EdgeInsets.all(15),
@@ -264,7 +268,7 @@ Widget _profilePicture(){
       ),
   );
 }
-
+/// Displays the user's badges.
 Widget _badges(){
   return Container(
     padding: EdgeInsets.all(10),
@@ -305,6 +309,7 @@ Widget _badges(){
   );
 }
 
+/// Displays the museum section with the player's achievements.
 Widget _Museum(){
   return Container(
     width: MediaQuery.of(context).size.width - 10,

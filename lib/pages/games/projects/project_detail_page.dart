@@ -34,7 +34,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
     .where('name', isEqualTo: widget.projetName)
     .snapshots();
    }
-
+// Widget to render the project image poster with polygon shape.
 Widget _ImagePoster(){
   return Positioned(
             top: -150, 
@@ -62,6 +62,7 @@ Widget _ImagePoster(){
             ),
           );
 }
+// Widget for the back arrow icon with custom gradient style.
 
 Widget _backArrow(){
   return Padding(
@@ -93,6 +94,7 @@ Widget _backArrow(){
           );
 }
 
+// Widget for displaying project title and its details such as 'Gratuit' and rating.
 
 Widget _title(screenHeight){
   return Positioned(
@@ -152,6 +154,7 @@ Widget _title(screenHeight){
           );
 }
 
+// Widget to generate a selector for project steps, description, and reviews.
 
 Widget _selector(screenHeight) {
   // Textes des boutons
@@ -234,7 +237,7 @@ Widget _selector(screenHeight) {
   );
 }
 
-// Fonction pour calculer la largeur dynamique d'un bouton avec un padding
+// Helper function to calculate button width dynamically based on the text length.
 double _calculateButtonWidth(int index, List<String> buttonTexts) {
   final TextStyle textStyle = GoogleFonts.montserrat().copyWith(fontWeight: FontWeight.bold);
   final TextPainter textPainter = TextPainter(
@@ -245,6 +248,7 @@ double _calculateButtonWidth(int index, List<String> buttonTexts) {
 }
 
 
+// Widget to generate a step card with information about each project step.
 
 Widget _stepCard(step){
   return Container(
@@ -289,6 +293,7 @@ Widget _stepCard(step){
       ),
   );
 }
+// Widget to generate steps card from Firestore data.
 
 Widget _stepsCardGeneration() {
   return StreamBuilder<QuerySnapshot>(
@@ -343,6 +348,7 @@ Widget _stepsCardGeneration() {
     },
   );
 }
+// Widget to generate project description text from Firestore data.
 
 Widget _descriptionTextGeneration() {
   return StreamBuilder<QuerySnapshot>(
@@ -371,6 +377,7 @@ Widget _descriptionTextGeneration() {
   );
 }
 
+// Widget to display description text with custom styling and gradient background.
 
 Widget _descriptionText(BuildContext context, String desc) {
   return Align(
@@ -421,6 +428,7 @@ Widget _descriptionText(BuildContext context, String desc) {
   );
 }
 
+// Widget to display all steps or description depending on the selected tab.
 
 Widget _allStepsCard(double screenHeight) {
   return Positioned(
