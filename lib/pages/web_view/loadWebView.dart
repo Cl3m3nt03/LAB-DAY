@@ -22,7 +22,7 @@ class _WebViewPageState extends State<WebViewPage> {
 
   Future<void> _startLoad() async {
 
-    // UserId fix pour les tests ATTENTION à modifier
+    // UserId fix pour les tests 
     String userId = "test"; 
     await _dataAndTemplate.generateHTMLFromFirestore(userId, 'index.html');
     // Récupère le contenu HTML généré
@@ -36,7 +36,6 @@ class _WebViewPageState extends State<WebViewPage> {
   }
 
   @override
-  // Dispose permet de libérer les ressources utilisées par le widget
   void dispose() {
     super.dispose();
   }

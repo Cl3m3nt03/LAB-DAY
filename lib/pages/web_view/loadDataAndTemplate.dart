@@ -7,7 +7,10 @@ class loadDataAndTemplate {
 
   // Récupère le chemin du fichier HTML généré
   Future<String> getHtmlFilePath(String templateName) async {
-    final Directory dir = await getApplicationDocumentsDirectory();
+    final Directory? dir = await getExternalStorageDirectory();
+    if (dir == null) {
+      throw Exception("External storage directory not found");
+    }
     return '${dir.path}/$templateName';
   }
 
@@ -15,13 +18,13 @@ Future<void> generateHTMLFromFirestore(String userId, String templateName) async
   // Recup des données sur Firestore
   Map<String, dynamic> userData = await _getUserDataFromFirestore(userId);
 
-  // Charge le template HTML depuis les assets
+  // Recup le template HTML depuis les assets
   String htmlContent = await _loadHtmlTemplate(templateName);
 
-  // Charger le CSS depuis les assets
+  // Recup le CSS depuis les assets
   String cssContent = await _loadCss("pink");
 
-  // Remplacer les placeholders par les données utilisateur et appliquer le CSS
+  // Créé un fichier html final en fusionnant le html et css avec les données de la bases de données
   htmlContent = _replaceData(htmlContent, userData, cssContent);
 
   // Enregistrer le fichier HTML dans le téléphone
