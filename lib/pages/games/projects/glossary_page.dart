@@ -3,23 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:makeitcode/widget/style_editor.dart';
 
-
+/// Glossary page widget, used to display the glossary interface.
 class GlossaryPage extends StatefulWidget {
-
+  /// Creates the state for the GlossaryPage widget.
   @override
   State<StatefulWidget> createState() {
     return _GlossaryPage();
   }
 }
 
-
+/// State for GlossaryPage, handles button press and navigation.
 class _GlossaryPage extends State<GlossaryPage> {
+  /// Handles button press and navigates to GlossaryContentPage.
   void onButtonPressed() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => GlossaryContentPage()),
     );
   }
+  /// Builds the floating action button for navigating to the glossary content page.
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,9 @@ class _GlossaryPage extends State<GlossaryPage> {
 }
 
 
-
+/// Glossary content page displaying glossary items and descriptions.
 class GlossaryContentPage extends StatelessWidget {
+  /// Builds the GlossaryContentPage layout with a gradient background and glossary items.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +59,8 @@ class GlossaryContentPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                // Glossary item buttons for HTML elements and descriptions
+
                 // HTML - Les bases
                 titreGlossaire(texte: "HTML - Les bases"),
                 const SizedBox(height: 8),
@@ -549,7 +554,7 @@ class GlossaryContentPage extends StatelessWidget {
     );
   }
 
-  // Fonction pour afficher un dialogue avec la description
+  /// Displays a description dialog with a glossary item's details and code sample.
   void showDescription(BuildContext context, String title, String langage, String description, String code) {
 
     showModalBottomSheet(
@@ -608,6 +613,7 @@ class GlossaryContentPage extends StatelessWidget {
     );
   }
 }
+/// Displays a glossary item title with specific text style.
 
 Text titreGlossaire({required String texte}){
   return  Text(
@@ -616,7 +622,7 @@ Text titreGlossaire({required String texte}){
   );
 }
 
-// Fonction pour créer un bouton stylisé pour le glossaire
+/// Creates a stylized button for glossary items with an icon and text.
 ElevatedButton buttonGlossaire({
   required VoidCallback onPressed,
   required IconData icon,

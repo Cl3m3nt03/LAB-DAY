@@ -3,9 +3,14 @@ import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// This page allows users to reset their password by entering their email
+
 class PasswordForgottenPage extends StatelessWidget {
+  // Controller to handle input for the email field
+
   final TextEditingController emailController = TextEditingController();
 
+// The main widget that builds the password reset page UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +18,10 @@ class PasswordForgottenPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: const Color.fromARGB(255, 11, 22, 44),
       ),
+      // GestureDetector to dismiss the keyboard when tapping outside input field
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
+        // LayoutBuilder to handle dynamic resizing based on screen size and keyboard visibility
         child: LayoutBuilder(
           builder: (context, constraints) {
             final bottomInset = MediaQuery.of(context).viewInsets.bottom;

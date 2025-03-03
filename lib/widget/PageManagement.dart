@@ -1,5 +1,3 @@
-//Permet de faire la gestion de la page principale avec la NavBar et les différentes pages
-
 import 'package:flutter/material.dart';
 import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dart';
 import 'package:makeitcode/pages/community/global_chat_page.dart';
@@ -10,6 +8,7 @@ import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/navBar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+/// Manages the main page with a NavBar and different pages navigation.
 class PageManagement extends StatefulWidget {
 const PageManagement({Key? key}) : super(key: key);
 
@@ -17,6 +16,7 @@ const PageManagement({Key? key}) : super(key: key);
   _PageManagementState createState() => _PageManagementState();
 }
 
+/// Manages the state of the PageManagement widget, including the current page and navigation.
 class _PageManagementState extends State<PageManagement> {
   int _currentIndex = 2;
   final PageController _pageController = PageController(initialPage: 2);

@@ -8,6 +8,8 @@ import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Widget for displaying the list of questionnaires with their details.
+
 class QuestionnaireListPage extends StatefulWidget {
 
   QuestionnaireListPage ({Key? key}) : super(key: key);
@@ -24,8 +26,8 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
   void initState() {
     super.initState();
     loadQuestions();
-  }
-
+  } 
+  /// Loads the list of questionnaires from a JSON file and updates the state.
     Future<void> loadQuestions() async {
     try {
       final String response = await rootBundle.loadString('lib/pages/games/questionnaire/list_questionnaire/list_questionnaire.json');
@@ -39,20 +41,24 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
       print('Erreur lors du chargement des questions : $e');
     }
     }
-      
+    /// Navigates to the ranking page when the button is pressed.
     void onButtonPressed() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ClassementPage()),
     );
   }
+  /// Builds the UI for displaying the list of questionnaires, including a floating action button and app bar.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
         onPressed: onButtonPressed,
+        backgroundColor: Color.fromARGB(255, 209, 223, 255),
+        foregroundColor: Color(0xFF5E4F73),
         tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events),
+        child: const Icon(Icons.emoji_events, size: 30,),
       ), 
       appBar: AppBar(
       title: Text('QUESTIONNAIRE',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),),
@@ -76,6 +82,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
             ),
         child : 
       Builder(builder: (context) {
+        /// Displays a list of questionnaires dynamically, each with a title, image, and a link to the detailed questionnaire page.
         return ListView.builder(
           itemCount: questionnaire.length,
           itemBuilder: (context, index) {

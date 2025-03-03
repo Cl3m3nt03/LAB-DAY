@@ -4,6 +4,7 @@ import 'package:makeitcode/pages/games/projects/project_detail_page.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Card widget that displays project details, progress, and navigates to the project detail page.
 class ProjectCard extends StatefulWidget {
   final Map<String, dynamic> projet;
   const ProjectCard({super.key, required this.projet});
@@ -12,6 +13,7 @@ class ProjectCard extends StatefulWidget {
   State<ProjectCard> createState() => _ProjectCardState();
 }
 
+/// Manages the state of the ProjectCard, including project completion percentage.
 class _ProjectCardState extends State<ProjectCard> {
 
   final double _projectCardWidth = 150;
@@ -19,11 +21,13 @@ class _ProjectCardState extends State<ProjectCard> {
   late double percentageCompletion;
 
   @override
+  /// Initializes the completion percentage based on the project's current step and total steps.
   void initState() {
     super.initState();
     percentageCompletion = (widget.projet['actualStep'] / widget.projet['nbSteps']) * 100;
   }
 
+  /// Builds the project card, including the image, project name, and progress.
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -97,7 +101,7 @@ class _ProjectCardState extends State<ProjectCard> {
         },
     );
   }
-
+  /// Displays a "Commencer" button if the project state is 'unlocked'.
   Widget showMore(){
     return Container(
       height: 23,

@@ -77,10 +77,6 @@ class _HomeGamePageState extends State<HomeGamePage> {
                           enableInfiniteScroll: true,
                           viewportFraction: 0.8,
 
-                          // HAHHAHAH BIG PRANK !!
-                          autoPlay: true,
-                          // GROS NOUBZZZZZZ
-                          autoPlayInterval: Duration(milliseconds: 100),
                         ),
                         itemBuilder: (context, index, realIndex) {
                           return ClipRRect(

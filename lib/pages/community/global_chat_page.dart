@@ -13,7 +13,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/web_view/loadWebView.dart'; // Add this import
 
 
-
+/// GlobalChatPage is a StatefulWidget that represents the user interface for a global chat.
+/// It manages sending and receiving messages in real-time using Firestore.
 class GlobalChatPage extends StatefulWidget {
   const GlobalChatPage({super.key});
 
@@ -21,6 +22,9 @@ class GlobalChatPage extends StatefulWidget {
   _GlobalChatPageState createState() => _GlobalChatPageState();
 }
 
+/// _GlobalChatPageState manages the state of the GlobalChatPage.
+/// It includes functionality for sending messages, displaying messages,
+/// and managing user authentication and profile details.
 class _GlobalChatPageState extends State<GlobalChatPage> {
   final TextEditingController _controller = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -28,6 +32,8 @@ class _GlobalChatPageState extends State<GlobalChatPage> {
   final player = AudioPlayer();
   String? pseudo;
 
+  /// This method is called when the widget is initialized.
+  /// It sets up the date formatting and fetches the user's pseudo from Firestore.
   @override
   void initState() {
     super.initState();
@@ -35,12 +41,17 @@ class _GlobalChatPageState extends State<GlobalChatPage> {
     getpseudo();
   }
 
+  /// Disposes of the TextEditingController when the widget is destroyed.
+  /// This helps avoid memory leaks by properly cleaning up resources.
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
 
+/// Fetches the user's pseudo from Firestore and updates the state.
+/// If the user has a pseudo stored, it will be used; otherwise, 'Anonyme' is used as a fallback.
+/// This information is stored in Firestore under the 'Users' collection.
 void getpseudo() async {
   User? user = FirebaseAuth.instance.currentUser;
   if (user != null) {
@@ -57,6 +68,9 @@ void getpseudo() async {
   }
  }
 }
+  /// Sends a message to the global chat collection in Firestore.
+  /// If the input text is not empty, it plays a sound effect and stores the message in Firestore.
+  /// The message includes the current timestamp, user ID, and pseudo.
   void _sendMessage() async {
     if (_controller.text.isNotEmpty) {
       player.play(AssetSource('sound/sent_message.wav'));
@@ -67,6 +81,7 @@ void getpseudo() async {
           'message': _controller.text,
           'pseudo': pseudo,
         });
+        // Clears the message input field after sending the message.
         _controller.clear();
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -75,6 +90,13 @@ void getpseudo() async {
       }
     }
   }
+
+  /// Builds a widget for displaying a single message from the global chat.
+  /// It checks whether the message belongs to the current user and displays it accordingly.
+  /// Also formats the date for display in the message.
+  ///
+  /// @param messageData The data for a single message retrieved from Firestore.
+  /// @return A widget that displays the message content.
   Widget _buildMessageItem(Map<String, dynamic> messageData) {
     final bool isCurrentUser = messageData['uid'] == Auth().uid;
     String formattedDate = DateFormat('dd/MM/yyyy à HH:mm', 'fr_FR')
@@ -131,7 +153,7 @@ void getpseudo() async {
                       return [
                         PopupMenuItem(
                           value: 'profil',
-                          child: Text('Profile'),
+                          child: Text('Profil'),
                         ),
                         PopupMenuItem(
                           value: 'message',
@@ -157,6 +179,11 @@ void getpseudo() async {
       ),
     );
   }
+
+  /// Listens for new messages in the global chat by listening to changes in the Firestore collection.
+  /// Displays the messages in a ListView, with the latest messages appearing at the top.
+  /// 
+  /// @return A widget that listens to the 'global_chat' collection and displays the messages.
   Widget _listenToMessages() {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore
@@ -182,6 +209,10 @@ void getpseudo() async {
       },
     );
   }
+  /// Builds the user interface for the GlobalChatPage.
+  /// It includes the AppBar, message input field, and the list of messages.
+  /// 
+  /// @return The widget tree for the GlobalChatPage.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

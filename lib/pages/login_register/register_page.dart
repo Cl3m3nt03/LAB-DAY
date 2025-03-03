@@ -6,6 +6,7 @@ import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// This is the registration page where users can create an account
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -13,7 +14,9 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
+// State class for managing the registration form state
 class _RegisterPageState extends State<RegisterPage> {
+  // State variables for managing password visibility, form validation, and loading state
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
   String? errormessage = '';
@@ -28,6 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final ToastMessage toast = ToastMessage();
 
+  // Dispose the controllers when the page is destroyed to avoid memory leaks
   @override
   void dispose() {
     pseudoController.dispose();
@@ -36,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
     confirmPasswordController.dispose();
     super.dispose();
   }
-
+  // Validates the input fields (checks for empty fields, valid email, and matching passwords)
   bool _validateFields() {
     if (pseudoController.text.isEmpty ||
         emailController.text.isEmpty ||
@@ -67,7 +71,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
     return true;
   }
-
+  
+  // Handles user registration via Firebase Authentication and sends email verification
   Future<void> createUserWithEmailAndPassword() async {
     if (!_validateFields()) {
       toast.showToast(context, errormessage ?? 'Erreur inconnue', isError: true);
@@ -108,6 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  // Clears all the input fields after successful registration
   void _resetFields() {
     pseudoController.clear();
     emailController.clear();
@@ -115,6 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
     confirmPasswordController.clear();
   }
 
+  // Button widget that triggers user registration when pressed
   Widget _submitButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -136,7 +143,8 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-
+  
+  // Title widget displaying the page header
   Widget _title() {
     return  Text(
       "Créer votre compte",
@@ -149,6 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  // Back button widget to navigate to the previous screen  
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -161,6 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  // Builds the registration page UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,6 +190,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
+            // Scrollable view for the registration form, allowing for keyboard interaction
             SingleChildScrollView(
               controller: _scrollController,
               padding: EdgeInsets.only(
@@ -242,6 +253,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               ),
             ),
+            // Displays a loading spinner while registration is in progress
+
             if (isLoading)
               const Center(
                 child: CircularProgressIndicator(),

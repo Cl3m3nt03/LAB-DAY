@@ -3,25 +3,33 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
+// Handles user authentication operations using Firebase Authentication.
 class Auth {
+  // Displays toast messages.
   final ToastMessage toast = ToastMessage();
+  // Firebase Authentication instance.
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  // Firebase Firestore instance.
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Gets the current authenticated user.
   User? get currentUser => _auth.currentUser;
+  // Gets the unique user ID.
   String? get uid => _auth.currentUser!.uid;
+  // Gets the current user's email.
   String? get email => _auth.currentUser!.email;
+  // Gets the current user's username.
   String? get username => _auth.currentUser!.displayName;
+  // Stores the pseudo of the user.
   String? pseudo;
 
 
-
+  // Stream that listens for authentication state changes.
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
 
 
-
+  // Signs in with email and password.
   Future<void> signInWhithEmailAndPassword({
     required String email,
     required String password,
@@ -33,6 +41,7 @@ class Auth {
     );
   }
 
+  // Creates a new user with email and password.
   Future<void>createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -43,7 +52,7 @@ class Auth {
     );
   }
 
-
+// Retrieves the pseudo from Firestore for the current user.
 Future<String?> recoveryPseudo() async {
   try {
     DocumentSnapshot<Map<String, dynamic>> doc = 
@@ -59,7 +68,7 @@ Future<String?> recoveryPseudo() async {
     return null;
   }
 }
-
+  // Initializes the user data in Firestore upon account creation.
   Future<void>initializeUser({
     required String email,
     required String username,
@@ -75,7 +84,7 @@ Future<String?> recoveryPseudo() async {
       'objectiveXp':100,
     });
   }
-
+  // Sends a password reset email to the specified email address.
   Future<void> sendPasswordResetEmail(String email, context) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
@@ -86,6 +95,7 @@ Future<String?> recoveryPseudo() async {
     }
   }
 
+// Signs in the user with Google authentication.
 Future<void> signInWithGoogle( context) async {
   try {
     await GoogleSignIn().signOut();
@@ -110,7 +120,7 @@ Future<void> signInWithGoogle( context) async {
     toast.showToast(context, 'Une erreur inattendue est survenue.', isError: true);
   }
 }
-
+  // Signs the current user out.
   Future<void> signOut() async{
     await _auth.signOut();
   }

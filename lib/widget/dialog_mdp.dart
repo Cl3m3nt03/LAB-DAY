@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/textField.dart';
 
+/// A function to show a dialog asking for the user's password to confirm identity.
 Future<void> showPasswordDialog(
     BuildContext context, Function(String) onPasswordEntered) async {
   TextEditingController passwordController = TextEditingController();
 
   return showDialog(
     context: context,
+    /// Displays the dialog to input the password and invokes the callback upon validation.
     builder: (context) {
       return AlertDialog(
         backgroundColor: Color.fromRGBO(0, 113, 152, 0.9),

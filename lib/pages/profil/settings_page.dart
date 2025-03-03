@@ -11,7 +11,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  // Boolean to control dark mode
   bool light = true;
+  // Boolean to control notifications
   bool light1 = true;
 
   @override
@@ -20,23 +22,24 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Center(
         child: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  colors: [
-                    Color.fromRGBO(0, 113, 152, 1),
-                    Color.fromARGB(255, 11, 22, 44),
-                  ],
-                  stops: [0.1, 0.9],
-                  center: Alignment(-0.7, 0.7),
-                  radius: 0.8,
+              // Background gradient container
+              Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [
+                      Color.fromRGBO(0, 113, 152, 1),
+                      Color.fromARGB(255, 11, 22, 44),
+                    ],
+                    stops: [0.1, 0.9],
+                    center: Alignment(-0.7, 0.7),
+                    radius: 0.8,
+                  ),
                 ),
-              ),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    // Header with back button and title
                     Stack(
                       clipBehavior: Clip.none,
                       children: [

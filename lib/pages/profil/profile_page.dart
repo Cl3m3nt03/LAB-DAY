@@ -12,6 +12,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Function to retrieve the user's pseudo from the database
+// Retrieves the pseudo associated with the user's UID
+// Returns a default message if no pseudo is found
 Future<String> getUserPseudo(String uid) async {
   final userDoc =
       await FirebaseFirestore.instance.collection('Users').doc(uid).get();
@@ -21,6 +24,9 @@ Future<String> getUserPseudo(String uid) async {
   return 'No pseudo found';
 }
 
+// Function to retrieve the user's avatar from the database
+// Decodes the avatar from base64 if available
+// Returns null if there's an error or no avatar is found
 Future<Uint8List?> getUserAvatar(String uid) async {
   try {
     final userDoc =
@@ -34,12 +40,18 @@ Future<Uint8List?> getUserAvatar(String uid) async {
   return null;
 }
 
+// ProfilePage widget: main page showing the user's profile details
+// Stateful widget that allows dynamic updates, like changing the avatar
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
+
+// State class for ProfilePage
+// Calls the function to load the user's avatar when the page is initialized
 
 class _ProfilePageState extends State<ProfilePage> {
   Uint8List? _avatarImage;
@@ -55,6 +67,8 @@ class _ProfilePageState extends State<ProfilePage> {
     _loadAvatar();
   }
 
+  // Function to load the user's avatar image
+  // Retrieves the user's UID, fetches the avatar, and updates the state
   Future<void> _loadAvatar() async {
     String? uid = Auth().currentUser?.uid;
     if (uid != null) {
@@ -64,7 +78,8 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
-
+  // Scaffold widget that builds the profile page UI
+// Uses a radial gradient background for the page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +102,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: SingleChildScrollView(
                   child: Center(
+                    // Column containing the user's profile picture and pseudo
+                    // Displays the user's avatar and pseudo fetched from Firebase
                     child: Column(
                       children: [
                         Container(
