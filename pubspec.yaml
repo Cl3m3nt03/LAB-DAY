@@ -58,6 +58,9 @@ dependencies:
   flutter_slidable: ^4.0.0
   webview_flutter: ^4.10.0
   three_d_slider: ^1.0.0
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.10.0
+  carousel_slider: ^5.0.0
   rive: ^0.13.20
   flutter_inappwebview: ^6.1.5
 
@@ -89,6 +92,7 @@ flutter:
     - assets/icons/
     - assets/images/language/
     - lib//pages/games/questionnaire/list_questionnaire/
+    - lib/pages/games/game.json
     - assets/sound/
     - assets/rive/
     - assets/project_template/portfolio/

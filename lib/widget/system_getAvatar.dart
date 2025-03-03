@@ -19,3 +19,32 @@ class AvatarService {
     return null;
   }
 }
+
+
+// Si Vous voulez afficher l'avatar de l'utilisateur connecté, vous pouvez utiliser le code suivant dans votre fichier dart :
+
+/* 
+import 'package:makeitcode/services/avatar_service.dart';
+import 'package:makeitcode/widget/auth.dart';
+
+Future<void> _loadAvatar() async {
+  String? uid = Auth().currentUser?.uid;
+  if (uid != null) {
+    Uint8List? avatar = await AvatarService.getUserAvatar(uid);
+    setState(() {
+      _avatarImage = avatar;
+    });
+  }
+}
+*/
+
+// Vous pouvez ensuite afficher l'avatar de l'utilisateur dans votre application en utilisant le code suivant :
+/*
+  CircleAvatar(
+    radius: 20,
+    backgroundImage: _avatarImage != null
+        ? MemoryImage(_avatarImage!)
+        : AssetImage('assets/icons/logo.png')
+            as ImageProvider,
+  ),
+*/

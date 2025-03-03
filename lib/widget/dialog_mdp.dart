@@ -17,7 +17,6 @@ Future<void> showPasswordDialog(
           children: [
             IconButton(
               icon: Icon(Icons.close, color: Colors.white),
-              iconSize: 30,
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -38,7 +37,7 @@ Future<void> showPasswordDialog(
             SizedBox(height: 20),
             Center(
               child: Text(
-                "Confirme ton identitée",
+                "Confirme ton identité",
                 style: GoogleFonts.roboto(color: Colors.white, fontSize: 20),
               ),
             ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,19 +59,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
     }
   }
   
-  //function to get the user avatar
-//   Future<Uint8List?> getUserAvatar(String uid) async {
-//   try {
-//     final userDoc =
-//         await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-//     if (userDoc.exists) {
-//       return base64Decode(userDoc['avatar']);
-//     }
-//   } catch (e) {
-//     print("Erreur lors de la récupération de l'avatar : $e");
-//   }
-//   return null;
-// }
+
 
   Future<void> getProfile() async {
     setState(() {
@@ -107,24 +96,29 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
           style: GoogleFonts.aBeeZee(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 27,
+              fontSize: 30,
               fontWeight: FontWeight.w700
             )
           ),
 
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10),
+        SizedBox(
+          width: MediaQuery.of(context).size.width*0.6,
+          child:
         Text(
-          bio.isNotEmpty ? bio : 'No bio available.',
+          bio.isNotEmpty ? bio : 'No bio',
           style: GoogleFonts.nokora(
             textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500
-            )
-          )
-        )
-    ],
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              overflow: TextOverflow.clip,
+            ),
+          ),
+        ),
+        ),
+      ],
   );
 }
 
@@ -149,12 +143,13 @@ Widget _profilePicture(){
     ? MemoryImage(_avatarImage!)
     : AssetImage('assets/icons/logo.png')
         as ImageProvider,
-    radius: 35,
+    radius: 50,
   );
 }
 
   Widget _playerLevel(){
   return Container(
+    width: MediaQuery.of(context).size.width - 25,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Color(0xff0692C2),
@@ -442,7 +437,6 @@ Widget _Museum(){
                     child: Row(
                       children: [
                         _title(),
-                        Spacer(),
                         _profilePicture()
                       ],
                     ),
