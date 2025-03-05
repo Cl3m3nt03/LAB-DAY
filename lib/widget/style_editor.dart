@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 /// Theme containing text styles with various shades of purple.
 
+const Color lavenderMist = Color.fromARGB(255, 225, 225, 255); 
+const Color blushPink = Color.fromARGB(255, 205, 247, 255); 
+const Color lilacDream = Color(0xFFD1C4E9); 
+const Color palePeriwinkle = Color(0xFFEDE7F6); 
+const Color softOrchid = Color(0xFFF3E5F5); 
+
+
 const shadesOfPurpleTheme = {
   'root': TextStyle(backgroundColor: Color(0xFF2B2D42), color: Color(0xFFBFBFBF)),
   'title': TextStyle(color: Color(0xfffad000), fontWeight: FontWeight.normal),
