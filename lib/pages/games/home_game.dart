@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:makeitcode/pages/games/gamePendu/GamePendu.dart';
+import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dart';
 
 class HomeGamePage extends StatefulWidget {
   @override
@@ -72,11 +74,10 @@ class _HomeGamePageState extends State<HomeGamePage> {
                       child: CarouselSlider.builder(
                         itemCount: game.length,
                         options: CarouselOptions(
-                          height: MediaQuery.of(context).size.height * 0.8, 
+                          height: MediaQuery.of(context).size.height * 0.8,
                           enlargeCenterPage: true,
                           enableInfiniteScroll: true,
                           viewportFraction: 0.8,
-
                         ),
                         itemBuilder: (context, index, realIndex) {
                           return ClipRRect(
@@ -90,7 +91,8 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                       child: Image.asset(
                                         game[index]['image'],
                                         fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                       ),
                                     ),
                                   ),
@@ -126,6 +128,24 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                       ),
                                     ),
                                     onPressed: () {
+                                      Widget page;
+                                      switch (game[index]['link']) {
+                                        case 'QuestionnaireListPage':
+                                          page = QuestionnaireListPage();
+                                          break;
+                                        case 'GamePenduPage':
+                                          page = GamePendu();
+                                          break;
+                                        default:
+                                          page = Container();
+                                          break;
+                                      }
+
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => page),
+                                      );
                                     },
                                     child: Text("Jouer",
                                         style: TextStyle(

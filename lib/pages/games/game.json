@@ -3,19 +3,22 @@
     {
         "title": "CodeCrunch",
         "description": "HTML is the standard markup language for creating Web pages.",
-        "image": "assets/images/walpaper.png"
+        "image": "assets/images/walpaper.png",
+        "link": "QuestionnaireListPage"
     },
     
     {
         "title": "Questionnaire",
         "description": "Jeu avec des questions sur les langages de programmation.",
-        "image": "assets/images/walpaper.png"
+        "image": "assets/images/walpapergame1.jpg",
+        "link": "QuestionnaireListPage"
     },
 
     {
         "title": "Pendu",
         "description": "Jeu du pendu basé sur les langages de programmation.", 
-        "image": "assets/images/walpaper.png"
+        "image": "assets/images/walpaper2.png",
+        "link": "GamePenduPage"
     }
 
 ]

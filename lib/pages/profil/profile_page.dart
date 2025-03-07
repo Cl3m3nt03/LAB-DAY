@@ -78,6 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
+
   // Scaffold widget that builds the profile page UI
 // Uses a radial gradient background for the page
   @override
@@ -441,14 +442,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
                                       TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      HomeGamePage()),
-                                            );
-                                          },
+                                          onPressed: () {},
                                           child: Text(
                                             "About",
                                             style: GoogleFonts.montserrat(

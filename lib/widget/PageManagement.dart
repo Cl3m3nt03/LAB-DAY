@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/pages/games/home_game.dart';
 import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dart';
 import 'package:makeitcode/pages/community/global_chat_page.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
@@ -10,7 +11,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 /// Manages the main page with a NavBar and different pages navigation.
 class PageManagement extends StatefulWidget {
-const PageManagement({Key? key}) : super(key: key);
+  const PageManagement({Key? key}) : super(key: key);
 
   @override
   _PageManagementState createState() => _PageManagementState();
@@ -25,7 +26,7 @@ class _PageManagementState extends State<PageManagement> {
     GlobalChatPage(),
     ProjectsPage(),
     HomePage(),
-    QuestionnaireListPage(),
+    HomeGamePage(),
     ProfilePage(),
   ];
 
@@ -45,9 +46,9 @@ class _PageManagementState extends State<PageManagement> {
         selectedIndex: _currentIndex,
         onTabChange: (index) {
           setState(() {
-              _currentIndex = index;
-                _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.easeInOut
-            );
+            _currentIndex = index;
+            _pageController.animateToPage(index,
+                duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
           });
         },
       ),
