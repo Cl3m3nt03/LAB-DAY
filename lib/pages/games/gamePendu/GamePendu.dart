@@ -58,6 +58,7 @@ class _GamePenduState extends State<GamePendu> {
             child: Column(
               children: [
                 Container(
+                  
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
@@ -73,10 +74,29 @@ class _GamePenduState extends State<GamePendu> {
                   ),
                   child: Column(
                     children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Row(
+                          children: [
+                            TextButton(
+                              onPressed: (){
+                                Navigator.pop(context);},
+                               child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30)),
+                            SizedBox(width: 20),
+                            Text(
+                              'Jeu du Pendu',
+                              style: TextStyle(
+                                fontSize: 32,
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.1),
+                          height: MediaQuery.of(context).size.height * 0.04),
                       Text('Essais restants: $attemptsLeft',
-                          style: TextStyle(fontSize: 24, color: Colors.white)),
+                          style: TextStyle(fontSize: 24, color: Color.fromRGBO(11, 153, 253, 1),)),
                       SizedBox(height: 10),
                       Text(
                         selectedWord
@@ -84,20 +104,29 @@ class _GamePenduState extends State<GamePendu> {
                             .map((letter) =>
                                 guessedLetters.contains(letter) ? letter : '_')
                             .join(' '),
-                        style: TextStyle(fontSize: 32, color: Colors.white),
+                        style: TextStyle(fontSize: 32, color: const Color.fromARGB(255, 255, 255, 255)),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Wrap(
-                        spacing: 8,
+                        spacing: MediaQuery.of(context).size.width * 1 / 30,
+                        runSpacing: 5,
+                        alignment: WrapAlignment.center,
                         children: 'abcdefghijklmnopqrstuvwxyz'
                             .split('')
                             .map((letter) {
                           return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Color.fromRGBO(11, 153, 253, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
                             onPressed: guessedLetters.contains(letter) ||
                                     attemptsLeft == 0
                                 ? null
                                 : () => guessLetter(letter),
-                            child: Text(letter),
+                            child: Text(letter , style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
                           );
                         }).toList(),
                       ),
@@ -113,8 +142,16 @@ class _GamePenduState extends State<GamePendu> {
                                 TextStyle(fontSize: 24, color: Colors.green)),
                       SizedBox(height: 20),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Color.fromRGBO(11, 153, 253, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
                         onPressed: startNewGame,
-                        child: Text('Nouvelle Partie'),
+                        child: Text('Nouvelle Partie',
+                            style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
                       ),
                     ],
                   ),
