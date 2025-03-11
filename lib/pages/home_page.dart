@@ -314,7 +314,7 @@ Widget _playerLevel() {
                   ),
                 ),
               ],
-            ),
+            ),  
           ],
         ),
       );
