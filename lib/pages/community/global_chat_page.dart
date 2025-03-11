@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/gameplay/game_logic.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -245,7 +246,7 @@ void getpseudo() async {
           onPressed: () {
                  Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => WebViewPage()),
+                MaterialPageRoute(builder: (context) => GameLogic(userId: uid,)),
               );
           },
         ),

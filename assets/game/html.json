@@ -1,0 +1,264 @@
+[
+  {
+    "step": 1,
+    "title": "Structure de base HTML",
+    "description": {
+      "heading": "Créer un fichier HTML de base",
+      "instruction": "Commencez par créer un fichier HTML de base. La balise <html> entoure tout le contenu de votre page web, et doit être fermée par </html> pour indiquer la fin du document HTML."
+    },
+    "code": "<!DOCTYPE html>\n<html lang='fr'>\n  <head>\n    <meta charset='UTF-8'>\n    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n    <title>Mon Portfolio</title>\n  </head>\n  <body>\n    <header>\n      <h1>Bienvenue sur mon Portfolio</h1>\n    </header>\n  </body>\n </html>",
+    "firstField": "<html>",
+    "secondField": false,
+    "lastField": "</html>",
+    "bdd": "html_structure"
+  },
+  {
+    "step": 2,
+    "title": "Mon Profil",
+    "description": {
+      "heading": "Définir le nom",
+      "instruction": "La balise <h1> est utilisée pour définir le titre principal de votre page. Cela doit être le titre le plus important de votre document, et il doit être fermé par </h1>."
+    },
+    "code": "<h1>\n  Bienvenue sur mon Portfolio \n</h1>",
+    "firstField": "<h1>",
+    "secondField": true,
+    "lastField": "</h1>", 
+    "bdd": "title"
+  },
+  {
+    "step": 3,
+    "title": "Brève Description Personnelle",
+    "description": {
+      "heading": "Section 'À propos'",
+      "instruction": "La balise <h2> représente un sous-titre ou un titre secondaire, et doit être fermée par </h2>."
+    },
+    "code": "<section>\n  <h2>Qui suis-je ?</h2>\n  <p>Quelques informations à propos de moi.</p>\n</section>",
+    "firstField": "<h2>",
+    "secondField": true,
+    "lastField": "</h2>", 
+    "bdd": "about"
+  },
+  {
+    "step": 4,
+    "title": "Contact - Adresse e-mail",
+    "description": {
+      "heading": "Section Contact",
+      "instruction": "La balise <p> permet de créer un paragraphe. Ici, elle est utilisée pour afficher une adresse email. N'oubliez pas de fermer cette balise par </p>."
+    },
+    "code": "<p>\n  Email: email@exemple.com\n</p>",
+    "firstField": "<p>",
+    "secondField": true,
+    "lastField": "</p>", 
+    "bdd": "email"
+  },
+  {
+    "step": 5,
+    "title": "Contact - Téléphone",
+    "description": {
+      "heading": "Section Contact",
+      "instruction": "La balise <p> permet de créer un paragraphe. Elle est ici utilisée pour afficher un numéro de téléphone. Assurez-vous de la fermer par </p>."
+    },
+    "code": "<p>\n  Téléphone: 0123456789\n</p>",
+    "firstField": "<p>",
+    "secondField": true,
+    "lastField": "</p>", 
+    "bdd": "phone"
+  },
+  {
+    "step": 6,
+    "title": "Compétence Technique (1)",
+    "description": {
+      "heading": "Première compétence",
+      "instruction": "La balise <h3> représente un titre secondaire pour cette section et doit être fermée par </h3>."
+    },
+    "code": "<section>\n  <h3>Compétence 1</h3>\n  <p>Description compétence 1</p>\n</section>",
+    "firstField": "<h3>",
+    "secondField": true,
+    "lastField": "</h3>", 
+    "bdd": "skill1"
+  },
+  {
+    "step": 7,
+    "title": "Compétence Technique (2)",
+    "description": {
+      "heading": "Deuxième compétence",
+      "instruction": "Le titre secondaire de cette section est contenu dans la balise <h3>. La balise <p> présente la description de cette compétence."
+    },
+    "code": "<section>\n  <h3>Compétence 2</h3>\n  <p>Description compétence 2</p>\n</section>",
+    "firstField": "<p>",
+    "secondField": true,
+    "lastField": "</p>", 
+    "bdd": "skill2"
+  },
+  {
+    "step": 8,
+    "title": "Projet Développé (1)",
+    "description": {
+      "heading": "Premier projet",
+      "instruction": "Le titre de ce projet est contenu dans une balise <h4>, qui doit être fermée par </h4>."
+    },
+    "code": "<section>\n  <h4>Projet 1</h4>\n  <p>Description projet 1</p>\n</section>",
+    "firstField": "<h4>",
+    "secondField": true,
+    "lastField": "</h4>", 
+    "bdd": "project1"
+  },
+  {
+    "step": 9,
+    "title": "Projet Développé (2)",
+    "description": {
+      "heading": "Deuxième projet",
+      "instruction": "Le contenu descriptif du projet est mis dans une balise <p>, qui doit être fermée par </p>."
+    },
+    "code": "<section>\n  <h4>Projet 2</h4>\n  <p>Description projet 2</p>\n</section>",
+    "firstField": "<p>",
+    "secondField": true,
+    "lastField": "</p>",
+    "bdd": "project2"
+  },
+  {
+    "step": 10,
+    "title": "Ajout d'une image",
+    "description": {
+      "heading": "Ajout d'une image de profil",
+      "instruction": "La balise <img> permet d'ajouter une image sur la page. Elle nécessite des attributs comme src pour spécifier le fichier image et alt pour un texte alternatif. Cette balise ne se ferme pas, car elle est auto-fermante."
+    },
+    "code": "<img src='profil.jpg' alt='Photo de profil' width='200' height='200'>",
+    "firstField": "<img src=''>",
+    "secondField": false,
+    "lastField": "",
+    "bdd": "image"
+  },
+  {
+    "step": 11,
+    "title": "Ajout de liens externes (1)",
+    "description": {
+      "heading": "Ajout d'un lien",
+      "instruction": "La balise <a> crée un lien hypertexte. L'attribut href contient l'URL du lien, et l'attribut target='_blank' permet d'ouvrir le lien dans un nouvel onglet. N'oubliez pas de fermer cette balise par </a>."
+    },
+    "code": "<a href='https://www.linkedin.com/in/monprofil' target='_blank'>\n  Voir mon LinkedIn\n</a>",
+    "firstField": "<a href=''>",
+    "secondField": true,
+    "lastField": "</a>", 
+    "bdd": "link1"
+  },
+  {
+    "step": 12,
+    "title": "Ajout de liens externes (2)",
+    "description": {
+      "heading": "Lien vers GitHub",
+      "instruction": "La balise <a> sert à créer un lien. L'attribut href contient l'URL de votre profil GitHub. target='_blank' permet de l'ouvrir dans un nouvel onglet. Cette balise doit être fermée par </a>."
+    },
+    "code": "<a href='https://github.com/monprofil' target='_blank'>\n  Voir mes projets sur GitHub\n</a>",
+    "firstField": "<a href=''>",
+    "secondField": true,
+    "lastField": "</a>", 
+    "bdd": "link2"
+  },
+  {
+    "step": 13,
+    "title": "Tableau des compétences",
+    "description": {
+      "heading": "Ajout d'un tableau des compétences",
+      "instruction": "Utilisez la balise <table> pour créer un tableau. Les balises <thead> et <tbody> structurent respectivement l'en-tête et le corps du tableau. À l'intérieur, utilisez <th> pour les cellules d'en-tête et <td> pour les cellules de données. N'oubliez pas de fermer la balise <table> par </table>."
+    },
+    "code": "<table>\n  <thead>\n    <tr>\n      <th>Compétence</th>\n      <th>Niveau</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>HTML</td>\n      <td>Avancé</td>\n    </tr>\n    <tr>\n      <td>CSS</td>\n      <td>Intermédiaire</td>\n    </tr>\n  </tbody>\n</table>",
+    "firstField": "<table>",
+    "secondField": false,
+    "lastField": "</table>", 
+    "bdd": "skills_table"
+  }, 
+
+    {
+      "step": 14,
+      "title": "Ajout d'une liste de projets",
+      "description": {
+        "heading": "Liste de projets",
+        "instruction": "La balise <ul> crée une liste non ordonnée. Elle sert ici à énumérer vos projets récents."
+      },
+      "code": "<ul>\n  <li>Projet 1 - Application de gestion de tâches</li>\n  <li>Projet 2 - Site e-commerce</li>\n  <li>Projet 3 - Portfolio personnel</li>\n</ul>",
+      "firstField": "<ul>",
+      "secondField": false,
+      "lastField": "</ul>", 
+      "bdd": "project_list"
+    },
+    {
+      "step": 15,
+      "title": "Liste de Compétences techniques",
+      "description": {
+        "heading": "Section 'Compétences techniques'",
+        "instruction": "Chaque élément de la liste est défini par la balise <li>, qui représente un projet individuel."
+      },
+      "code": "<ul>\n    <li>HTML, CSS, JavaScript</li>\n    <li>Python, Django</li>\n    <li>SQL, PostgreSQL</li>\n  </ul>\n",
+      "firstField": "<li>",
+      "secondField": true,
+      "lastField": "</li>",
+      "bdd": "tech_skills"
+    },
+    {
+      "step": 16,
+      "title": "Avis et Témoignages",
+      "description": {
+        "heading": "Ajout d'une section de témoignages",
+        "instruction": "La balise <section> crée un espace dédié aux témoignages. Elle est accompagnée d'un titre <h3>, et les commentaires ou recommandations sont affichés dans des paragraphes <p>."
+      },
+      "code": "<section>\n  <h3>Témoignages</h3>\n  <p>Voici ce que les autres disent de moi.</p>\n</section>",
+      "firstField": "<section>",
+      "secondField": false,
+      "lastField": "</section>",
+      "bdd": "reviews"
+    },
+    {
+      "step": 17,
+      "title": "Formulaire de Contact ",
+      "description": {
+        "heading": "Formulaire de contact",
+        "instruction": "La balise <form> est utilisée pour créer un formulaire. Elle contient des éléments de saisie comme <input> pour recueillir les informations, et un bouton <button> pour soumettre le formulaire."
+      },
+      "code": "<form>\n  <input type='text' placeholder='Votre nom'>\n  <input type='email' placeholder='Votre email'>\n  <button type='submit'>Envoyer</button>\n</form>",
+      "firstField": "<form>",
+      "secondField": false,
+      "lastField": "</form>", 
+      "bdd": "contact_data"
+    },
+    {
+      "step": 18,
+      "title": "Ajout d'un bouton",
+      "description": {
+        "heading": "Bouton de navigation",
+        "instruction": "La balise <button> crée un élément cliquable."
+      },
+      "code": "<button>\n  ENVOYER \n</button>",
+      "firstField": "<button>",
+      "secondField": true,
+      "lastField": "</button>", 
+      "bdd": "button"
+    },
+    {
+      "step": 19,
+      "title": "Footer",
+      "description": {
+        "heading": "Pied de page",
+        "instruction": "La balise <footer> définit le pied de page de votre document HTML. Elle contient généralement des informations comme le copyright ou des liens vers des pages importantes."
+      },
+      "code": "<footer>\n  &copy; 2025 Portfolio Professionnel | Tous droits réservés\n</footer>",
+      "firstField": "<footer>",
+      "secondField": true,
+      "lastField": "</footer>", 
+      "bdd": "footer_info"
+    },
+    {
+      "step": 20,
+      "title": "Finalisation du Portfolio avec le CSS",
+      "description": {
+        "heading": "Portfolio complet",
+        "instruction": "Une fois que vous avez structuré votre portfolio avec les balises HTML nécessaires, vous pouvez maintenant personnaliser son apparence avec du CSS. Vous allez ajouter un fichier CSS externe à votre page à l'aide de la balise <link rel=\"stylesheet\" href=\"\">."
+      },
+      "code": "<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Mon Portfolio</title>\n    <link rel=\"stylesheet\" href=\"mystyle.css\">\n  </head>\n  <body>\n    <header>\n      <h1>Bienvenue sur mon Portfolio</h1>\n    </header>\n    <main>\n      <section>\n        <h3>À propos par défaut</h3>\n        <p>Quelques informations à propos de moi.</p>\n      </section>\n\n      <section>\n        <h3>Compétence 1</h3>\n        <p>Description compétence 1</p>\n      </section>\n\n      <section>\n        <h3>Compétence 2</h3>\n        <p>Description compétence 2</p>\n      </section>\n\n      <section>\n        <h4>Projet 1</h4>\n        <p>Description projet 1</p>\n      </section>\n\n      <section>\n        <h4>Projet 2</h4>\n        <p>Description projet 2</p>\n      </section>\n\n      <section>\n        <h3>Compétences techniques</h3>\n        <ul>\n          <li>HTML, CSS, JavaScript</li>\n          <li>Python, Django</li>\n          <li>SQL, PostgreSQL</li>\n        </ul>\n      </section>\n\n      <section>\n        <h3>Témoignages</h3>\n        <p>Voici ce que les autres disent de moi.</p>\n      </section>\n\n      <form>\n        <input type=\"text\" placeholder=\"Votre nom\">\n        <input type=\"email\" placeholder=\"Votre email\">\n        <button type=\"submit\">Envoyer</button>\n      </form>\n    </main>\n    <footer>\n      <p>&copy; 2025 Mon Nom</p>\n    </footer>\n  </body>\n</html>", 
+      "firstField": "<link rel=\"stylesheet\" href=\"\">",
+      "secondField": false,
+      "lastField": "", 
+      "bdd": "completed"
+    }
+  ]
+  
