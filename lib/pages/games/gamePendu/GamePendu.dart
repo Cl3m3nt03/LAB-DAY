@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GamePendu extends StatefulWidget {
   @override
@@ -51,15 +52,26 @@ class _GamePenduState extends State<GamePendu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SingleChildScrollView(
+      appBar: AppBar(
+        title: Text(
+          'Jeux du Pendu',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 24,
+                color: Colors.white),
+          ),
+        ),
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+      ),
+      body:  SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height ,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
@@ -72,32 +84,15 @@ class _GamePenduState extends State<GamePendu> {
                       radius: 0.8,
                     ),
                   ),
-                  child: Column(
+                  child: SingleChildScrollView(
+                    child: Column(
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 20),
-                        child: Row(
-                          children: [
-                            TextButton(
-                              onPressed: (){
-                                Navigator.pop(context);},
-                               child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30)),
-                            SizedBox(width: 20),
-                            Text(
-                              'Jeu du Pendu',
-                              style: TextStyle(
-                                fontSize: 32,
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.04),
+                          height: MediaQuery.of(context).size.height * 0.002),
                       Text('Essais restants: $attemptsLeft',
                           style: TextStyle(fontSize: 24, color: Color.fromRGBO(11, 153, 253, 1),)),
-                      SizedBox(height: 10),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.002),
                       Text(
                         selectedWord
                             .split('')
@@ -106,10 +101,11 @@ class _GamePenduState extends State<GamePendu> {
                             .join(' '),
                         style: TextStyle(fontSize: 32, color: const Color.fromARGB(255, 255, 255, 255)),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03),
                       Wrap(
                         spacing: MediaQuery.of(context).size.width * 1 / 30,
-                        runSpacing: 5,
+                        runSpacing: 3,
                         alignment: WrapAlignment.center,
                         children: 'abcdefghijklmnopqrstuvwxyz'
                             .split('')
@@ -130,7 +126,6 @@ class _GamePenduState extends State<GamePendu> {
                           );
                         }).toList(),
                       ),
-                      SizedBox(height: 20),
                       if (attemptsLeft == 0)
                         Text('Perdu ! Le mot était: $selectedWord',
                             style: TextStyle(fontSize: 24, color: Colors.red)),
@@ -156,11 +151,10 @@ class _GamePenduState extends State<GamePendu> {
                     ],
                   ),
                 ),
+                ),
               ],
             ),
           ),
-        ],
-      ),
     );
   }
 }

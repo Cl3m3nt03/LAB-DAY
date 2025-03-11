@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:makeitcode/widget/style_editor.dart';
+import'package:makeitcode/pages/web_view/loadWebView.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -137,25 +138,42 @@ Future<void> saveUserData() async {
 
     return Scaffold(
       backgroundColor: const Color(0xFF0B162C),
-      appBar: AppBar(
-        title: Column(
+    appBar: AppBar(
+      centerTitle: true,
+      actions: [
+        IconButton(
+          icon: Icon(Icons.open_in_browser),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WebViewPage()),
+            );
+          },
+        ),
+      ],
+      title: Center( 
+        child: Column(
+          mainAxisSize: MainAxisSize.min, 
+          crossAxisAlignment: CrossAxisAlignment.center, 
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 8),
             LinearProgressIndicator(
-              value: currentStep / 20, // Mise à jour dynamique
+              value: currentStep / 20,
               backgroundColor: Colors.grey.shade700,
               color: Colors.white,
               minHeight: 5,
             ),
           ],
         ),
-        backgroundColor: Color.fromRGBO(0, 113, 152, 1), // Bleu foncé
-        foregroundColor: Colors.white,
       ),
+      backgroundColor: Color.fromRGBO(0, 113, 152, 1),
+      foregroundColor: Colors.white,
+    ),
+
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         child: SingleChildScrollView(

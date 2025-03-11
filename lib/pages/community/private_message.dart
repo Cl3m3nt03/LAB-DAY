@@ -125,7 +125,15 @@ Future<void> _initializeChat() async {
             ),
             Text(
               messageData['message'] ?? '',
-            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.ellipsis,fontSize: 14),)),
+              style: GoogleFonts.montserrat(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+              ),
+              softWrap: true, // Permet le retour à la ligne automatique
+              overflow: TextOverflow.visible, // Affiche tout le texte sans troncature
+            ),
             SizedBox(height: 5),
             Text(
               formattedDate,

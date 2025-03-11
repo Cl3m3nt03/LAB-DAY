@@ -122,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "Profile",
+                                "Profil",
                                 style: GoogleFonts.montserrat(
                                   textStyle: TextStyle(
                                     color: Color.fromARGB(250, 175, 142, 88),
@@ -226,7 +226,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       );
                                     },
                                     child: Text(
-                                      'Edit Profile',
+                                      'Edit Profil',
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                           color: Colors.white,
@@ -442,9 +442,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
                                       TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Auth().signOut();
+                                          },
                                           child: Text(
-                                            "About",
+                                            "Déconnexion",
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                                   color: Colors.white,

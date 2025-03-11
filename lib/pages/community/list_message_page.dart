@@ -168,19 +168,7 @@ class _ContactPageState extends State<ContactPage> {
               "MESSAGES",
               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 30,color: Colors.white),),
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Center(
-                  child: Text("Future barre de recherche"),
-                ),
-              ),
-            ),
+            Padding(padding: EdgeInsets.only(top: 10)),
             StreamBuilder<List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
               stream: _fetchMessagesWithUid(),
               builder: (context, snapshot) {

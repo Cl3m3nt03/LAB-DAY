@@ -383,8 +383,11 @@ Widget buildQuestionCard() {
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.white),
         ),
-        body: const Center(
-          child: CircularProgressIndicator(),
+        body: Column(
+          children: [
+           CircularProgressIndicator(),
+           Text(riveLoaded.toString(),)
+          ],
         ),
       );
     }
@@ -417,9 +420,6 @@ Widget buildQuestionCard() {
             child: Column(
               children: [
                 buildQuestionCard(),
-
-
-
               ],
             ),
           ),

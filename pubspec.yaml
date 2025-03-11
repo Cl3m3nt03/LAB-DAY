@@ -94,6 +94,9 @@ flutter:
     - lib//pages/games/questionnaire/list_questionnaire/
     - lib/pages/games/game.json
     - assets/sound/
+    - assets/rive/
+    - assets/game/html.json
+    - assets/project_template/portfolio/
     #   - images/a_dot_ham.jpeg
   # An image asset can referZ to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

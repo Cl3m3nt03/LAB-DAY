@@ -74,7 +74,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                       child: CarouselSlider.builder(
                         itemCount: game.length,
                         options: CarouselOptions(
-                          height: MediaQuery.of(context).size.height * 0.8,
+                          height: MediaQuery.of(context).size.height * 0.7,
                           enlargeCenterPage: true,
                           enableInfiniteScroll: true,
                           viewportFraction: 0.8,
