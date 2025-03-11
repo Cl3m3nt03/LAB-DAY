@@ -8,6 +8,7 @@ import 'package:makeitcode/pages/home_page.dart';
 import 'package:makeitcode/pages/profil/profile_page.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/navBar.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 class PageManagement extends StatefulWidget {
 const PageManagement({Key? key}) : super(key: key);

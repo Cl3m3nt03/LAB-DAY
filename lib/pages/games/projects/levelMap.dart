@@ -86,12 +86,15 @@ class _LevelmapState extends State<Levelmap> {
     });
   }
 
-  // Déclencher l'événement seulement quand on clique sur un bouton
-  void _triggerRiveEvent() {
+void _triggerRiveEvent() {
+  if (levelValue?.value == _currentLvlRive?.value) {
     setState(() {
       _showLevelInfoModal(context);
     });
+  } else {
+    print("Condition non remplie : levelValue = ${levelValue?.value}, _currentLvlRive = ${_currentLvlRive?.value}");
   }
+}
 
   @override
   void dispose() {

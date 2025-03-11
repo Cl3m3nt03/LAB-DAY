@@ -6,12 +6,12 @@ import 'package:three_d_slider/three_d_slider.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/pages/games/projects/levelMap.dart';
 
 class Rewardscreen extends StatefulWidget {
   final int stepIndex;
-  final Map<String, dynamic> projet;
   final int xpToAdd;
-  const Rewardscreen({super.key, required this.stepIndex, required this.projet, required this.xpToAdd});
+  const Rewardscreen({super.key, required this.stepIndex, required this.xpToAdd});
 
   @override
   State<Rewardscreen> createState() => _RewardscreenState();
@@ -25,16 +25,10 @@ class _RewardscreenState extends State<Rewardscreen> {
   int xp = 90;
   int objXp = 100;
 
-  String stepName = ""; 
-  String stepDesc = "";
-
-  var Badges = ["assets/icons/BronzeMedal.png", "assets/icons/SilverMedal.png", "assets/icons/GoldMedal.png"];
-
   @override
   void initState(){
       super.initState();
       getLevel();
-      getStepByIndex();
       updateXp();
   }
 
@@ -112,31 +106,6 @@ Future<void> updateXp() async {
   }
 }
 
-Future<void> getStepByIndex() async {
-  try {
-    final projectId = widget.projet['id'];
-
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection('Projects')
-        .doc(projectId)
-        .collection('Steps')
-        .get(); 
-
-    if (querySnapshot.docs.length > widget.stepIndex) {
-      final stepDoc = querySnapshot.docs[widget.stepIndex -1];
-      final stepData = stepDoc.data();
-    
-      setState(() {
-        stepName = stepData['name'] ?? "Nom non trouvé";
-        stepDesc = stepData['desc'] ?? "Description non trouvée";
-      });
-    } else {
-      stepName = "Aucune étape trouvée";
-    }
-  } catch (e) {
-    stepName = "❌ Erreur lors de la récupération du document : $e";
-  }
-}
 
   Widget _title(){
     return Center(
@@ -163,44 +132,6 @@ Future<void> getStepByIndex() async {
             fontSize: 15,
             color: Color(0xffd4b394)
           )
-        ),
-      ),
-    );
-  }
-
-  Widget _slider(){
-    return SizedBox(
-      height: 250,
-      child: Align(
-        child: Stack(
-          children: [
-            if(widget.stepIndex - 1 >= 0 && widget.stepIndex - 1 < Badges.length)
-            Positioned(
-              left: 10,
-              top: 60,
-              child: Image(
-                height: 120,
-                image: AssetImage(Badges[widget.stepIndex-1])
-              )
-            ),
-            if (widget.stepIndex + 1 < Badges.length)
-            Positioned(
-              right: 0,
-              top: 60,
-              child: Image(
-                height: 120,
-                image: AssetImage(Badges[widget.stepIndex+1])
-              )
-            ),
-            Positioned(
-              left: 115,
-              top: 25,
-              child: Image(
-                height: 200,
-                image: AssetImage(Badges[widget.stepIndex])
-              )
-            ),
-          ],
         ),
       ),
     );
@@ -239,40 +170,16 @@ ThreeDSlider(
       ),
   */
 
-  Widget _stepTitle(){
-    return Center(
-      child: Text(
-        stepName,
-        style: GoogleFonts.montserrat(
-          textStyle: TextStyle(
-            color: Color(0xfffdfffd),
-            fontWeight: FontWeight.w600,
-            fontSize: 18
-          )
-        ),
-      ),
-    );
-  }
-
-  Widget _stepDesc(){
-    return Center(
-      child: Text(
-        stepDesc,
-        style: GoogleFonts.montserrat(
-          textStyle: TextStyle(
-            color: Color(0xffcad0cf).withOpacity(0.8),
-            fontWeight: FontWeight.w400,
-            fontSize: 15
-          )
-        ),
-      ),
-    );
-  }
 
 
   Widget _xpAdded(){
     return Text(
-      'data'
+      '+ ${widget.xpToAdd} xp',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(
+          color: Colors.white
+        )
+      ),
       );
   }
 
@@ -326,7 +233,12 @@ Widget _progressBar() {
 
 Widget _continueButton(){
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Levelmap()),
+      );
+    },
     style: ElevatedButton.styleFrom(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       backgroundColor: Colors.transparent, // Fond transparent
@@ -349,7 +261,6 @@ Widget _continueButton(){
       ),
     ),
   );
-
 }
 
 
@@ -359,24 +270,23 @@ Widget build(BuildContext context) {
     backgroundColor: Color.fromARGB(255, 11, 22, 44),
     body: Stack(
       children: [
-        /// CONTENU PRINCIPAL SCROLLABLE
-        SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 50),
-          child: Column(
-            children: [
-              SizedBox(height: 60), // Espace pour le bouton retour
-              _title(),
-              _subTitle(),
-              _slider(),
-              _stepTitle(),
-              SizedBox(height: 8),
-              _stepDesc(),
-              SizedBox(height: 40),
-              _xpAdded(),
-              _progressBar(),
-              SizedBox(height: 45),
-              _continueButton(),
-            ],
+        /// CONTENU PRINCIPAL CENTRÉ
+        Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // Garde la colonne compacte
+              children: [
+                _title(),
+                _subTitle(),
+                SizedBox(height: 40),
+                _xpAdded(),
+                SizedBox(height: 5),
+                _progressBar(),
+                SizedBox(height: 45),
+                _continueButton(),
+              ],
+            ),
           ),
         ),
 
@@ -384,7 +294,7 @@ Widget build(BuildContext context) {
         Positioned(
           top: 40,  // Ajusté pour éviter un chevauchement avec l'encoche
           right: 20, // Meilleur placement
-          child: GestureDetector(  // Utilisation de GestureDetector pour éviter tout conflit
+          child: GestureDetector(
             onTap: () {
               Navigator.of(context).pop(); // Retour en arrière
             },
@@ -392,9 +302,9 @@ Widget build(BuildContext context) {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 border: Border.all(color: Color(0xffd4b394)),
-                color: Colors.transparent, // Vérification que le fond ne bloque pas
+                color: Colors.transparent,
               ),
-              padding: EdgeInsets.all(6), // Ajoute du padding pour une meilleure interaction
+              padding: EdgeInsets.all(6),
               child: Icon(
                 CupertinoIcons.clear,
                 size: 24,
@@ -407,5 +317,6 @@ Widget build(BuildContext context) {
     ),
   );
 }
+
 
 }
