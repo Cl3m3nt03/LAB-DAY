@@ -112,7 +112,6 @@ Future<void> signInWithGoogle( context) async {
     );
     await _auth.signInWithCredential(credential);
     toast.showToast(context, 'Connexion réussie', isError: false);
-    initializeUser(email:  Auth().email ?? '', username: Auth().username ?? '');
   } on FirebaseAuthException catch (e) {
 
     toast.showToast(context, 'Erreur de connexion : ${e.message}', isError: true);
