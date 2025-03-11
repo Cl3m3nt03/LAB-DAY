@@ -326,5 +326,27 @@
             border-top: 1px solid rgba(148, 163, 184, 0.1);
         }
 
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
 
-        
+            .hero {
+                padding-top: 8rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .personal-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .personal-info div {
+                padding: 1rem 0;
+            }
+        }

@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class loadDataAndTemplate {
 
-  // Récupère le chemin du fichier HTML généré
   Future<String> getHtmlFilePath(String templateName) async {
     final Directory? dir = await getExternalStorageDirectory();
     if (dir == null) {
@@ -14,56 +13,90 @@ class loadDataAndTemplate {
     return '${dir.path}/$templateName';
   }
 
-Future<void> generateHTMLFromFirestore(String userId, String templateName) async {
-  // Recup des données sur Firestore
+Future<void> generateHTMLFromFirestore(String userId, String templateName, bool _isPhoneView) async {
   Map<String, dynamic> userData = await _getUserDataFromFirestore(userId);
 
-  // Recup le template HTML depuis les assets
   String htmlContent = await _loadHtmlTemplate(templateName);
 
-  // Recup le CSS depuis les assets
-  String cssContent = await _loadCss("pink");
+  String cssContent = await _loadCss(userData['css'], _isPhoneView);
 
-  // Créé un fichier html final en fusionnant le html et css avec les données de la bases de données
   htmlContent = _replaceData(htmlContent, userData, cssContent);
 
-  // Enregistrer le fichier HTML dans le téléphone
   final filePath = await getHtmlFilePath(templateName);
   final file = File(filePath);
   await file.writeAsString(htmlContent);
 }
 
-  Future<String> _loadCss(themeCss) async {
-  final String cssContent = await rootBundle.loadString('assets/project_template/portfolio/$themeCss.css');
-  return cssContent;
+  Future<String> _loadCss(themeCss, bool isPhoneView) async {
+    String cssContent;
+    if (isPhoneView) {
+      cssContent = await rootBundle.loadString('assets/project_template/portfolio/$themeCss-phone.css');
+    } else {
+      cssContent = await rootBundle.loadString('assets/project_template/portfolio/$themeCss.css');
+    }
+    return cssContent;
 }
 
   Future<String> _loadHtmlTemplate(templateName) async {
-    // Charger le template HTML depuis les assets
     final String htmlTemplate = await rootBundle.loadString('assets/project_template/portfolio/$templateName');
     return htmlTemplate;
   }
 
 String _replaceData(String htmlContent, Map<String, dynamic> userData, String cssContent) {
-  // Remplacer les valeurs par défaut par les données utilisateur
   htmlContent = htmlContent.replaceAll('{{name}}', userData['name'] ?? 'Nom par défaut');
   htmlContent = htmlContent.replaceAll('{{aboutMe}}', userData['aboutMe'] ?? 'À propos par défaut');
-  //Intégration direct de tous le css dans le fichier html
   htmlContent = htmlContent.replaceAll('{{css}}', '<style>$cssContent</style>');
   return htmlContent;
 }
-  // Récupère les données utilisateur depuis Firestore et les stock dans une map clé-valeur
   Future<Map<String, dynamic>> _getUserDataFromFirestore(String userId) async {
     try {
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('test').doc(userId).get();
-      
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userId)
+          .collection('Portfolio') 
+          .doc('data')
+          .get();
+
       if (userDoc.exists) {
         return userDoc.data() as Map<String, dynamic>;
       } else {
         throw Exception("Aucune donnée trouvée pour cet utilisateur");
       }
     } catch (e) {
-      throw Exception("Erreur lors de la récupération des données : $e");
+      print("Erreur lors de la récupération des données : $e");
+      await _initProject(userId);
+      return await _getUserDataFromFirestore(userId); 
     }
   }
+
+  Future _initProject(userId) async {
+    await FirebaseFirestore.instance.collection('Users').doc(userId).collection('Portfolio').doc('data').set({
+      'Structure de base': '',
+      'Nom par défaut': 'Nom par défaut',
+      'À propos par défaut': 'À propos par défaut',
+      'Email par défaut': 'Email par défaut',
+      'Téléphone par défaut': 'Téléphone par défaut',
+      'Compétence 1': 'Compétence 1',
+      'Compétence 2': 'Compétence 2',
+      'Projet 1': 'Projet 1',
+      'Projet 2': 'Projet 2',
+      'Ajout d\'une image': 'Image par défaut',
+      'Ajout de liens externes': 'Lien par défaut',
+      "Ajout d'un lien vers GitHub": 'Lien par défaut',
+      'Tableau des compétences':'Tableau par défaut',
+      "Ajout d'une section 'Compétences techniques'": 'Section par défaut',
+      'Ajout d\'une liste de projets': 'Liste par défaut',
+      'Section de témoignages': 'Section par défaut',
+      "Ajout d'un formulaire de contact": 'Formulaire par défaut',
+      "Ajout d'un bouton 'Retour en haut'" : 'Bouton par défaut',
+      'Footer': 'Footer par défaut',
+      'Finalisation du portfolio': 'Finalisation par défaut',
+      'css': 'dark'
+    });
+
+    return;
+  }
 }
+
+
+

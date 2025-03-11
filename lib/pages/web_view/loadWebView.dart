@@ -3,16 +3,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'loadDataAndTemplate.dart'; 
+import 'package:makeitcode/widget/auth.dart';
 
 class WebViewPage extends StatefulWidget {
   WebViewPage({Key? key}) : super(key: key); 
   @override
   _WebViewPageState createState() => _WebViewPageState();
 }
+
 class _WebViewPageState extends State<WebViewPage> {
   final loadDataAndTemplate _dataAndTemplate = loadDataAndTemplate();
-  // Variable pour stocker le contenu HTML non initialisé
   String? _htmlContent;
+  bool _isPhoneView = true;
+  InAppWebViewController? _webViewController;
 
   @override
   void initState() {
@@ -21,18 +24,21 @@ class _WebViewPageState extends State<WebViewPage> {
   }
 
   Future<void> _startLoad() async {
-
-    // UserId fix pour les tests 
-    String userId = "test"; 
-    await _dataAndTemplate.generateHTMLFromFirestore(userId, 'index.html');
-    // Récupère le contenu HTML généré
+    String userId = Auth().uid!;
+    await _dataAndTemplate.generateHTMLFromFirestore(userId, 'index.html', _isPhoneView);
     final filePath = await _dataAndTemplate.getHtmlFilePath('index.html');
     final file = File(filePath);
-    // Charge le contenu HTML du fichier du téléphone dans la variable _htmlContent
-    _htmlContent = await file.readAsString();
+    String rawHtml = await file.readAsString();
 
-    // Permet de rafrachir la page
-    setState(() {}); 
+    // Injecter la classe CSS appropriée (desktop ou mobile)
+    String updatedHtml = rawHtml.replaceAll(
+      '<body>',
+      '<body class="${_isPhoneView ? 'mobile-view' : 'desktop-view'}">'
+    );
+
+    setState(() {
+      _htmlContent = updatedHtml;
+    });
   }
 
   @override
@@ -44,14 +50,27 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-      centerTitle: true,
-      
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(_isPhoneView ? Icons.phone_android : Icons.desktop_windows),
+            onPressed: () async {
+              setState(() {
+                _isPhoneView = !_isPhoneView;
+              });
+              await _startLoad();
+              if (_webViewController != null) {
+                _webViewController!.loadData(data: _htmlContent!, mimeType: 'text/html', encoding: 'utf-8');
+              }
+            },
+          ),
+        ],
       ),
       body: Center(
         child: _htmlContent != null
@@ -65,6 +84,9 @@ class _WebViewPageState extends State<WebViewPage> {
                         mimeType: 'text/html',
                         encoding: 'utf-8',
                       ),
+                      onWebViewCreated: (controller) {
+                        _webViewController = controller;
+                      },
                     ),
                   ),
                 ],
