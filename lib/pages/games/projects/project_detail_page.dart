@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:makeitcode/pages/games/projects/levelMap.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -393,11 +394,7 @@ Widget _confirmButton(screenHeight) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Rewardscreen(
-                  stepIndex: 1,
-                  projet: projectData, 
-                  xpToAdd: 2,
-                ),
+                builder: (context) => Levelmap()
               ),
             );
           } else {

@@ -14,6 +14,9 @@ class _LevelmapState extends State<Levelmap> {
 
 late StateMachineController _controller;
 
+
+  final ScrollController _scrollController = ScrollController();
+
 Timer? _timer;
 
 
@@ -40,8 +43,39 @@ void _spark(SMIInput<bool> toggleSpark){
   }
 }
 
-double levelValue = 0;
-double currentLvlRiveTest = 0;
+void _showLevelInfoModal(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (context) {
+      return Container(
+        padding: EdgeInsets.all(16.0),
+        height: 300,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Niveau atteint !", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            Text("Voici quelques informations sur votre progression."),
+            ElevatedButton(
+              onPressed: () {
+                _currentLvlRive?.value = 0;
+                print("Test2 ${levelValue?.value} ${_currentLvlRive?.value}");
+                Navigator.pop(context);
+              },
+              child: Text("Fermer"),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+
+
+
+SMIInput<double>? levelValue;
+SMIInput<double>? _currentLvlRive;
 int countBeforeSpak = 0;
 
 void onInit(Artboard artboard) async {
@@ -52,26 +86,32 @@ void onInit(Artboard artboard) async {
 
     SMIInput<bool>? toggleSpark = _controller.findInput<bool>('toggleSpark');
 
+    //double level = event.properties['Level'] as double;
+    SMIInput<double>? levelValue = _controller.findInput<double>('currentLvl');
+    _currentLvlRive = _controller.findInput<double>('LevelThatIsChanged');
+    levelValue?.value = 10;
+    print("Test ${levelValue?.value} ${_currentLvlRive?.value}");
+
     _startTimer(toggleSpark!);
 
     _controller.addEventListener(onRiveEvent);
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    });
 }
 
 void onRiveEvent(RiveEvent event) {
-    // Access custom properties defined on the event
-    double level = event.properties['Level'] as double;
-    SMIInput<double>? currentLvlRive = _controller.findInput<double>('currentLvl');
-
-    if(currentLvlRive != null){
-      currentLvlRive.value = level;
-    }
-    // Schedule the setState for the next frame, as an event can be
-    // triggered during a current frame update
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     setState(() {
+        print("Test3 ${levelValue?.value} ${_currentLvlRive?.value}");
+        _showLevelInfoModal(context);
     });
-    });
+  });
 }
+
+
+
 
 @override
 void dispose() {
@@ -83,16 +123,31 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: RiveAnimation.asset(
-              'assets/rive/levelmap.riv',
-              onInit: onInit,
-            )
-          ),
-        ],
+  body: SingleChildScrollView(
+        controller: _scrollController,
+    scrollDirection: Axis.vertical,
+    child: SizedBox(
+      height: 2500, // Mets une hauteur plus grande que l'écran pour activer le scroll
+      child: RiveAnimation.asset(
+        'assets/rive/levelmap.riv',
+        onInit: onInit,
       ),
-    );
+    ),
+  ),
+);
   }
 }
+
+
+/*Scaffold(
+  body: SingleChildScrollView(
+    scrollDirection: Axis.vertical,
+    child: SizedBox(
+      height: 1250, // Mets une hauteur plus grande que l'écran pour activer le scroll
+      child: RiveAnimation.asset(
+        'assets/rive/levelmap.riv',
+        onInit: onInit,
+      ),
+    ),
+  ),
+);*/
