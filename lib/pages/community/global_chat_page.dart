@@ -253,7 +253,7 @@ void getpseudo() async {
           onPressed: () {
                  Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => GameLogic(userId: uid,)),
+                MaterialPageRoute(builder: (context) => GameLogic(userId: uid, currentStep: 1, onStepValidated: (bool ) {  },)),
               );
           },
         ),

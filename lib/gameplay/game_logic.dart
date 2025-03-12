@@ -10,9 +10,12 @@ import'package:makeitcode/pages/web_view/loadWebView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GameLogic extends StatefulWidget {
-  final String userId; // L'ajout de l'identifiant de l'utilisateur
+  final String userId; 
+  final int currentStep; // Ajout de currentStep pour la synchronisation des étapes
+  final Function(bool) onStepValidated;  // Callback pour incrémenter le niveau
 
-  GameLogic({required this.userId});
+
+  GameLogic({required this.userId, required this.currentStep, required this.onStepValidated});
 
   @override
   _GameLogicState createState() => _GameLogicState();
@@ -31,10 +34,12 @@ class _GameLogicState extends State<GameLogic> {
   String firstFieldFromJson = "";
   bool secondFieldFromJson = false ; 
   String lastFieldFromJson = "";
+    // Récupérer l'utilisateur connecté
 
   @override
   void initState() {
     super.initState();
+    currentStep = widget.currentStep; // Assurez-vous que currentStep est initialisé correctement
     loadContent(currentStep);
   }
 
@@ -42,6 +47,7 @@ class _GameLogicState extends State<GameLogic> {
   Future<void> loadContent(int step) async {
     String jsonString = await rootBundle.loadString('assets/game/html.json');
     List<dynamic> jsonData = json.decode(jsonString);
+    User? user = FirebaseAuth.instance.currentUser;
 
     var stepData = jsonData.firstWhere((element) => element["step"] == step);
 
@@ -62,6 +68,14 @@ class _GameLogicState extends State<GameLogic> {
 
       _isValid = false;  // Désactive le bouton à chaque changement d'étape
     });
+
+    // 🔹 Sauvegarde du niveau actuel du joueur dans Firebase
+    await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(user?.uid)
+      .collection('Portfolio')
+      .doc('levelMap') // Clé où on enregistre le niveau
+      .set({'currentStep': currentStep}, SetOptions(merge: true));
   }
 
 
@@ -117,6 +131,8 @@ Future<void> saveUserData() async {
   void _nextStep() {
     if (_isValid) {
       // Lancer la fonction pour charger l'étape suivante
+      // Appeler le callback pour incrémenter le niveau dans mapLevel
+      widget.onStepValidated(_isValid);  // Appelle la fonction callback
       saveUserData(); // Sauvegarder les données dans Firebase
       loadContent(currentStep + 1);
     }
@@ -162,7 +178,7 @@ Future<void> saveUserData() async {
             ),
             SizedBox(height: 8),
             LinearProgressIndicator(
-              value: currentStep / 20,
+              value: currentStep / 20.0, // 20.0 force la division à retourner un double
               backgroundColor: Colors.grey.shade700,
               color: Colors.white,
               minHeight: 5,
