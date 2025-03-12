@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:makeitcode/pages/games/home_game.dart';
 import 'package:makeitcode/pages/profil/Politique_page.dart';
 import 'package:makeitcode/pages/profil/contacte_page.dart';
 import 'package:makeitcode/pages/profil/editprofile_page.dart';
@@ -11,6 +12,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Function to retrieve the user's pseudo from the database
+// Retrieves the pseudo associated with the user's UID
+// Returns a default message if no pseudo is found
 Future<String> getUserPseudo(String uid) async {
   final userDoc =
       await FirebaseFirestore.instance.collection('Users').doc(uid).get();
@@ -20,6 +24,9 @@ Future<String> getUserPseudo(String uid) async {
   return 'No pseudo found';
 }
 
+// Function to retrieve the user's avatar from the database
+// Decodes the avatar from base64 if available
+// Returns null if there's an error or no avatar is found
 Future<Uint8List?> getUserAvatar(String uid) async {
   try {
     final userDoc =
@@ -33,6 +40,9 @@ Future<Uint8List?> getUserAvatar(String uid) async {
   return null;
 }
 
+// ProfilePage widget: main page showing the user's profile details
+// Stateful widget that allows dynamic updates, like changing the avatar
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -40,15 +50,25 @@ class ProfilePage extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
+// State class for ProfilePage
+// Calls the function to load the user's avatar when the page is initialized
+
 class _ProfilePageState extends State<ProfilePage> {
   Uint8List? _avatarImage;
 
   @override
   void initState() {
     super.initState();
+    getUserAvatar(Auth().currentUser?.uid ?? '').then((value) {
+      setState(() {
+        _avatarImage = value;
+      });
+    });
     _loadAvatar();
   }
 
+  // Function to load the user's avatar image
+  // Retrieves the user's UID, fetches the avatar, and updates the state
   Future<void> _loadAvatar() async {
     String? uid = Auth().currentUser?.uid;
     if (uid != null) {
@@ -58,6 +78,9 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
+
+  // Scaffold widget that builds the profile page UI
+// Uses a radial gradient background for the page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +103,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: SingleChildScrollView(
                   child: Center(
+                    // Column containing the user's profile picture and pseudo
+                    // Displays the user's avatar and pseudo fetched from Firebase
                     child: Column(
                       children: [
                         Container(
@@ -97,45 +122,81 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: [
                               SizedBox(height: 20),
                               Text(
-                                "Profile",
-                                  style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                "Profil",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
                                     color: Color.fromARGB(250, 175, 142, 88),
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  ),
+                                ),
                               ),
                               Divider(),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  CircleAvatar(
-                                    radius: 20,
-                                    backgroundImage: _avatarImage != null
-                                        ? MemoryImage(_avatarImage!)
-                                        : AssetImage('assets/icons/logo.png')
-                                            as ImageProvider,
+                                  StreamBuilder<DocumentSnapshot>(
+                                    stream: FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(Auth().currentUser?.uid ?? '')
+                                        .snapshots(),
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData ||
+                                          snapshot.data == null) {
+                                        return CircleAvatar(
+                                          radius: 20,
+                                          backgroundImage: AssetImage(
+                                              'assets/icons/logo.png'),
+                                        );
+                                      }
+
+                                      var userData = snapshot.data!.data()
+                                          as Map<String, dynamic>?;
+
+                                      if (userData == null ||
+                                          !userData.containsKey('avatar')) {
+                                        return CircleAvatar(
+                                          radius: 20,
+                                          backgroundImage: AssetImage(
+                                              'assets/icons/logo.png'),
+                                        );
+                                      }
+
+                                      Uint8List avatarBytes =
+                                          base64Decode(userData['avatar']);
+                                      return CircleAvatar(
+                                        radius: 20,
+                                        backgroundImage:
+                                            MemoryImage(avatarBytes),
+                                      );
+                                    },
                                   ),
                                   Column(
                                     children: [
-                                      FutureBuilder<String>(
-                                        future: getUserPseudo(
-                                            Auth().currentUser?.uid ?? ''),
+                                      StreamBuilder<DocumentSnapshot>(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Users')
+                                            .doc(Auth().currentUser?.uid ?? '')
+                                            .snapshots(),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState ==
                                               ConnectionState.waiting) {
                                             return CircularProgressIndicator();
                                           } else if (snapshot.hasError) {
                                             return Text(
-                                                'Error: ${snapshot.error}',
-                                                style: TextStyle(
-                                                    color: Colors.white));
+                                              'Error: ${snapshot.error}',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            );
                                           } else {
+                                            var userData = snapshot.data!.data()
+                                                as Map<String, dynamic>?;
                                             return Text(
-                                                snapshot.data ??
-                                                    'No pseudo available',
-                                                style: GoogleFonts.montserrat(textStyle:TextStyle(
+                                              userData?['pseudo'] ??
+                                                  'No pseudo available',
+                                              style: GoogleFonts.montserrat(
+                                                textStyle: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 17,
                                                   fontWeight: FontWeight.bold,
@@ -165,9 +226,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                       );
                                     },
                                     child: Text(
-                                      'Edit Profile',
-                                      style: GoogleFonts.montserrat(textStyle:TextStyle(
-                                          color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),),
+                                      'Edit Profil',
+                                      style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -205,11 +271,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           EditCompte()),
                                                 );
                                               },
-                                              child:  Text(
+                                              child: Text(
                                                 "Mon Compte",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -233,11 +302,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                                           SecuritePage()),
                                                 );
                                               },
-                                              child:  Text(
+                                              child: Text(
                                                 "Sécurité",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -263,9 +335,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               child: Text(
                                                 "Réglages",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -305,9 +380,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               child: Text(
                                                 "Politique de confidentialité",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -333,9 +411,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               child: Text(
                                                 "Contactez-nous",
-                                                style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600),),
+                                                style: GoogleFonts.montserrat(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -360,10 +441,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       Icon(Icons.key, color: Colors.white),
                                       SizedBox(width: 15),
-                                      Text("About",
-                                      style:GoogleFonts.montserrat(textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600),),),
+                                      TextButton(
+                                          onPressed: () {
+                                            Auth().signOut();
+                                          },
+                                          child: Text(
+                                            "Déconnexion",
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          )),
                                     ],
                                   ),
                                 ),

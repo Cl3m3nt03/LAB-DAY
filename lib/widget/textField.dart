@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+/// Custom text field widget with optional password visibility toggle.
 class EntryField extends StatefulWidget {
   final String title;
   final TextEditingController controller;
@@ -13,6 +14,7 @@ class EntryField extends StatefulWidget {
   _EntryFieldState createState() => _EntryFieldState();
 }
 
+/// State class for `EntryField`, managing password visibility.
 class _EntryFieldState extends State<EntryField> {
   bool isPasswordVisible = true;
 

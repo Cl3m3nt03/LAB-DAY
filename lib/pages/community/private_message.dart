@@ -7,7 +7,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// Chat page for private conversations between users.
 class PrivateChatPage extends StatefulWidget {
+    /// Recipient's user ID.
   final String recipiaentuid;
 
   PrivateChatPage({required this.recipiaentuid});
@@ -15,7 +17,7 @@ class PrivateChatPage extends StatefulWidget {
   @override
   _PrivateChatPageState createState() => _PrivateChatPageState();
 }
-
+/// State for the private chat page.
 class _PrivateChatPageState extends State<PrivateChatPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -24,7 +26,7 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
   String? senderPseudo;
   String? recipientPseudo;
 
-
+  /// Generates a unique chat ID based on the user IDs.
   String _getChatId(String uid1, String uid2) {
     return uid1.compareTo(uid2) < 0 ? '$uid1-$uid2' : '$uid2-$uid1';
   }
@@ -42,7 +44,7 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
     super.dispose();
   }
 
-
+/// Initializes the chat by fetching user data and setting up the chat.
 Future<void> _initializeChat() async {
   String senderUid = Auth().uid!;
   String recipientUid = widget.recipiaentuid;
@@ -68,7 +70,7 @@ Future<void> _initializeChat() async {
     print('Erreur lors de l\'initialisation de la conversation : $e');
   }
 }
-
+  /// Listens to incoming messages in the chat.
   Widget _listenToMessages() {
     String chatId = _getChatId(Auth().uid!, widget.recipiaentuid);
     return StreamBuilder<QuerySnapshot>(
@@ -97,6 +99,7 @@ Future<void> _initializeChat() async {
       },
     );
   }
+  /// Builds a message item to display in the chat.
 
   Widget _buildMessageItem(Map<String, dynamic> messageData) {
     final bool isCurrentUser = messageData['uid'] == Auth().uid;
@@ -122,7 +125,15 @@ Future<void> _initializeChat() async {
             ),
             Text(
               messageData['message'] ?? '',
-            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w500,overflow: TextOverflow.ellipsis,fontSize: 14),)),
+              style: GoogleFonts.montserrat(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+              ),
+              softWrap: true, // Permet le retour à la ligne automatique
+              overflow: TextOverflow.visible, // Affiche tout le texte sans troncature
+            ),
             SizedBox(height: 5),
             Text(
               formattedDate,
@@ -132,6 +143,7 @@ Future<void> _initializeChat() async {
       ),
     );
   }
+    /// Sends a message to the chat.
     void _sendMessage() async {
       if (_controller.text.isNotEmpty) {
         String chatId = _getChatId(Auth().uid!, widget.recipiaentuid);

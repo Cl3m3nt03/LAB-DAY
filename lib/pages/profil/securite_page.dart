@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Widget for password update page layout.
 class SecuritePage extends StatefulWidget {
   const SecuritePage({super.key});
 
@@ -13,6 +14,7 @@ class SecuritePage extends StatefulWidget {
 class _SecuritePageState extends State<SecuritePage> {
   @override
   Widget build(BuildContext context) {
+    // Background gradient container
     return Scaffold(
       body: Center(
         child: Column(
@@ -30,6 +32,7 @@ class _SecuritePageState extends State<SecuritePage> {
                     radius: 0.8,
                   ),
                 ),
+                // Scrollable area for content
               child: SingleChildScrollView(
                 child: Column(
                   children: [

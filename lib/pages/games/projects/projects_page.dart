@@ -10,14 +10,19 @@ import 'package:material_floating_search_bar_2/material_floating_search_bar_2.da
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/widget/searchBar.dart';
 
+// Defines the ProjectsPage widget
+// Manages the state and UI of the Projects page
 class ProjectsPage extends StatefulWidget {
+  // Constructor for ProjectsPage
   const ProjectsPage({super.key});
 
   @override
   State<ProjectsPage> createState() => _ProjectsPageState();
 }
 
+// Manages the state for the ProjectsPage
 class _ProjectsPageState extends State<ProjectsPage> {
+  // Streams for different project states
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
       .collection('Projects')
       .where('state', isEqualTo: 'began')
@@ -30,20 +35,24 @@ class _ProjectsPageState extends State<ProjectsPage> {
       .collection('Projects')
       .where('state', isEqualTo: 'locked')
       .snapshots();
+  // Dimensions for project cards
 
   final double _projectCardWidth = 150;
   final double _projectCardHeight = 300;
+  // Controller for the floating search bar
 
   final FloatingSearchBarController controller = FloatingSearchBarController();
 
-
+  // Controller for scrolling
   ScrollController _scrollController = ScrollController();
+  // Flag to track if the user has scrolled
 
   bool _isScrolled = false;
 
-
-  String _searchQuery = ''; // Variable pour la requête utilisateur
-
+  // Stores the user's search query
+  String _searchQuery = ''; 
+  
+  // Builds the title widget for the Projects page
   Widget _title() {
     return Text(
       'Projets',
@@ -56,6 +65,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
     );
   }
 
+// Builds the search results widget
+// Filters projects based on the search query
 Widget _buildSearchResults() {
   return StreamBuilder<QuerySnapshot>(
     stream: FirebaseFirestore.instance
@@ -83,7 +94,7 @@ Widget _buildSearchResults() {
           child: Text('Aucun projet trouvé.'),
         );
       }
-
+      // Filters the documents based on the search query
       final filteredDocs = snapshot.data!.docs.where((document) {
         final project = document.data() as Map<String, dynamic>;
         final name = (project['name'] ?? '').toString().toLowerCase();
@@ -121,7 +132,8 @@ Widget _buildSearchResults() {
   );
 }
 
-
+  // Builds the project card for locked projects
+  // Displays a locked project with a lock icon
   Widget _projectCardLocked(projet) {
   return Container(
     height: _projectCardHeight,
@@ -170,7 +182,7 @@ Widget _buildSearchResults() {
     ),
   );
 }
-
+// Builds the project list widget for a given stream of projects
   Widget _projects(String title, Stream<QuerySnapshot<Object?>> stream) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,6 +230,7 @@ Widget _buildSearchResults() {
       ],
     );
   }
+  // Builds the small title widget
 
   Widget _smallTitle(String text) {
     return Text(
@@ -232,16 +245,17 @@ Widget _buildSearchResults() {
   }
 
 @override
+  // Builds the main UI for the Projects page
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
+      iconTheme: IconThemeData(color: Colors.white),
       title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
 ),
       backgroundColor: Color.fromARGB(255, 11, 22, 44),
       centerTitle: true,
     ),
     floatingActionButton: GlossaryPage(),
-    floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
     resizeToAvoidBottomInset: false,
     body: Stack(
       children: [

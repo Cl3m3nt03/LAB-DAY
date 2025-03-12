@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,44 +10,63 @@ import 'package:makeitcode/widget/progressBar.dart';
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:makeitcode/widget/system_getAvatar.dart';
 
-
+/// The HomePage widget is the main screen of the app, displaying user information,
+/// level progress, and ongoing projects.
 class HomePage extends StatefulWidget {
+  // Creates the state for HomePage.
   @override
   _HomePageState createState() => _HomePageState();
-
+  // Fetches the pseudo for the user.
   void fetchPseudo() {}
+  // Retrieves the user's level.
   void getLevel() {}
 }
 
+// State for HomePage, handles UI and data fetching
 class _HomePageState extends State<HomePage> {
   String emailVerified = '';
   String pseudo = '';
   int lvl = 0;
   int xp = 90;
   int objXp = 100;
+  Uint8List? _avatarImage;
   
 
-
+    Future<void> _loadAvatar() async {
+    String? uid = Auth().currentUser?.uid;
+    if (uid != null) {
+      Uint8List? avatar = await AvatarService.getUserAvatar(uid);
+      setState(() {
+        _avatarImage = avatar;
+      });
+    }
+  }
+  // Stream for projects that have begun.
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
       .collection('Projects')
       .where('state', isEqualTo: 'began')
       .snapshots();
+
+  // Stream for unlocked projects.
   final Stream<QuerySnapshot> _projectsStreamUnlocked = FirebaseFirestore.instance
       .collection('Projects')
       .where('state', isEqualTo: 'unlocked')
       .snapshots();
-
+  
+  // Initializes the state and fetches necessary data.
   @override
   void initState() {
     super.initState();
     getLevel();
     checkEmailVerification();
+    _loadAvatar();
     fetchPseudo();
   }
 
   
-
+// Fetches the user's pseudo from authentication service.
 Future<void> fetchPseudo() async {
   try {
     String? fetchedPseudo = await Auth().recoveryPseudo();
@@ -63,7 +84,7 @@ Future<void> fetchPseudo() async {
     }
   }
 }
-
+  // Checks if the user's email is verified.
   void checkEmailVerification() {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -77,6 +98,7 @@ Future<void> fetchPseudo() async {
     }
   }
 
+// Fetches the user's level and XP data from Firestore.
 Future<void> getLevel() async {
   User? user = FirebaseAuth.instance.currentUser;
   if (user != null) {
@@ -102,7 +124,7 @@ Future<void> getLevel() async {
 }
 
 
-
+  // Returns the rank based on the user's level.
   getlvlRank(int level){
     if(level >= 0 || level <= 5){
       return 'DEBUTANT';
@@ -110,6 +132,7 @@ Future<void> getLevel() async {
     return 'NOVICE';
   }
 
+  // Returns the badge icon based on the user's level.
   getlvlBadge(int level){
     String path = 'assets/icons/';
     if(level >= 0 || level <= 5){
@@ -119,7 +142,7 @@ Future<void> getLevel() async {
   }
 
 
-
+// Displays the greeting and message for the user.
 Widget _title(){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,14 +177,17 @@ Widget _title(){
   );
 }
 
-
+// Displays the user's profile picture.
 Widget _profilePicture(){
   return CircleAvatar(
-    backgroundImage: AssetImage('assets/icons/baka.png'),
+    backgroundImage:_avatarImage != null
+        ? MemoryImage(_avatarImage!)
+        : AssetImage('assets/icons/logo.png')
+            as ImageProvider,
     radius: 45,
-
   );
 }
+// Displays the user's level and XP progress.
 Widget _playerLevel() {
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -295,9 +321,7 @@ Widget _playerLevel() {
     },
   );
 }
-
-
-
+// Displays projects from a given stream.
 Widget _projects(stream){
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
@@ -339,7 +363,7 @@ Widget _projects(stream){
     ),
   );
 }
-
+  // Builds the HomePage widget.
   @override
   Widget build(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;

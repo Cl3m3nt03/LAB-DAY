@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/project_template/portfolio/blue.css">
+    <title>Portfolio de {{name}}</title>
+</head>
+{{css}}
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Portfolio de {{name}}</a>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="container hero-content">
+            <h1>Développeur Full Stack</h1>
+            <p>Passionné par la création d'applications web modernes et innovantes, je transforme des idées en solutions digitales performantes.</p>
+            <a href="#contact" class="btn">Me Contacter</a>
+        </div>
+    </section>
+
+    <section id="personal-info">
+        <div class="container">
+            <div class="personal-info">
+                <div>
+                    <h3>Nom</h3>
+                    <p>{{name}}</p>
+                </div>
+                <div>
+                    <h3>Email</h3>
+                    <p>mateis.bourlet@example.com</p>
+                </div>
+                <div>
+                    <h3>Téléphone</h3>
+                    <p>+33 6 12 34 56 78</p>
+                </div>
+                <div>
+                    <h3>Adresse</h3>
+                    <p>Paris, France</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Mes Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Front-end</h3>
+                    <p>HTML5, CSS3, JavaScript, React</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Back-end</h3>
+                    <p>Node.js, Python, SQL</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Design</h3>
+                    <p>UI/UX, Responsive Design</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Outils</h3>
+                    <p>Git, Docker, AWS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Mes Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" alt="E-commerce" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p>Une plateforme de commerce en ligne complète avec panier et paiement intégré.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1000" alt="Application Mobile" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Application Mobile</h3>
+                        <p>Application de gestion de tâches avec synchronisation cloud.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000" alt="Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Dashboard Analytics</h3>
+                        <p>Interface d'analyse de données en temps réel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Me Contacter</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Nom</label>
+                    <input type="text" id="name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" class="form-textarea" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Portfolio Professionnel | Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>

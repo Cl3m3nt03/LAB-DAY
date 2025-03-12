@@ -110,13 +110,14 @@ class PrivacyPolicyPage extends StatelessWidget {
                 'Pour toute question ou préoccupation concernant cette politique de confidentialité, veuillez nous contacter à :'),
             _buildBulletPoints([
               'Email : [makeitcode@gmail.com]',
-              'Adresse : [Coding Factory,75000 Paris]',
+              'Adresse : [Coding Factory (Matéis Bourlet, Clément Seurrin-le-Goffic, Mathys Sclafer & Inès Charfi), 95000 Cergy]',
             ]),
           ],
         ),
       ),
     );
   }
+  /// Builds the section title with bold text.
 
   Widget _buildSectionTitle(String title) {
     return Text(
@@ -127,6 +128,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds the sub-section title with bold text and some padding.
 
   Widget _buildSubSection(String title) {
     return Padding(
@@ -140,6 +142,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds a paragraph of text with some vertical padding.
 
   Widget _buildParagraph(String content) {
     return Padding(
@@ -150,6 +153,7 @@ class PrivacyPolicyPage extends StatelessWidget {
       ),
     );
   }
+  /// Builds bullet points from the provided list of strings.
 
   Widget _buildBulletPoints(List<String> points) {
     return Column(

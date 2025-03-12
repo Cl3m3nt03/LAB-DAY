@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/MenuItem.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/widget/notifications.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -10,7 +11,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  // Boolean to control dark mode
   bool light = true;
+  // Boolean to control notifications
   bool light1 = true;
 
   @override
@@ -19,6 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Center(
         child: Column(
           children: [
+              // Background gradient container
               Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -35,6 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    // Header with back button and title
                     Stack(
                       clipBehavior: Clip.none,
                       children: [
@@ -64,11 +69,13 @@ class _SettingsPageState extends State<SettingsPage> {
                                   ),
                                   Text(
                                     "Settings",
-                                    style: GoogleFonts.montserrat(textStyle:TextStyle(
-                                      color: Color.fromARGB(250, 175, 142, 88),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: TextStyle(
+                                        color:
+                                            Color.fromARGB(250, 175, 142, 88),
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -112,8 +119,16 @@ class _SettingsPageState extends State<SettingsPage> {
                                               Color.fromARGB(250, 175, 142, 88),
                                         ),
                                         SizedBox(width: 10),
-                                        Text("Activer le mode sombre",
-                                        style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w600,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
+                                        Text(
+                                          "Activer le mode sombre",
+                                          style: GoogleFonts.montserrat(
+                                            textStyle: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                          ),
+                                        ),
                                         SizedBox(width: 10),
                                         Switch(
                                           value: light,
@@ -140,8 +155,16 @@ class _SettingsPageState extends State<SettingsPage> {
                                               Color.fromARGB(250, 175, 142, 88),
                                         ),
                                         SizedBox(width: 10),
-                                        Text("Activer les notifications",
-                                        style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w600,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
+                                        Text(
+                                          "Activer les notifications",
+                                          style: GoogleFonts.montserrat(
+                                            textStyle: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                          ),
+                                        ),
                                         SizedBox(width: 10),
                                         Switch(
                                           value: light1,
@@ -150,6 +173,13 @@ class _SettingsPageState extends State<SettingsPage> {
                                           onChanged: (bool value) {
                                             setState(() {
                                               light1 = value;
+                                              if (light1) {
+                                                NotificationService.init();
+                                                NotificationService
+                                                    .showInstantNotification(
+                                                        "Notification",
+                                                        "Vous avez une nouvelle notification");
+                                              }
                                             });
                                           },
                                         ),
@@ -175,8 +205,19 @@ class _SettingsPageState extends State<SettingsPage> {
                                                         250, 175, 142, 88),
                                                   ),
                                                   SizedBox(width: 10),
-                                                  Text("Langue",
-                                                   style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w600,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),),
+                                                  Text(
+                                                    "Langue",
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      textStyle: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          fontSize: 14,
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
                                                   SizedBox(
                                                       width:
                                                           MediaQuery.of(context)

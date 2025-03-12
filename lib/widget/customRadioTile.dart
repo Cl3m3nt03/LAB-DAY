@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A custom radio tile widget that displays a radio button along with a title.
 class CustomRadioTile extends StatelessWidget {
   final String title;
   final int value;
@@ -22,6 +23,7 @@ class CustomRadioTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+      // Container wrapping the ListTile to customize its appearance
         Container(
     decoration: BoxDecoration(
       color: Colors.white,

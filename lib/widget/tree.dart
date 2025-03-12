@@ -7,6 +7,8 @@ import 'package:makeitcode/widget/PageManagement.dart';
 import 'package:makeitcode/pages/login_register/login_page.dart';
 
 
+/// Widget that checks if the user is authenticated.
+/// Redirects to the main page if authenticated, otherwise to the login page.
 
 class WidgetTree extends StatefulWidget{
   const WidgetTree ({super.key});
@@ -15,6 +17,7 @@ class WidgetTree extends StatefulWidget{
   State<WidgetTree> createState() => _WidgetTreeState();
 }
 
+/// Manages the authentication state and navigates accordingly.
 class _WidgetTreeState extends State<WidgetTree>{
   @override
   Widget build (BuildContext context){

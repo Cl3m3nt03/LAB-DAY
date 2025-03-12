@@ -1,16 +1,21 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'dart:math';
 import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rive/rive.dart';
 
+
+/// Widget to display the questionnaire page with questions and answers.
 class QuestionnairePage extends StatefulWidget {
   final String questionnaireName;
   final String title;
   String validationMessage = '';
   bool showValidationMessage = false;
+
+
 
   QuestionnairePage({Key? key, required this.questionnaireName, required this.title}) : super(key: key);
 
@@ -19,6 +24,8 @@ class QuestionnairePage extends StatefulWidget {
 }
 
 class _QuestionnairePageState extends State<QuestionnairePage> with SingleTickerProviderStateMixin {
+  Artboard? _artboard;
+
   List<dynamic> questions = [];
   int actuallyquestion = 0;
   int score = 0;
@@ -26,9 +33,12 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
   late AnimationController _animationController;
   late Animation<Offset> _slideAnimation;
 
+
   @override
   void initState() {
     super.initState();
+    loadRiveAnimation("Face Idle", "Loop");
+  
 
     _animationController = AnimationController(
       vsync: this,
@@ -52,6 +62,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
     _animationController.dispose();
     super.dispose();
   }
+  /// Loads questions from a JSON file and shuffles them.
   Future<void> loadQuestions(String questionnaireName) async {
     try {
       final String response = await rootBundle.loadString(questionnaireName);
@@ -65,6 +76,32 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
         });
     } catch (e) {
       print('Erreur lors du chargement des questions : $e');
+    }
+  }
+    bool riveLoaded = false;
+
+  Future<void> loadRiveAnimation(String face , String loop) async {
+    try {
+      final bytes = await rootBundle.load('assets/rive/robocat.riv');
+      final file = RiveFile.import(bytes);
+      final artboard = file.mainArtboard;
+      artboard.addController(SimpleAnimation(face));
+      artboard.addController(SimpleAnimation(loop));
+
+      setState(() {
+        riveLoaded = true;
+        _artboard = artboard;
+      });
+    } catch (e) {
+      print("Erreur lors du chargement de l'animation Rive: $e");
+    }
+  }
+
+  Widget riveAnimation() {
+    if (_artboard != null) {
+      return Rive(artboard: _artboard!);
+    } else {
+      return Center(child: CircularProgressIndicator());
     }
   }
   Widget submitAnswer(Map<String, dynamic> question) {
@@ -167,6 +204,8 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       ),
     );
   }
+  /// Validates the selected answer and updates score or shows error.
+
   void validateAnswer() {
     final question = questions[actuallyquestion];
     setState(() {
@@ -174,18 +213,24 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
         score += 1;
         error = false;
         final player = AudioPlayer();
+        loadRiveAnimation("Face Idle", "Loop good");
         player.play(AssetSource('sound/correct.wav'));
-        nextQuestion();
+        Future.delayed(const Duration(milliseconds: 800), () {
+          nextQuestion();
+        });
       } else {
         final player = AudioPlayer();
         player.play(AssetSource('sound/incorrect.wav'));
         error = true;
         widget.validationMessage = 'Incorrect';
+        loadRiveAnimation("Face to error", "Loop");
         _animationController.forward();
       }
     });
   }
+  /// Moves to the next question or finishes the quiz if no more questions are left.
   void nextQuestion() {
+    loadRiveAnimation("Face Idle", "Loop");
     setState(() {
       if (actuallyquestion < questions.length - 1) {
         actuallyquestion += 1;
@@ -229,6 +274,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       }
     });
   }
+  /// Displays the progress bar for the current question.
     Widget progressIndicatorRow(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
@@ -243,7 +289,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       ),
     );
   }
-
+/// Builds the question card with options for the user to select.
 Widget buildQuestionCard() {
   final question = questions[actuallyquestion];
   final options = question['options'] ?? [];
@@ -260,61 +306,76 @@ Widget buildQuestionCard() {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             progressIndicatorRow(context),
-            SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-              child: Text(
+               Row(
+              children: [
+                Padding(padding: EdgeInsets.symmetric(horizontal: 16),
+                child: 
+                SizedBox(
+                  width: MediaQuery.of(context).size.width /1.70,
+                  child: 
+                Text(
                 question['question'] ?? 'Question non chargée',
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
                 style:  GoogleFonts.montserrat(textStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  overflow: TextOverflow.clip
+                ),
                 ),
                 ),
               ),
-            ),
-            SizedBox(height: 8),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: options.length,
-                itemBuilder: (context, optionIndex) {
-                  final option = options[optionIndex];
-                  return CustomRadioTile(
-                    error: error,
-                    selected: question['solved'],
-                    title: option['text'],
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 4.5,
+                height: MediaQuery.of(context).size.height / 4.5,
+                              child:  Center(
+                              child: riveAnimation(),
+                            ),
+                            )
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: options.length,
+                              itemBuilder: (context, optionIndex) {
+                                final option = options[optionIndex];
+                                return CustomRadioTile(
+                                  error: error,
+                                  selected: question['solved'],
+                                  title: option['text'],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  value: optionIndex,
+                                  groupValue: question['selected'] ?? -1,
+                                  onChanged:error ? (value) {
+                                    setState(() {
+                                      null;
+                                    });
+                                  }: (value) {
+                                    setState(() {
+                                      question['selected'] = value;
+                                    });
+                                  },
+                                );
+                          },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    value: optionIndex,
-                    groupValue: question['selected'] ?? -1,
-                    onChanged:error ? (value) {
-                      setState(() {
-                        null;
-                      });
-                    }: (value) {
-                      setState(() {
-                        question['selected'] = value;
-                      });
-                    },
-                  );
-            },
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+                  ),
+                );
+              }
+/// Builds the main UI of the questionnaire page, showing the question and answer options.
   @override
   Widget build(BuildContext context) {
-    if (questions.isEmpty) {
+    if (questions.isEmpty || !riveLoaded) {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 11, 22, 44),
@@ -322,8 +383,11 @@ Widget buildQuestionCard() {
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.white),
         ),
-        body: const Center(
-          child: CircularProgressIndicator(),
+        body: Column(
+          children: [
+           CircularProgressIndicator(),
+           Text(riveLoaded.toString(),)
+          ],
         ),
       );
     }
@@ -336,7 +400,9 @@ Widget buildQuestionCard() {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: Text(
+
+            child: 
+            Text(
               '${actuallyquestion + 1} / ${questions.length}',
               style: const TextStyle(
                 color: Colors.white,

@@ -1,0 +1,17 @@
+
+[
+    {
+        "title": "Questionnaire",
+        "description": "Jeu avec des questions sur les langages de programmation.",
+        "image": "assets/images/walpapergame1.jpg",
+        "link": "QuestionnaireListPage"
+    },
+
+    {
+        "title": "Pendu",
+        "description": "Jeu du pendu basé sur les langages de programmation.", 
+        "image": "assets/images/walpaper2.png",
+        "link": "GamePenduPage"
+    }
+
+]

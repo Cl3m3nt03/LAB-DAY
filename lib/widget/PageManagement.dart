@@ -1,6 +1,5 @@
-//Permet de faire la gestion de la page principale avec la NavBar et les différentes pages
-
 import 'package:flutter/material.dart';
+import 'package:makeitcode/pages/games/home_game.dart';
 import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dart';
 import 'package:makeitcode/pages/community/global_chat_page.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
@@ -8,15 +7,21 @@ import 'package:makeitcode/pages/home_page.dart';
 import 'package:makeitcode/pages/profil/profile_page.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/navBar.dart';
+<<<<<<< HEAD
 import 'package:makeitcode/widget/rewardScreen.dart';
+=======
+import 'package:webview_flutter/webview_flutter.dart';
+>>>>>>> main
 
+/// Manages the main page with a NavBar and different pages navigation.
 class PageManagement extends StatefulWidget {
-const PageManagement({Key? key}) : super(key: key);
+  const PageManagement({Key? key}) : super(key: key);
 
   @override
   _PageManagementState createState() => _PageManagementState();
 }
 
+/// Manages the state of the PageManagement widget, including the current page and navigation.
 class _PageManagementState extends State<PageManagement> {
   int _currentIndex = 2;
   final PageController _pageController = PageController(initialPage: 2);
@@ -25,7 +30,7 @@ class _PageManagementState extends State<PageManagement> {
     GlobalChatPage(),
     ProjectsPage(),
     HomePage(),
-    QuestionnaireListPage(),
+    HomeGamePage(),
     ProfilePage(),
   ];
 
@@ -45,9 +50,9 @@ class _PageManagementState extends State<PageManagement> {
         selectedIndex: _currentIndex,
         onTabChange: (index) {
           setState(() {
-              _currentIndex = index;
-                _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.easeInOut
-            );
+            _currentIndex = index;
+            _pageController.animateToPage(index,
+                duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
           });
         },
       ),

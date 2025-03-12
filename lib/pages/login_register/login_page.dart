@@ -30,7 +30,7 @@ class _LoginPageState extends State <LoginPage>{
 
 
 
-
+  // Function to sign in user with email and password
   Future<void> signInWithEmailAndPassword() async {
     try {
       await Auth().signInWhithEmailAndPassword(
@@ -46,7 +46,7 @@ class _LoginPageState extends State <LoginPage>{
       });
     }
   }         
-
+  // Submit button widget for login
   Widget _submitButton(){
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 0),
     child:TextButton(
@@ -64,7 +64,7 @@ class _LoginPageState extends State <LoginPage>{
     ),
     );
   }
-
+  // Widget for the "Forgot Password?" link
   Widget _passwordForgotten(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -78,6 +78,7 @@ class _LoginPageState extends State <LoginPage>{
       ],
     );
   }
+  // Title widget displaying "Connectez-vous"
     Widget _title(){
     return Text(
       "Connectez-vous",style:GoogleFonts.montserrat(textStyle: TextStyle(
@@ -88,11 +89,11 @@ class _LoginPageState extends State <LoginPage>{
       ),
     );
   }
-
+    // Text widget for the "Or connect with" message
     Widget _moreConnexion(){
     return  Text('Ou connectez-vous avec',style:GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),);
   }
-
+    // Widget asking if the user has an account and showing the sign-up link
       Widget _noAccount(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -108,6 +109,7 @@ class _LoginPageState extends State <LoginPage>{
     );
   }
 
+// Button for Google sign-in or sign-out
 
       Widget _moreConnexionButton(){
   return Padding(padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -147,6 +149,7 @@ class _LoginPageState extends State <LoginPage>{
 }
 
 
+// The main widget for the login page layout
 
   @override
   Widget build (BuildContext context){

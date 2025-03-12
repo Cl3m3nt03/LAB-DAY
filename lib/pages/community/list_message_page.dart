@@ -6,7 +6,9 @@ import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// A page that displays the list of contacts and their respective messages.
 class ContactPage extends StatefulWidget {
+  /// The unique identifier of the user.
   final String uid1;
 
   ContactPage({required this.uid1});
@@ -14,12 +16,13 @@ class ContactPage extends StatefulWidget {
   @override
   _ContactPageState createState() => _ContactPageState();
 }
-
+/// The state for the [ContactPage] widget.
 class _ContactPageState extends State<ContactPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  /// The unique identifier of the current authenticated user.
   String get uid => _auth.currentUser!.uid;
+  /// Fetches messages where the current user is a participant, excluding those marked as visible.
 
   Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>> _fetchMessagesWithUid() {
     return _firestore
@@ -34,7 +37,9 @@ class _ContactPageState extends State<ContactPage> {
           }).toList();
         });
   }
-
+  /// Marks a message as viewed by updating the unread count for the current user.
+  /// 
+  /// [chatId] The unique identifier of the chat message.
   Future<void> setMessageAsViewed(String chatId) async {
     try {
       DocumentReference docRef = _firestore.collection('Private_Chat').doc(chatId);
@@ -51,7 +56,10 @@ class _ContactPageState extends State<ContactPage> {
       print('Erreur lors de la mise à jour du message en vu : $e');
     }
   }
-
+  /// Retrieves the unread count for a specific chat.
+  /// 
+  /// [chatId] The unique identifier of the chat message.
+  /// Returns the number of unread messages.
   Future<int> unreadCount(String chatId) async {
     try {
       DocumentSnapshot snapshot = await _firestore.collection('Private_Chat').doc(chatId).get();
@@ -68,7 +76,10 @@ class _ContactPageState extends State<ContactPage> {
       return 0;
     }
   }
-
+  /// Retrieves the last message in the specified chat.
+  /// 
+  /// [chatId] The unique identifier of the chat.
+  /// Returns the last message as a string.
   Future<String> lastMessage(String chatId) async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
@@ -89,7 +100,11 @@ class _ContactPageState extends State<ContactPage> {
       return 'Erreur';
     }
   }
-
+  /// Retrieves the last message date in the specified chat.
+  /// 
+  /// [chatId] The unique identifier of the chat.
+  /// Returns the last message date as a string formatted based on the current day.
+  
   Future<String> lastMessageDate(String chatId) async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
@@ -119,7 +134,9 @@ class _ContactPageState extends State<ContactPage> {
       return 'Erreur';
     }
   }
-
+  /// Hides the message from the user's view by updating the visibility field in Firestore.
+  /// 
+  /// [chatId] The unique identifier of the chat.
   void noShowMessage(String chatId) async {
     try {
       await _firestore.collection('Private_Chat').doc(chatId).update({
@@ -151,19 +168,7 @@ class _ContactPageState extends State<ContactPage> {
               "MESSAGES",
               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 30,color: Colors.white),),
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Center(
-                  child: Text("Future barre de recherche"),
-                ),
-              ),
-            ),
+            Padding(padding: EdgeInsets.only(top: 10)),
             StreamBuilder<List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
               stream: _fetchMessagesWithUid(),
               builder: (context, snapshot) {

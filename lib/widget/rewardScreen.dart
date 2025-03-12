@@ -8,6 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/pages/games/projects/levelMap.dart';
 
+
+/// Screen that displays the user's progress, step details, and rewards for a project.
 class Rewardscreen extends StatefulWidget {
   final int stepIndex;
   final int xpToAdd;
@@ -19,6 +21,7 @@ class Rewardscreen extends StatefulWidget {
   static void updateXp(int i) {}
 }
 
+/// Manages the state of the Rewardscreen, including level, XP, and project step details.
 class _RewardscreenState extends State<Rewardscreen> {
 
   int lvl = 0;
@@ -26,6 +29,7 @@ class _RewardscreenState extends State<Rewardscreen> {
   int objXp = 100;
 
   @override
+  /// Initializes user level and step data when the screen is loaded.
   void initState(){
       super.initState();
       getLevel();
@@ -106,7 +110,37 @@ Future<void> updateXp() async {
   }
 }
 
+<<<<<<< HEAD
 
+=======
+/// Retrieves the step details from Firestore based on the provided step index.
+Future<void> getStepByIndex() async {
+  try {
+    final projectId = widget.projet['id'];
+
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('Projects')
+        .doc(projectId)
+        .collection('Steps')
+        .get(); 
+
+    if (querySnapshot.docs.length > widget.stepIndex) {
+      final stepDoc = querySnapshot.docs[widget.stepIndex -1];
+      final stepData = stepDoc.data();
+    
+      setState(() {
+        stepName = stepData['name'] ?? "Nom non trouvé";
+        stepDesc = stepData['desc'] ?? "Description non trouvée";
+      });
+    } else {
+      stepName = "Aucune étape trouvée";
+    }
+  } catch (e) {
+    stepName = "❌ Erreur lors de la récupération du document : $e";
+  }
+}
+ /// Displays the main title of the screen.
+>>>>>>> main
   Widget _title(){
     return Center(
       child: Text(
@@ -121,7 +155,7 @@ Future<void> updateXp() async {
       ),
     );
   }
-
+  /// Displays the subtitle with the unlocked level.
   Widget _subTitle(){
     return Center(
       child: Text(
@@ -137,6 +171,48 @@ Future<void> updateXp() async {
     );
   }
 
+<<<<<<< HEAD
+=======
+  /// Displays the 3D slider with badges for the progress.
+  Widget _slider(){
+    return SizedBox(
+      height: 250,
+      child: Align(
+        child: Stack(
+          children: [
+            if(widget.stepIndex - 1 >= 0 && widget.stepIndex - 1 < Badges.length)
+            Positioned(
+              left: 10,
+              top: 60,
+              child: Image(
+                height: 120,
+                image: AssetImage(Badges[widget.stepIndex-1])
+              )
+            ),
+            if (widget.stepIndex + 1 < Badges.length)
+            Positioned(
+              right: 0,
+              top: 60,
+              child: Image(
+                height: 120,
+                image: AssetImage(Badges[widget.stepIndex+1])
+              )
+            ),
+            Positioned(
+              left: 115,
+              top: 25,
+              child: Image(
+                height: 200,
+                image: AssetImage(Badges[widget.stepIndex])
+              )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+>>>>>>> main
   /*
 ThreeDSlider(
       cards: Badges.asMap().entries.map((entry) {
@@ -170,6 +246,40 @@ ThreeDSlider(
       ),
   */
 
+<<<<<<< HEAD
+=======
+  /// Displays the title of the current project step.
+  Widget _stepTitle(){
+    return Center(
+      child: Text(
+        stepName,
+        style: GoogleFonts.montserrat(
+          textStyle: TextStyle(
+            color: Color(0xfffdfffd),
+            fontWeight: FontWeight.w600,
+            fontSize: 18
+          )
+        ),
+      ),
+    );
+  }
+
+  /// Displays the description of the current project step.
+  Widget _stepDesc(){
+    return Center(
+      child: Text(
+        stepDesc,
+        style: GoogleFonts.montserrat(
+          textStyle: TextStyle(
+            color: Color(0xffcad0cf).withOpacity(0.8),
+            fontWeight: FontWeight.w400,
+            fontSize: 15
+          )
+        ),
+      ),
+    );
+  }
+>>>>>>> main
 
 
   Widget _xpAdded(){
@@ -231,6 +341,7 @@ Widget _progressBar() {
   );
 }
 
+/// Displays the button to continue to the next screen or step.
 Widget _continueButton(){
   return ElevatedButton(
     onPressed: () {
@@ -263,7 +374,7 @@ Widget _continueButton(){
   );
 }
 
-
+/// Builds the entire rewards screen, including the scrollable content and back button.
 @override
 Widget build(BuildContext context) {
   return Scaffold(

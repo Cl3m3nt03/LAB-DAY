@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:makeitcode/widget/auth.dart';
 
+/// A function to retrieve the user's avatar from Firestore and decode it into a byte array.
 Future<Uint8List?> getUserAvatar(String uid) async {
   try {
     final userDoc =
@@ -21,6 +22,7 @@ Future<Uint8List?> getUserAvatar(String uid) async {
   return null;
 }
 
+/// A widget for selecting and editing a user's avatar.
 class EditAvatar extends StatefulWidget {
   final Function(File?, String?) onImageSelected;
 
@@ -30,10 +32,13 @@ class EditAvatar extends StatefulWidget {
   State<EditAvatar> createState() => _EditAvatarState();
 }
 
+/// The state class for managing the avatar editing logic.
 class _EditAvatarState extends State<EditAvatar> {
   File? _selectedImage;
   String? base64String;
   Uint8List? _avatarImage;
+
+  /// Picks an image from the gallery and encodes it into a base64 string.
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -49,7 +54,7 @@ class _EditAvatarState extends State<EditAvatar> {
       widget.onImageSelected(_selectedImage, base64String);
     }
   }
-
+  /// Requests permission to access photos if not already granted.
   Future<void> _requestPermission() async {
     var status = await Permission.photos.status;
     if (!status.isGranted) {
@@ -62,7 +67,7 @@ class _EditAvatarState extends State<EditAvatar> {
     super.initState();
     _loadAvatar();
   }
-
+  /// Loads the user's avatar from Firestore if available.
   Future<void> _loadAvatar() async {
     String? uid = Auth().currentUser?.uid;
     if (uid != null) {
@@ -76,6 +81,7 @@ class _EditAvatarState extends State<EditAvatar> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: _pickImage,
       child: CircleAvatar(
         radius: 50,

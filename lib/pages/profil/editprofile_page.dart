@@ -31,7 +31,7 @@ class EditCompte extends StatelessWidget {
   final TextEditingController EditPseudoController = TextEditingController();
   final TextEditingController EditEmailController = TextEditingController();
 
-  // Fonction pour mettre à jour la bio de l'utilisateur dans Firestore
+  // Function to update the user's bio in Firestore
   Future<void> updateUserBio(String uid) async {
     try {
       print('updateUserBio called with uid: $uid');
@@ -50,7 +50,7 @@ class EditCompte extends StatelessWidget {
     }
   }
 
-  // Fonction pour mettre à jour le pseudo de l'utilisateur dans Firestore
+  // Function to update the user's pseudo in Firestore
   Future<void> updateUserPseudo(String uid) async {
     try {
       print('updateUserPseudo called with uid: $uid');
@@ -69,7 +69,7 @@ class EditCompte extends StatelessWidget {
     }
   }
 
-  // Fonction pour mettre à jour l'email de l'utilisateur dans Firestore
+  // Function to update the user's email in Firestore
   Future<void> updateUserEmail(String newEmail, String password) async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -79,12 +79,12 @@ class EditCompte extends StatelessWidget {
         return;
       }
 
-      // Récupérer le fournisseur d'authentification
+      // Retrieve the authentication provider
       String providerId = user.providerData[0].providerId;
 
-      // Réauthentification requise avant la mise à jour de l'email
+      // Reauthentication required before updating email
       if (providerId == "password") {
-        // L'utilisateur s'est inscrit avec email/mot de passe
+        // The user registered with email/password
         AuthCredential credential = EmailAuthProvider.credential(
           email: user.email!,
           password: password,
@@ -115,11 +115,11 @@ class EditCompte extends StatelessWidget {
         return;
       }
 
-      // Mise à jour de l'email dans Firebase Auth
+      // Update email in Firebase Auth
       await user.updateEmail(newEmail);
       print("Email mis à jour dans Firebase Auth.");
 
-      // Mise à jour de l'email dans Firestore
+      // Update email in Firestore
       await FirebaseFirestore.instance
           .collection('Users')
           .doc(user.uid)
@@ -133,7 +133,7 @@ class EditCompte extends StatelessWidget {
     }
   }
 
-  // Fonction pour mettre à jour l'avatar de l'utilisateur dans Firestore
+  // Function to update the user's avatar in Firestore
   Future<void> updateUserAvatar(String uid, String? base64Avatar) async {
     try {
       print('updateUserAvatar called with uid: $uid');
@@ -299,10 +299,13 @@ class EditCompte extends StatelessWidget {
                           SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () async {
-                              final String uid =
-                                  FirebaseAuth.instance.currentUser?.uid ?? '';
+                              final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
                               if (_base64Avatar != null) {
                                 await updateUserAvatar(uid, _base64Avatar);
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => EditCompte()),
+                                );
                               } else {
                                 print('No avatar selected');
                               }

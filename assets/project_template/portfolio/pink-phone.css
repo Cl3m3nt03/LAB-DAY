@@ -1,0 +1,89 @@
+/* Modern CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Properties */
+:root {
+    --primary: #6d28d9;
+    --primary-dark: #5b21b6;
+    --primary-light: #8b5cf6;
+    --dark: #0f172a;
+    --darker: #020617;
+    --light: #94a3b8;
+    --accent: #22d3ee;
+    --surface: #1e293b;
+    --surface-dark: #0f172a;
+    --transition: all 0.3s ease;
+}
+
+/* Global Styles */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    min-width: 1200px;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: var(--light);
+    background: var(--darker);
+    background-image: 
+        radial-gradient(circle at 100% 0%, rgba(109, 40, 217, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(34, 211, 238, 0.03) 0%, transparent 50%);
+    overflow-x: auto;
+    width: 100%;
+    min-width: 1200px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    font-size: 3rem;
+    text-align: center;
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+section {
+    padding: 5rem 0;
+    width: 100%;
+}

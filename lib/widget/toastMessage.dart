@@ -21,7 +21,14 @@ import 'package:delightful_toast/delight_toast.dart';
 import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:delightful_toast/toast/utils/enums.dart';
 
+/// Utility class for displaying toast messages.
 class ToastMessage {
+
+  /// Displays a toast message with a success or error style.
+  /// 
+  /// - `context`: Build context.
+  /// - `message`: The message to display.
+  /// - `isError`: If `true`, displays an error toast; otherwise, a success toast.
   void showToast(BuildContext context, String message, {bool isError = false}) {
     DelightToastBar(
       autoDismiss: true,

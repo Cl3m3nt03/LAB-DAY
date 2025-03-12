@@ -5,6 +5,7 @@ import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
 import 'package:makeitcode/pages/games/projects/levelMap.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -18,6 +19,7 @@ class ProjectDetailPage extends StatefulWidget {
 
 class _ProjectDetailPageState extends State<ProjectDetailPage> {
   late final Stream<QuerySnapshot> _projectDetail;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   int _selectedIndex = 0;
 
   void _cheangeIndex(int index){
@@ -34,8 +36,26 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
     .collection('Projects')
     .where('name', isEqualTo: widget.projetName)
     .snapshots();
+    initProject();
    }
 
+Future<void> initProject() async {
+  final docRef = _firestore
+      .collection('Users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection("Projects")
+      .doc(widget.projetName);
+
+  final docSnapshot = await docRef.get();
+  if (!docSnapshot.exists) {
+    await docRef.set({
+      'title':"title",
+      'description':"description",
+      });
+  } else {
+  }
+}
+// Widget to render the project image poster with polygon shape.
 Widget _ImagePoster(){
   return Positioned(
             top: -150, 
@@ -63,6 +83,7 @@ Widget _ImagePoster(){
             ),
           );
 }
+// Widget for the back arrow icon with custom gradient style.
 
 Widget _backArrow(){
   return Padding(
@@ -94,6 +115,7 @@ Widget _backArrow(){
           );
 }
 
+// Widget for displaying project title and its details such as 'Gratuit' and rating.
 
 Widget _title(screenHeight){
   return Positioned(
@@ -153,6 +175,9 @@ Widget _title(screenHeight){
           );
 }
 
+
+
+// Widget to generate a selector for project steps, description, and reviews.
 
 Widget _selector(screenHeight) {
   // Textes des boutons
@@ -235,7 +260,7 @@ Widget _selector(screenHeight) {
   );
 }
 
-// Fonction pour calculer la largeur dynamique d'un bouton avec un padding
+// Helper function to calculate button width dynamically based on the text length.
 double _calculateButtonWidth(int index, List<String> buttonTexts) {
   final TextStyle textStyle = GoogleFonts.montserrat().copyWith(fontWeight: FontWeight.bold);
   final TextPainter textPainter = TextPainter(
@@ -246,6 +271,7 @@ double _calculateButtonWidth(int index, List<String> buttonTexts) {
 }
 
 
+// Widget to generate a step card with information about each project step.
 
 Widget _stepCard(step){
   return Container(
@@ -290,6 +316,7 @@ Widget _stepCard(step){
       ),
   );
 }
+// Widget to generate steps card from Firestore data.
 
 Widget _stepsCardGeneration() {
   return StreamBuilder<QuerySnapshot>(
@@ -344,8 +371,89 @@ Widget _stepsCardGeneration() {
     },
   );
 }
+// Widget to generate project description text from Firestore data.
 
-Widget _allStepsCard(screenHeight) {
+Widget _descriptionTextGeneration() {
+  return StreamBuilder<QuerySnapshot>(
+    stream: FirebaseFirestore.instance
+        .collection('Projects')
+        .where('name', isEqualTo: widget.projetName)
+        .snapshots(),
+    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      if (snapshot.hasError) {
+        return Center(child: Text('Erreur: ${snapshot.error}'));
+      }
+      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+        return const Center(child: Text('Aucun projet trouvé', style: TextStyle(color: Colors.white)));
+      }
+
+      // On prend le premier projet trouvé (supposant qu'un seul correspond au nom donné)
+      var project = snapshot.data!.docs.first.data()! as Map<String, dynamic>;
+      return Padding(
+        padding: const EdgeInsets.all(10),
+        child: _descriptionText(context , project['description'] ?? 'Pas de description disponible'),
+      );
+    },
+  );
+}
+
+// Widget to display description text with custom styling and gradient background.
+
+Widget _descriptionText(BuildContext context, String desc) {
+  return Align(
+    alignment: Alignment.center,
+    child: Container(
+      //constraints: const BoxConstraints(maxWidth: 300, maxHeight: 200), // Taille max
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromRGBO(141, 117, 179, 0.702),
+            Color.fromRGBO(70, 46, 109, 0.851)
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: Offset(3, 6),
+          ),
+          BoxShadow(
+            color: Colors.white.withOpacity(0.1),
+            blurRadius: 8,
+            spreadRadius: -2,
+            offset: Offset(-3, -3),
+          ),
+        ],
+      ),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Text(
+            desc,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 225, 240, 254),
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+// Widget to display all steps or description depending on the selected tab.
+
+Widget _allStepsCard(double screenHeight) {
   return Positioned(
     top: screenHeight / 1.6,
     left: (MediaQuery.of(context).size.width - 270) / 2,
@@ -353,13 +461,17 @@ Widget _allStepsCard(screenHeight) {
       height: 200,
       width: 270,
       child: _selectedIndex == 0
-          ? _stepsCardGeneration() // Affiche les étapes si le bouton "Etapes" est sélectionné
+          ? _stepsCardGeneration() // Affiche les étapes si "Etapes" est sélectionné
           : _selectedIndex == 1
-              ? Center(child: Text('Description du projet', style: TextStyle(color: Colors.white)))
-              : Center(child: Text('Avis des utilisateurs', style: TextStyle(color: Colors.white))),
+              ? _descriptionTextGeneration()
+              : const Center(
+                  child: Text('Avis des utilisateurs', style: TextStyle(color: Colors.white)),
+                ),
     ),
   );
 }
+
+
 
 Widget _confirmButton(screenHeight) {
   return Positioned(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 
+/// Search bar widget with a floating design, supporting query updates and user interactions.
 class Searchbar extends StatefulWidget {
   final searchBuilder;
   const Searchbar({super.key, required this.searchBuilder});
@@ -10,6 +11,7 @@ class Searchbar extends StatefulWidget {
   State<Searchbar> createState() => _SearchbarState();
 }
 
+/// Manages search input, displays suggestions, and handles user actions.
 class _SearchbarState extends State<Searchbar> {
 
   final FloatingSearchBarController controller = FloatingSearchBarController();
