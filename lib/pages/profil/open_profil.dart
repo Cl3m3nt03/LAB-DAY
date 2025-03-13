@@ -94,7 +94,6 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-
         SizedBox(
           width: MediaQuery.of(context).size.width*0.6,
           child:

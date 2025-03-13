@@ -266,7 +266,18 @@ final FocusNode _focusNodeEmail = FocusNode();
                                       EditEmailController.text, password);
                                 });
                               }
-                            },
+                         
+                            if (_base64Avatar != null) {
+                              await updateUserAvatar(uid, _base64Avatar);
+                            } else {
+                              print('No avatar selected');
+                            }
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditCompte()),
+                            );
+                          },
                             style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(249, 153, 120, 67),
                             shape: RoundedRectangleBorder(
@@ -277,31 +288,6 @@ final FocusNode _focusNodeEmail = FocusNode();
                               "Enregistrer les modifications",
                                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 13,color: Colors.white),),
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          ElevatedButton(
-                            onPressed: () async {
-                              final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
-                              if (_base64Avatar != null) {
-                                await updateUserAvatar(uid, _base64Avatar);
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => EditCompte()),
-                                );
-                              } else {
-                                print('No avatar selected');
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(249, 153, 120, 67),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            ),
-                            child: Text(
-                              "Enregistrer l'avatar",
-                                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 13,color: Colors.white),),                      
-                                ),
                           ),
                         ],
                       ),
