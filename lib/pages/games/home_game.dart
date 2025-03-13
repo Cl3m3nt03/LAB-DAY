@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:makeitcode/pages/games/gamePendu/GamePendu.dart';
+import 'package:makeitcode/pages/games/projects/glossary_page.dart';
 import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dart';
-
+import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 class HomeGamePage extends StatefulWidget {
   @override
   _HomeGamePageState createState() => _HomeGamePageState();
@@ -39,6 +40,26 @@ class _HomeGamePageState extends State<HomeGamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      actions: [
+      IconButton(
+        icon: Icon(Icons.book),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => GlossaryPage()),
+          );
+        },
+      ),
+    ],
+    leading: IconButton(
+      icon: Icon(Icons.leaderboard),
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ClassementPage()),
+          );
+      },
+    ),
         title: Text(
           'Nos Jeux',
           style: GoogleFonts.montserrat(

@@ -12,32 +12,8 @@ class GlossaryPage extends StatefulWidget {
   }
 }
 
-/// State for GlossaryPage, handles button press and navigation.
-class _GlossaryPage extends State<GlossaryPage> {
-  /// Handles button press and navigates to GlossaryContentPage.
-  void onButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => GlossaryContentPage()),
-    );
-  }
-  /// Builds the floating action button for navigating to the glossary content page.
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-        onPressed: onButtonPressed,
-        backgroundColor: Color.fromARGB(255, 209, 223, 255),
-        foregroundColor: Color(0xFF5E4F73),
-        elevation: 1,
-        child: const Icon(Icons.menu_book, size: 30),
-      );
-  }
-}
-
-
 /// Glossary content page displaying glossary items and descriptions.
-class GlossaryContentPage extends StatelessWidget {
+class _GlossaryPage extends State<GlossaryPage> {
   /// Builds the GlossaryContentPage layout with a gradient background and glossary items.
   @override
   Widget build(BuildContext context) {

@@ -255,7 +255,6 @@ Widget build(BuildContext context) {
       backgroundColor: Color.fromARGB(255, 11, 22, 44),
       centerTitle: true,
     ),
-    floatingActionButton: GlossaryPage(),
     resizeToAvoidBottomInset: false,
     body: Stack(
       children: [

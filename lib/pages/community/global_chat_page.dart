@@ -237,7 +237,6 @@ void getpseudo() async {
         actions: [
           IconButton(
             icon: Icon(Icons.message, color: Colors.white),
-            padding: EdgeInsets.only(right: 40),
             onPressed: () {
               Navigator.push(
                 context,
@@ -248,15 +247,6 @@ void getpseudo() async {
             },
           ),
         ],
-        leading: IconButton(
-          icon: Icon(Icons.bug_report, color: Colors.white),
-          onPressed: () {
-                 Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GameLogic(userId: uid, currentStep: 1, onStepValidated: (bool ) {  },)),
-              );
-          },
-        ),
       ),
       body: Stack(
         children: [

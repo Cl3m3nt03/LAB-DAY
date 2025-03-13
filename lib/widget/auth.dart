@@ -118,7 +118,7 @@ Future<void> signInWithGoogle( context) async {
   } catch (e) {
     toast.showToast(context, 'Une erreur inattendue est survenue.', isError: true);
   }
-}
+} 
   // Signs the current user out.
   Future<void> signOut() async{
     await _auth.signOut();

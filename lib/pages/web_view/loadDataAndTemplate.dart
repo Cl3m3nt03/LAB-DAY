@@ -64,38 +64,11 @@ String _replaceData(String htmlContent, Map<String, dynamic> userData, String cs
       }
     } catch (e) {
       print("Erreur lors de la récupération des données : $e");
-      await _initProject(userId);
       return await _getUserDataFromFirestore(userId); 
     }
   }
 
-  Future _initProject(userId) async {
-    await FirebaseFirestore.instance.collection('Users').doc(userId).collection('Portfolio').doc('data').set({
-      'Structure de base': '',
-      'Nom par défaut': 'Nom par défaut',
-      'À propos par défaut': 'À propos par défaut',
-      'Email par défaut': 'Email par défaut',
-      'Téléphone par défaut': 'Téléphone par défaut',
-      'Compétence 1': 'Compétence 1',
-      'Compétence 2': 'Compétence 2',
-      'Projet 1': 'Projet 1',
-      'Projet 2': 'Projet 2',
-      'Ajout d\'une image': 'Image par défaut',
-      'Ajout de liens externes': 'Lien par défaut',
-      "Ajout d'un lien vers GitHub": 'Lien par défaut',
-      'Tableau des compétences':'Tableau par défaut',
-      "Ajout d'une section 'Compétences techniques'": 'Section par défaut',
-      'Ajout d\'une liste de projets': 'Liste par défaut',
-      'Section de témoignages': 'Section par défaut',
-      "Ajout d'un formulaire de contact": 'Formulaire par défaut',
-      "Ajout d'un bouton 'Retour en haut'" : 'Bouton par défaut',
-      'Footer': 'Footer par défaut',
-      'Finalisation du portfolio': 'Finalisation par défaut',
-      'css': 'dark'
-    });
 
-    return;
-  }
 }
 
 

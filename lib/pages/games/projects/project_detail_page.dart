@@ -27,7 +27,46 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
         _selectedIndex = index;
       });
   }
+  Future _initData(userId) async {
+    final docRef = FirebaseFirestore.instance.collection('Users').doc(userId).collection('Portfolio').doc('data');
+    final docSnapshot = await docRef.get();
 
+    if (!docSnapshot.exists) {
+      await docRef.set({
+        'Structure de base': '',
+        'Nom par défaut': 'Nom par défaut',
+        'À propos par défaut': 'À propos par défaut',
+        'Email par défaut': 'Email par défaut',
+        'Téléphone par défaut': 'Téléphone par défaut',
+        'Compétence 1': 'Compétence 1',
+        'Compétence 2': 'Compétence 2',
+        'Projet 1': 'Projet 1',
+        'Projet 2': 'Projet 2',
+        'Ajout d\'une image': 'Image par défaut',
+        'Ajout de liens externes': 'Lien par défaut',
+        "Ajout d'un lien vers GitHub": 'Lien par défaut',
+        'Tableau des compétences':'Tableau par défaut',
+        "Ajout d'une section 'Compétences techniques'": 'Section par défaut',
+        'Ajout d\'une liste de projets': 'Liste par défaut',
+        'Section de témoignages': 'Section par défaut',
+        "Ajout d'un formulaire de contact": 'Formulaire par défaut',
+        "Ajout d'un bouton 'Retour en haut'" : 'Bouton par défaut',
+        'Footer': 'Footer par défaut',
+        'Finalisation du portfolio': 'Finalisation par défaut',
+        'css': 'dark'
+      });
+    }
+  }
+    Future _initLevelMap(userId) async {
+    final docRef = FirebaseFirestore.instance.collection('Users').doc(userId).collection('Portfolio').doc('levelMap');
+    final docSnapshot = await docRef.get();
+
+    if (!docSnapshot.exists) {
+      await docRef.set({
+        'currentStep': 1,
+      });
+    }
+  }
   @override
    void initState(){
     super.initState();
@@ -503,6 +542,8 @@ Widget _confirmButton(screenHeight) {
             // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
             projectData['id'] = projectId;
 
+            await _initData(FirebaseAuth.instance.currentUser!.uid);
+            await _initLevelMap(FirebaseAuth.instance.currentUser!.uid);
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -534,6 +575,8 @@ Widget _confirmButton(screenHeight) {
     ),
   );
 }
+
+
 
   @override
   Widget build(BuildContext context) {

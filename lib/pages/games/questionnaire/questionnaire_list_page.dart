@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'package:makeitcode/widget/customRadioTile.dart';
-import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
+import 'package:makeitcode/pages/games/projects/glossary_page.dart';
+
+
 import 'package:google_fonts/google_fonts.dart';
 
 /// Widget for displaying the list of questionnaires with their details.
@@ -42,24 +44,12 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
     }
     }
     /// Navigates to the ranking page when the button is pressed.
-    void onButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ClassementPage()),
-    );
-  }
+
   /// Builds the UI for displaying the list of questionnaires, including a floating action button and app bar.
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-        onPressed: onButtonPressed,
-        backgroundColor: Color.fromARGB(255, 209, 223, 255),
-        foregroundColor: Color(0xFF5E4F73),
-        tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events, size: 30,),
-      ), 
       appBar: AppBar(
       title: Text('QUESTIONNAIRE',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),),
       centerTitle: true,
