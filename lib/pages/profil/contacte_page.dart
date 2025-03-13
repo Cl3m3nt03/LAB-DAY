@@ -32,12 +32,9 @@ class _ContactePageState extends State<ContactePage> {
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
-      body: Center(
-        child:SingleChildScrollView(
-          child:
-        Column(
-          children: [
-              Container(height: MediaQuery.of(context).size.height,
+      body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-MediaQuery.of(context).padding.top,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
@@ -49,7 +46,8 @@ class _ContactePageState extends State<ContactePage> {
                     radius: 0.8,
                   ),
                 ),
-                child: Column(
+                  child:
+                Column(
                   children: [
                     Divider(
                       thickness: 1.5,
@@ -74,11 +72,14 @@ class _ContactePageState extends State<ContactePage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                     ElevatedButton(
                       onPressed: () async {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(250, 175, 142, 88),
+                        backgroundColor: Color.fromARGB(249, 153, 120, 67),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                       child: Text(
                         "Envoyer le message",
@@ -87,11 +88,8 @@ class _ContactePageState extends State<ContactePage> {
                     ),
                   ],
                 ),
-              ),
-          ],
+           ),
         ),
-      ),
-      ),
     );
   }
 }

@@ -94,18 +94,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-        Text(
-          name.isNotEmpty ? name : 'Loading...',
-          style: GoogleFonts.aBeeZee(
-            textStyle: TextStyle(
-              color: Colors.white,
-              fontSize: 30,
-              fontWeight: FontWeight.w700
-            )
-          ),
 
-        ),
-        SizedBox(height: 10),
         SizedBox(
           width: MediaQuery.of(context).size.width*0.6,
           child:
@@ -382,6 +371,21 @@ Widget _Museum(){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+        title:Text(
+          'Profil de $name',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 22,
+                color: Colors.white),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+      ),
       body: Stack(
          children: [
           Container(
@@ -400,43 +404,7 @@ Widget _Museum(){
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
-                      height: 120,
-                      width: MediaQuery.of(context).size.width - 20,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 20),
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: Icon(Icons.arrow_back_ios,
-                                    color: Colors.white),
-                              ),
-                              Text(
-                                "Profil",
-                                style: TextStyle(
-                                  color: const Color.fromARGB(250, 175, 142, 88),
-                                  fontSize: 30,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10),
-                            child: Divider(
-                              thickness: 1.5,
-                              color: Colors.white.withOpacity(0.5),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(

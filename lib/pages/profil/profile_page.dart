@@ -45,6 +45,8 @@ Future<Uint8List?> getUserAvatar(String uid) async {
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+  
+  
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -84,12 +86,24 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+            appBar: AppBar(
+        title:Text(
+          'Paramètres',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 22,
+                color: Colors.white),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+      ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height,
+        child: Container(
+                height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-MediaQuery.of(context).padding.top,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
@@ -107,31 +121,25 @@ class _ProfilePageState extends State<ProfilePage> {
                     // Displays the user's avatar and pseudo fetched from Firebase
                     child: Column(
                       children: [
+                        Divider(
+                        thickness: 1.5,
+                        color: Colors.white.withOpacity(0.5),
+                        ),
                         Container(
-                          height: 150,
+                          height: 100,
                           width: MediaQuery.of(context).size.width - 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20),
                               bottomRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
                             ),
                             color: const Color.fromRGBO(24, 37, 63, 0.4),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              SizedBox(height: 20),
-                              Text(
-                                "Profil",
-                                style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                    color: Color.fromARGB(250, 175, 142, 88),
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Divider(),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -212,8 +220,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all<Color>(
-                                              const Color.fromARGB(
-                                                  250, 175, 142, 88)),
+                                              const Color.fromARGB(249, 153, 120, 67)),
                                       foregroundColor:
                                           MaterialStateProperty.all<Color>(
                                               Colors.white),
@@ -226,7 +233,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       );
                                     },
                                     child: Text(
-                                      'Edit Profil',
+                                      'Mon Compte',
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                           color: Colors.white,
@@ -457,7 +464,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 100),
+                              SizedBox(height: 50),
                             ],
                           ),
                         )
@@ -465,11 +472,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ),
-              ),
-            ],
+
           ),
         ),
-      ),
-    );
+      );
   }
 }

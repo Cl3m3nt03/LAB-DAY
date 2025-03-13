@@ -19,10 +19,27 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title:Text(
+          'Paramètres',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 22,
+                color: Colors.white),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           children: [
-              // Background gradient container
+            Expanded(
+              child:
               Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -39,61 +56,11 @@ class _SettingsPageState extends State<SettingsPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Header with back button and title
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Container(
-                          height: 110,
-                          width: MediaQuery.of(context).size.width ,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                            color: const Color.fromRGBO(24, 37, 63, 0.4),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(Icons.arrow_back_ios,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    "Settings",
-                                    style: GoogleFonts.montserrat(
-                                      textStyle: TextStyle(
-                                        color:
-                                            Color.fromARGB(250, 175, 142, 88),
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Divider(
-                                  thickness: 1.5,
-                                  color: Colors.white.withOpacity(0.5),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    Divider(
+                      thickness: 1.5,
+                      color: Colors.white.withOpacity(0.5),
                     ),
-                    SizedBox(height: 110),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
@@ -241,6 +208,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ],
                 ),
               ),
+            ),
             ),
           ],
         ),

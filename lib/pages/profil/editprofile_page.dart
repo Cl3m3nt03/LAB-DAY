@@ -31,6 +31,15 @@ class EditCompte extends StatelessWidget {
   final TextEditingController EditPseudoController = TextEditingController();
   final TextEditingController EditEmailController = TextEditingController();
 
+  final ScrollController _scrollController = ScrollController();
+final FocusNode _focusNodePrenom = FocusNode();
+final FocusNode _focusNodeNom = FocusNode();
+final FocusNode _focusNodeNumber = FocusNode();
+final FocusNode _focusNodeBio = FocusNode();
+final FocusNode _focusNodePseudo = FocusNode();
+final FocusNode _focusNodeEmail = FocusNode();
+
+
   // Function to update the user's bio in Firestore
   Future<void> updateUserBio(String uid) async {
     try {
@@ -168,10 +177,23 @@ class EditCompte extends StatelessWidget {
   Widget build(BuildContext context) {
     final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-              Container(
+        appBar: AppBar(
+        title:Text(
+          'Informations',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 22,
+                color: Colors.white),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+              child :Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
@@ -185,68 +207,26 @@ class EditCompte extends StatelessWidget {
                   ),
                 ),
               child: SingleChildScrollView(
+
                 child: Column(
                   children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Container(
-                          height: 150,
-                          width: MediaQuery.of(context).size.width - 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                            color: const Color.fromRGBO(24, 37, 63, 0.4),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(Icons.arrow_back_ios,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    "Modifier Profil",
-                                    style: GoogleFonts.montserrat(textStyle:TextStyle(
-                                      color: Color.fromARGB(250, 175, 142, 88),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Divider(
-                                  thickness: 1.5,
-                                  color: Colors.white.withOpacity(0.5),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                     Divider(
+                      thickness: 1.5,
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
                         Positioned(
                           bottom: -50,
                           left: MediaQuery.of(context).size.width / 2 - 65,
                           child: EditAvatar(onImageSelected: _onAvatarSelected),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 90),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
+                      child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child:
+                      Column(
                         children: [
                           EntryField(
                             title: 'Pseudo',
@@ -288,8 +268,10 @@ class EditCompte extends StatelessWidget {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color.fromARGB(250, 175, 142, 88),
+                            backgroundColor: Color.fromARGB(249, 153, 120, 67),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                        ),
                             ),
                             child: Text(
                               "Enregistrer les modifications",
@@ -311,8 +293,10 @@ class EditCompte extends StatelessWidget {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color.fromARGB(250, 175, 142, 88),
+                            backgroundColor: Color.fromARGB(249, 153, 120, 67),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             ),
                             child: Text(
                               "Enregistrer l'avatar",
@@ -322,13 +306,12 @@ class EditCompte extends StatelessWidget {
                         ],
                       ),
                     ),
+                    ),
                   ],
                 ),
               ),
             ),
-          ],
         ),
-      ),
-    );
+      ); 
   }
 }

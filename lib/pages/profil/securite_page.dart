@@ -16,11 +16,25 @@ class _SecuritePageState extends State<SecuritePage> {
   Widget build(BuildContext context) {
     // Background gradient container
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
+      appBar: AppBar(
+        title:Text(
+          'Sécurité',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 22,
+                color: Colors.white),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+      ),
+      body:  SingleChildScrollView(
+              child:
               Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-MediaQuery.of(context).padding.top,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
@@ -32,70 +46,18 @@ class _SecuritePageState extends State<SecuritePage> {
                     radius: 0.8,
                   ),
                 ),
-                // Scrollable area for content
-              child: SingleChildScrollView(
+                // 
                 child: Column(
                   children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Container(
-                          height: 110,
-                          width: MediaQuery.of(context).size.width - 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                            color: const Color.fromRGBO(24, 37, 63, 0.4),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(Icons.arrow_back_ios,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    "Modifier Mot de Passe",
-                                    style: GoogleFonts.montserrat(textStyle:TextStyle(
-                                      color: Color.fromARGB(250, 175, 142, 88),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Divider(
-                                  thickness: 1.5,
-                                  color: Colors.white.withOpacity(0.5),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      Divider(
+                      thickness: 1.5,
+                      color: Colors.white.withOpacity(0.5),
                     ),
-                    SizedBox(height: 120),
-                    // Intégration de ton widget ici
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                     UpdatePasswordWidget(),
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -124,6 +86,7 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
+      child : SingleChildScrollView(
       child: Column(
         children: [
           EntryField(
@@ -132,21 +95,21 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
             prefixIcons: Icons.lock,
             height: 20,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
           EntryField(
             controller: newPasswordController,
             title: 'Nouveau Mot de Passe',
             prefixIcons: Icons.lock,
             height: 20,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
           EntryField(
             controller: confirmPasswordController,
             title: 'Confirmer le Mot de Passe',
             prefixIcons: Icons.lock,
             height: 20,
           ),
-          SizedBox(height: 30),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
           ElevatedButton(
             onPressed: () async {
               final oldPassword = lastPasswordController.text.trim();
@@ -197,15 +160,19 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(250, 175, 142, 88),
+            backgroundColor: Color.fromARGB(249, 153, 120, 67),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              ),
             ),
             child: Text(
-              'Confirmer',
+              'Modifier son mot de passe',
                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 14,color: Colors.white),),                      
             ),
           ),
         ],
       ),
+      ), 
     );
   }
 }
