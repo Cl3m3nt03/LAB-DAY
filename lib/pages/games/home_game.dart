@@ -61,7 +61,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
       },
     ),
         title: Text(
-          'Nos Jeux',
+          'NOS JEUX',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
                 fontWeight: FontWeight.bold,

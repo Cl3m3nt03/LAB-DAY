@@ -88,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
             appBar: AppBar(
         title:Text(
-          'Paramètres',
+          'PARAMÈTRES',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
                 fontWeight: FontWeight.bold,
