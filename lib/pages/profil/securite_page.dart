@@ -12,7 +12,9 @@ class SecuritePage extends StatefulWidget {
 }
 
 class _SecuritePageState extends State<SecuritePage> {
-  @override
+  bool isPasswordVisible = true;
+
+    @override
   Widget build(BuildContext context) {
     // Background gradient container
     return Scaffold(
@@ -64,15 +66,17 @@ class _SecuritePageState extends State<SecuritePage> {
 }
 
 class UpdatePasswordWidget extends StatefulWidget {
+
   @override
   _UpdatePasswordWidgetState createState() => _UpdatePasswordWidgetState();
 }
 
 class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
+
+      
   final TextEditingController lastPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController =TextEditingController();
 
   @override
   void dispose() {
@@ -109,6 +113,8 @@ class _UpdatePasswordWidgetState extends State<UpdatePasswordWidget> {
             prefixIcons: Icons.lock,
             height: 20,
           ),
+
+     
           SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
           ElevatedButton(
             onPressed: () async {

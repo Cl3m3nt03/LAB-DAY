@@ -22,12 +22,12 @@ class _EntryFieldState extends State<EntryField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
-      obscureText: widget.title == 'Mot de passe' ? isPasswordVisible : false || widget.title == 'Confirmer le mot de passe' ? isPasswordVisible : false,
+      obscureText: widget.title == 'Mot de passe'  ? isPasswordVisible : false || widget.title == 'Confirmer le mot de passe' ? isPasswordVisible : false || widget.title == 'Confirmer le Mot de Passe' ? isPasswordVisible : false || widget.title == 'Nouveau Mot de Passe' ? isPasswordVisible : false || widget.title == 'Ancien Mot de Passe' ? isPasswordVisible : false,
       style: TextStyle(
         color: Colors.white,
       ),
       decoration: InputDecoration(
-        suffixIcon: widget.title == 'Mot de passe' || widget.title == 'Confirmer le mot de passe'
+        suffixIcon: widget.title == 'Mot de passe' || widget.title == 'Confirmer le mot de passe' || widget.title == 'Confirmer le Mot de Passe' || widget.title == 'Nouveau Mot de Passe' || widget.title == 'Ancien Mot de Passe'
             ? IconButton(
                 onPressed: () {
                   setState(() {
