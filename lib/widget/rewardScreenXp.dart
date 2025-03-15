@@ -9,19 +9,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 /// Screen that displays the user's progress, step details, and rewards for a project.
-class Rewardscreen extends StatefulWidget {
-  final int stepIndex;
+class RewardscreenXp extends StatefulWidget {
   final int xpToAdd;
-  const Rewardscreen({super.key, required this.stepIndex, required this.xpToAdd});
+  const RewardscreenXp({super.key, required this.xpToAdd});
 
   @override
-  State<Rewardscreen> createState() => _RewardscreenState();
+  State<RewardscreenXp> createState() => _RewardscreenXpState();
 
   static void updateXp(int i) {}
 }
 
-/// Manages the state of the Rewardscreen, including level, XP, and project step details.
-class _RewardscreenState extends State<Rewardscreen> {
+/// Manages the state of the RewardscreenXp, including level, XP, and project step details.
+class _RewardscreenXpState extends State<RewardscreenXp> {
 
   int lvl = 0;
   int xp = 0;
@@ -121,21 +120,6 @@ Future<void> updateXp() async {
             fontWeight: FontWeight.w700,
             fontSize: 34,
             color: Color(0xfffdfffd)
-          )
-        ),
-      ),
-    );
-  }
-  /// Displays the subtitle with the unlocked level.
-  Widget _subTitle(){
-    return Center(
-      child: Text(
-        'Etape ${widget.stepIndex +1} débloqué',
-        style: GoogleFonts.sora(
-          textStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 15,
-            color: Color(0xffd4b394)
           )
         ),
       ),
@@ -311,8 +295,6 @@ Widget build(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.center, // Centre le contenu verticalement
               children: [
                 _title(),
-                SizedBox(height: 10),
-                _subTitle(),
                 SizedBox(height: 20),
                 _stepTitle(),
                 SizedBox(height: 8),
