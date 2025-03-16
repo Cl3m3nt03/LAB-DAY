@@ -1,0 +1,303 @@
+[
+    {
+      "question": "Quel est le type de données pour une chaîne de caractères en C# ?",
+      "options": [
+        {"text": "string"},
+        {"text": "char"},
+        {"text": "text"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En C#, les chaînes de caractères sont représentées par le type 'string'."},
+      "xp": 25
+    },
+    {
+      "question": "Comment déclarer une variable en C# ?",
+      "options": [
+        {"text": "int variable = 10;"},
+        {"text": "variable int = 10;"},
+        {"text": "let variable = 10;"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En C#, on déclare une variable en spécifiant son type, suivi du nom et de la valeur, comme 'int variable = 10;'."},
+      "xp": 25
+    },
+    {
+      "question": "Comment faire une comparaison d'égalité en C# ?",
+      "options": [
+        {"text": "=="},
+        {"text": "==="},
+        {"text": "="}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En C#, l'opérateur '==' est utilisé pour comparer l'égalité."},
+      "xp": 25
+    },
+    {
+      "question": "Quelle est la méthode pour vérifier le type d'une variable en C# ?",
+      "options": [
+        {"text": "typeof()"},
+        {"text": "is()"},
+        {"text": "type()"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En C#, la fonction 'typeof()' permet de récupérer le type d'une variable."},
+      "xp": 25
+    },
+    {
+      "question": "Quel est le résultat de l'expression '5 + \"5\"' en C# ?",
+      "options": [
+        {"text": "'55'"},
+        {"text": "10"},
+        {"text": "Erreur"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, l'addition d'un nombre et d'une chaîne va entraîner la concaténation des deux éléments, ce qui donne '55'."},
+      "xp": 25
+    },
+    {
+      "question": "Comment définir une fonction en C# ?",
+      "options": [
+        {"text": "void MaFonction() {}"},
+        {"text": "function MaFonction() {}"},
+        {"text": "def MaFonction() {}"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En C#, une fonction est définie avec 'void' pour une fonction sans retour, comme 'void MaFonction() {}'."},
+      "xp": 25
+    },
+    {
+      "question": "Comment créer un objet en C# ?",
+      "options": [
+        {"text": "Objet obj = new Classe();"},
+        {"text": "Classe obj = new Classe();"},
+        {"text": "obj = new Classe();"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, un objet est créé avec le mot-clé 'new', comme 'Objet obj = new Classe();'."},
+      "xp": 25
+    },
+    {
+      "question": "Quel est le rôle de 'Console.WriteLine()' en C# ?",
+      "options": [
+        {"text": "Afficher un message dans la console"},
+        {"text": "Lire une entrée utilisateur"},
+        {"text": "Retourner une valeur"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "'Console.WriteLine()' permet d'afficher un message ou une variable dans la console en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Quelle méthode C# permet d'ajouter un élément à une liste ?",
+      "options": [
+        {"text": "Add()"},
+        {"text": "Append()"},
+        {"text": "Push()"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, on utilise 'Add()' pour ajouter un élément à une liste."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait l'instruction 'return' dans une fonction C# ?",
+      "options": [
+        {"text": "Retourne une valeur depuis la fonction"},
+        {"text": "Arrête l'exécution de la fonction"},
+        {"text": "Les deux précédentes"}
+      ],
+      "solved": 2,
+      "selected": null,
+      "explication": {"text": "'return' permet de renvoyer une valeur depuis une fonction et d'arrêter son exécution."},
+      "xp": 25
+    },
+    {
+      "question": "Comment accéder à un élément d'une liste en C# ?",
+      "options": [
+        {"text": "liste[0]"},
+        {"text": "liste.Get(0)"},
+        {"text": "liste(0)"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, on accède à un élément d'une liste en utilisant un indice, comme 'liste[0]'."},
+      "xp": 25
+    },
+    {
+      "question": "Comment déclarer une constante en C# ?",
+      "options": [
+        {"text": "const int CONSTANTE = 10;"},
+        {"text": "final int CONSTANTE = 10;"},
+        {"text": "let CONSTANTE = 10;"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, une constante est déclarée avec le mot-clé 'const', comme 'const int CONSTANTE = 10;'."},
+      "xp": 25
+    },
+    {
+      "question": "Comment supprimer un élément d'une liste en C# ?",
+      "options": [
+        {"text": "Remove()"},
+        {"text": "Pop()"},
+        {"text": "Delete()"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, on utilise 'Remove()' pour supprimer un élément spécifique d'une liste."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait la méthode 'Split()' en C# ?",
+      "options": [
+        {"text": "Divise une chaîne en une liste"},
+        {"text": "Concatène des chaînes"},
+        {"text": "Enlève les espaces d'une chaîne"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'Split()' divise une chaîne de caractères en un tableau basé sur un séparateur en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Quel est le résultat de l'expression '10 == 10.0' en C# ?",
+      "options": [
+        {"text": "True"},
+        {"text": "False"},
+        {"text": "Erreur"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, '10' et '10.0' sont considérés comme égaux, donc l'expression renvoie 'True'."},
+      "xp": 25
+    },
+    {
+      "question": "Quel est le rôle de 'break' en C# ?",
+      "options": [
+        {"text": "Sortir d'une boucle"},
+        {"text": "Passer à l'itération suivante"},
+        {"text": "Retourner une valeur"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'break' permet de sortir d'une boucle en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait l'instruction 'continue' en C# ?",
+      "options": [
+        {"text": "Passe à l'itération suivante d'une boucle"},
+        {"text": "Sort de la boucle"},
+        {"text": "Retourne une valeur"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "'continue' permet de passer à l'itération suivante d'une boucle en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Comment créer une liste en C# ?",
+      "options": [
+        {"text": "List<int> liste = new List<int>();"},
+        {"text": "var liste = List<int>();"},
+        {"text": "let liste = List<int>();"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, une liste se crée avec le mot-clé 'List<T>', comme 'List<int> liste = new List<int>();'."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait l'opérateur '&&' en C# ?",
+      "options": [
+        {"text": "Opérateur logique 'ET'"},
+        {"text": "Opérateur de comparaison"},
+        {"text": "Opérateur logique 'OU'"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'&&' est l'opérateur logique 'ET' en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Comment déclarer un dictionnaire en C# ?",
+      "options": [
+        {"text": "Dictionary<string, int> dict = new Dictionary<string, int>();"},
+        {"text": "Dictionary dict = new Dictionary();"},
+        {"text": "dict = new Dictionary<string, int>();"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En C#, un dictionnaire est créé avec le mot-clé 'Dictionary', comme 'Dictionary<string, int> dict = new Dictionary<string, int>();'."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait la méthode 'Remove()' sur un dictionnaire en C# ?",
+      "options": [
+        {"text": "Supprime une clé et retourne sa valeur"},
+        {"text": "Fusionne deux dictionnaires"},
+        {"text": "Ajoute une clé au dictionnaire"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'Remove()' supprime une clé d'un dictionnaire en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Quel est le rôle de 'null' en C# ?",
+      "options": [
+        {"text": "Représenter l'absence de valeur"},
+        {"text": "Représenter un objet vide"},
+        {"text": "Représenter une erreur"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'null' représente l'absence de valeur ou l'absence d'objet en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Quelle fonction permet de lire l'entrée utilisateur en C# ?",
+      "options": [
+        {"text": "Console.ReadLine()"},
+        {"text": "Read()"},
+        {"text": "Get()"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "La fonction 'Console.ReadLine()' permet de lire l'entrée de l'utilisateur."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait l'instruction 'throw' en C# ?",
+      "options": [
+        {"text": "Lance une exception"},
+        {"text": "Affiche une erreur"},
+        {"text": "Arrête un processus"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'throw' permet de lancer une exception en C#."},
+      "xp": 25
+    },
+    {
+      "question": "Que fait la méthode 'Join()' en C# ?",
+      "options": [
+        {"text": "Fusionne une liste en une chaîne"},
+        {"text": "Divise une chaîne en une liste"},
+        {"text": "Ajoute un élément à une liste"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'Join()' permet de fusionner les éléments d'une liste en une chaîne de caractères."},
+      "xp": 25
+    }
+  ]
+  

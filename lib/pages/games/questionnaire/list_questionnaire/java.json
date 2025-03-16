@@ -1,1902 +1,326 @@
 [
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    },
-    {
-      "question": "Quelle est l'extension d'un fichier Java ?",
-      "options": [
-        {
-          "text": ".java"
-        },
-        {
-          "text": ".jav"
-        },
-        {
-          "text": ".jv"
-        }
-      ],
-      "solved": 0,
-      "selected": null,
-      "explication": {
-        "text": "Les fichiers Java ont l'extension .java."
-      }
-    },
-    {
-      "question": "Quelle est la taille d'un entier (int) en Java ?",
-      "options": [
-        {
-          "text": "8 bits"
-        },
-        {
-          "text": "16 bits"
-        },
-        {
-          "text": "32 bits"
-        }
-      ],
-      "solved": 2,
-      "selected": null,
-      "explication": {
-        "text": "En Java, un entier (int) est codé sur 32 bits."
-      }
-    },
-    {
-      "question": "Quelle est la méthode pour afficher un message en Java ?",
-      "options": [
-        {
-          "text": "System.display()"
-        },
-        {
-          "text": "System.out.print()"
-        },
-        {
-          "text": "System.out.write()"
-        }
-      ],
-      "solved": 1,
-      "selected": null,
-      "explication": {
-        "text": "La méthode System.out.print() affiche un message à la console en Java."
-      }
-    }
-  ]
+  {
+    "question": "Quel est le type de données pour une chaîne de caractères en Java ?",
+    "options": [
+      {"text": "String"},
+      {"text": "Text"},
+      {"text": "Char"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Le type de données pour une chaîne de caractères est 'String' en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Comment déclarer une variable en Java ?",
+    "options": [
+      {"text": "int variable;"},
+      {"text": "variable = 10;"},
+      {"text": "let variable;"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "On déclare une variable avec un type de données suivi du nom de la variable, comme 'int variable;' en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Quel opérateur est utilisé pour la comparaison d'égalité stricte en Java ?",
+    "options": [
+      {"text": "=="},
+      {"text": "==="},
+      {"text": "="}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "En Java, l'opérateur '==' est utilisé pour la comparaison d'égalité, mais il compare les valeurs, pas les types."},
+    "xp": 20
+  },
+  {
+    "question": "Quelle méthode Java permet de vérifier le type d'une variable ?",
+    "options": [
+      {"text": "instanceof"},
+      {"text": "typeof()"},
+      {"text": "getClass()"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La méthode 'getClass()' permet de vérifier le type d'un objet en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est le résultat de l'expression '5 + \"5\"' en Java ?",
+    "options": [
+      {"text": "10"},
+      {"text": "'55'"},
+      {"text": "Erreur"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "En Java, l'opérateur '+' entre un nombre et une chaîne concatène les valeurs, donnant '55'."},
+    "xp": 20
+  },
+  {
+    "question": "Comment déclarer une fonction en Java ?",
+    "options": [
+      {"text": "public void maFonction() {}"},
+      {"text": "function maFonction() {}"},
+      {"text": "void maFonction() {}"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "En Java, une fonction est déclarée avec un type de retour et un nom, comme 'public void maFonction() {}'."},
+    "xp": 20
+  },
+  {
+    "question": "Comment créer un objet en Java ?",
+    "options": [
+      {"text": "Objet obj = new Objet();"},
+      {"text": "let obj = new Objet();"},
+      {"text": "Object obj = new Objet();"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "On crée un objet en Java en utilisant 'new', comme 'Objet obj = new Objet();'."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est le rôle de 'System.out.println()' en Java ?",
+    "options": [
+      {"text": "Afficher une erreur dans la console"},
+      {"text": "Afficher des informations dans la console"},
+      {"text": "Créer une alerte"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "'System.out.println()' est utilisé pour afficher des informations dans la console en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est l'opérateur utilisé pour ajouter un élément à une liste en Java ?",
+    "options": [
+      {"text": "add()"},
+      {"text": "push()"},
+      {"text": "append()"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La méthode 'add()' permet d'ajouter un élément à une liste en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Que fait l'instruction 'return' dans une fonction Java ?",
+    "options": [
+      {"text": "Retourne une valeur depuis la fonction"},
+      {"text": "Arrête l'exécution de la fonction"},
+      {"text": "Les deux précédentes"}
+    ],
+    "solved": 2,
+    "selected": null,
+    "explication": {"text": "'return' permet de retourner une valeur depuis une fonction et d'arrêter son exécution."},
+    "xp": 20
+  },
+  {
+    "question": "Comment accéder à un élément d'un tableau en Java ?",
+    "options": [
+      {"text": "tableau[0]"},
+      {"text": "tableau.get(0)"},
+      {"text": "tableau[1]"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "On accède à un élément d'un tableau en Java avec un indice, comme 'tableau[0]'."},
+    "xp": 20
+  },
+  {
+    "question": "Comment définir une variable constante en Java ?",
+    "options": [
+      {"text": "final int variable;"},
+      {"text": "let variable;"},
+      {"text": "const variable;"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "Une constante se déclare avec 'final' en Java, comme 'final int variable;'."},
+    "xp": 20
+  },
+  {
+    "question": "Quelle méthode est utilisée pour supprimer le dernier élément d'un tableau en Java ?",
+    "options": [
+      {"text": "remove()"},
+      {"text": "pop()"},
+      {"text": "delete()"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Java ne dispose pas de méthode pour supprimer le dernier élément d'un tableau, mais les listes utilisent 'remove()'."},
+    "xp": 20
+  },
+  {
+    "question": "Que fait la méthode 'substring()' en Java ?",
+    "options": [
+      {"text": "Extraire une portion d'une chaîne"},
+      {"text": "Changer la taille d'une chaîne"},
+      {"text": "Fusionner deux chaînes"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La méthode 'substring()' permet d'extraire une portion d'une chaîne en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est le résultat de '10 == 10.0' en Java ?",
+    "options": [
+      {"text": "true"},
+      {"text": "false"},
+      {"text": "Error"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "En Java, '10' et '10.0' sont considérés comme égaux et renvoient 'true'."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est le rôle de l'instruction 'break' en Java ?",
+    "options": [
+      {"text": "Sortir d'une boucle"},
+      {"text": "Passer à l'itération suivante"},
+      {"text": "Arrêter un événement"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "'break' permet de sortir d'une boucle en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Que fait l'instruction 'continue' en Java ?",
+    "options": [
+      {"text": "Passe à l'itération suivante d'une boucle"},
+      {"text": "Sort de la boucle"},
+      {"text": "Affiche un message"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "'continue' permet de passer à l'itération suivante d'une boucle en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Comment créer un tableau en Java ?",
+    "options": [
+      {"text": "int[] tableau = new int[5];"},
+      {"text": "let tableau = []"},
+      {"text": "new int[5] tableau;"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "En Java, un tableau se crée avec 'new', comme 'int[] tableau = new int[5];'."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est le résultat de 'false + 1' en Java ?",
+    "options": [
+      {"text": "false"},
+      {"text": "1"},
+      {"text": "Erreur"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "En Java, 'false' est converti en 0, donc le résultat est '1'."},
+    "xp": 20
+  },
+  {
+    "question": "Que signifie le terme 'null' en Java ?",
+    "options": [
+      {"text": "Absence de valeur"},
+      {"text": "Non initialisé"},
+      {"text": "Erreur"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "'null' en Java indique l'absence de valeur ou d'objet."},
+    "xp": 20
+  },
+  {
+    "question": "Quel est le rôle de l'instruction 'throw' en Java ?",
+    "options": [
+      {"text": "Générer une exception"},
+      {"text": "Passer à l'itération suivante"},
+      {"text": "Retourner une valeur"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "'throw' en Java permet de générer une exception."},
+    "xp": 20
+  },
+  {
+    "question": "Que fait la méthode 'join()' en Java ?",
+    "options": [
+      {"text": "Fusionner les éléments d'un tableau en une chaîne"},
+      {"text": "Séparer les éléments d'un tableau"},
+      {"text": "Supprimer un élément d'un tableau"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "'join()' n'existe pas en Java pour les tableaux, mais existe pour les Listes en JavaScript."},
+    "xp": 20
+  },
+  {
+    "question": "Que fait l'opérateur '&&' en Java ?",
+    "options": [
+      {"text": "Opérateur de comparaison"},
+      {"text": "Opérateur logique 'ET'"},
+      {"text": "Opérateur logique 'OU'"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "L'opérateur '&&' est utilisé pour effectuer une opération logique 'ET' en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Comment déclarer un tableau multidimensionnel en Java ?",
+    "options": [
+      {"text": "int[][] tableau;"},
+      {"text": "int[] tableau[];"},
+      {"text": "let tableau = new int[5][5];"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "En Java, un tableau multidimensionnel se déclare avec 'int[][] tableau;'."},
+    "xp": 20
+  },
+  {
+    "question": "Que fait l'instruction 'instanceof' en Java ?",
+    "options": [
+      {"text": "Vérifie si un objet est une instance d'une classe spécifique"},
+      {"text": "Vérifie si un objet est nul"},
+      {"text": "Vérifie si une classe est héritée d'une autre"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "'instanceof' permet de vérifier si un objet est une instance d'une classe ou de ses sous-classes."},
+    "xp": 20
+  },
+  {
+    "question": "Quelle classe est la superclasse de toutes les autres classes en Java ?",
+    "options": [
+      {"text": "Object"},
+      {"text": "String"},
+      {"text": "Class"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "La classe 'Object' est la superclasse de toutes les classes en Java."},
+    "xp": 20
+  },
+  {
+    "question": "Quelle méthode permet d'arrêter un programme en Java ?",
+    "options": [
+      {"text": "stop()"},
+      {"text": "exit()"},
+      {"text": "System.exit()"}
+    ],
+    "solved": 1,
+    "selected": null,
+    "explication": {"text": "La méthode 'System.exit()' est utilisée pour arrêter l'exécution d'un programme Java."},
+    "xp": 20
+  }
+]

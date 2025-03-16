@@ -1,0 +1,279 @@
+[
+    {
+      "question": "Quel est le type de données pour une chaîne de caractères en Ruby ?",
+      "options": [
+        {"text": "String"},
+        {"text": "char"},
+        {"text": "text"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En Ruby, les chaînes de caractères sont représentées par le type 'String'."},
+      "xp": 30
+    },
+    {
+      "question": "Comment déclarer une variable en Ruby ?",
+      "options": [
+        {"text": "variable = 10"},
+        {"text": "int variable = 10"},
+        {"text": "let variable = 10"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, les variables sont déclarées sans type spécifique, comme 'variable = 10'."},
+      "xp": 30
+    },
+    {
+      "question": "Quel est l'opérateur pour comparer l'égalité en Ruby ?",
+      "options": [
+        {"text": "=="},
+        {"text": "==="},
+        {"text": "="}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En Ruby, l'opérateur '==' est utilisé pour comparer l'égalité."},
+      "xp": 30
+    },
+    {
+      "question": "Quelle méthode permet d'ajouter un élément à un tableau en Ruby ?",
+      "options": [
+        {"text": "push()"},
+        {"text": "Add()"},
+        {"text": "append()"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, la méthode 'push()' permet d'ajouter un élément à un tableau."},
+      "xp": 30
+    },
+    {
+      "question": "Comment déclarer une constante en Ruby ?",
+      "options": [
+        {"text": "CONSTANTE = 10"},
+        {"text": "final CONSTANTE = 10"},
+        {"text": "let CONSTANTE = 10"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, une constante est déclarée avec des lettres majuscules, comme 'CONSTANTE = 10'."},
+      "xp": 30
+    },
+    {
+      "question": "Comment définir une fonction en Ruby ?",
+      "options": [
+        {"text": "def ma_fonction"},
+        {"text": "function ma_fonction"},
+        {"text": "void ma_fonction"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, une fonction est définie avec 'def', comme 'def ma_fonction'."},
+      "xp": 30
+    },
+    {
+      "question": "Quel est le rôle de 'puts' en Ruby ?",
+      "options": [
+        {"text": "Afficher une valeur dans la console"},
+        {"text": "Retourner une valeur"},
+        {"text": "Lire une entrée utilisateur"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'puts' permet d'afficher une valeur dans la console en Ruby."},
+      "xp": 30
+    },
+    {
+      "question": "Comment accéder à un élément d'un tableau en Ruby ?",
+      "options": [
+        {"text": "tableau[0]"},
+        {"text": "tableau.get(0)"},
+        {"text": "tableau(0)"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, on accède à un élément d'un tableau avec l'index, comme 'tableau[0]'."},
+      "xp": 30
+    },
+    {
+      "question": "Quel est le résultat de l'expression '5 + \"5\"' en Ruby ?",
+      "options": [
+        {"text": "'55'"},
+        {"text": "10"},
+        {"text": "Erreur"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En Ruby, l'addition d'un entier et d'une chaîne de caractères provoque une erreur, car Ruby ne fait pas de conversion implicite."},
+      "xp": 30
+    },
+    {
+      "question": "Comment déclarer un hash en Ruby ?",
+      "options": [
+        {"text": "hash = {key: 'value'}"},
+        {"text": "hash = new Hash()"},
+        {"text": "hash = {'key': 'value'}"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, un hash est déclaré avec des accolades, comme 'hash = {key: 'value'}'."},
+      "xp": 30
+    },
+    {
+      "question": "Que fait l'opérateur '&&' en Ruby ?",
+      "options": [
+        {"text": "Opérateur logique 'ET'"},
+        {"text": "Opérateur de comparaison"},
+        {"text": "Opérateur logique 'OU'"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, '&&' est l'opérateur logique 'ET'."},
+      "xp": 30
+    },
+    {
+      "question": "Quel est le rôle de 'return' dans une fonction Ruby ?",
+      "options": [
+        {"text": "Retourner une valeur depuis la fonction"},
+        {"text": "Quitter la fonction"},
+        {"text": "Les deux précédentes"}
+      ],
+      "solved": 2,
+      "selected": null,
+      "explication": {"text": "En Ruby, 'return' permet de renvoyer une valeur et de quitter la fonction."},
+      "xp": 30
+    },
+    {
+      "question": "Comment créer une boucle en Ruby ?",
+      "options": [
+        {"text": "while condition"},
+        {"text": "for i in range"},
+        {"text": "loop do"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En Ruby, une boucle peut être créée avec 'while', 'for', ou 'loop do'."},
+      "xp": 30
+    },
+    {
+      "question": "Comment vérifier le type d'une variable en Ruby ?",
+      "options": [
+        {"text": "variable.class"},
+        {"text": "typeof(variable)"},
+        {"text": "type(variable)"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, on utilise 'variable.class' pour vérifier le type d'une variable."},
+      "xp": 30
+    },
+    {
+      "question": "Comment définir une méthode avec des arguments en Ruby ?",
+      "options": [
+        {"text": "def ma_methode(arg1, arg2)"},
+        {"text": "function ma_methode(arg1, arg2)"},
+        {"text": "def ma_methode {arg1, arg2}"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, une méthode avec des arguments est définie avec 'def ma_methode(arg1, arg2)'."},
+      "xp": 30
+    },
+    {
+      "question": "Quel est l'opérateur pour l'inégalité en Ruby ?",
+      "options": [
+        {"text": "!="},
+        {"text": "!=="},
+        {"text": "≠"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, l'opérateur pour l'inégalité est '!='."},
+      "xp": 30
+    },
+    {
+      "question": "Comment obtenir un sous-ensemble d'un tableau en Ruby ?",
+      "options": [
+        {"text": "tableau[0..2]"},
+        {"text": "tableau.getRange(0, 2)"},
+        {"text": "tableau.slice(0, 2)"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En Ruby, on peut obtenir un sous-ensemble avec des indices, comme 'tableau[0..2]'."},
+      "xp": 30
+    },
+    {
+      "question": "Comment faire une boucle infinie en Ruby ?",
+      "options": [
+        {"text": "loop { ... }"},
+        {"text": "while true { ... }"},
+        {"text": "for true do { ... }"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, une boucle infinie peut être créée avec 'loop { ... }'."},
+      "xp": 30
+    },
+    {
+      "question": "Quel est l'équivalent de 'foreach' en Ruby ?",
+      "options": [
+        {"text": "each do |element|"},
+        {"text": "for element in collection"},
+        {"text": "each(element)"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, on utilise 'each do |element|' pour itérer sur une collection."},
+      "xp": 30
+    },
+    {
+      "question": "Comment convertir une chaîne en entier en Ruby ?",
+      "options": [
+        {"text": "string.to_i"},
+        {"text": "string.toInteger"},
+        {"text": "string.parseInt"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, on utilise 'to_i' pour convertir une chaîne en entier."},
+      "xp": 30
+    },
+    {
+      "question": "Comment obtenir la longueur d'une chaîne en Ruby ?",
+      "options": [
+        {"text": "chaine.length"},
+        {"text": "chaine.size"},
+        {"text": "chaine.count"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, on utilise 'length' ou 'size' pour obtenir la longueur d'une chaîne."},
+      "xp": 30
+    },
+    {
+      "question": "Que fait la méthode 'split' en Ruby ?",
+      "options": [
+        {"text": "Divise une chaîne en un tableau"},
+        {"text": "Fusionne plusieurs chaînes en une"},
+        {"text": "Ajoute un élément à une chaîne"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En Ruby, 'split' permet de diviser une chaîne en un tableau basé sur un séparateur."},
+      "xp": 30
+    },
+    {
+      "question": "Que fait 'nil' en Ruby ?",
+      "options": [
+        {"text": "Représente l'absence de valeur"},
+        {"text": "Représente un objet vide"},
+        {"text": "Représente une erreur"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'nil' représente l'absence de valeur en Ruby."},
+      "xp": 30
+    }
+  ]
+  

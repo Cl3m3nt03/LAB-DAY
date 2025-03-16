@@ -1,0 +1,365 @@
+[
+    {
+      "question": "Quel est le type de données pour une chaîne de caractères en JavaScript ?",
+      "options": [
+        {"text": "String"},
+        {"text": "Text"},
+        {"text": "Char"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "Le type de données pour une chaîne de caractères est 'String'."},
+      "xp": 15
+    },
+    {
+      "question": "Comment déclare-t-on une variable en JavaScript ?",
+      "options": [
+        {"text": "var variable;"},
+        {"text": "let variable;"},
+        {"text": "variable = 'value';"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "On peut déclarer une variable avec 'var', 'let' ou 'const' en JavaScript."},
+      "xp": 15
+    },
+    {
+      "question": "Quel opérateur est utilisé pour la comparaison d'égalité stricte en JavaScript ?",
+      "options": [
+        {"text": "=="},
+        {"text": "==="},
+        {"text": "="}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "L'opérateur '===' est utilisé pour la comparaison d'égalité stricte."},
+      "xp": 15
+    },
+    {
+      "question": "Quelle méthode JavaScript permet de vérifier le type d'une variable ?",
+      "options": [
+        {"text": "typeof()"},
+        {"text": "checkType()"},
+        {"text": "instanceOf()"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "La méthode 'typeof' permet de vérifier le type d'une variable."},
+      "xp": 15
+    },
+    {
+      "question": "Quel est le résultat de l'expression '5 + '5'' en JavaScript ?",
+      "options": [
+        {"text": "10"},
+        {"text": "'55'"},
+        {"text": "Error"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En JavaScript, l'opérateur '+' entre un nombre et une chaîne concatène les valeurs, donnant '55'."},
+      "xp": 15
+    },
+    {
+      "question": "Comment déclarer une fonction en JavaScript ?",
+      "options": [
+        {"text": "function maFonction() {}"},
+        {"text": "function = maFonction() {}"},
+        {"text": "def maFonction() {}"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En JavaScript, on déclare une fonction avec 'function maFonction() {}'."},
+      "xp": 15
+    },
+    {
+      "question": "Comment créer un objet en JavaScript ?",
+      "options": [
+        {"text": "let obj = {}"},
+        {"text": "let obj = []"},
+        {"text": "let obj = new Object()"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "On peut créer un objet en JavaScript avec '{}' ou 'new Object()'."},
+      "xp": 15
+    },
+    {
+      "question": "Quel est le rôle de 'console.log()' en JavaScript ?",
+      "options": [
+        {"text": "Afficher une erreur dans la console"},
+        {"text": "Afficher des informations dans la console"},
+        {"text": "Créer une alerte"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'console.log()' est utilisé pour afficher des informations dans la console."},
+      "xp": 15
+    },
+    {
+      "question": "Quel est l'opérateur utilisé pour ajouter un élément à un tableau en JavaScript ?",
+      "options": [
+        {"text": "push()"},
+        {"text": "add()"},
+        {"text": "append()"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "La méthode 'push()' permet d'ajouter un élément à la fin d'un tableau en JavaScript."},
+      "xp": 15
+    },
+    {
+      "question": "Que fait l'instruction 'return' dans une fonction JavaScript ?",
+      "options": [
+        {"text": "Retourne une valeur depuis la fonction"},
+        {"text": "Arrête l'exécution de la fonction"},
+        {"text": "Les deux précédentes"}
+      ],
+      "solved": 2,
+      "selected": null,
+      "explication": {"text": "'return' permet de retourner une valeur depuis une fonction et d'arrêter son exécution."},
+      "xp": 15
+    },
+    {
+      "question": "Comment accéder à un élément d'un tableau en JavaScript ?",
+      "options": [
+        {"text": "tableau[0]"},
+        {"text": "tableau.get(0)"},
+        {"text": "tableau[1]"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "On accède à un élément d'un tableau avec un indice, comme 'tableau[0]'."},
+      "xp": 15
+    },
+    {
+      "question": "Comment définir une variable constante en JavaScript ?",
+      "options": [
+        {"text": "const variable;"},
+        {"text": "let variable;"},
+        {"text": "variable = 'value';"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "Une constante se déclare avec 'const' en JavaScript."},
+      "xp": 15
+    },
+    {
+      "question": "Quelle méthode est utilisée pour supprimer le dernier élément d'un tableau en JavaScript ?",
+      "options": [
+        {"text": "pop()"},
+        {"text": "remove()"},
+        {"text": "delete()"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "La méthode 'pop()' permet de supprimer le dernier élément d'un tableau en JavaScript."},
+      "xp": 15
+    },
+    {
+      "question": "Que fait la méthode 'slice()' en JavaScript ?",
+      "options": [
+        {"text": "Extraire une portion d'un tableau"},
+        {"text": "Changer la taille d'un tableau"},
+        {"text": "Fusionner deux tableaux"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "La méthode 'slice()' permet d'extraire une portion d'un tableau."},
+      "xp": 15
+    },
+    {
+      "question": "Quelle méthode JavaScript permet de trier un tableau ?",
+      "options": [
+        {"text": "sort()"},
+        {"text": "order()"},
+        {"text": "arrange()"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "La méthode 'sort()' permet de trier un tableau en JavaScript."},
+      "xp": 15
+    },
+    {
+      "question": "Quel est le résultat de '10 == '10'' en JavaScript ?",
+      "options": [
+        {"text": "true"},
+        {"text": "false"},
+        {"text": "Error"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "En JavaScript, '==' compare les valeurs et non les types, donc '10 == '10'' renvoie true."},
+      "xp": 15
+    },
+    {
+      "question": "Quel est le rôle de l'instruction 'break' en JavaScript ?",
+      "options": [
+        {"text": "Sortir d'une boucle"},
+        {"text": "Passer à l'itération suivante"},
+        {"text": "Arrêter un événement"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "'break' permet de sortir d'une boucle en JavaScript."},
+      "xp": 15
+    },
+    {
+      "question": "Que fait l'instruction 'continue' en JavaScript ?",
+      "options": [
+        {"text": "Passe à l'itération suivante d'une boucle"},
+        {"text": "Sort de la boucle"},
+        {"text": "Affiche un message"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'continue' permet de passer à l'itération suivante d'une boucle."},
+      "xp": 15
+    },
+        {
+          "question": "Comment créer un tableau en JavaScript ?",
+          "options": [
+            {"text": "let tableau = []"},
+            {"text": "let tableau = {}"},
+            {"text": "let tableau = new Array()"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "On crée un tableau avec '[]' ou 'new Array()' en JavaScript."},
+          "xp": 15
+        },
+        {
+          "question": "Quel est le résultat de l'expression 'false + 1' en JavaScript ?",
+          "options": [
+            {"text": "false"},
+            {"text": "1"},
+            {"text": "NaN"}
+          ],
+          "solved": 1,
+          "selected": null,
+          "explication": {"text": "En JavaScript, 'false' est converti en 0 lors de l'opération, donc le résultat est '1'."},
+          "xp": 15
+        },
+        {
+          "question": "Que signifie le terme 'NaN' en JavaScript ?",
+          "options": [
+            {"text": "Not a Number"},
+            {"text": "Null and Nothing"},
+            {"text": "Not an Object"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "NaN signifie 'Not a Number', utilisé pour indiquer qu'une valeur n'est pas un nombre valide."},
+          "xp": 15
+        },
+        {
+          "question": "Quel est le résultat de l'expression 'null + 1' en JavaScript ?",
+          "options": [
+            {"text": "1"},
+            {"text": "null"},
+            {"text": "undefined"}
+          ],
+          "solved": 1,
+          "selected": null,
+          "explication": {"text": "En JavaScript, 'null' est converti en 0, donc le résultat est '1'."},
+          "xp": 15
+        },
+        {
+          "question": "Quel est le rôle de l'instruction 'throw' en JavaScript ?",
+          "options": [
+            {"text": "Générer une erreur"},
+            {"text": "Passer à l'itération suivante"},
+            {"text": "Retourner une valeur"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'throw' permet de générer une erreur en JavaScript."},
+          "xp": 15
+        },
+        {
+          "question": "Que fait la méthode 'join()' en JavaScript ?",
+          "options": [
+            {"text": "Fusionner un tableau en une chaîne"},
+            {"text": "Séparer les éléments d'un tableau"},
+            {"text": "Supprimer un élément d'un tableau"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'join()' permet de fusionner les éléments d'un tableau en une chaîne de caractères."},
+          "xp": 15
+        },
+        {
+          "question": "Que fait la méthode 'concat()' en JavaScript ?",
+          "options": [
+            {"text": "Fusionner deux tableaux"},
+            {"text": "Ajouter un élément à un tableau"},
+            {"text": "Supprimer un élément d'un tableau"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'concat()' permet de fusionner deux tableaux en JavaScript."},
+          "xp": 15
+        },
+        {
+          "question": "Quel est le résultat de 'typeof NaN' en JavaScript ?",
+          "options": [
+            {"text": "number"},
+            {"text": "NaN"},
+            {"text": "undefined"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'NaN' est considéré comme un type 'number' en JavaScript."},
+          "xp": 15
+        },
+        {
+          "question": "Que fait l'opérateur 'instanceof' en JavaScript ?",
+          "options": [
+            {"text": "Vérifie si un objet est une instance d'une classe"},
+            {"text": "Compare deux objets"},
+            {"text": "Vérifie si un objet est un tableau"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'instanceof' permet de vérifier si un objet est une instance d'une classe ou d'un prototype."},
+          "xp": 15
+        },
+        {
+          "question": "Quel est le rôle de 'setInterval()' en JavaScript ?",
+          "options": [
+            {"text": "Exécuter une fonction après un délai spécifique"},
+            {"text": "Exécuter une fonction de manière répétée à intervalles réguliers"},
+            {"text": "Annuler une fonction"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'setInterval()' permet d'exécuter une fonction de manière répétée à intervalles réguliers."},
+          "xp": 15
+        },
+        {
+          "question": "Quel est le rôle de 'setTimeout()' en JavaScript ?",
+          "options": [
+            {"text": "Exécuter une fonction immédiatement"},
+            {"text": "Exécuter une fonction après un délai spécifique"},
+            {"text": "Exécuter une fonction de manière répétée"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'setTimeout()' permet d'exécuter une fonction après un délai spécifique."},
+          "xp": 15
+        },
+        {
+          "question": "Que fait la méthode 'reverse()' en JavaScript ?",
+          "options": [
+            {"text": "Inverse l'ordre des éléments d'un tableau"},
+            {"text": "Trie les éléments d'un tableau"},
+            {"text": "Supprime les éléments d'un tableau"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'reverse()' permet d'inverser l'ordre des éléments d'un tableau."},
+          "xp": 15
+        }
+      ]
+      
+  
+  

@@ -1,14 +1,12 @@
 [
     {
         "title": "Html&Css",
-        "description": "HTML is the standard markup language for creating Web pages.",
         "image": "assets/icons/htmlcss.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/html_css.json"
 
     },
     {
         "title": "Python",
-        "description": "Python is an interpreted, high-level, general-purpose programming language.",
         "image": "assets/icons/python.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/python.json"
 
@@ -16,7 +14,6 @@
     },
     {
         "title": "JavaScript",
-        "description": "JavaScript is a programming language that enables you to create dynamically updating content, control multimedia, animate images, and much more.",
         "image": "assets/icons/js.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/java_script.json"
 
@@ -26,5 +23,16 @@
         "description": "Java is a high-level programming language developed by Sun Microsystems.",
         "image": "assets/icons/java.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/java.json"
+    },
+    {
+        "title": "C#",
+        "image": "assets/icons/c#.png",
+        "link":"lib/pages/games/questionnaire/list_questionnaire/c#.json"
+    },
+    {
+        "title": "Ruby",
+        "image": "assets/icons/ruby.png",
+        "link":"lib/pages/games/questionnaire/list_questionnaire/ruby.json"
     }
+
 ]

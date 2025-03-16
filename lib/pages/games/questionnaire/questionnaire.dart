@@ -26,18 +26,20 @@ class QuestionnairePage extends StatefulWidget {
 
 class _QuestionnairePageState extends State<QuestionnairePage> with SingleTickerProviderStateMixin {
   Artboard? _artboard;
-
+  late ScrollController _scrollController;
   List<dynamic> questions = [];
   int actuallyquestion = 0;
   int score = 0;
   bool error = false;
   late AnimationController _animationController;
   late Animation<Offset> _slideAnimation;
+  bool _isAnimating = false;
 
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     loadRiveAnimation("Face Idle", "Loop");
   
 
@@ -60,6 +62,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
 
   @override
   void dispose() {
+    _scrollController = ScrollController();
     _animationController.dispose();
     super.dispose();
   }
@@ -105,130 +108,175 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       return Center(child: CircularProgressIndicator());
     }
   }
-  Widget submitAnswer(Map<String, dynamic> question) {
-    return Container(
-      width: double.infinity,
-      height: error ? 210 : 100.0,
-      color: const Color.fromARGB(255, 11, 22, 44),
-      child: Column(
-        children: [
-          Spacer() ,
+Widget submitAnswer(Map<String, dynamic> question) {
+  return Container(
+    width: double.infinity,
+    color: const Color.fromARGB(255, 11, 22, 44),
+    child: Column(
+      mainAxisSize: MainAxisSize.min, // Permet d'adapter la hauteur
+      children: [
+        if (error) // N'afficher le message que s'il y a une erreur
           SlideTransition(
             position: _slideAnimation,
-            child: error
-                ? Container(
-                    color: const Color.fromARGB(255, 30, 40, 60),
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.close,
-                              color: Color.fromARGB(255, 220, 53, 69),
-                              size: 22,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              widget.validationMessage,
-                              style:  GoogleFonts.montserrat(textStyle:  TextStyle(
+            child: Container(
+              color: const Color.fromARGB(255, 30, 40, 60),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.close,
+                        color: Color.fromARGB(255, 220, 53, 69),
+                        size: 22,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Text(
+                            widget.validationMessage,
+                            style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 220, 53, 69),
                               ),
                             ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          question['explication']['text'],
-                          style:  GoogleFonts.montserrat(textStyle:  TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 220, 53, 69),
-                          ),
                           ),
                         ),
-                      ],
-                    ),
-                  )
-                : Container(),
-          ),
-          const Spacer(),
-          Container(
-            margin: const EdgeInsets.fromLTRB(0, 16, 0, 25),
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-            width: MediaQuery.of(context).size.width,
-            height: 50,
-            child: TextButton(
-              style: question['selected'] == -1
-                  ? TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 95, 105, 135),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
                       ),
-                    )
-                  : TextButton.styleFrom(
-                      backgroundColor: error
-                          ? const Color.fromARGB(255, 220, 53, 69)
-                          : Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    question['explication']['text'],
+                    style: GoogleFonts.montserrat(
+                      textStyle: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 220, 53, 69),
                       ),
                     ),
-              onPressed: () {
-                if (question['selected'] == -1) {
-                } else if (error) {
-                  setState(() {
-                    widget.showValidationMessage = false;
-                    error = false;
-                  });
-                  nextQuestion();
-                } else {
-                  validateAnswer();
-                }
-              },
-              child: Text(
-                error ? 'Continuer' : 'Valider',
-                style:  GoogleFonts.montserrat(textStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-                ),
-                textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
+
+        const SizedBox(height: 16), // Espacement pour l'esthétique
+
+        // Bouton Valider/Continuer
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 16, 0, 25),
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          width: MediaQuery.of(context).size.width,
+          height: 50,
+          child: TextButton(
+            style: question['selected'] == -1
+                ? TextButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 95, 105, 135),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  )
+                : TextButton.styleFrom(
+                    backgroundColor: error
+                        ? const Color.fromARGB(255, 220, 53, 69)
+                        : Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+            onPressed: () {
+              if (_isAnimating) return; // Ne rien faire si l'animation est en cours
+              if (question['selected'] == -1) {
+                // Ne rien faire si aucune réponse sélectionnée
+              } else if (error) {
+                setState(() {
+                  widget.showValidationMessage = false;
+                  error = false;
+                });
+                nextQuestion();
+              } else {
+                validateAnswer();
+              }
+            },
+            
+            child: Text(
+              error ? 'Continuer' : 'Valider',
+              style: GoogleFonts.montserrat(
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
   /// Validates the selected answer and updates score or shows error.
 
-  void validateAnswer() {
-    final question = questions[actuallyquestion];
-    setState(() {
-      if (question['selected'] == question['solved']) {
-        score += 1;
-        error = false;
-        loadRiveAnimation("Face Idle", "Loop good");
-        final player = AudioPlayer();
-        player.play(AssetSource('sound/correct.wav'));
-        Future.delayed(const Duration(milliseconds: 800), () {
-          nextQuestion();
-        });
-      } else {
-        error = true;
-        widget.validationMessage = 'Incorrect';
-        loadRiveAnimation("Face to error", "Loop");
-        final player = AudioPlayer();
-        player.play(AssetSource('sound/incorrect.wav'));
-        _animationController.forward();
-      }
+void validateAnswer() {
+  if (_isAnimating) return; // Empêche le spam du bouton pendant l’animation
+
+  final question = questions[actuallyquestion];
+
+  // Vérifier qu'une réponse a été sélectionnée
+  if (question['selected'] == null) return;
+
+  setState(() {
+    _isAnimating = true; // Désactive les interactions
+  });
+
+  if (question['selected'] == question['solved']) {
+    score += 1;
+    error = false;
+    loadRiveAnimation("Face Idle", "Loop good");
+
+    final player = AudioPlayer();
+    player.play(AssetSource('sound/correct.wav'));
+
+    Future.delayed(const Duration(milliseconds: 800), () {
+      setState(() {
+        _isAnimating = false; // Réactive les interactions
+      });
+      nextQuestion();
+    });
+  } else {
+    error = true;
+    widget.validationMessage = 'Incorrect';
+    loadRiveAnimation("Face to error", "Loop");
+
+    final player = AudioPlayer();
+    player.play(AssetSource('sound/incorrect.wav'));
+
+    _animationController.forward();
+
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
+    });
+
+    Future.delayed(const Duration(milliseconds: 1000), () { // Attente avant réactivation
+      setState(() {
+        _isAnimating = false; // Réactive les interactions après erreur
+      });
     });
   }
+}
+
+
+
   /// Moves to the next question or finishes the quiz if no more questions are left.
   void nextQuestion() {
     loadRiveAnimation("Face Idle", "Loop");
@@ -378,8 +426,7 @@ Widget buildQuestionCard() {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
-
-            child: 
+          child: 
             Text(
               '${actuallyquestion + 1} / ${questions.length}',
               style: const TextStyle(
@@ -395,15 +442,18 @@ Widget buildQuestionCard() {
       body: Stack(
         children: [
           SingleChildScrollView(
+              controller: _scrollController,
             child: Column(
               children: [
                 buildQuestionCard(),
-              ],
+                
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: submitAnswer(questions[actuallyquestion]),
+                ),
+                
+             ],
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: submitAnswer(questions[actuallyquestion]),
           ),
         ],
       ),
