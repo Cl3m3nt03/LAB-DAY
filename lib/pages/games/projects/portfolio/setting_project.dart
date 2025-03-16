@@ -1,72 +1,76 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:makeitcode/pages/games/gamePendu/GamePendu.dart';
-import 'package:makeitcode/pages/games/projects/glossary_page.dart';
-import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dart';
-import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-class HomeGamePage extends StatefulWidget {
+import 'package:makeitcode/widget/toastMessage.dart';
+import 'package:makeitcode/pages/web_view/loadDataAndTemplate.dart';
+import 'package:open_filex/open_filex.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
+class SettingProjectPage extends StatefulWidget {
   @override
-  _HomeGamePageState createState() => _HomeGamePageState();
+  _SettingProjectPageState createState() => _SettingProjectPageState();
 }
 
-class _HomeGamePageState extends State<HomeGamePage> {
-  List<dynamic> game = [];
+class _SettingProjectPageState extends State<SettingProjectPage> {
 
-  Future<void> loadGame() async {
+  String userId = FirebaseAuth.instance.currentUser!.uid;
+  final loadDataAndTemplate _dataAndTemplate = loadDataAndTemplate();
+    final ToastMessage toast = ToastMessage();
+    List<dynamic> theme = [];
+    
+    Future<void> loadTheme() async {
     try {
       final String response =
-          await rootBundle.loadString('lib/pages/games/game.json');
+          await rootBundle.loadString('lib/pages/games/projects/portfolio/theme.json');
       final List<dynamic> data = json.decode(response);
       setState(() {
-        game = data.map((game) {
-          return game as Map<String, dynamic>;
+        theme = data.map((theme) {
+          return theme as Map<String, dynamic>;
         }).toList();
       });
     } catch (e) {
-      print('Erreur lors du chargement des jeux : $e');
+      print('Erreur lors du chargement des thémes : $e');
     }
   }
 
+    Future<String> getHtmlFilePath(String templateName) async {
+    final Directory? dir = await getExternalStorageDirectory();
+    if (dir == null) {
+      throw Exception("External storage directory not found");
+    }
+    return '${dir.path}/$templateName';
+  }
 
+    Future<void> _setThemeBdd(link) async {
+    final firestoreInstance = FirebaseFirestore.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user!.uid;
+    final docRef = firestoreInstance.collection('Users').doc(uid).collection('Portfolio').doc('data');
+    docRef.update({
+      "css": link,
+    }).then((_) {
+      toast.showToast(context, "Thème mis à jour avec succès !");
+    });
+  }
 
-
-  @override
+    @override
   void initState() {
     super.initState();
-    loadGame();
+    loadTheme();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      actions: [
-      IconButton(
-        icon: Icon(Icons.book),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => GlossaryPage()),
-          );
-        },
-      ),
-    ],
-    leading: IconButton(
-      icon: Icon(Icons.leaderboard),
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ClassementPage()),
-          );
-      },
-    ),
+           appBar: AppBar(
         title: Text(
-          'NOS JEUX',
+          'Paramètres',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -74,6 +78,12 @@ class _HomeGamePageState extends State<HomeGamePage> {
                 fontSize: 20,
                 color: Colors.white),
           ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -92,15 +102,24 @@ class _HomeGamePageState extends State<HomeGamePage> {
               radius: 0.8,
             ),
           ),
-          child: game.isEmpty
+                    child: theme.isEmpty
               ? Center(child: CircularProgressIndicator())
               : Column(
                   children: [
-                    Expanded(
-                      child: CarouselSlider.builder(
-                        itemCount: game.length,
+                    Text(
+                      'Choisissez un thème',
+                      style: GoogleFonts.montserrat(
+                        textStyle: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 15)),
+                         CarouselSlider.builder(
+                        itemCount: theme.length,
                         options: CarouselOptions(
-                          height: MediaQuery.of(context).size.height * 0.7,
+                          height: MediaQuery.of(context).size.height * 0.6,
                           enlargeCenterPage: true,
                           enableInfiniteScroll: true,
                           viewportFraction: 0.8,
@@ -115,7 +134,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                   Expanded(
                                     child: ClipRRect(
                                       child: Image.asset(
-                                        game[index]['image'],
+                                        theme[index]['image'],
                                         fit: BoxFit.cover,
                                         width:
                                             MediaQuery.of(context).size.width,
@@ -125,23 +144,11 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                   Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      game[index]['title'],
+                                      theme[index]['title'],
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        game[index]['description'],
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.montserrat(
-                                          textStyle: TextStyle(fontSize: 16),
-                                        ),
                                       ),
                                     ),
                                   ),
@@ -154,38 +161,52 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      Widget page;
-                                      switch (game[index]['link']) {
-                                        case 'QuestionnaireListPage':
-                                          page = QuestionnaireListPage();
-                                          break;
-                                        case 'GamePenduPage':
-                                          page = GamePendu();
-                                          break;
-                                        default:
-                                          page = Container();
-                                          break;
-                                      }
-
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => page),
-                                      );
+                                      _setThemeBdd(theme[index]['link']);
                                     },
-                                    child: Text("Jouer",
+                                    child: Text("Choisir ce thème",
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         )),
                                   ),
+                                  
                                 ],
                               ),
                             ),
                           );
                         },
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 15)),
+                    Text(
+                      'Télécharger le projet',
+                      style: GoogleFonts.montserrat(
+                        textStyle: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(11, 153, 253, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      onPressed: () {
+                         _dataAndTemplate.generateHTMLFromFirestore(userId, 'index.html', true);
+                             getHtmlFilePath('index.html').then((filePath) {
+                               OpenFilex.open(filePath);
+                             });
+                             toast.showToast(context, "Téléchargement du projet...");
+                      },
+                      child: Text("Télécharger le projet",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )),
                     ),
                   ],
                 ),

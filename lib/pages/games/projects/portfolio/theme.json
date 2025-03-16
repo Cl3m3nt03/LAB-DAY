@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Noir",
+        "image": "assets/project_template/portfolio/dark.png",
+        "link": "dark"
+    },
+
+    {
+        "title": "Blanc",
+        "image": "assets/project_template/portfolio/white.png",
+        "link": "white"
+    },
+
+    {
+        "title": "Rose",
+        "image": "assets/project_template/portfolio/white.png",
+        "link": "pink"
+    },
+    {
+        "title": "Bleu",
+        "image": "assets/project_template/portfolio/blue.png",
+        "link": "blue"
+    }
+
+
+]

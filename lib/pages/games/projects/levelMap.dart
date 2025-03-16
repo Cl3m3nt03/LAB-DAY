@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:makeitcode/gameplay/game_logic.dart';
 import 'package:rive/rive.dart';
+import 'package:makeitcode/pages/games/projects/portfolio/setting_project.dart';
 
 class Levelmap extends StatefulWidget {
   const Levelmap({super.key});
@@ -203,19 +204,39 @@ Future<void> loadFile(String fileName) async {
 
           // Bouton de retour en haut à gauche
           Positioned(
-            top: 40, // Ajuste la position verticale
-            left: 16, // Ajuste la position horizontale
+            top: 40,
+            left: 16,
             child: FloatingActionButton(
+              heroTag: 'backButton',
               onPressed: () {
-                Navigator.pop(context); // Retour en arrière
+                Navigator.pop(context);
               },
-              backgroundColor: Colors.white.withOpacity(0.8), // Fond semi-transparent
+              backgroundColor: Colors.white.withOpacity(0.8),
               elevation: 3,
-              mini: true, // Petit bouton
+              mini: true,
               child: Icon(Icons.arrow_back, color: Colors.black),
             ),
           ),
-        ],
+          Positioned(
+            top: 40,
+            right: 16,
+            child: FloatingActionButton(
+              heroTag: 'settingsButton',
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) => SettingProjectPage(),
+                  ),
+                );
+              },
+              backgroundColor: Colors.white.withOpacity(0.8),
+              elevation: 3,
+              mini: true,
+              child: Icon(Icons.settings, color: Colors.black),
+            ),
+          ),
+            ],
       ),
     );
   }

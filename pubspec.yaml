@@ -63,6 +63,7 @@ dependencies:
   carousel_slider: ^5.0.0
   rive: ^0.13.20
   flutter_inappwebview: ^6.1.5
+  open_filex: ^4.7.0
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,8 @@ flutter:
     - assets/sound/
     - assets/rive/
     - assets/game/html.json
+    - assets/project_template/portfolio/
+    - lib/pages/games/projects/portfolio/theme.json
     - assets/project_template/portfolio/
     #   - images/a_dot_ham.jpeg
   # An image asset can referZ to one or more resolution-specific "variants", see
