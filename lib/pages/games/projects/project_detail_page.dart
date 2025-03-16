@@ -548,7 +548,7 @@ Widget _confirmButton(double screenHeight) {
         }
 
         // Check if data is present
-        String buttonText = snapshot.data ?? "Commencer"; // Si pas de texte, afficher "Commencer" par défaut
+        String buttonText = snapshot.data ?? "Commencer"; 
 
         return ElevatedButton(
           style: ElevatedButton.styleFrom(

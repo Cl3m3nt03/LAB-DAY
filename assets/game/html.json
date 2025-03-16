@@ -84,7 +84,7 @@
       "heading": "Deuxième compétence",
       "instruction": "Le titre secondaire de cette section est contenu dans la balise <h3>. La balise <p> présente la description de cette compétence."
     },
-    "code": "<section>\n  <h3>Compétence 2</h3>\n  <p>Description compétence 2</p>\n</section>",
+    "code": "<section>\n  <h3>Compétence 1</h3>\n  <p>Description compétence 1</p>\n</section>",
     "firstField": "<h3>",
     "secondField": true,
     "lastField": "</h3>", 
