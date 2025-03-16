@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:makeitcode/gameplay/game_logic.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 import 'package:rive/rive.dart';
 import 'package:makeitcode/pages/games/projects/portfolio/setting_project.dart';
 
@@ -106,8 +107,10 @@ Future<void> _incrementLevel(bool isValid) async {
 
     // 🔹 Récupère la valeur actuelle et l'incrémente
     int newStep = ((levelValue?.value ?? 1) + 1).toInt();
-    if (newStep > 20) {
-      newStep = 20; // Limite à 20
+
+    // 🔹 Si newStep dépasse 20, on limite à 21 pour afficher la page de récompenses
+    if (newStep >= 21) {
+      newStep = 21;
     }
 
     // 🔹 Met à jour dans Firestore
@@ -120,6 +123,34 @@ Future<void> _incrementLevel(bool isValid) async {
 
     // 🔹 Met à jour dans l'animation
     levelValue?.value = newStep.toDouble();
+
+    // 🔹 Vérifier si l'utilisateur a atteint l'étape 21
+    if (newStep == 21) {
+      // Si l'utilisateur a atteint l'étape 21, afficher la page de récompenses
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Rewardscreen(
+            stepIndex: newStep,
+            xpToAdd: 10, // Exemple d'XP à ajouter, vous pouvez le personnaliser
+          ),
+        ),
+      );
+
+      // Après la navigation, revenir à l'étape 20
+      newStep = 20;
+
+      // 🔹 Mettre à jour à nouveau Firestore avec la nouvelle valeur (20)
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user.uid)
+          .collection('Portfolio')
+          .doc('levelMap')
+          .set({'currentStep': newStep}, SetOptions(merge: true));
+
+      // 🔹 Met à jour l'animation avec l'étape 20
+      levelValue?.value = newStep.toDouble();
+    }
   }
 }
 
