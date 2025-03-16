@@ -512,66 +512,105 @@ Widget _allStepsCard(double screenHeight) {
 
 
 
-Widget _confirmButton(screenHeight) {
+Future<String> _getButtonText() async {
+  final userId = FirebaseAuth.instance.currentUser!.uid; // Identifiant de l'utilisateur actuel
+  final docRef = FirebaseFirestore.instance
+      .collection('Users') // Collection des utilisateurs
+      .doc(userId) // Document de l'utilisateur actuel
+      .collection('Portfolio') // Collection de portfolio spécifique à l'utilisateur
+      .doc('levelMap') // Le document de niveau (levelMap)
+      .get(); // Récupérer les données de ce document
+  
+  final docSnapshot = await docRef;
+
+  if (docSnapshot.exists) {
+    int currentStep = docSnapshot['currentStep'] ?? 1; // Si 'currentStep' existe, on l'utilise
+    return currentStep == 1 ? "Commencer" : "Continuer"; // Si currentStep == 1, afficher "Commencer"
+  } else {
+    return "Erreur"; // Par défaut, si aucune donnée trouvée, afficher "erreur"
+  }
+}
+
+
+
+
+
+Widget _confirmButton(double screenHeight) {
   return Positioned(
     top: screenHeight / 1.13,
     left: (MediaQuery.of(context).size.width - 270) / 2,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
-        backgroundColor: const Color(0xff121B38),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        shadowColor: const Color(0xff121B38).withOpacity(0.6), // Ombre
-        elevation: 8,
-      ),
-      onPressed: () async {
-        try {
-          // Récupérer le document correspondant au projet actuel
-          QuerySnapshot projectSnapshot = await FirebaseFirestore.instance
-              .collection('Projects')
-              .where('name', isEqualTo: widget.projetName)
-              .get();
-
-          if (projectSnapshot.docs.isNotEmpty) {
-            DocumentSnapshot projectDoc = projectSnapshot.docs.first;
-            Map<String, dynamic> projectData = projectDoc.data() as Map<String, dynamic>;
-            String projectId = projectDoc.id; // ID du projet
-
-            // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
-            projectData['id'] = projectId;
-
-            await _initData(FirebaseAuth.instance.currentUser!.uid);
-            await _initLevelMap(FirebaseAuth.instance.currentUser!.uid);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Levelmap()
-              ),
-            );
-          } else {
-            // Afficher une erreur si aucun projet trouvé
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Projet introuvable")),
-            );
-          }
-        } catch (e) {
-          // Gestion des erreurs Firestore
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Erreur: ${e.toString()}")),
-          );
+    child: FutureBuilder<String>(
+      future: _getButtonText(),  // Appel de la fonction asynchrone
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator(); // Affichage du chargement si la requête est en cours
         }
-      },
-      child: Text(
-        'Continuer',
-        style: GoogleFonts.montserrat(
-          textStyle: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+
+        if (snapshot.hasError) {
+          return Text('Erreur: ${snapshot.error}');
+        }
+
+       // Vérification si les données sont présentes
+        String buttonText = snapshot.data ?? "Commencer"; // Si pas de texte, afficher "Commencer" par défaut
+
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+            backgroundColor: const Color(0xff121B38),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            shadowColor: const Color(0xff121B38).withOpacity(0.6), // Ombre
+            elevation: 8,
           ),
-        ),
-      ),
+          onPressed: () async {
+            try {
+              // Récupérer le document correspondant au projet actuel
+              QuerySnapshot projectSnapshot = await FirebaseFirestore.instance
+                  .collection('Projects')
+                  .where('name', isEqualTo: widget.projetName)
+                  .get();
+
+              if (projectSnapshot.docs.isNotEmpty) {
+                DocumentSnapshot projectDoc = projectSnapshot.docs.first;
+                Map<String, dynamic> projectData = projectDoc.data() as Map<String, dynamic>;
+                String projectId = projectDoc.id; // ID du projet
+
+                // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
+                projectData['id'] = projectId;
+
+                await _initData(FirebaseAuth.instance.currentUser!.uid);
+                await _initLevelMap(FirebaseAuth.instance.currentUser!.uid);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Levelmap(),
+                  ),
+                );
+              } else {
+                // Afficher une erreur si aucun projet trouvé
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Projet introuvable")),
+                );
+              }
+            } catch (e) {
+              // Gestion des erreurs Firestore
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Erreur: ${e.toString()}")),
+              );
+            }
+          },
+          child: Text(
+            buttonText,  // Utilisation du texte récupéré
+            style: GoogleFonts.montserrat(
+              textStyle: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        );
+      },
     ),
   );
 }
