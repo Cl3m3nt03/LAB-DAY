@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/widget/rewardScreenXp.dart';
 
 class GamePendu extends StatefulWidget {
   @override
@@ -49,6 +50,20 @@ class _GamePenduState extends State<GamePendu> {
     });
   }
 
+  void _Victory() {
+    if (selectedWord.split('').every((letter) => guessedLetters.contains(letter))) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => RewardscreenXp(xpToAdd: 50, title: 'Vous avez trouvé le mot : $selectedWord !\n\nVous avez gagné 50 xp'),
+        ),
+      );
+    }
+    else if (attemptsLeft == 0) {
+      print('Perdu !');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +86,7 @@ class _GamePenduState extends State<GamePendu> {
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height ,
+                  height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-MediaQuery.of(context).padding.top,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
@@ -117,25 +132,19 @@ class _GamePenduState extends State<GamePendu> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
-                          ),
+                            ),
                             onPressed: guessedLetters.contains(letter) ||
-                                    attemptsLeft == 0
-                                ? null
-                                : () => guessLetter(letter),
+                                attemptsLeft == 0
+                              ? null
+                              : () {
+                                guessLetter(letter);
+                                _Victory();
+                                },
                             child: Text(letter , style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
-                          );
+                            );
                         }).toList(),
                       ),
-                      if (attemptsLeft == 0)
-                        Text('Perdu ! Le mot était: $selectedWord',
-                            style: TextStyle(fontSize: 24, color: Colors.red)),
-                      if (selectedWord
-                          .split('')
-                          .every((letter) => guessedLetters.contains(letter)))
-                        Text('Bravo ! Vous avez trouvé le mot !',
-                            style:
-                                TextStyle(fontSize: 24, color: Colors.green)),
-                      SizedBox(height: 20),
+                   
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor:

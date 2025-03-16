@@ -78,7 +78,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
         setState(() {
           name = doc.data()?['pseudo'] ?? '';
           bio = doc.data()?['bio'] ?? '';
-          level = doc.data()?['curentlevel'] ?? 0;
+          level = doc.data()?['currentLvl'] ?? 0;
           avatar1 = doc.data()?['avatar'] != null ? base64Decode(doc.data()?['avatar']) : null;
           xp = doc.data()?['currentXp'] ?? 0; 
           objXp = doc.data()?['objectiveXp'] ?? 100;

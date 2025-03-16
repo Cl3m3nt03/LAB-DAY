@@ -6,12 +6,13 @@ import 'package:three_d_slider/three_d_slider.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:makeitcode/pages/games/home_game.dart';
 
 /// Screen that displays the user's progress, step details, and rewards for a project.
 class RewardscreenXp extends StatefulWidget {
   final int xpToAdd;
-  const RewardscreenXp({super.key, required this.xpToAdd});
+  final String title;
+  const RewardscreenXp({super.key, required this.xpToAdd, required this.title});
 
   @override
   State<RewardscreenXp> createState() => _RewardscreenXpState();
@@ -176,26 +177,9 @@ ThreeDSlider(
     );
   }
 
-  /// Displays the description of the current project step.
-  Widget _stepDesc(){
-    return Center(
-      child: Text(
-        stepDesc,
-        style: GoogleFonts.montserrat(
-          textStyle: TextStyle(
-            color: Color(0xffcad0cf).withOpacity(0.8),
-            fontWeight: FontWeight.w400,
-            fontSize: 15
-          )
-        ),
-      ),
-    );
-  }
-
-
   Widget _xpAdded(){
     return Text(
-      'Gain de $xp xp',
+      'Gain de ${widget.xpToAdd} xp',
       style: GoogleFonts.sora(
         textStyle: TextStyle(
           color: Colors.white
@@ -255,7 +239,9 @@ Widget _progressBar() {
 /// Displays the button to continue to the next screen or step.
 Widget _continueButton(){
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+      Navigator.popUntil(context, (route) => route.isFirst);
+    },
     style: ElevatedButton.styleFrom(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       backgroundColor: Colors.transparent, // Fond transparent
@@ -281,6 +267,21 @@ Widget _continueButton(){
 
 }
 
+Widget _description(){
+  return Center(
+    child: Text(
+      widget.title,
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(
+          color: Color(0xfffdfffd),
+          fontWeight: FontWeight.w600,
+          fontSize: 18
+        )
+      ),
+    ),
+  );
+}
+
 @override
 Widget build(BuildContext context) {
   return Scaffold(
@@ -298,37 +299,12 @@ Widget build(BuildContext context) {
                 SizedBox(height: 20),
                 _stepTitle(),
                 SizedBox(height: 8),
-                _stepDesc(),
-                _xpAdded(),
-                SizedBox(height: 10),
+                _description(),
+                SizedBox(height: 20),
                 _progressBar(),
                 SizedBox(height: 40),
                 _continueButton(),
               ],
-            ),
-          ),
-        ),
-
-        /// BOUTON RETOUR POSITIONNÉ EN HAUT À DROITE
-        Positioned(
-          top: 40,  
-          right: 20, 
-          child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop(); 
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                border: Border.all(color: Color(0xffd4b394)),
-                color: Colors.transparent, 
-              ),
-              padding: EdgeInsets.all(6),
-              child: Icon(
-                CupertinoIcons.clear,
-                size: 24,
-                color: Color(0xffd4b394),
-              ),
             ),
           ),
         ),

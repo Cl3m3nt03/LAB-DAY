@@ -49,7 +49,7 @@ class ClassementPage extends StatelessWidget {
   // Stream that fetches user ranking data from Firestore.
   final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance
       .collection('Users')
-      .orderBy("totalpoints", descending: true)
+      .orderBy("currentLvl", descending: true)
       .snapshots();
   // Fetches the current user's pseudo from Firestore.
   Future<String?> getCurrentUserPseudo() async {
@@ -155,7 +155,7 @@ class ClassementPage extends StatelessWidget {
                                 rank: rank,
                                 name: playerPseudo,
                                 url: "debug-master", // Replace with the correct avatar URL
-                                points: data['totalpoints'].toString(),
+                                points: data['currentLvl'].toString(),
                                 textColor: textColor,
                                 avatarImage: avatarImage,  // Pass avatar image to the card
                                 context: context,
@@ -232,7 +232,7 @@ Widget classementCard({
                 ),
               ),
               Text(
-                "$points points",
+                "Niveau $points ",
                 style: const TextStyle(
                   color: Colors.white70,
                   fontStyle: FontStyle.italic,
@@ -266,7 +266,7 @@ Widget classementCard({
           ),
         ),
         const SizedBox(width: 10),
-        const Icon(Icons.star, size: 28, color: Color.fromARGB(255, 252, 175, 88)),
+       //const Icon(Icons.star, size: 28, color: Color.fromARGB(255, 252, 175, 88)),
       ],
     ),
   );

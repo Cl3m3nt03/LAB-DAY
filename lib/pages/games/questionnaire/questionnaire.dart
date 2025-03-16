@@ -6,6 +6,7 @@ import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
+import 'package:makeitcode/widget/rewardScreenXp.dart';
 
 
 /// Widget to display the questionnaire page with questions and answers.
@@ -212,18 +213,18 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
       if (question['selected'] == question['solved']) {
         score += 1;
         error = false;
-        final player = AudioPlayer();
         loadRiveAnimation("Face Idle", "Loop good");
+        final player = AudioPlayer();
         player.play(AssetSource('sound/correct.wav'));
         Future.delayed(const Duration(milliseconds: 800), () {
           nextQuestion();
         });
       } else {
-        final player = AudioPlayer();
-        player.play(AssetSource('sound/incorrect.wav'));
         error = true;
         widget.validationMessage = 'Incorrect';
         loadRiveAnimation("Face to error", "Loop");
+        final player = AudioPlayer();
+        player.play(AssetSource('sound/incorrect.wav'));
         _animationController.forward();
       }
     });
@@ -237,43 +238,20 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
         _animationController.reverse(); 
       }
       else {
-        Navigator.of(context).pushReplacement(
+        Navigator.push(
+          context,
           MaterialPageRoute(
-            builder: (context) => Scaffold(
-              appBar: AppBar(
-                backgroundColor: const Color.fromARGB(255, 11, 22, 44),
-                title: const Text('HTML CSS', style: TextStyle(color: Colors.white)),
-                centerTitle: true,
-                iconTheme: const IconThemeData(color: Colors.white),
-              ),
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Score : $score / ${questions.length}',
-                      style:  GoogleFonts.montserrat(textStyle:  TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Retour'),
-                    ),
-                  ],
-                ),
-              ),
+            builder: (context) => RewardscreenXp(
+              xpToAdd: (score * questions[0]['xp']).toInt(),
+              title: 'Votre score est $score / ${questions.length}.\n\n Vous avez gagné ${score * questions[0]['xp']} xp !',
             ),
           ),
         );
       }
     });
   }
+
+
   /// Displays the progress bar for the current question.
     Widget progressIndicatorRow(BuildContext context) {
     return Padding(

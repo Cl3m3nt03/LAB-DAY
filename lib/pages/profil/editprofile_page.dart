@@ -194,7 +194,7 @@ final FocusNode _focusNodeEmail = FocusNode();
       ),
       body: SingleChildScrollView(
               child :Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-MediaQuery.of(context).padding.top,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
