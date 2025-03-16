@@ -43,7 +43,7 @@ class _ProjectCardState extends State<ProjectCard> {
                 .doc(userId)
                 .collection(widget.projet['name'])
                 .doc('levelMap')
-                .set({"currentStep": 0}); // Si pas de doc, on initialise
+                .set({"currentStep": 1}); // Si pas de doc, on initialise
 
             setState(() {
               percentageCompletion = 0;
@@ -51,7 +51,7 @@ class _ProjectCardState extends State<ProjectCard> {
             return;
           }
 
-          int currentStep = snapshot.data()?["currentStep"] ?? 0;
+          int currentStep = snapshot.data()?["currentStep"] ?? 1;
           setState(() {
             percentageCompletion = (currentStep / 20) * 100;
           });
