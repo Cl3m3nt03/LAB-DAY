@@ -513,26 +513,23 @@ Widget _allStepsCard(double screenHeight) {
 
 
 Future<String> _getButtonText() async {
-  final userId = FirebaseAuth.instance.currentUser!.uid; // Identifiant de l'utilisateur actuel
+  final userId = FirebaseAuth.instance.currentUser!.uid; // Current user's ID
   final docRef = FirebaseFirestore.instance
-      .collection('Users') // Collection des utilisateurs
-      .doc(userId) // Document de l'utilisateur actuel
-      .collection('Portfolio') // Collection de portfolio spécifique à l'utilisateur
-      .doc('levelMap') // Le document de niveau (levelMap)
-      .get(); // Récupérer les données de ce document
+      .collection('Users') // Users collection
+      .doc(userId) // Current user's document
+      .collection('Portfolio') // Portfolio collection specific to the user
+      .doc('levelMap') // The level document (levelMap)
+      .get(); // Retrieve the data of this document
   
   final docSnapshot = await docRef;
 
   if (docSnapshot.exists) {
-    int currentStep = docSnapshot['currentStep'] ?? 1; // Si 'currentStep' existe, on l'utilise
-    return currentStep == 1 ? "Commencer" : "Continuer"; // Si currentStep == 1, afficher "Commencer"
+    int currentStep = docSnapshot['currentStep'] ?? 1; // If 'currentStep' exists, use it
+    return currentStep == 1 ? "Commencer" : "Continuer"; // If currentStep == 1, display "Start"
   } else {
-    return "Erreur"; // Par défaut, si aucune donnée trouvée, afficher "erreur"
+    return "Erreur"; // Default, if no data found, display "error"
   }
 }
-
-
-
 
 
 Widget _confirmButton(double screenHeight) {
@@ -540,17 +537,17 @@ Widget _confirmButton(double screenHeight) {
     top: screenHeight / 1.13,
     left: (MediaQuery.of(context).size.width - 270) / 2,
     child: FutureBuilder<String>(
-      future: _getButtonText(),  // Appel de la fonction asynchrone
+      future: _getButtonText(),  // Calling the asynchronous function
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // Affichage du chargement si la requête est en cours
+          return const CircularProgressIndicator(); // Show loading indicator while the request is in progress
         }
 
         if (snapshot.hasError) {
           return Text('Erreur: ${snapshot.error}');
         }
 
-       // Vérification si les données sont présentes
+        // Check if data is present
         String buttonText = snapshot.data ?? "Commencer"; // Si pas de texte, afficher "Commencer" par défaut
 
         return ElevatedButton(
@@ -565,7 +562,7 @@ Widget _confirmButton(double screenHeight) {
           ),
           onPressed: () async {
             try {
-              // Récupérer le document correspondant au projet actuel
+              // Retrieve the document corresponding to the current project
               QuerySnapshot projectSnapshot = await FirebaseFirestore.instance
                   .collection('Projects')
                   .where('name', isEqualTo: widget.projetName)
@@ -576,7 +573,7 @@ Widget _confirmButton(double screenHeight) {
                 Map<String, dynamic> projectData = projectDoc.data() as Map<String, dynamic>;
                 String projectId = projectDoc.id; // ID du projet
 
-                // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
+                // Add the ID to the project so it can be used in RewardScreen
                 projectData['id'] = projectId;
 
                 await _initData(FirebaseAuth.instance.currentUser!.uid);
@@ -588,20 +585,20 @@ Widget _confirmButton(double screenHeight) {
                   ),
                 );
               } else {
-                // Afficher une erreur si aucun projet trouvé
+                // Show an error if no project is found
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Projet introuvable")),
                 );
               }
             } catch (e) {
-              // Gestion des erreurs Firestore
+              // Handle Firestore errors
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text("Erreur: ${e.toString()}")),
               );
             }
           },
           child: Text(
-            buttonText,  // Utilisation du texte récupéré
+            buttonText,  
             style: GoogleFonts.montserrat(
               textStyle: const TextStyle(
                 color: Colors.white,
