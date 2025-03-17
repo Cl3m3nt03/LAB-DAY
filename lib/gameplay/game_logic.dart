@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:makeitcode/widget/style_editor.dart';
 import'package:makeitcode/pages/web_view/loadWebView.dart';
-
+import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class GameLogic extends StatefulWidget {
   final String userId; 
@@ -34,6 +35,10 @@ class _GameLogicState extends State<GameLogic> {
   String firstFieldFromJson = "";
   bool secondFieldFromJson = false ; 
   String lastFieldFromJson = "";
+
+  FocusNode _focusInput1 = FocusNode();
+  FocusNode _focusInput2 = FocusNode(); 
+  FocusNode _focusInput3 = FocusNode();
     // Récupérer l'utilisateur connecté 
 
   @override
@@ -138,6 +143,30 @@ Future<void> saveUserData() async {
     }
   }
 
+
+Widget buildToolbarButton(String text, TextEditingController controller) {
+  return GestureDetector(
+    onTap: () {
+      setState(() {
+        controller.text += text;
+        _checkAnswer();
+      });
+    },
+    child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.blue[100],
+      ),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 18.0),
+      ),
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     final code = EditorModel(
@@ -190,7 +219,38 @@ Future<void> saveUserData() async {
       foregroundColor: Colors.white,
     ),
 
-      body: Padding(
+      body: KeyboardActions(
+        config: KeyboardActionsConfig(
+          keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
+          nextFocus: false,
+          actions: [
+            KeyboardActionsItem(
+              focusNode: _focusInput1,
+              toolbarButtons: [
+                (node) => buildToolbarButton('<', _firstFieldController),
+                (node) => buildToolbarButton('>', _firstFieldController),
+                (node) => buildToolbarButton('/', _firstFieldController),
+              ],
+            ),
+            KeyboardActionsItem(
+              focusNode: _focusInput2,
+              toolbarButtons: [
+                (node) => buildToolbarButton('<', _lastFieldController),
+                (node) => buildToolbarButton('>', _lastFieldController),
+                (node) => buildToolbarButton('/', _lastFieldController),
+              ],
+            ),
+            KeyboardActionsItem(
+              focusNode: _focusInput3,
+              toolbarButtons: [
+                (node) => buildToolbarButton('<', _lastFieldController),
+                (node) => buildToolbarButton('>', _lastFieldController),
+                (node) => buildToolbarButton('/', _lastFieldController),
+              ],
+            ),
+          ],
+        ),
+       child : Padding(
         padding: EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         child: SingleChildScrollView(
           child: Column(
@@ -246,6 +306,10 @@ Future<void> saveUserData() async {
                     children: [
                       Expanded(
                         child: TextField(
+                          autocorrect: false,      
+                          enableSuggestions: false, 
+                          textInputAction: TextInputAction.done,
+                          focusNode: _focusInput1,
                           controller: _firstFieldController,
                           decoration: InputDecoration(
                             labelText: 'Balise Ouverture',
@@ -262,6 +326,10 @@ Future<void> saveUserData() async {
                         visible: secondFieldFromJson, // Utilise la variable de state
                         child: Expanded(
                           child: TextField(
+                            autocorrect: false,      
+                            enableSuggestions: false, 
+                            textInputAction: TextInputAction.done,
+                            focusNode: _focusInput2,
                             controller: _secondFieldController, // Ajout du controller
                             decoration: InputDecoration(
                               labelText: 'Insérer votre texte',
@@ -277,6 +345,10 @@ Future<void> saveUserData() async {
                       SizedBox(width: 16),
                       Expanded(
                         child: TextField(
+                          autocorrect: false,      
+                          enableSuggestions: false, 
+                          textInputAction: TextInputAction.done,
+                          focusNode: _focusInput3,
                           controller: _lastFieldController,
                           decoration: InputDecoration(
                             labelText: 'Balise Fermeture',
@@ -323,6 +395,7 @@ Future<void> saveUserData() async {
             ],
           ),
         ),
+      ),
       ),
     );
   }

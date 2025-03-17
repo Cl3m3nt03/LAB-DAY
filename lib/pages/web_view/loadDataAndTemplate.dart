@@ -43,8 +43,8 @@ Future<void> generateHTMLFromFirestore(String userId, String templateName, bool 
   }
 
 String _replaceData(String htmlContent, Map<String, dynamic> userData, String cssContent) {
-  htmlContent = htmlContent.replaceAll('{{name}}', userData['name'] ?? 'Nom par défaut');
-  htmlContent = htmlContent.replaceAll('{{aboutMe}}', userData['aboutMe'] ?? 'À propos par défaut');
+  htmlContent = htmlContent.replaceAll('{{title}}', userData['title']);
+
   htmlContent = htmlContent.replaceAll('{{css}}', '<style>$cssContent</style>');
   return htmlContent;
 }
