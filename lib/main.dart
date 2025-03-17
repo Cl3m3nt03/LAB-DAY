@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:makeitcode/pages/games/home_game.dart';
 import 'package:makeitcode/widget/tree.dart';
 
-
 /// Entry point of the application.
 /// Initializes Firebase and runs the app.
 Future<void> main() async {

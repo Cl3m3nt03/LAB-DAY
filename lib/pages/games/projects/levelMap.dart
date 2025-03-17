@@ -131,8 +131,7 @@ Future<void> _incrementLevel(bool isValid) async {
         context,
         MaterialPageRoute(
           builder: (context) => Rewardscreen(
-            stepIndex: newStep,
-            xpToAdd: 10, // Exemple d'XP à ajouter, vous pouvez le personnaliser
+            xpToAdd: 10000, // Exemple d'XP à ajouter, vous pouvez le personnaliser
           ),
         ),
       );
