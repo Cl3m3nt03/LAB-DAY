@@ -234,7 +234,7 @@ Widget _title(screenHeight){
                     ),
                     SizedBox(width: 4),
                     Text(
-                      '4.3',
+                      '5',
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
                           color: Colors.white.withOpacity(0.7),
@@ -478,6 +478,205 @@ Widget _descriptionText(BuildContext context, String desc) {
   );
 }
 
+Widget _userRatings(){
+  return SingleChildScrollView(
+    child: Column(
+    children: [
+      Container(
+    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Color(0xff0692C2),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xff346094),
+          blurRadius: 4,
+          offset: Offset(0, 3)
+        )
+      ]
+    ),
+    child: Center(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start, // Alignement des éléments horizontalement (par défaut start)
+children: [
+  // Premier Container avec le texte du nom
+  Container(
+    width: 200, 
+    child: Text(
+      'Jack',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+Container(
+  width: 240, 
+  height: 40, 
+  child: Stack(
+    children: [
+      for (int i = 0; i < 5; i++)
+        Positioned(
+          left: i * 20.0, 
+          top: 0, 
+          child: Icon(
+            Icons.star_rate_rounded,
+            color: i < 5 ? Colors.yellow : Colors.grey, 
+          ),
+        ),
+    ],
+  ),
+),
+
+  Container(
+    width: 300, 
+    child: Text(
+      "Ce projet de portfolio a été une excellente occasion d'apprendre et d'appliquer des compétences en développement web. J'ai pu créer un site pour afficher mes projets, ce qui m'a permis de mieux comprendre le processus de création web et d'améliorer mes compétences techniques.",
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+],
+
+)
+
+),
+
+  ),
+
+  SizedBox(height: 20,),
+
+  Container(
+    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Color(0xff0692C2),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xff346094),
+          blurRadius: 4,
+          offset: Offset(0, 3)
+        )
+      ]
+    ),
+    child: Center(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start, // Alignement des éléments horizontalement (par défaut start)
+children: [
+  // Premier Container avec le texte du nom
+  Container(
+    width: 200, 
+    child: Text(
+      'Jones',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+Container(
+  width: 240, 
+  height: 40, 
+  child: Stack(
+    children: [
+      for (int i = 0; i < 5; i++)
+        Positioned(
+          left: i * 20.0, 
+          top: 0, 
+          child: Icon(
+            Icons.star_rate_rounded,
+            color: i < 5 ? Colors.yellow : Colors.grey, 
+          ),
+        ),
+    ],
+  ),
+),
+
+  Container(
+    width: 300, 
+    child: Text(
+      "Le projet portfolio m'a aidé à maîtriser plusieurs compétences techniques tout en créant un site pour présenter mes réalisations. C'est un excellent moyen de voir mes progrès et de gagner en confiance.",
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+],
+
+)
+
+),
+
+  ),
+
+
+  SizedBox(height: 20,),
+
+  Container(
+    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Color(0xff0692C2),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xff346094),
+          blurRadius: 4,
+          offset: Offset(0, 3)
+        )
+      ]
+    ),
+    child: Center(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start, // Alignement des éléments horizontalement (par défaut start)
+children: [
+  // Premier Container avec le texte du nom
+  Container(
+    width: 200, 
+    child: Text(
+      'Tyron',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+Container(
+  width: 240, 
+  height: 40, 
+  child: Stack(
+    children: [
+      for (int i = 0; i < 5; i++)
+        Positioned(
+          left: i * 20.0, 
+          top: 0, 
+          child: Icon(
+            Icons.star_rate_rounded,
+            color: i < 5 ? Colors.yellow : Colors.grey, 
+          ),
+        ),
+    ],
+  ),
+),
+
+  Container(
+    width: 300, 
+    child: Text(
+      "Ce projet de portfolio m'a permis d'apprendre à créer des sites web de A à Z. Grâce à lui, j'ai mis en pratique mes compétences en HTML, CSS et JavaScript, et j'ai pu présenter mes projets de manière professionnelle.",
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+],
+
+)
+
+),
+
+  )
+    ],
+  ),
+  );
+}
+
 // Widget to display all steps or description depending on the selected tab.
 
 Widget _allStepsCard(double screenHeight) {
@@ -489,37 +688,37 @@ Widget _allStepsCard(double screenHeight) {
       width: 270,
       child: _selectedIndex == 0
           ? SingleChildScrollView(
-            child: Column(
-              children: [
-                for (int i = 1; i <= 20; i++)
-                  FutureBuilder<String>(
-                    future: loadContent(i), // Charge le titre de l'étape
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      }
-                      if (snapshot.hasError || snapshot.data == null) {
-                        return Text("Erreur pour l'étape $i");
-                      }
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: _stepCard(snapshot.data!, i), // Passe le titre récupéré
-                      );
-                    },
-                  ),
-              ],
-            ),
-          )
-
+              child: Column(
+                children: [
+                  for (int i = 1; i <= 20; i++)
+                    FutureBuilder<String>(
+                      future: loadContent(i), // Charge le titre de l'étape
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        }
+                        if (snapshot.hasError || snapshot.data == null) {
+                          return Text("Erreur pour l'étape $i");
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: _stepCard(snapshot.data!, i), // Passe le titre récupéré
+                        );
+                      },
+                    ),
+                ],
+              ),
+            )
           : _selectedIndex == 1
               ? _descriptionTextGeneration()
-              : const Center(
-                  child: Text('Avis des utilisateurs', style: TextStyle(color: Colors.white)),
-                ),
+              : _selectedIndex == 2
+                  ? Center(
+                      child: _userRatings(),
+                    )
+                  : const SizedBox.shrink(), // Ajoute une condition vide si aucun index ne correspond
     ),
   );
 }
-
 
 
 Widget _confirmButton(screenHeight) {
