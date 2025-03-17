@@ -1,0 +1,437 @@
+[
+    {
+      "question": "Quelle commande est utilisée pour récupérer toutes les données d'une table en SQL ?",
+      "options": [
+        {"text": "SELECT * FROM table_name"},
+        {"text": "GET * FROM table_name"},
+        {"text": "SHOW * FROM table_name"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "En SQL, 'SELECT * FROM table_name' permet de récupérer toutes les colonnes d'une table."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle clause permet de filtrer les résultats d'une requête SQL ?",
+      "options": [
+        {"text": "WHERE"},
+        {"text": "FILTER"},
+        {"text": "HAVING"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "La clause 'WHERE' est utilisée pour filtrer les enregistrements en fonction d'une condition."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle commande est utilisée pour insérer une nouvelle ligne dans une table SQL ?",
+      "options": [
+        {"text": "INSERT INTO"},
+        {"text": "ADD RECORD"},
+        {"text": "NEW ENTRY"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "'INSERT INTO' est utilisé pour ajouter une nouvelle ligne à une table SQL."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle clause est utilisée pour trier les résultats d'une requête SQL ?",
+      "options": [
+        {"text": "ORDER BY"},
+        {"text": "SORT BY"},
+        {"text": "GROUP BY"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "La clause 'ORDER BY' est utilisée pour trier les résultats d'une requête SQL."},
+      "xp": 10
+    },
+    {
+      "question": "Comment sélectionner uniquement des valeurs distinctes dans une colonne ?",
+      "options": [
+        {"text": "SELECT DISTINCT column_name FROM table_name"},
+        {"text": "SELECT UNIQUE column_name FROM table_name"},
+        {"text": "SELECT DIFFERENT column_name FROM table_name"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'SELECT DISTINCT' permet de récupérer des valeurs uniques d'une colonne."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle commande est utilisée pour mettre à jour un enregistrement existant dans une table ?",
+      "options": [
+        {"text": "UPDATE"},
+        {"text": "MODIFY"},
+        {"text": "CHANGE"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'UPDATE' permet de modifier des enregistrements existants dans une table."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle clause est utilisée pour regrouper les résultats en SQL ?",
+      "options": [
+        {"text": "GROUP BY"},
+        {"text": "ORDER BY"},
+        {"text": "FILTER BY"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "'GROUP BY' est utilisé pour regrouper les résultats selon une ou plusieurs colonnes."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle commande est utilisée pour supprimer un enregistrement d'une table SQL ?",
+      "options": [
+        {"text": "DELETE FROM"},
+        {"text": "REMOVE FROM"},
+        {"text": "DROP FROM"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'DELETE FROM' est utilisé pour supprimer des lignes d'une table."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle commande est utilisée pour supprimer une table SQL ?",
+      "options": [
+        {"text": "DROP TABLE"},
+        {"text": "DELETE TABLE"},
+        {"text": "REMOVE TABLE"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'DROP TABLE' est utilisé pour supprimer complètement une table d'une base de données."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle clause est utilisée pour limiter le nombre de résultats retournés ?",
+      "options": [
+        {"text": "LIMIT"},
+        {"text": "TOP"},
+        {"text": "RANGE"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'LIMIT' est utilisé pour restreindre le nombre de lignes retournées par une requête."},
+      "xp": 10
+    },
+    {
+      "question": "Comment effectuer une jointure entre deux tables en SQL ?",
+      "options": [
+        {"text": "JOIN"},
+        {"text": "MERGE"},
+        {"text": "CONNECT"}
+      ],
+      "solved": 0,
+      "selected": null,
+      "explication": {"text": "'JOIN' permet de combiner des lignes de deux tables en fonction d'une condition commune."},
+      "xp": 10
+    },
+    {
+      "question": "Quel type de jointure retourne uniquement les correspondances entre deux tables ?",
+      "options": [
+        {"text": "INNER JOIN"},
+        {"text": "LEFT JOIN"},
+        {"text": "RIGHT JOIN"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'INNER JOIN' retourne uniquement les enregistrements ayant des correspondances dans les deux tables."},
+      "xp": 10
+    },
+    {
+      "question": "Comment ajouter une nouvelle colonne à une table existante ?",
+      "options": [
+        {"text": "ALTER TABLE table_name ADD column_name"},
+        {"text": "MODIFY TABLE table_name ADD column_name"},
+        {"text": "UPDATE TABLE table_name ADD column_name"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'ALTER TABLE ADD' permet d'ajouter une colonne à une table existante."},
+      "xp": 10
+    },
+    {
+      "question": "Quel mot-clé est utilisé pour créer une clé primaire en SQL ?",
+      "options": [
+        {"text": "PRIMARY KEY"},
+        {"text": "UNIQUE KEY"},
+        {"text": "FOREIGN KEY"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'PRIMARY KEY' est utilisé pour définir une clé primaire sur une colonne ou un ensemble de colonnes."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle est la différence entre 'HAVING' et 'WHERE' ?",
+      "options": [
+        {"text": "'HAVING' filtre après l'agrégation, 'WHERE' filtre avant"},
+        {"text": "'HAVING' filtre les colonnes, 'WHERE' filtre les tables"},
+        {"text": "Aucune différence"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'WHERE' filtre avant l'agrégation, alors que 'HAVING' filtre après l'agrégation des résultats."},
+      "xp": 10
+    },
+    {
+      "question": "Comment récupérer l'heure actuelle en SQL ?",
+      "options": [
+        {"text": "NOW()"},
+        {"text": "CURRENT_DATE"},
+        {"text": "GETTIME()"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'NOW()' est utilisé pour obtenir la date et l'heure actuelles en SQL."},
+      "xp": 10
+    },
+    {
+      "question": "Quelle fonction SQL retourne le nombre d'enregistrements ?",
+      "options": [
+        {"text": "COUNT()"},
+        {"text": "SUM()"},
+        {"text": "TOTAL()"}
+      ],
+      "solved": 1,
+      "selected": null,
+      "explication": {"text": "'COUNT()' permet de compter le nombre d'enregistrements dans une table."},
+      "xp": 10
+    },
+    
+        {
+          "question": "Quelle commande est utilisée pour récupérer toutes les données d'une table en SQL ?",
+          "options": [
+            {"text": "SELECT * FROM table_name"},
+            {"text": "GET * FROM table_name"},
+            {"text": "SHOW * FROM table_name"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "En SQL, 'SELECT * FROM table_name' permet de récupérer toutes les colonnes d'une table."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle clause permet de filtrer les résultats d'une requête SQL ?",
+          "options": [
+            {"text": "WHERE"},
+            {"text": "FILTER"},
+            {"text": "HAVING"}
+          ],
+          "solved": 1,
+          "selected": null,
+          "explication": {"text": "La clause 'WHERE' est utilisée pour filtrer les enregistrements en fonction d'une condition."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande est utilisée pour insérer une nouvelle ligne dans une table SQL ?",
+          "options": [
+            {"text": "INSERT INTO"},
+            {"text": "ADD RECORD"},
+            {"text": "NEW ENTRY"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'INSERT INTO' est utilisé pour ajouter une nouvelle ligne à une table SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle clause est utilisée pour trier les résultats d'une requête SQL ?",
+          "options": [
+            {"text": "ORDER BY"},
+            {"text": "SORT BY"},
+            {"text": "GROUP BY"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "La clause 'ORDER BY' est utilisée pour trier les résultats d'une requête SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Comment sélectionner uniquement des valeurs distinctes dans une colonne ?",
+          "options": [
+            {"text": "SELECT DISTINCT column_name FROM table_name"},
+            {"text": "SELECT UNIQUE column_name FROM table_name"},
+            {"text": "SELECT DIFFERENT column_name FROM table_name"}
+          ],
+          "solved": 1,
+          "selected": null,
+          "explication": {"text": "'SELECT DISTINCT' permet de récupérer des valeurs uniques d'une colonne."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande est utilisée pour renommer une table SQL ?",
+          "options": [
+            {"text": "ALTER TABLE table_name RENAME TO new_table_name"},
+            {"text": "CHANGE TABLE table_name TO new_table_name"},
+            {"text": "RENAME TABLE table_name TO new_table_name"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'ALTER TABLE ... RENAME TO ...' permet de renommer une table SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande permet de supprimer toutes les données d'une table sans supprimer la structure ?",
+          "options": [
+            {"text": "TRUNCATE TABLE"},
+            {"text": "DELETE FROM"},
+            {"text": "DROP TABLE"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'TRUNCATE TABLE' permet de supprimer toutes les données d'une table sans affecter sa structure."},
+          "xp": 10
+        },
+        {
+          "question": "Comment définir une valeur par défaut pour une colonne en SQL ?",
+          "options": [
+            {"text": "DEFAULT"},
+            {"text": "SET DEFAULT"},
+            {"text": "DEFINE DEFAULT"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "Le mot-clé 'DEFAULT' permet de définir une valeur par défaut pour une colonne."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande permet de vérifier la structure d'une table SQL ?",
+          "options": [
+            {"text": "DESCRIBE table_name"},
+            {"text": "SHOW STRUCTURE table_name"},
+            {"text": "INFO table_name"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'DESCRIBE' permet d'afficher la structure d'une table SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande permet de sauvegarder une base de données en SQL ?",
+          "options": [
+            {"text": "BACKUP DATABASE"},
+            {"text": "SAVE DATABASE"},
+            {"text": "EXPORT DATABASE"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'BACKUP DATABASE' permet de sauvegarder une base de données."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande est utilisée pour modifier une colonne dans une table SQL ?",
+          "options": [
+            {"text": "ALTER COLUMN"},
+            {"text": "MODIFY COLUMN"},
+            {"text": "CHANGE COLUMN"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'ALTER COLUMN' est utilisé pour modifier une colonne dans une table SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quel type de jointure SQL est utilisé pour récupérer des lignes uniquement quand il y a une correspondance dans les deux tables ?",
+          "options": [
+            {"text": "INNER JOIN"},
+            {"text": "LEFT JOIN"},
+            {"text": "RIGHT JOIN"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "L'INNER JOIN permet de récupérer uniquement les lignes avec une correspondance dans les deux tables."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande permet de supprimer une table SQL ?",
+          "options": [
+            {"text": "DROP TABLE"},
+            {"text": "DELETE TABLE"},
+            {"text": "REMOVE TABLE"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'DROP TABLE' permet de supprimer une table dans une base de données."},
+          "xp": 10
+        },
+        {
+          "question": "Comment afficher l'heure actuelle en SQL ?",
+          "options": [
+            {"text": "SELECT CURRENT_TIME"},
+            {"text": "SELECT NOW()"},
+            {"text": "SELECT TIME()"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "La commande 'SELECT NOW()' permet d'afficher l'heure actuelle dans une base de données SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quel mot-clé est utilisé pour ajouter une contrainte sur une colonne dans SQL ?",
+          "options": [
+            {"text": "CONSTRAINT"},
+            {"text": "REQUIRE"},
+            {"text": "CHECK"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "'CONSTRAINT' permet d'ajouter des contraintes à une colonne dans une table SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quel type de jointure permet d'afficher toutes les lignes de la première table et les correspondances de la deuxième table ?",
+          "options": [
+            {"text": "LEFT JOIN"},
+            {"text": "RIGHT JOIN"},
+            {"text": "FULL JOIN"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "Le LEFT JOIN affiche toutes les lignes de la première table et les correspondances dans la deuxième."},
+          "xp": 10
+        },
+        {
+          "question": "Quelle commande permet de supprimer une colonne d'une table SQL ?",
+          "options": [
+            {"text": "ALTER TABLE table_name DROP COLUMN column_name"},
+            {"text": "DELETE COLUMN FROM table_name"},
+            {"text": "REMOVE COLUMN FROM table_name"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "L'ALTER TABLE avec DROP COLUMN est utilisé pour supprimer une colonne d'une table SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Quel type de données est utilisé pour stocker une valeur monétaire en SQL ?",
+          "options": [
+            {"text": "DECIMAL"},
+            {"text": "CURRENCY"},
+            {"text": "MONEY"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "Le type de données 'DECIMAL' est souvent utilisé pour stocker des valeurs monétaires en SQL."},
+          "xp": 10
+        },
+        {
+          "question": "Comment créer une base de données en SQL ?",
+          "options": [
+            {"text": "CREATE DATABASE"},
+            {"text": "NEW DATABASE"},
+            {"text": "MAKE DATABASE"}
+          ],
+          "solved": 0,
+          "selected": null,
+          "explication": {"text": "La commande 'CREATE DATABASE' est utilisée pour créer une nouvelle base de données en SQL."},
+          "xp": 10
+        }
+    ]
+    
+  

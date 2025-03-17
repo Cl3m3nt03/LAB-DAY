@@ -6,6 +6,11 @@
 
     },
     {
+        "title": "SQL",
+        "image": "assets/icons/sql.png",
+        "link":"lib/pages/games/questionnaire/list_questionnaire/sql.json"
+    },
+    {
         "title": "Python",
         "image": "assets/icons/python.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/python.json"
@@ -33,6 +38,12 @@
         "title": "Ruby",
         "image": "assets/icons/ruby.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/ruby.json"
+    },
+
+    {
+        "title": "Cobol",
+        "image": "assets/icons/cobol.png",
+        "link":"lib/pages/games/questionnaire/list_questionnaire/cobol.json"
     }
 
 ]

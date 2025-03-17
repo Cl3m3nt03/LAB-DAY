@@ -50,8 +50,10 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Rendu de votre protfolio', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20) ),
+        backgroundColor: Color.fromRGBO(0, 113, 152, 1),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -60,6 +62,7 @@ class _WebViewPageState extends State<WebViewPage> {
         actions: [
           IconButton(
             icon: Icon(_isPhoneView ? Icons.phone_android : Icons.desktop_windows),
+            color: Colors.white,
             onPressed: () async {
               setState(() {
                 _isPhoneView = !_isPhoneView;
