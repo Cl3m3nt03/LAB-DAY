@@ -23,50 +23,40 @@ class _ProjectCardState extends State<ProjectCard> {
   @override
   void initState() {
     super.initState();
-    _fetchCurrentStep();
+    _listenToFirestoreChanges();  // 🔥 Ajout du listener ici
   }
 
-  @override
-void didChangeDependencies() {
-  super.didChangeDependencies();
-  _fetchCurrentStep();  
-}
-
-
-Future<void> _fetchCurrentStep() async {
-  try {
+  void _listenToFirestoreChanges() {
     String? userId = FirebaseAuth.instance.currentUser?.uid;
     if (userId == null) return;
 
-    DocumentReference userProjectDocRef = FirebaseFirestore.instance
-        .collection('Users')  // Accéder à la collection Users
-        .doc(userId)          // Sélectionner l'utilisateur connecté
-        .collection(widget.projet['name']) // Accéder au projet spécifique de cet utilisateur
-        .doc('levelMap');     // Aller dans le document levelMap
+    FirebaseFirestore.instance
+        .collection('Users')  
+        .doc(userId)          
+        .collection(widget.projet['name']) 
+        .doc('levelMap')
+        .snapshots()
+        .listen((snapshot) {
+          if (!snapshot.exists) {
+            FirebaseFirestore.instance
+                .collection('Users')
+                .doc(userId)
+                .collection(widget.projet['name'])
+                .doc('levelMap')
+                .set({"currentStep": 1}); // Si pas de doc, on initialise
 
-    print("ICI $userProjectDocRef");
+            setState(() {
+              percentageCompletion = 0;
+            });
+            return;
+          }
 
-    DocumentSnapshot projectDoc = await userProjectDocRef.get();
-
-    if (!projectDoc.exists) {
-      await userProjectDocRef.set({"currentStep": 0});
-      setState(() {
-        percentageCompletion = 0;
-      });
-      return;
-    }
-
-    int currentStep = projectDoc["currentStep"];
-    setState(() {
-      percentageCompletion = (currentStep / 20) * 100;
-    });
-
-  } catch (e) {
-    print("Error fetching currentStep: $e");
+          int currentStep = snapshot.data()?["currentStep"] ?? 1;
+          setState(() {
+            percentageCompletion = (currentStep / 20) * 100;
+          });
+        });
   }
-}
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -123,10 +113,12 @@ Future<void> _fetchCurrentStep() async {
                           ),
                           SizedBox(height: 5),
                           if (widget.projet['state'] == 'began')
-                            Progressbar(
-                              percentageCompletion: percentageCompletion,
-                              showPercentage: true,
-                            ),
+                            percentageCompletion == 5
+                              ? showMore()
+                              : Progressbar(
+                                  percentageCompletion: percentageCompletion,
+                                  showPercentage: true,
+                                ),
                           if (widget.projet['state'] == 'unlocked') showMore(),
                         ],
                       ),

@@ -34,7 +34,7 @@ class _GameLogicState extends State<GameLogic> {
   String firstFieldFromJson = "";
   bool secondFieldFromJson = false ; 
   String lastFieldFromJson = "";
-    // Récupérer l'utilisateur connecté
+    // Récupérer l'utilisateur connecté 
 
   @override
   void initState() {
@@ -174,7 +174,7 @@ Future<void> saveUserData() async {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 8),
             LinearProgressIndicator(
