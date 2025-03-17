@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
 import 'package:makeitcode/pages/games/projects/levelMap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -21,6 +23,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
   late final Stream<QuerySnapshot> _projectDetail;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   int _selectedIndex = 0;
+  int _currentStep = 0;
+  String _titleStep = "";
 
   void _cheangeIndex(int index){
       setState(() {
@@ -70,12 +74,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
   @override
    void initState(){
     super.initState();
-
-    _projectDetail = FirebaseFirestore.instance
-    .collection('Projects')
-    .where('name', isEqualTo: widget.projetName)
-    .snapshots();
     initProject();
+    _fetchCurrentStep();
    }
 
 Future<void> initProject() async {
@@ -94,6 +94,55 @@ Future<void> initProject() async {
   } else {
   }
 }
+
+Future<void> _fetchCurrentStep() async {
+  try {
+    String? userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId == null) return;
+
+    DocumentReference userProjectDocRef = FirebaseFirestore.instance
+        .collection('Users')  // Accéder à la collection Users
+        .doc(userId)          // Sélectionner l'utilisateur connecté
+        .collection(widget.projet['name']) 
+        .doc('levelMap');     // Aller dans le document levelMap
+
+    print("ICI $userProjectDocRef");
+
+    DocumentSnapshot projectDoc = await userProjectDocRef.get();
+
+    if (!projectDoc.exists) {
+      await userProjectDocRef.set({"currentStep"});
+      return;
+    }
+    _currentStep = projectDoc["currentStep"];
+
+  } catch (e) {
+    print("Error fetching currentStep: $e");
+  }
+}
+
+Future<String> loadContent(int step) async {
+  try {
+    String jsonString = await rootBundle.loadString('assets/game/html.json');
+    List<dynamic> jsonData = json.decode(jsonString);
+
+    var stepData = jsonData.firstWhere((element) => element["step"] == step, orElse: () => {});
+
+    if (stepData.isEmpty) {
+      throw Exception("Aucune donnée trouvée pour l'étape $step");
+    }
+
+    print("Donnée ${stepData['title']} $step");
+
+    return stepData["title"]; // Retourne le titre au lieu de modifier _titleStep
+  } catch (e) {
+    print("Erreur lors du chargement de l'étape $step : $e");
+    return "Erreur";
+  }
+}
+
+
+
 // Widget to render the project image poster with polygon shape.
 Widget _ImagePoster(){
   return Positioned(
@@ -125,31 +174,18 @@ Widget _ImagePoster(){
 // Widget for the back arrow icon with custom gradient style.
 
 Widget _backArrow(){
-  return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Container(
-                    padding: EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        colors: [
-                          Color(0xff0692C2).withOpacity(0.7),
-                          Color(0xffE8B228).withOpacity(0.7)
-                        ]
-                      )
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
-                  )
-                ),
-              ],
+  return Positioned(
+            top: 40,
+            left: 16,
+            child: FloatingActionButton(
+              heroTag: 'backButton',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              backgroundColor: Colors.white.withOpacity(0.8),
+              elevation: 3,
+              mini: true,
+              child: Icon(Icons.arrow_back, color: Colors.black),
             ),
           );
 }
@@ -198,7 +234,7 @@ Widget _title(screenHeight){
                     ),
                     SizedBox(width: 4),
                     Text(
-                      '4.3',
+                      '5',
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
                           color: Colors.white.withOpacity(0.7),
@@ -312,7 +348,7 @@ double _calculateButtonWidth(int index, List<String> buttonTexts) {
 
 // Widget to generate a step card with information about each project step.
 
-Widget _stepCard(step){
+Widget _stepCard(String title, int step) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
@@ -327,89 +363,41 @@ Widget _stepCard(step){
       ]
     ),
     child: Center(
-      child: Row(
-        children: [
-          Column(
-            children: [
-              Text(
-                step['name'],
-                style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)
-                ),
-              ),
-            ],
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.center, // Aligne les éléments verticalement
+    children: [
+      Container(
+        width: 190, // Largeur fixe que tu souhaites pour le texte (ajuste selon ton besoin)
+        child: Text(
+          title,
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
           ),
-          Spacer(),
-          if(step['isCompleted'])
-          Icon(
-            Icons.check_circle_outline_rounded,
-            color: Color(0xffa0ca85),
-          ),
-          if(!step['isCompleted'])
-          Icon(
-            CupertinoIcons.clear_circled,
-            color: Color(0xffaf3a36),
-          )
-        ],
-      )
+          maxLines: 1, // Limite à une seule ligne
+          overflow: TextOverflow.ellipsis, // Ajoute "..." si le texte dépasse
+        ),
       ),
+      Spacer(),
+      if (_currentStep >= step)
+        Icon(
+          Icons.check_circle_outline_rounded,
+          color: Color(0xffa0ca85),
+        )
+      else
+        Icon(
+          CupertinoIcons.clear_circled,
+          color: Color(0xffaf3a36),
+        ),
+
+          ],
+        ),
+),
+
   );
 }
+
 // Widget to generate steps card from Firestore data.
 
-Widget _stepsCardGeneration() {
-  return StreamBuilder<QuerySnapshot>(
-    stream: _projectDetail,
-    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator());
-      }
-      if (snapshot.hasError) {
-        return Center(child: Text('Erreur: ${snapshot.error}'));
-      }
-      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-        return Center(child: Text('Aucun projet trouvé'));
-      }
-
-      return SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> project = document.data()! as Map<String, dynamic>;
-
-            return FutureBuilder<QuerySnapshot>(
-              future: FirebaseFirestore.instance
-                  .collection('Projects')
-                  .doc(document.id)
-                  .collection('Steps')
-                  .get(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> stepSnapshot) {
-                if (stepSnapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                }
-
-                if (stepSnapshot.hasError) {
-                  return const Text("Erreur lors du chargement des étapes.");
-                }
-
-                return Column(
-                  children: stepSnapshot.data!.docs.map((stepDocument) {
-                    Map<String, dynamic> step = stepDocument.data()! as Map<String, dynamic>;
-
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: _stepCard(step),
-                    );
-                  }).toList(),
-                );
-              },
-            );
-          }).toList(),
-        ),
-      );
-    },
-  );
-}
 // Widget to generate project description text from Firestore data.
 
 Widget _descriptionTextGeneration() {
@@ -490,6 +478,205 @@ Widget _descriptionText(BuildContext context, String desc) {
   );
 }
 
+Widget _userRatings(){
+  return SingleChildScrollView(
+    child: Column(
+    children: [
+      Container(
+    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Color(0xff0692C2),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xff346094),
+          blurRadius: 4,
+          offset: Offset(0, 3)
+        )
+      ]
+    ),
+    child: Center(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start, // Alignement des éléments horizontalement (par défaut start)
+children: [
+  // Premier Container avec le texte du nom
+  Container(
+    width: 200, 
+    child: Text(
+      'Jack',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+Container(
+  width: 240, 
+  height: 40, 
+  child: Stack(
+    children: [
+      for (int i = 0; i < 5; i++)
+        Positioned(
+          left: i * 20.0, 
+          top: 0, 
+          child: Icon(
+            Icons.star_rate_rounded,
+            color: i < 5 ? Colors.yellow : Colors.grey, 
+          ),
+        ),
+    ],
+  ),
+),
+
+  Container(
+    width: 300, 
+    child: Text(
+      "Ce projet de portfolio a été une excellente occasion d'apprendre et d'appliquer des compétences en développement web. J'ai pu créer un site pour afficher mes projets, ce qui m'a permis de mieux comprendre le processus de création web et d'améliorer mes compétences techniques.",
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+],
+
+)
+
+),
+
+  ),
+
+  SizedBox(height: 20,),
+
+  Container(
+    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Color(0xff0692C2),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xff346094),
+          blurRadius: 4,
+          offset: Offset(0, 3)
+        )
+      ]
+    ),
+    child: Center(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start, // Alignement des éléments horizontalement (par défaut start)
+children: [
+  // Premier Container avec le texte du nom
+  Container(
+    width: 200, 
+    child: Text(
+      'Jones',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+Container(
+  width: 240, 
+  height: 40, 
+  child: Stack(
+    children: [
+      for (int i = 0; i < 5; i++)
+        Positioned(
+          left: i * 20.0, 
+          top: 0, 
+          child: Icon(
+            Icons.star_rate_rounded,
+            color: i < 5 ? Colors.yellow : Colors.grey, 
+          ),
+        ),
+    ],
+  ),
+),
+
+  Container(
+    width: 300, 
+    child: Text(
+      "Le projet portfolio m'a aidé à maîtriser plusieurs compétences techniques tout en créant un site pour présenter mes réalisations. C'est un excellent moyen de voir mes progrès et de gagner en confiance.",
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+],
+
+)
+
+),
+
+  ),
+
+
+  SizedBox(height: 20,),
+
+  Container(
+    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Color(0xff0692C2),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xff346094),
+          blurRadius: 4,
+          offset: Offset(0, 3)
+        )
+      ]
+    ),
+    child: Center(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start, // Alignement des éléments horizontalement (par défaut start)
+children: [
+  // Premier Container avec le texte du nom
+  Container(
+    width: 200, 
+    child: Text(
+      'Tyron',
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+Container(
+  width: 240, 
+  height: 40, 
+  child: Stack(
+    children: [
+      for (int i = 0; i < 5; i++)
+        Positioned(
+          left: i * 20.0, 
+          top: 0, 
+          child: Icon(
+            Icons.star_rate_rounded,
+            color: i < 5 ? Colors.yellow : Colors.grey, 
+          ),
+        ),
+    ],
+  ),
+),
+
+  Container(
+    width: 300, 
+    child: Text(
+      "Ce projet de portfolio m'a permis d'apprendre à créer des sites web de A à Z. Grâce à lui, j'ai mis en pratique mes compétences en HTML, CSS et JavaScript, et j'ai pu présenter mes projets de manière professionnelle.",
+      style: GoogleFonts.montserrat(
+        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+      ),
+    ),
+  ),
+],
+
+)
+
+),
+
+  )
+    ],
+  ),
+  );
+}
+
 // Widget to display all steps or description depending on the selected tab.
 
 Widget _allStepsCard(double screenHeight) {
@@ -500,17 +687,38 @@ Widget _allStepsCard(double screenHeight) {
       height: 200,
       width: 270,
       child: _selectedIndex == 0
-          ? _stepsCardGeneration() // Affiche les étapes si "Etapes" est sélectionné
+          ? SingleChildScrollView(
+              child: Column(
+                children: [
+                  for (int i = 1; i <= 20; i++)
+                    FutureBuilder<String>(
+                      future: loadContent(i), // Charge le titre de l'étape
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        }
+                        if (snapshot.hasError || snapshot.data == null) {
+                          return Text("Erreur pour l'étape $i");
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: _stepCard(snapshot.data!, i), // Passe le titre récupéré
+                        );
+                      },
+                    ),
+                ],
+              ),
+            )
           : _selectedIndex == 1
               ? _descriptionTextGeneration()
-              : const Center(
-                  child: Text('Avis des utilisateurs', style: TextStyle(color: Colors.white)),
-                ),
+              : _selectedIndex == 2
+                  ? Center(
+                      child: _userRatings(),
+                    )
+                  : const SizedBox.shrink(), // Ajoute une condition vide si aucun index ne correspond
     ),
   );
 }
-
-
 
 Future<String> _getButtonText() async {
   final userId = FirebaseAuth.instance.currentUser!.uid; // Current user's ID
@@ -532,7 +740,7 @@ Future<String> _getButtonText() async {
 }
 
 
-Widget _confirmButton(double screenHeight) {
+Widget _confirmButton(screenHeight) {
   return Positioned(
     top: screenHeight / 1.13,
     left: (MediaQuery.of(context).size.width - 270) / 2,
