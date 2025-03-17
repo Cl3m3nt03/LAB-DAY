@@ -434,7 +434,6 @@ Widget _descriptionText(BuildContext context, String desc) {
     alignment: Alignment.center,
     child: Container(
       //constraints: const BoxConstraints(maxWidth: 300, maxHeight: 200), // Taille max
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -545,7 +544,7 @@ Container(
 
   ),
 
-  SizedBox(height: 20),
+  SizedBox(height: 20,),
 
   Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
@@ -666,12 +665,13 @@ Container(
       ),
     ),
   ),
-
 ],
+
 )
+
 ),
-  ),
-    SizedBox(height: 60,),
+
+  )
     ],
   ),
   );
@@ -706,7 +706,6 @@ Widget _allStepsCard(double screenHeight) {
                         );
                       },
                     ),
-                    SizedBox(height:60),
                 ],
               ),
             )
@@ -721,102 +720,67 @@ Widget _allStepsCard(double screenHeight) {
   );
 }
 
-Future<String> _getButtonText() async {
-  final userId = FirebaseAuth.instance.currentUser!.uid; // Current user's ID
-  final docRef = FirebaseFirestore.instance
-      .collection('Users') // Users collection
-      .doc(userId) // Current user's document
-      .collection('Portfolio') // Portfolio collection specific to the user
-      .doc('levelMap') // The level document (levelMap)
-      .get(); // Retrieve the data of this document
-  
-  final docSnapshot = await docRef;
-
-  if (docSnapshot.exists) {
-    int currentStep = docSnapshot['currentStep'] ?? 1; // If 'currentStep' exists, use it
-    return currentStep == 1 ? "Commencer" : "Continuer"; // If currentStep == 1, display "Start"
-  } else {
-    return "Erreur"; // Default, if no data found, display "error"
-  }
-}
-
 
 Widget _confirmButton(screenHeight) {
   return Positioned(
     top: screenHeight / 1.13,
     left: (MediaQuery.of(context).size.width - 270) / 2,
-    child: FutureBuilder<String>(
-      future: _getButtonText(),  // Calling the asynchronous function
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // Show loading indicator while the request is in progress
-        }
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+        backgroundColor: const Color(0xff121B38),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        shadowColor: const Color(0xff121B38).withOpacity(0.6), // Ombre
+        elevation: 8,
+      ),
+      onPressed: () async {
+        try {
+          // Récupérer le document correspondant au projet actuel
+          QuerySnapshot projectSnapshot = await FirebaseFirestore.instance
+              .collection('Projects')
+              .where('name', isEqualTo: widget.projetName)
+              .get();
 
-        if (snapshot.hasError) {
-          return Text('Erreur: ${snapshot.error}');
-        }
+          if (projectSnapshot.docs.isNotEmpty) {
+            DocumentSnapshot projectDoc = projectSnapshot.docs.first;
+            Map<String, dynamic> projectData = projectDoc.data() as Map<String, dynamic>;
+            String projectId = projectDoc.id; // ID du projet
 
-        // Check if data is present
-        String buttonText = snapshot.data ?? "Commencer"; 
+            // Ajouter l'ID au projet pour qu'il puisse être utilisé dans Rewardscreen
+            projectData['id'] = projectId;
 
-        return ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
-            backgroundColor: const Color(0xff121B38),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            shadowColor: const Color(0xff121B38).withOpacity(0.6), // Ombre
-            elevation: 8,
-          ),
-          onPressed: () async {
-            try {
-              // Retrieve the document corresponding to the current project
-              QuerySnapshot projectSnapshot = await FirebaseFirestore.instance
-                  .collection('Projects')
-                  .where('name', isEqualTo: widget.projetName)
-                  .get();
-
-              if (projectSnapshot.docs.isNotEmpty) {
-                DocumentSnapshot projectDoc = projectSnapshot.docs.first;
-                Map<String, dynamic> projectData = projectDoc.data() as Map<String, dynamic>;
-                String projectId = projectDoc.id; // ID du projet
-
-                // Add the ID to the project so it can be used in RewardScreen
-                projectData['id'] = projectId;
-
-                await _initData(FirebaseAuth.instance.currentUser!.uid);
-                await _initLevelMap(FirebaseAuth.instance.currentUser!.uid);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Levelmap(),
-                  ),
-                );
-              } else {
-                // Show an error if no project is found
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Projet introuvable")),
-                );
-              }
-            } catch (e) {
-              // Handle Firestore errors
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Erreur: ${e.toString()}")),
-              );
-            }
-          },
-          child: Text(
-            buttonText,  
-            style: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+            await _initData(FirebaseAuth.instance.currentUser!.uid);
+            await _initLevelMap(FirebaseAuth.instance.currentUser!.uid);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Levelmap()
               ),
-            ),
-          ),
-        );
+            );
+          } else {
+            // Afficher une erreur si aucun projet trouvé
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Projet introuvable")),
+            );
+          }
+        } catch (e) {
+          // Gestion des erreurs Firestore
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Erreur: ${e.toString()}")),
+          );
+        }
       },
+      child: Text(
+        'Continuer',
+        style: GoogleFonts.montserrat(
+          textStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     ),
   );
 }
