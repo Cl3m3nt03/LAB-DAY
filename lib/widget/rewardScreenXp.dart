@@ -22,111 +22,108 @@ class RewardscreenXp extends StatefulWidget {
 
 /// Manages the state of the RewardscreenXp, including level, XP, and project step details.
 class _RewardscreenXpState extends State<RewardscreenXp> {
-
   int lvl = 0;
   int xp = 0;
   int objXp = 100;
 
-  String stepName = ""; 
+  String stepName = "";
   String stepDesc = "";
 
   @override
+
   /// Initializes user level and step data when the screen is loaded.
-  void initState(){
-      super.initState();
-      getLevel();
-      updateXp();
+  void initState() {
+    super.initState();
+    getLevel();
+    updateXp();
   }
 
+  Future<void> updateXp() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String uid = user.uid;
 
-Future<void> updateXp() async {
-  User? user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    String uid = user.uid;
+      try {
+        final userDoc =
+            await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+        if (userDoc.exists) {
+          int currentXp = userDoc.data()?['currentXp'] ?? 0;
+          int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
 
-    try {
-      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-      if (userDoc.exists) {
-        int currentXp = userDoc.data()?['currentXp'] ?? 0;
-        int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
+          int newXp = currentXp + widget.xpToAdd;
+          int newLvl = currentLvl;
+          int newObjXp = userDoc.data()?['objectiveXp'] ?? 0;
 
-        int newXp = currentXp + widget.xpToAdd;
-        int newLvl = currentLvl;
-        int newObjXp = userDoc.data()?['objectiveXp'] ?? 0;
+          if (newXp >= objXp) {
+            newXp -= objXp;
+            newObjXp *= 2;
+            newLvl++;
+          }
 
+          await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+            'currentXp': newXp,
+            'currentLvl': newLvl,
+            'objectiveXp': newObjXp
+          });
 
-        if(newXp >= objXp){
-          newXp -= objXp;
-          newObjXp *= 2;
-          newLvl++;
+          setState(() {
+            xp = newXp;
+            lvl = newLvl;
+            objXp = newObjXp;
+          });
+
+          getLevel();
+
+          print("XP mis à jour avec succès !");
+        } else {
+          print('Le document utilisateur n\'existe pas');
         }
-
-        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
-          'currentXp': newXp,
-          'currentLvl': newLvl,
-          'objectiveXp': newObjXp
-        });
-
-        setState(() {
-          xp = newXp;
-          lvl = newLvl;
-          objXp = newObjXp;
-        });
-
-        getLevel();
-
-        print("XP mis à jour avec succès !");
-      } else {
-        print('Le document utilisateur n\'existe pas');
+      } catch (e) {
+        print('Erreur lors de la mise à jour de l\'XP : $e');
       }
-    } catch (e) {
-      print('Erreur lors de la mise à jour de l\'XP : $e');
     }
   }
-}
-
-
-
 
   Future<void> getLevel() async {
-  User? user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    String uid = user.uid;
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String uid = user.uid;
 
-    try {
-      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-      print('current xp: ${userDoc.data()?['currentXp']}');
-      print('objective xp: ${userDoc.data()?['objectiveXp']}');
-      if (userDoc.exists) {
-        setState(() {
-          lvl = userDoc.data()?['currentLvl'] ?? 0; 
-          xp = userDoc.data()?['currentXp'] ?? 0; 
-          objXp = userDoc.data()?['objectiveXp'] ?? 100; 
-        });
-      } else {
-        print('Le document utilisateur n\'existe pas');
+      try {
+        final userDoc =
+            await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+        print('current xp: ${userDoc.data()?['currentXp']}');
+        print('objective xp: ${userDoc.data()?['objectiveXp']}');
+        if (userDoc.exists) {
+          setState(() {
+            lvl = userDoc.data()?['currentLvl'] ?? 0;
+            xp = userDoc.data()?['currentXp'] ?? 0;
+            objXp = userDoc.data()?['objectiveXp'] ?? 100;
+          });
+        } else {
+          print('Le document utilisateur n\'existe pas');
+        }
+      } catch (e) {
+        print('Erreur lors de la récupération des données utilisateur : $e');
       }
-    } catch (e) {
-      print('Erreur lors de la récupération des données utilisateur : $e');
     }
   }
-}
- /// Displays the main title of the screen.
-  Widget _title(){
+
+  /// Displays the main title of the screen.
+  Widget _title() {
     return Center(
-      child: Text(
+        child: Column(children: [
+      Image.asset('assets/images/1Raward.png', width: 200, height: 200),
+      Text(
         'Félicitations!',
         style: GoogleFonts.montserrat(
-          textStyle: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 34,
-            color: Color(0xfffdfffd)
-          )
-        ),
+            textStyle: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 34,
+                color: Color(0xfffdfffd))),
       ),
-    );
+    ]));
   }
-
 
   /*
 ThreeDSlider(
@@ -162,156 +159,137 @@ ThreeDSlider(
   */
 
   /// Displays the title of the current project step.
-  Widget _stepTitle(){
+  Widget _stepTitle() {
     return Center(
       child: Text(
         stepName,
         style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                color: Color(0xfffdfffd),
+                fontWeight: FontWeight.w600,
+                fontSize: 18)),
+      ),
+    );
+  }
+
+  Widget _xpAdded() {
+    return Text(
+      'Gain de ${widget.xpToAdd} xp',
+      style: GoogleFonts.sora(textStyle: TextStyle(color: Colors.white)),
+    );
+  }
+
+  Widget _progressBar() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 40),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+            child: Progressbar(
+              percentageCompletion: (xp / objXp) * 100,
+              showPercentage: false,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          RichText(
+              text: TextSpan(
+                  text: 'Niveau ',
+                  style: GoogleFonts.sora(),
+                  children: [
+                TextSpan(
+                    text: '$lvl',
+                    style: GoogleFonts.sora(
+                        textStyle: TextStyle(
+                            color: Color(0xff9c9790),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18))),
+                TextSpan(text: ' | $xp ', style: GoogleFonts.sora()),
+                TextSpan(
+                    text: '/ $objXp',
+                    style: GoogleFonts.sora(
+                        textStyle: TextStyle(color: Color(0xff9c9790)))),
+              ]))
+        ],
+      ),
+    );
+  }
+
+  /// Displays the button to continue to the next screen or step.
+  Widget _continueButton() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.popUntil(context, (route) => route.isFirst);
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        backgroundColor: Colors.transparent, // Fond transparent
+        shadowColor: Colors.transparent, // Supprime l'ombre
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30), // Bordures arrondies
+          side: BorderSide(
+            color: Color(0xff9c9790), // Bordure blanche teintée
+            width: 2, // Épaisseur de la bordure
+          ),
+        ),
+      ),
+      child: Text(
+        'Continuer',
+        style: GoogleFonts.montserrat(
           textStyle: TextStyle(
-            color: Color(0xfffdfffd),
+            color: Color(0xff9c9790), // Texte de la même couleur que la bordure
             fontWeight: FontWeight.w600,
-            fontSize: 18
-          )
+          ),
         ),
       ),
     );
   }
 
-  Widget _xpAdded(){
-    return Text(
-      'Gain de ${widget.xpToAdd} xp',
-      style: GoogleFonts.sora(
-        textStyle: TextStyle(
-          color: Colors.white
-        )
+  Widget _description() {
+    return Center(
+      child: Text(
+        widget.title,
+        style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                color: Color(0xfffdfffd),
+                fontWeight: FontWeight.w600,
+                fontSize: 18)),
       ),
-      );
+    );
   }
 
-Widget _progressBar() {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 40),
-    child: Column(
-      children: [
-        SizedBox(
-          height: 25,
-          child: Progressbar(
-            percentageCompletion: (xp/objXp)*100,
-            showPercentage: false,
-          ),
-        ),
-        SizedBox(height: 10,),
-        RichText(
-          text: TextSpan(
-            text: 'Niveau ',
-            style: GoogleFonts.sora(),
-            children: [
-              TextSpan(
-                text: '$lvl',
-                style: GoogleFonts.sora(
-                  textStyle: TextStyle(
-                    color: Color(0xff9c9790),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18
-                  )
-                )
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 11, 22, 44),
+      body: Stack(
+        children: [
+          /// CONTENU PRINCIPAL CENTRÉ
+          Center(
+            child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: 30), // Centrage horizontal
+              child: Column(
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Centre le contenu verticalement
+                children: [
+                  _title(),
+                  SizedBox(height: 5),
+                  _stepTitle(),
+                  SizedBox(height: 8),
+                  _description(),
+                  SizedBox(height: 20),
+                  _progressBar(),
+                  SizedBox(height: 40),
+                  _continueButton(),
+                ],
               ),
-              TextSpan(
-                text: ' | $xp ',
-                style: GoogleFonts.sora()
-              ),
-              TextSpan(
-                text: '/ $objXp',
-                style: GoogleFonts.sora(
-                  textStyle: TextStyle(
-                    color: Color(0xff9c9790)
-                  )
-                )
-              ),
-            ]
-          )
-        )
-      ],
-    ),
-  );
-}
-
-/// Displays the button to continue to the next screen or step.
-Widget _continueButton(){
-  return ElevatedButton(
-    onPressed: () {
-      Navigator.popUntil(context, (route) => route.isFirst);
-    },
-    style: ElevatedButton.styleFrom(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-      backgroundColor: Colors.transparent, // Fond transparent
-      shadowColor: Colors.transparent, // Supprime l'ombre
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30), // Bordures arrondies
-        side: BorderSide(
-          color: Color(0xff9c9790), // Bordure blanche teintée
-          width: 2, // Épaisseur de la bordure
-        ),
-      ),
-    ),
-    child: Text(
-      'Continuer',
-      style: GoogleFonts.montserrat(
-        textStyle: TextStyle(
-          color: Color(0xff9c9790), // Texte de la même couleur que la bordure
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ),
-  );
-
-}
-
-Widget _description(){
-  return Center(
-    child: Text(
-      widget.title,
-      style: GoogleFonts.montserrat(
-        textStyle: TextStyle(
-          color: Color(0xfffdfffd),
-          fontWeight: FontWeight.w600,
-          fontSize: 18
-        )
-      ),
-    ),
-  );
-}
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    backgroundColor: Color.fromARGB(255, 11, 22, 44),
-    body: Stack(
-      children: [
-        /// CONTENU PRINCIPAL CENTRÉ
-        Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30), // Centrage horizontal
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Centre le contenu verticalement
-              children: [
-                _title(),
-                SizedBox(height: 20),
-                _stepTitle(),
-                SizedBox(height: 8),
-                _description(),
-                SizedBox(height: 20),
-                _progressBar(),
-                SizedBox(height: 40),
-                _continueButton(),
-              ],
             ),
           ),
-        ),
-      ],
-    ),
-  );
-}
-
-
+        ],
+      ),
+    );
+  }
 }
