@@ -80,7 +80,6 @@ Future<String?> recoveryPseudo() async {
       'bio': 'L/Utilisateur n/a pas encore défini de bio',
       'currentLvl': 1,
       'currentXp': 0,
-      'totalpoints': 0,
       'objectiveXp':100,
     });
   }
@@ -96,29 +95,35 @@ Future<String?> recoveryPseudo() async {
   }
 
 // Signs in the user with Google authentication.
-Future<void> signInWithGoogle( context) async {
+Future<void> signInWithGoogle(context) async {
   try {
     await GoogleSignIn().signOut();
 
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) {
       toast.showToast(context, 'Connexion annulée', isError: true);
-      return; 
+      return;
     }
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    await _auth.signInWithCredential(credential);
-    toast.showToast(context, 'Connexion réussie', isError: false);
-  } on FirebaseAuthException catch (e) {
+    final UserCredential userCredential = await _auth.signInWithCredential(credential);
+    final User? user = userCredential.user;
 
+    if (user != null) {
+      // Appel de la fonction initializeUser pour initialiser l'utilisateur
+       initializeUser(email: user.email!, username: user.displayName!);
+
+      toast.showToast(context, 'Connexion réussie', isError: false);
+    }
+  } on FirebaseAuthException catch (e) {
     toast.showToast(context, 'Erreur de connexion : ${e.message}', isError: true);
   } catch (e) {
     toast.showToast(context, 'Une erreur inattendue est survenue.', isError: true);
   }
-} 
+}
   // Signs the current user out.
   Future<void> signOut() async{
     await _auth.signOut();
