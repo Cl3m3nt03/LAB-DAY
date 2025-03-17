@@ -23,7 +23,7 @@ class _ProjectCardState extends State<ProjectCard> {
   @override
   void initState() {
     super.initState();
-    _listenToFirestoreChanges();  // 🔥 Ajout du listener ici
+    _listenToFirestoreChanges();  
   }
 
   void _listenToFirestoreChanges() {
@@ -44,17 +44,21 @@ class _ProjectCardState extends State<ProjectCard> {
                 .collection(widget.projet['name'])
                 .doc('levelMap')
                 .set({"currentStep": 1}); // Si pas de doc, on initialise
-
+            
+            if (mounted){
             setState(() {
               percentageCompletion = 0;
             });
+            }
             return;
           }
 
           int currentStep = snapshot.data()?["currentStep"] ?? 1;
+          if (mounted){
           setState(() {
             percentageCompletion = (currentStep / 20) * 100;
           });
+          }
         });
   }
 
@@ -131,6 +135,9 @@ class _ProjectCardState extends State<ProjectCard> {
         ),
       ),
       onTap: () {
+        if (widget.projet['name'] == 'Calculatrice') {
+          return;
+        }
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -142,7 +149,7 @@ class _ProjectCardState extends State<ProjectCard> {
             },
           ),
         );
-      },
+      }, 
     );
   }
 

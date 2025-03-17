@@ -82,7 +82,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
             itemCount: questionnaire.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+                padding: EdgeInsets.fromLTRB(16, 8, 16, 10),
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   decoration: BoxDecoration(

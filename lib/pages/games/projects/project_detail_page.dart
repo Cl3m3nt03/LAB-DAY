@@ -434,6 +434,7 @@ Widget _descriptionText(BuildContext context, String desc) {
     alignment: Alignment.center,
     child: Container(
       //constraints: const BoxConstraints(maxWidth: 300, maxHeight: 200), // Taille max
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -544,7 +545,7 @@ Container(
 
   ),
 
-  SizedBox(height: 20,),
+  SizedBox(height: 20),
 
   Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
@@ -665,13 +666,12 @@ Container(
       ),
     ),
   ),
+
 ],
-
 )
-
 ),
-
-  )
+  ),
+    SizedBox(height: 60,),
     ],
   ),
   );
@@ -706,6 +706,7 @@ Widget _allStepsCard(double screenHeight) {
                         );
                       },
                     ),
+                    SizedBox(height:60),
                 ],
               ),
             )
