@@ -8,6 +8,7 @@ import 'package:makeitcode/widget/style_editor.dart';
 import'package:makeitcode/pages/web_view/loadWebView.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/widget/rewardScreen.dart';
 
 
 class GameLogic extends StatefulWidget {
@@ -140,6 +141,17 @@ Future<void> saveUserData() async {
       widget.onStepValidated(_isValid);  // Appelle la fonction callback
       saveUserData(); // Sauvegarder les données dans Firebase
       loadContent(currentStep + 1);
+
+      if (currentStep == 20) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Rewardscreen(
+              xpToAdd: 500, // Exemple d'XP à ajouter, vous pouvez le personnaliser
+            ),
+          ),
+      );
+    }
     }
   }
 

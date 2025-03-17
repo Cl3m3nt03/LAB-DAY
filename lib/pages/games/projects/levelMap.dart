@@ -123,33 +123,6 @@ Future<void> _incrementLevel(bool isValid) async {
 
     // 🔹 Met à jour dans l'animation
     levelValue?.value = newStep.toDouble();
-
-    // 🔹 Vérifier si l'utilisateur a atteint l'étape 21
-    if (newStep == 21) {
-      // Si l'utilisateur a atteint l'étape 21, afficher la page de récompenses
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Rewardscreen(
-            xpToAdd: 10000, // Exemple d'XP à ajouter, vous pouvez le personnaliser
-          ),
-        ),
-      );
-
-      // Après la navigation, revenir à l'étape 20
-      newStep = 20;
-
-      // 🔹 Mettre à jour à nouveau Firestore avec la nouvelle valeur (20)
-      await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(user.uid)
-          .collection('Portfolio')
-          .doc('levelMap')
-          .set({'currentStep': newStep}, SetOptions(merge: true));
-
-      // 🔹 Met à jour l'animation avec l'étape 20
-      levelValue?.value = newStep.toDouble();
-    }
   }
 }
 

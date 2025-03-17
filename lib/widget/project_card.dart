@@ -56,7 +56,7 @@ class _ProjectCardState extends State<ProjectCard> {
           int currentStep = snapshot.data()?["currentStep"] ?? 1;
           if (mounted){
           setState(() {
-            percentageCompletion = (currentStep / 20) * 100;
+            percentageCompletion = (currentStep / 21) * 100;
           });
           }
         });
@@ -86,53 +86,55 @@ class _ProjectCardState extends State<ProjectCard> {
           ),
         ),
         child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ClipRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    height: 60,
-                    width: 130,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.6),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.projet['name'],
-                            style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          if (widget.projet['state'] == 'began')
-                            percentageCompletion == 5
-                              ? showMore()
-                              : Progressbar(
-                                  percentageCompletion: percentageCompletion,
-                                  showPercentage: true,
-                                ),
-                          if (widget.projet['state'] == 'unlocked') showMore(),
-                        ],
+  children: [
+    Align(
+      alignment: Alignment.bottomCenter,
+      child: ClipRRect( // Ajout de ClipRRect ici
+        borderRadius: BorderRadius.circular(10), // Applique le borderRadius au flou
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            height: 60,
+            width: 130,
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.6),
+              borderRadius: BorderRadius.circular(10), // Applique aussi au container
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.projet['name'],
+                    style: GoogleFonts.montserrat(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 14,
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                ),
+                  SizedBox(height: 5),
+                  if (widget.projet['state'] == 'began')
+                    percentageCompletion == 5
+                        ? showMore()
+                        : Progressbar(
+                            percentageCompletion: percentageCompletion,
+                            showPercentage: true,
+                          ),
+                  if (widget.projet['state'] == 'unlocked') showMore(),
+                ],
               ),
-            )
-          ],
+            ),
+          ),
         ),
+      ),
+    )
+  ],
+),
+
       ),
       onTap: () {
         if (widget.projet['name'] == 'Calculatrice') {
@@ -174,7 +176,19 @@ class _ProjectCardState extends State<ProjectCard> {
             borderRadius: BorderRadius.circular(50),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return ProjectDetailPage(
+                projet: widget.projet,
+                projetName: widget.projet['name'],
+              );
+            },
+          ),
+        );
+        },
         child: Text(
           'Commencer',
           style: GoogleFonts.montserrat(

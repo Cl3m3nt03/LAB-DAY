@@ -378,7 +378,7 @@ Widget _stepCard(String title, int step) {
         ),
       ),
       Spacer(),
-      if (_currentStep >= step)
+      if (_currentStep-1 >= step)
         Icon(
           Icons.check_circle_outline_rounded,
           color: Color(0xffa0ca85),
