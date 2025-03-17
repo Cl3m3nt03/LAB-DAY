@@ -9,10 +9,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Screen that displays the user's progress, step details, and rewards for a project.
 class Rewardscreen extends StatefulWidget {
-  final int stepIndex;
   final int xpToAdd;
   const Rewardscreen(
-      {super.key, required this.stepIndex, required this.xpToAdd});
+      {super.key, required this.xpToAdd});
 
   @override
   State<Rewardscreen> createState() => _RewardscreenState();
@@ -23,8 +22,8 @@ class Rewardscreen extends StatefulWidget {
 /// Manages the state of the Rewardscreen, including level, XP, and project step details.
 class _RewardscreenState extends State<Rewardscreen> {
   int lvl = 0;
-  int xp = 0;
-  int objXp = 100;
+  double xp = 0;
+  double objXp = 100;
 
   String stepName = "";
   String stepDesc = "";
@@ -38,76 +37,75 @@ class _RewardscreenState extends State<Rewardscreen> {
     updateXp();
   }
 
-  Future<void> updateXp() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String uid = user.uid;
+Future<void> updateXp() async {
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    String uid = user.uid;
 
-      try {
-        final userDoc =
-            await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-        if (userDoc.exists) {
-          int currentXp = userDoc.data()?['currentXp'] ?? 0;
-          int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        double currentXp = userDoc.data()?['currentXp'].toDouble();
+        int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
 
-          int newXp = currentXp + widget.xpToAdd;
-          int newLvl = currentLvl;
-          int newObjXp = userDoc.data()?['objectiveXp'] ?? 0;
+        double newXp = currentXp + widget.xpToAdd;
+        int newLvl = currentLvl;
+        double newObjXp = userDoc.data()?['objectiveXp'].toDouble();
 
-          if (newXp >= objXp) {
-            newXp -= objXp;
-            newObjXp *= 2;
-            newLvl++;
-          }
 
-          await FirebaseFirestore.instance.collection('Users').doc(uid).update({
-            'currentXp': newXp,
-            'currentLvl': newLvl,
-            'objectiveXp': newObjXp
-          });
-
-          setState(() {
-            xp = newXp;
-            lvl = newLvl;
-            objXp = newObjXp;
-          });
-
-          getLevel();
-
-          print("XP mis à jour avec succès !");
-        } else {
-          print('Le document utilisateur n\'existe pas');
+        while(newXp >= newObjXp){
+          newXp -= newObjXp;
+          newObjXp *= 1.1;
+          newLvl++;
         }
-      } catch (e) {
-        print('Erreur lors de la mise à jour de l\'XP : $e');
+
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'currentXp': newXp,
+          'currentLvl': newLvl,
+          'objectiveXp': newObjXp
+        });
+
+        setState(() {
+          xp = newXp;
+          lvl = newLvl;
+          objXp = newObjXp;
+        });
+
+        getLevel();
+
+        print("XP mis à jour avec succès !");
+      } else {
+        print('Le document utilisateur n\'existe pas');
       }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'XP : $e');
     }
   }
+}
 
   Future<void> getLevel() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String uid = user.uid;
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    String uid = user.uid;
 
-      try {
-        final userDoc =
-            await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-        print('current xp: ${userDoc.data()?['currentXp']}');
-        print('objective xp: ${userDoc.data()?['objectiveXp']}');
-        if (userDoc.exists) {
-          setState(() {
-            lvl = userDoc.data()?['currentLvl'] ?? 0;
-            xp = userDoc.data()?['currentXp'] ?? 0;
-            objXp = userDoc.data()?['objectiveXp'] ?? 100;
-          });
-        } else {
-          print('Le document utilisateur n\'existe pas');
-        }
-      } catch (e) {
-        print('Erreur lors de la récupération des données utilisateur : $e');
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      print('current xp: ${userDoc.data()?['currentXp']}');
+      print('objective xp: ${userDoc.data()?['objectiveXp']}');
+      if (userDoc.exists) {
+        setState(() {
+          lvl = userDoc.data()?['currentLvl'] ?? 0; 
+          xp = userDoc.data()?['currentXp'].toDouble(); 
+          objXp = userDoc.data()?['objectiveXp'].toDouble(); 
+        });
+      } else {
+        print('Le document utilisateur n\'existe pas');
       }
+    } catch (e) {
+      print('Erreur lors de la récupération des données utilisateur : $e');
     }
   }
+}
 
   /// Displays the main title of the screen.
   Widget _title() {
@@ -129,7 +127,7 @@ class _RewardscreenState extends State<Rewardscreen> {
   Widget _subTitle() {
     return Center(
       child: Text(
-        'Etape ${widget.stepIndex + 1} débloqué',
+        'Vous avez finis le projet',
         style: GoogleFonts.sora(
             textStyle: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -202,7 +200,7 @@ ThreeDSlider(
 
   Widget _xpAdded() {
     return Text(
-      'Gain de $xp xp',
+      'Gain de ${widget.xpToAdd} xp',
       style: GoogleFonts.sora(
           textStyle: TextStyle(color: Colors.white, fontSize: 17)),
     );
@@ -235,9 +233,9 @@ ThreeDSlider(
                             color: Color(0xff9c9790),
                             fontWeight: FontWeight.w700,
                             fontSize: 18))),
-                TextSpan(text: ' | $xp ', style: GoogleFonts.sora()),
+                TextSpan(text: ' | ${xp.toStringAsFixed(0)} ', style: GoogleFonts.sora()),
                 TextSpan(
-                    text: '/ $objXp',
+                    text: '/ ${objXp.toStringAsFixed(0)}',
                     style: GoogleFonts.sora(
                         textStyle: TextStyle(color: Color(0xff9c9790)))),
               ]))
@@ -249,7 +247,9 @@ ThreeDSlider(
   /// Displays the button to continue to the next screen or step.
   Widget _continueButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.popUntil(context, (route) => route.isFirst);
+      },
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         backgroundColor: Colors.transparent, // Fond transparent

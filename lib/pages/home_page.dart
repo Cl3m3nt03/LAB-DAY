@@ -29,8 +29,8 @@ class _HomePageState extends State<HomePage> {
   String emailVerified = '';
   String pseudo = '';
   int lvl = 0;
-  int xp = 90;
-  int objXp = 100;
+  double xp = 90;
+  double objXp = 100;
   Uint8List? _avatarImage;
   
 
@@ -111,8 +111,8 @@ Future<void> getLevel() async {
       if (userDoc.exists) {
         setState(() {
           lvl = userDoc.data()?['currentLvl'] ?? 0; 
-          xp = userDoc.data()?['currentXp'] ?? 0; 
-          objXp = userDoc.data()?['objectiveXp'] ?? 100; 
+          xp = userDoc.data()?['currentXp'].toDouble(); 
+          objXp = userDoc.data()?['objectiveXp'].toDouble(); 
         });
       } else {
         print('Le document utilisateur n\'existe pas');
@@ -200,9 +200,9 @@ Widget _playerLevel() {
 
       // Récupération des données Firestore en temps réel
       var userData = snapshot.data!.data() as Map<String, dynamic>;
-      int currentLvl = userData['currentLvl'] ?? 0;
-      int currentXp = userData['currentXp'] ?? 0;
-      int objectiveXp = userData['objectiveXp'] ?? 100;
+      int currentLvl = userData['currentLvl'];
+      double currentXp = userData['currentXp'].toDouble();
+      double objectiveXp = userData['objectiveXp'].toDouble();
 
       return Container(
         padding: EdgeInsets.all(15),
@@ -295,7 +295,7 @@ Widget _playerLevel() {
             Row(
               children: [
                 Text(
-                  "$currentXp xp",
+                  "${currentXp.toStringAsFixed(0)} xp",
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
                       color: Colors.white,
@@ -305,7 +305,7 @@ Widget _playerLevel() {
                 ),
                 Spacer(),
                 Text(
-                  "$objectiveXp xp",
+                  "${objectiveXp.toStringAsFixed(0)} xp",
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
                       color: Colors.white,

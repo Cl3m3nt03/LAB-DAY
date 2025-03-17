@@ -23,8 +23,8 @@ class RewardscreenXp extends StatefulWidget {
 /// Manages the state of the RewardscreenXp, including level, XP, and project step details.
 class _RewardscreenXpState extends State<RewardscreenXp> {
   int lvl = 0;
-  int xp = 0;
-  int objXp = 100;
+  double xp = 0;
+  double objXp = 100;
 
   String stepName = "";
   String stepDesc = "";
@@ -38,76 +38,75 @@ class _RewardscreenXpState extends State<RewardscreenXp> {
     updateXp();
   }
 
-  Future<void> updateXp() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String uid = user.uid;
+Future<void> updateXp() async {
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    String uid = user.uid;
 
-      try {
-        final userDoc =
-            await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-        if (userDoc.exists) {
-          int currentXp = userDoc.data()?['currentXp'] ?? 0;
-          int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        double currentXp = userDoc.data()?['currentXp'].toDouble();
+        int currentLvl = userDoc.data()?['currentLvl'] ?? 0;
 
-          int newXp = currentXp + widget.xpToAdd;
-          int newLvl = currentLvl;
-          int newObjXp = userDoc.data()?['objectiveXp'] ?? 0;
+        double newXp = currentXp + widget.xpToAdd;
+        int newLvl = currentLvl;
+        double newObjXp = userDoc.data()?['objectiveXp'].toDouble();
 
-          if (newXp >= objXp) {
-            newXp -= objXp;
-            newObjXp *= 2;
-            newLvl++;
-          }
 
-          await FirebaseFirestore.instance.collection('Users').doc(uid).update({
-            'currentXp': newXp,
-            'currentLvl': newLvl,
-            'objectiveXp': newObjXp
-          });
-
-          setState(() {
-            xp = newXp;
-            lvl = newLvl;
-            objXp = newObjXp;
-          });
-
-          getLevel();
-
-          print("XP mis à jour avec succès !");
-        } else {
-          print('Le document utilisateur n\'existe pas');
+        while(newXp >= newObjXp){
+          newXp -= newObjXp;
+          newObjXp *= 1.1;
+          newLvl++;
         }
-      } catch (e) {
-        print('Erreur lors de la mise à jour de l\'XP : $e');
+
+        await FirebaseFirestore.instance.collection('Users').doc(uid).update({
+          'currentXp': newXp,
+          'currentLvl': newLvl,
+          'objectiveXp': newObjXp
+        });
+
+        setState(() {
+          xp = newXp;
+          lvl = newLvl;
+          objXp = newObjXp;
+        });
+
+        getLevel();
+
+        print("XP mis à jour avec succès !");
+      } else {
+        print('Le document utilisateur n\'existe pas');
       }
+    } catch (e) {
+      print('Erreur lors de la mise à jour de l\'XP : $e');
     }
   }
+}
 
   Future<void> getLevel() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String uid = user.uid;
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    String uid = user.uid;
 
-      try {
-        final userDoc =
-            await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-        print('current xp: ${userDoc.data()?['currentXp']}');
-        print('objective xp: ${userDoc.data()?['objectiveXp']}');
-        if (userDoc.exists) {
-          setState(() {
-            lvl = userDoc.data()?['currentLvl'] ?? 0;
-            xp = userDoc.data()?['currentXp'] ?? 0;
-            objXp = userDoc.data()?['objectiveXp'] ?? 100;
-          });
-        } else {
-          print('Le document utilisateur n\'existe pas');
-        }
-      } catch (e) {
-        print('Erreur lors de la récupération des données utilisateur : $e');
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      print('current xp: ${userDoc.data()?['currentXp']}');
+      print('objective xp: ${userDoc.data()?['objectiveXp']}');
+      if (userDoc.exists) {
+        setState(() {
+          lvl = userDoc.data()?['currentLvl'] ?? 0; 
+          xp = userDoc.data()?['currentXp'].toDouble(); 
+          objXp = userDoc.data()?['objectiveXp'].toDouble(); 
+        });
+      } else {
+        print('Le document utilisateur n\'existe pas');
       }
+    } catch (e) {
+      print('Erreur lors de la récupération des données utilisateur : $e');
     }
   }
+}
 
   /// Displays the main title of the screen.
   Widget _title() {
@@ -206,9 +205,9 @@ ThreeDSlider(
                             color: Color(0xff9c9790),
                             fontWeight: FontWeight.w700,
                             fontSize: 18))),
-                TextSpan(text: ' | $xp ', style: GoogleFonts.sora()),
+                TextSpan(text: ' | ${xp.toStringAsFixed(0)} ', style: GoogleFonts.sora()),
                 TextSpan(
-                    text: '/ $objXp',
+                    text: '/ ${objXp.toStringAsFixed(0)}',
                     style: GoogleFonts.sora(
                         textStyle: TextStyle(color: Color(0xff9c9790)))),
               ]))
