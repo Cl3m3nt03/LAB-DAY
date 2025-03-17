@@ -111,36 +111,34 @@ Future<void> updateXp() async {
   }
 }
  /// Displays the main title of the screen.
-  Widget _title(){
+  Widget _title() {
     return Center(
-      child: Text(
+        child: Column(children: [
+      Image.asset('assets/images/1Raward.png', width: 200, height: 200),
+      Text(
         'Félicitations!',
         style: GoogleFonts.montserrat(
-          textStyle: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 34,
-            color: Color(0xfffdfffd)
-          )
-        ),
+            textStyle: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 34,
+                color: Color(0xfffdfffd))),
       ),
-    );
-  }
-  /// Displays the subtitle with the unlocked level.
-  Widget _subTitle(){
-    return Center(
-      child: Text(
-        'Etape débloqué',
-        style: GoogleFonts.sora(
-          textStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 15,
-            color: Color(0xffd4b394)
-          )
-        ),
-      ),
-    );
+    ]));
   }
 
+  /// Displays the subtitle with the unlocked level.
+  Widget _subTitle() {
+    return Center(
+      child: Text(
+        'Vous avez finis le projet',
+        style: GoogleFonts.sora(
+            textStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+                color: Color(0xffd4b394))),
+      ),
+    );
+  }
 
   /*
 ThreeDSlider(
@@ -176,183 +174,139 @@ ThreeDSlider(
   */
 
   /// Displays the title of the current project step.
-  Widget _stepTitle(){
+  Widget _stepTitle() {
     return Center(
       child: Text(
         stepName,
         style: GoogleFonts.montserrat(
-          textStyle: TextStyle(
-            color: Color(0xfffdfffd),
-            fontWeight: FontWeight.w600,
-            fontSize: 18
-          )
-        ),
+            textStyle: TextStyle(
+                color: Color(0xfffdfffd),
+                fontWeight: FontWeight.w600,
+                fontSize: 18)),
       ),
     );
   }
 
   /// Displays the description of the current project step.
-  Widget _stepDesc(){
+  Widget _stepDesc() {
     return Center(
       child: Text(
         stepDesc,
         style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                color: Color(0xffcad0cf).withOpacity(0.8),
+                fontWeight: FontWeight.w400,
+                fontSize: 15)),
+      ),
+    );
+  }
+
+  Widget _xpAdded() {
+    return Text(
+      'Gain de ${widget.xpToAdd.toStringAsFixed(0)} xp',
+      style: GoogleFonts.sora(
+          textStyle: TextStyle(color: Colors.white, fontSize: 17)),
+    );
+  }
+
+  Widget _progressBar() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 40),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+            child: Progressbar(
+              percentageCompletion: (xp / objXp) * 100,
+              showPercentage: false,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          RichText(
+              text: TextSpan(
+                  text: 'Niveau ',
+                  style: GoogleFonts.sora(),
+                  children: [
+                TextSpan(
+                    text: '$lvl',
+                    style: GoogleFonts.sora(
+                        textStyle: TextStyle(
+                            color: Color(0xff9c9790),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18))),
+                TextSpan(text: ' | ${xp.toStringAsFixed(0)} ', style: GoogleFonts.sora()),
+                TextSpan(
+                    text: '/ ${objXp.toStringAsFixed(0)}',
+                    style: GoogleFonts.sora(
+                        textStyle: TextStyle(color: Color(0xff9c9790)))),
+              ]))
+        ],
+      ),
+    );
+  }
+
+  /// Displays the button to continue to the next screen or step.
+  Widget _continueButton() {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        backgroundColor: Colors.transparent, // Fond transparent
+        shadowColor: Colors.transparent, // Supprime l'ombre
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30), // Bordures arrondies
+          side: BorderSide(
+            color: Color(0xff9c9790), // Bordure blanche teintée
+            width: 2, // Épaisseur de la bordure
+          ),
+        ),
+      ),
+      child: Text(
+        'Continuer',
+        style: GoogleFonts.montserrat(
           textStyle: TextStyle(
-            color: Color(0xffcad0cf).withOpacity(0.8),
-            fontWeight: FontWeight.w400,
-            fontSize: 15
-          )
+            color: Color(0xff9c9790), // Texte de la même couleur que la bordure
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
   }
 
-
-  Widget _xpAdded(){
-    return Text(
-      'Gain de ${widget.xpToAdd} xp',
-      style: GoogleFonts.sora(
-        textStyle: TextStyle(
-          color: Colors.white
-        )
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 11, 22, 44),
+      body: Stack(
+        children: [
+          /// CONTENU PRINCIPAL CENTRÉ
+          Center(
+            child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: 30), // Centrage horizontal
+              child: Column(
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Centre le contenu verticalement
+                children: [
+                  _title(),
+                  SizedBox(height: 10),
+                  _subTitle(),
+                  _stepTitle(),
+                  SizedBox(height: 8),
+                  _stepDesc(),
+                  _xpAdded(),
+                  SizedBox(height: 10),
+                  _progressBar(),
+                  SizedBox(height: 40),
+                  _continueButton(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-      );
+    );
   }
-
-Widget _progressBar() {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 40),
-    child: Column(
-      children: [
-        SizedBox(
-          height: 25,
-          child: Progressbar(
-            percentageCompletion: (xp/objXp)*100,
-            showPercentage: false,
-          ),
-        ),
-        SizedBox(height: 10,),
-        RichText(
-          text: TextSpan(
-            text: 'Niveau ',
-            style: GoogleFonts.sora(),
-            children: [
-              TextSpan(
-                text: '$lvl',
-                style: GoogleFonts.sora(
-                  textStyle: TextStyle(
-                    color: Color(0xff9c9790),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18
-                  )
-                )
-              ),
-              TextSpan(
-                text: ' | ${xp.toStringAsFixed(0)} ',
-                style: GoogleFonts.sora()
-              ),
-              TextSpan(
-                text: '/ ${objXp.toStringAsFixed(0)}',
-                style: GoogleFonts.sora(
-                  textStyle: TextStyle(
-                    color: Color(0xff9c9790)
-                  )
-                )
-              ),
-            ]
-          )
-        )
-      ],
-    ),
-  );
-}
-
-/// Displays the button to continue to the next screen or step.
-Widget _continueButton(){
-  return ElevatedButton(
-    onPressed: () {},
-    style: ElevatedButton.styleFrom(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-      backgroundColor: Colors.transparent, // Fond transparent
-      shadowColor: Colors.transparent, // Supprime l'ombre
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30), // Bordures arrondies
-        side: BorderSide(
-          color: Color(0xff9c9790), // Bordure blanche teintée
-          width: 2, // Épaisseur de la bordure
-        ),
-      ),
-    ),
-    child: Text(
-      'Continuer',
-      style: GoogleFonts.montserrat(
-        textStyle: TextStyle(
-          color: Color(0xff9c9790), // Texte de la même couleur que la bordure
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ),
-  );
-
-}
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    backgroundColor: Color.fromARGB(255, 11, 22, 44),
-    body: Stack(
-      children: [
-        /// CONTENU PRINCIPAL CENTRÉ
-        Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30), // Centrage horizontal
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Centre le contenu verticalement
-              children: [
-                _title(),
-                SizedBox(height: 10),
-                _subTitle(),
-                SizedBox(height: 20),
-                _stepTitle(),
-                SizedBox(height: 8),
-                _stepDesc(),
-                _xpAdded(),
-                SizedBox(height: 10),
-                _progressBar(),
-                SizedBox(height: 40),
-                _continueButton(),
-              ],
-            ),
-          ),
-        ),
-
-        /// BOUTON RETOUR POSITIONNÉ EN HAUT À DROITE
-        Positioned(
-          top: 40,  
-          right: 20, 
-          child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop(); 
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                border: Border.all(color: Color(0xffd4b394)),
-                color: Colors.transparent, 
-              ),
-              padding: EdgeInsets.all(6),
-              child: Icon(
-                CupertinoIcons.clear,
-                size: 24,
-                color: Color(0xffd4b394),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-
 }

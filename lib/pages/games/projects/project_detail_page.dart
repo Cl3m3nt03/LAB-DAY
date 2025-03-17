@@ -756,7 +756,7 @@ Widget _confirmButton(screenHeight) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Levelmap()
+                builder: (context) => Rewardscreen(xpToAdd: 10)
               ),
             );
           } else {
