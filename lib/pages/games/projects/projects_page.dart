@@ -124,7 +124,22 @@ Widget _buildSearchResults() {
                     )
                 )
               ),
-              onTap: (){},
+              onTap: (){
+                if(project['name'] == "Portfolio"){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return ProjectDetailPage(
+                          projet: project,
+                          projetName: project['name'],
+                        );
+                      },
+                    ),
+                  );
+                }
+              
+              },
           );
         }).toList(),
       );
