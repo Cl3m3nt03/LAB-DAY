@@ -71,7 +71,7 @@ class _ContactePageState extends State<ContactePage> {
                     ),
                     SizedBox(height: 40),
                     EntryField(
-                      title: 'Bio',
+                      title: 'Contenue',
                       controller: bioController,
                       prefixIcons: Icons.question_answer,
                       height: 60,
@@ -96,11 +96,11 @@ class _ContactePageState extends State<ContactePage> {
                   try {
                     final sendReport = await send(message, smtpServer);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Email envoyé avec succès: ' + sendReport.toString())),
+                      SnackBar(content: Text('Email envoyé avec succès: ')),
                     );
                   } on MailerException catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Erreur lors de l\'envoi de l\'email: ' + e.toString())),
+                      SnackBar(content: Text('Erreur lors de l\'envoi de l\'email: ')),
                     );
                   }
                 },

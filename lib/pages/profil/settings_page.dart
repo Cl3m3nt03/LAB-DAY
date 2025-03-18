@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/MenuItem.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title:Text(
+        title: Text(
           'Paramètres',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
@@ -39,8 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           children: [
             Expanded(
-              child:
-              Container(
+              child: Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
@@ -53,162 +54,169 @@ class _SettingsPageState extends State<SettingsPage> {
                     radius: 0.8,
                   ),
                 ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Divider(
-                      thickness: 1.5,
-                      color: Colors.white.withOpacity(0.5),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 200,
-                            width: MediaQuery.of(context).size.width - 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(116, 24, 37, 63),
-                            ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.light_mode,
-                                          color:
-                                              Color.fromARGB(250, 175, 142, 88),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          "Activer le mode sombre",
-                                          style: GoogleFonts.montserrat(
-                                            textStyle: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                overflow: TextOverflow.ellipsis,
-                                                fontSize: 14,
-                                                color: Colors.white),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Divider(
+                        thickness: 1.5,
+                        color: Colors.white.withOpacity(0.5),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 200,
+                              width: MediaQuery.of(context).size.width - 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(116, 24, 37, 63),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.light_mode,
+                                            color: Color.fromARGB(250, 175, 142, 88),
                                           ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Switch(
-                                          value: light,
-                                          activeColor:
-                                              Color.fromARGB(250, 175, 142, 88),
-                                          onChanged: (bool value) {
-                                            setState(() {
-                                              light = value;
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(
-                                      color: const Color.fromARGB(
-                                          70, 255, 255, 255)),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.notifications,
-                                          color:
-                                              Color.fromARGB(250, 175, 142, 88),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          "Activer les notifications",
-                                          style: GoogleFonts.montserrat(
-                                            textStyle: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                overflow: TextOverflow.ellipsis,
-                                                fontSize: 14,
-                                                color: Colors.white),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            "Activer le mode sombre",
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  fontSize: 14,
+                                                  color: Colors.white),
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Switch(
-                                          value: light1,
-                                          activeColor:
-                                              Color.fromARGB(250, 175, 142, 88),
-                                          onChanged: (bool value) {
-                                            setState(() {
-                                              light1 = value;
-                                              if (light1) {
+                                          SizedBox(width: 10),
+                                          Switch(
+                                            value: light,
+                                            activeColor: Color.fromARGB(250, 175, 142, 88),
+                                            onChanged: (bool value) async {
+                                              User? user = FirebaseAuth.instance.currentUser;
+                                              if (user != null) {
+                                                String uid = user.uid;
+                                                final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+
                                                 NotificationService.init();
-                                                NotificationService
-                                                    .showInstantNotification(
-                                                        "Notification",
-                                                        "Vous avez une nouvelle notification");
+                                                NotificationService.showInstantNotification(
+                                                  "Notification",
+                                                  "Vous avez changé de mode",
+                                                );
+
+                                                setState(() {
+                                                  light = value;
+                                                });
+
+                                                if (light) {
+                                                  FirebaseFirestore.instance
+                                                      .collection('Users')
+                                                      .doc(uid)
+                                                      .update({'darkmode': true});
+                                                } else {
+                                                  FirebaseFirestore.instance
+                                                      .collection('Users')
+                                                      .doc(uid)
+                                                      .update({'darkmode': false});
+                                                }
                                               }
-                                            });
-                                          },
-                                        ),
-                                      ],
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Divider(
-                                      color: const Color.fromARGB(
-                                          70, 255, 255, 255)),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
+                                    Divider(color: const Color.fromARGB(70, 255, 255, 255)),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.notifications,
+                                            color: Color.fromARGB(250, 175, 142, 88),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            "Activer les notifications",
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  fontSize: 14,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Switch(
+                                            value: light1,
+                                            activeColor: Color.fromARGB(250, 175, 142, 88),
+                                            onChanged: (bool value) {
+                                              setState(() {
+                                                light1 = value;
+                                                if (light1) {
+                                                  NotificationService.init();
+                                                  NotificationService.showInstantNotification(
+                                                      "Notification",
+                                                      "Vous avez activé les notifications");
+                                                }
+                                                else {
+                                                   
+                                                }
+                                              });
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(color: const Color.fromARGB(70, 255, 255, 255)),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            child: Padding(
+                                              padding: const EdgeInsets.symmetric(vertical: 10),
                                               child: Row(
                                                 children: [
                                                   Icon(
                                                     Icons.language,
-                                                    color: Color.fromARGB(
-                                                        250, 175, 142, 88),
+                                                    color: Color.fromARGB(250, 175, 142, 88),
                                                   ),
                                                   SizedBox(width: 10),
                                                   Text(
                                                     "Langue",
-                                                    style:
-                                                        GoogleFonts.montserrat(
+                                                    style: GoogleFonts.montserrat(
                                                       textStyle: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                          fontWeight: FontWeight.w600,
+                                                          overflow: TextOverflow.ellipsis,
                                                           fontSize: 14,
                                                           color: Colors.white),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width -
-                                                              220),
+                                                  SizedBox(width: MediaQuery.of(context).size.width - 220),
                                                   popoverMenu(),
                                                 ],
-                                              )),
-                                        ),
-                                      ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
             ),
           ],
         ),
