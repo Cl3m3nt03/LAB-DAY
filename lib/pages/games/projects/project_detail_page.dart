@@ -8,6 +8,7 @@ import 'package:makeitcode/pages/games/projects/levelMap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
@@ -154,14 +155,14 @@ Widget _ImagePoster(){
               borderRadius: 30,
               rotate: 90,
               boxShadows: [
-                PolygonBoxShadow(color: Colors.black, elevation: 1.0),
+                PolygonBoxShadow(color: dark, elevation: 1.0),
                 PolygonBoxShadow(color: Color(0xff5FC2BA), elevation: 5.0),
               ],
               child: Container(
                 height: 200, // Ajustez la hauteur
                 width: 400, // Ajustez la largeur
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: dark,
                   image: DecorationImage(
                       image: AssetImage('assets/images/${widget.projet['name']}.jpg'),
                       fit: BoxFit.cover,
@@ -182,10 +183,10 @@ Widget _backArrow(){
               onPressed: () {
                 Navigator.pop(context);
               },
-              backgroundColor: Colors.white.withOpacity(0.8),
+              backgroundColor: white.withOpacity(0.8),
               elevation: 3,
               mini: true,
-              child: Icon(Icons.arrow_back, color: Colors.black),
+              child: Icon(Icons.arrow_back, color: dark),
             ),
           );
 }
@@ -205,7 +206,7 @@ Widget _title(screenHeight){
                       widget.projet['name'], 
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
-                          color: Colors.white,
+                          color: white,
                           fontWeight: FontWeight.w900,
                           fontSize: 32,
                         ),
@@ -230,14 +231,14 @@ Widget _title(screenHeight){
                   children: [
                     Icon(
                       Icons.star_outline_rounded, 
-                      color: Colors.white,
+                      color: white,
                     ),
                     SizedBox(width: 4),
                     Text(
                       '5',
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
+                          color: white.withOpacity(0.7),
                           fontWeight: FontWeight.w600
                         ),
                       )
@@ -276,7 +277,7 @@ Widget _selector(screenHeight) {
                 height: 40.1,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Color(0xff0B0F2C),
+                  color: Color.fromARGB(255, 11, 15, 44),
                 ),
               )
             ),
@@ -319,8 +320,8 @@ Widget _selector(screenHeight) {
                     style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
                         color: _selectedIndex == index
-                            ? Colors.white
-                            : Colors.white,
+                            ? white
+                            : white,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -371,7 +372,7 @@ Widget _stepCard(String title, int step) {
         child: Text(
           title,
           style: GoogleFonts.montserrat(
-            textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+            textStyle: TextStyle(color: white, fontWeight: FontWeight.w700),
           ),
           maxLines: 1, // Limite à une seule ligne
           overflow: TextOverflow.ellipsis, // Ajoute "..." si le texte dépasse
@@ -414,7 +415,7 @@ Widget _descriptionTextGeneration() {
         return Center(child: Text('Erreur: ${snapshot.error}'));
       }
       if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-        return const Center(child: Text('Aucun projet trouvé', style: TextStyle(color: Colors.white)));
+        return const Center(child: Text('Aucun projet trouvé', style: TextStyle(color: white)));
       }
 
       // On prend le premier projet trouvé (supposant qu'un seul correspond au nom donné)
@@ -448,13 +449,13 @@ Widget _descriptionText(BuildContext context, String desc) {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: dark.withOpacity(0.2),
             blurRadius: 10,
             spreadRadius: 2,
             offset: Offset(3, 6),
           ),
           BoxShadow(
-            color: Colors.white.withOpacity(0.1),
+            color: white.withOpacity(0.1),
             blurRadius: 8,
             spreadRadius: -2,
             offset: Offset(-3, -3),
@@ -487,10 +488,10 @@ Widget _userRatings(){
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: Color.fromARGB(255, 6, 146, 194),
       boxShadow: [
         BoxShadow(
-          color: Color(0xff346094),
+          color: Color.fromARGB(255, 52, 96, 148),
           blurRadius: 4,
           offset: Offset(0, 3)
         )
@@ -506,7 +507,7 @@ children: [
     child: Text(
       'Jack',
       style: GoogleFonts.montserrat(
-        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        textStyle: TextStyle(color: white, fontWeight: FontWeight.w700),
       ),
     ),
   ),
@@ -533,7 +534,7 @@ Container(
     child: Text(
       "Ce projet de portfolio a été une excellente occasion d'apprendre et d'appliquer des compétences en développement web. J'ai pu créer un site pour afficher mes projets, ce qui m'a permis de mieux comprendre le processus de création web et d'améliorer mes compétences techniques.",
       style: GoogleFonts.montserrat(
-        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+        textStyle: TextStyle(color: white.withOpacity(0.8), fontWeight: FontWeight.w700),
       ),
     ),
   ),
@@ -551,10 +552,10 @@ Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: Color.fromARGB(255, 6, 146, 194),
       boxShadow: [
         BoxShadow(
-          color: Color(0xff346094),
+          color: Color.fromARGB(255, 52, 96, 148),
           blurRadius: 4,
           offset: Offset(0, 3)
         )
@@ -570,7 +571,7 @@ children: [
     child: Text(
       'Jones',
       style: GoogleFonts.montserrat(
-        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        textStyle: TextStyle(color: white, fontWeight: FontWeight.w700),
       ),
     ),
   ),
@@ -597,7 +598,7 @@ Container(
     child: Text(
       "Le projet portfolio m'a aidé à maîtriser plusieurs compétences techniques tout en créant un site pour présenter mes réalisations. C'est un excellent moyen de voir mes progrès et de gagner en confiance.",
       style: GoogleFonts.montserrat(
-        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+        textStyle: TextStyle(color: white.withOpacity(0.8), fontWeight: FontWeight.w700),
       ),
     ),
   ),
@@ -616,10 +617,10 @@ Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: Color.fromARGB(255, 6, 146, 194),
       boxShadow: [
         BoxShadow(
-          color: Color(0xff346094),
+          color: Color.fromARGB(255, 52, 96, 148),
           blurRadius: 4,
           offset: Offset(0, 3)
         )
@@ -635,7 +636,7 @@ children: [
     child: Text(
       'Tyron',
       style: GoogleFonts.montserrat(
-        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        textStyle: TextStyle(color: white, fontWeight: FontWeight.w700),
       ),
     ),
   ),
@@ -662,7 +663,7 @@ Container(
     child: Text(
       "Ce projet de portfolio m'a permis d'apprendre à créer des sites web de A à Z. Grâce à lui, j'ai mis en pratique mes compétences en HTML, CSS et JavaScript, et j'ai pu présenter mes projets de manière professionnelle.",
       style: GoogleFonts.montserrat(
-        textStyle: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.w700),
+        textStyle: TextStyle(color: white.withOpacity(0.8), fontWeight: FontWeight.w700),
       ),
     ),
   ),
@@ -762,11 +763,11 @@ Widget _confirmButton(screenHeight) {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
-            backgroundColor: const Color(0xff121B38),
+            backgroundColor: const Color.fromARGB(255, 18, 27, 56),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            shadowColor: const Color(0xff121B38).withOpacity(0.6), // Ombre
+            shadowColor: const Color.fromARGB(255, 18, 27, 56).withOpacity(0.6), // Ombre
             elevation: 8,
           ),
           onPressed: () async {
@@ -810,7 +811,7 @@ Widget _confirmButton(screenHeight) {
             buttonText,  
             style: GoogleFonts.montserrat(
               textStyle: const TextStyle(
-                color: Colors.white,
+                color: white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -833,7 +834,7 @@ Widget _confirmButton(screenHeight) {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+                colors: [skyBlue, midnightBlue],
                 stops: [0.2, 0.9],
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,

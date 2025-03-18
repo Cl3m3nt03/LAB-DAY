@@ -8,6 +8,7 @@ import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
 
 /// A page that displays the list of contacts and their respective messages.
@@ -188,9 +189,9 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: midnightBlue,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: Icon(Icons.arrow_back_ios, color: pureWhite),
           padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
           onPressed: () {
             Navigator.pop(context);
@@ -198,7 +199,7 @@ class _ContactPageState extends State<ContactPage> {
         ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 11, 22, 44),
+        color: midnightBlue,
         child: Column(
           children: [
             Text(
@@ -208,7 +209,7 @@ class _ContactPageState extends State<ContactPage> {
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 30,
-                    color: Colors.white),
+                    color: pureWhite),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
@@ -249,7 +250,7 @@ class _ContactPageState extends State<ContactPage> {
                                 noShowMessage(chatId);
                               },
                               backgroundColor: Color(0xFFFE4A49),
-                              foregroundColor: Colors.white,
+                              foregroundColor: pureWhite,
                               icon: Icons.delete,
                               label: 'Supprimer',
                             ),
@@ -290,7 +291,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 ConnectionState.waiting) {
                                               return CircleAvatar(
                                                 backgroundColor:
-                                                    Colors.grey[800],
+                                                    darkGrey,
                                                 radius: 35,
                                                 child:
                                                     CircularProgressIndicator(),
@@ -330,7 +331,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 return Text(
                                                   'Chargement...',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: pureWhite,
                                                       fontSize: 16),
                                                 );
                                               }
@@ -338,7 +339,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 return Text(
                                                   'Erreur',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: pureWhite,
                                                       fontSize: 16),
                                                 );
                                               }
@@ -347,7 +348,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 return Text(
                                                   'Utilisateur inconnu',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: pureWhite,
                                                       fontSize: 16),
                                                 );
                                               }
@@ -370,7 +371,7 @@ class _ContactPageState extends State<ContactPage> {
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           fontSize: 17,
-                                                          color: Colors.white),
+                                                          color: pureWhite),
                                                     ),
                                                   ),
                                                 ],
@@ -395,9 +396,8 @@ class _ContactPageState extends State<ContactPage> {
                                                                             .data ??
                                                                         0) >
                                                                     0
-                                                                ? Colors.white
-                                                                : Colors
-                                                                    .white70,
+                                                                ? pureWhite
+                                                                : softWhite,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             overflow:
@@ -429,7 +429,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 snapshot.data ?? '00:00',
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white70,
+                                                      color: softWhite,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       overflow:
@@ -454,7 +454,7 @@ class _ContactPageState extends State<ContactPage> {
                                                   return Text(
                                                     '!',
                                                     style: TextStyle(
-                                                        color: Colors.white),
+                                                        color: pureWhite),
                                                   );
                                                 }
                                                 int unreadCount =
@@ -465,7 +465,7 @@ class _ContactPageState extends State<ContactPage> {
                                                         width: 20,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color: Colors.red,
+                                                          color: red,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(50),
@@ -476,7 +476,7 @@ class _ContactPageState extends State<ContactPage> {
                                                                 .toString(),
                                                             style: TextStyle(
                                                               color:
-                                                                  Colors.white,
+                                                                  pureWhite,
                                                               fontSize: 12,
                                                             ),
                                                           ),

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:makeitcode/pages/web_view/loadDataAndTemplate.dart';
 import 'package:open_filex/open_filex.dart';
@@ -76,7 +77,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: white),
           ),
         ),
         leading: IconButton(
@@ -86,16 +87,16 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
           },
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme: const IconThemeData(color: white),
+        backgroundColor: midnightBlue,
       ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                skyBlue,
+                midnightBlue,
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.3, 0.7),
@@ -112,7 +113,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                         textStyle: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: white),
                       ),
                     ),
                     Padding(padding: EdgeInsets.only(top: 15)),
@@ -128,7 +129,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                           return ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Container(
-                              color: Colors.white,
+                              color: white,
                               child: Column(
                                 children: [
                                   Expanded(
@@ -155,7 +156,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          Color.fromRGBO(11, 153, 253, 1),
+                                          vibrantBlue,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),
@@ -167,7 +168,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: white,
                                         )),
                                   ),
                                   
@@ -184,12 +185,12 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                         textStyle: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: white),
                       ),
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(11, 153, 253, 1),
+                        backgroundColor: vibrantBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
@@ -205,7 +206,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: white,
                           )),
                     ),
                   ],

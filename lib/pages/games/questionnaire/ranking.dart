@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:makeitcode/widget/auth.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
 
 // Represents the ranking page with a floating action button to view the leaderboard.
@@ -36,7 +37,7 @@ class _Classement extends State<RankingPage> {
         // Action triggered on button press.
         onPressed: onButtonPressed,
         backgroundColor: Color.fromARGB(255, 209, 223, 255),
-        foregroundColor: Color(0xFF5E4F73),
+        foregroundColor: Color.fromARGB(255, 94, 79, 115),
         tooltip: 'Classement',
         child: const Icon(Icons.emoji_events, size: 30,),
       ),
@@ -77,14 +78,14 @@ class ClassementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(0, 113, 152, 1),
-        foregroundColor: Colors.white,
+        backgroundColor: skyBlue,
+        foregroundColor: white,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+            colors: [skyBlue, midnightBlue],
             stops: [0.2, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.center,
@@ -100,7 +101,7 @@ class ClassementPage extends StatelessWidget {
                   "LES MEILLEURS CODEURS",
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                      color: Colors.white,
+                      color: white,
                       fontSize: MediaQuery.of(context).size.width / 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -139,7 +140,7 @@ class ClassementPage extends StatelessWidget {
                           String playerUid = document.id; // Assuming UID is stored as the document ID
                           Color textColor = playerPseudo == currentUserPseudo
                               ? const Color.fromARGB(255, 141, 227, 255)
-                              : Colors.white;
+                              : white;
 
                           // FutureBuilder to load the user avatar.
                           return FutureBuilder<Uint8List?>(
@@ -207,7 +208,7 @@ Widget classementCard({
           style: GoogleFonts.montserrat(textStyle: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: rank <= 3 ? Colors.amber : Colors.white,
+            color: rank <= 3 ? Colors.amber : white,
           )),
         ),
         const SizedBox(width: 10 ,),
@@ -234,7 +235,7 @@ Widget classementCard({
               Text(
                 "Niveau $points ",
                 style: const TextStyle(
-                  color: Colors.white70,
+                  color: softWhite,
                   fontStyle: FontStyle.italic,
                   fontSize: 16,
                 ),
@@ -259,7 +260,7 @@ Widget classementCard({
                 },
                 child : Text(
                   "Voir le profil", 
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                  style: TextStyle(color: softWhite, fontSize: 14),
                 ),
               )
             ],

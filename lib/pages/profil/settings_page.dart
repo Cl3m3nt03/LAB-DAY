@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/MenuItem.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/notifications.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -28,11 +29,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: midnightBlue,
+        iconTheme: IconThemeData(color: white),
         centerTitle: true,
       ),
       body: Center(
@@ -45,8 +46,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      skyBlue,
+                      midnightBlue,
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),
@@ -58,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: [
                     Divider(
                       thickness: 1.5,
-                      color: Colors.white.withOpacity(0.5),
+                      color: white.withOpacity(0.5),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                     Padding(
@@ -93,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                                 fontWeight: FontWeight.w600,
                                                 overflow: TextOverflow.ellipsis,
                                                 fontSize: 14,
-                                                color: Colors.white),
+                                                color: white),
                                           ),
                                         ),
                                         SizedBox(width: 10),
@@ -129,7 +130,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                                 fontWeight: FontWeight.w600,
                                                 overflow: TextOverflow.ellipsis,
                                                 fontSize: 14,
-                                                color: Colors.white),
+                                                color: white),
                                           ),
                                         ),
                                         SizedBox(width: 10),
@@ -182,7 +183,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           fontSize: 14,
-                                                          color: Colors.white),
+                                                          color: white),
                                                     ),
                                                   ),
                                                   SizedBox(

@@ -18,13 +18,13 @@ class _GlossaryPage extends State<GlossaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B162C),
-      appBar: AppBar(backgroundColor: Color.fromRGBO(0, 113, 152, 1), foregroundColor: Colors.white,),
+      backgroundColor: midnightBlue,
+      appBar: AppBar(backgroundColor: skyBlue, foregroundColor: white,),
       body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)],
+              colors: [skyBlue,midnightBlue],
               stops: [0.2, 0.9],
               begin: Alignment.topCenter,
               end: Alignment.center,
@@ -594,7 +594,7 @@ class _GlossaryPage extends State<GlossaryPage> {
 Text titreGlossaire({required String texte}){
   return  Text(
       texte,
-      style: GoogleFonts.aBeeZee(textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white70),)
+      style: GoogleFonts.aBeeZee(textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: softWhite),)
   );
 }
 
@@ -607,13 +607,13 @@ ElevatedButton buttonGlossaire({
   return ElevatedButton(
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color.fromRGBO(119, 146, 155, 0.7),
-      foregroundColor: Colors.white,
+      backgroundColor: mistySlate,
+      foregroundColor: white,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
         side: const BorderSide(
-          color: Color.fromARGB(255, 79, 89, 115),
+          color: slateGrey,
           width: 2,
         ),
       ),
@@ -624,7 +624,7 @@ ElevatedButton buttonGlossaire({
         Icon(
           icon,
           size: 24,
-          color: const Color.fromARGB(255, 232, 228, 243),
+          color: paleLavender,
         ),
         const SizedBox(width: 20),
         Text(

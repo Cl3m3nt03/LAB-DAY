@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,8 +16,8 @@ class PasswordForgottenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme: const IconThemeData(color: white),
+        backgroundColor: midnightBlue,
       ),
       // GestureDetector to dismiss the keyboard when tapping outside input field
       body: GestureDetector(
@@ -36,8 +37,8 @@ class PasswordForgottenPage extends StatelessWidget {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color.fromRGBO(0, 113, 152, 1),
-                          Color.fromARGB(255, 11, 22, 44),
+                          skyBlue,
+                          midnightBlue,
                         ],
                         stops: [0.2, 0.9],
                         begin: Alignment.bottomCenter,
@@ -51,18 +52,18 @@ class PasswordForgottenPage extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Vous avez oublié votre mot de passe ?',
-                            style: GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 20, color: white,fontWeight: FontWeight.bold)),
                           ),
                           const Divider(color: Colors.amber),
                           const SizedBox(height: 15),
                              Text(
                             'Saisissez l\'adresse email associée à votre compte MakeitCode ',
-                            style:GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 15, color: Colors.white,fontWeight: FontWeight.w500,),),
+                            style:GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 15, color: white,fontWeight: FontWeight.w500,),),
                           ),
                           const SizedBox(height: 20),
                           const Text(
                             'Un e-mail de réinitialisation vous sera envoyé.',
-                            style: TextStyle(fontSize: 15, color: Colors.white),
+                            style: TextStyle(fontSize: 15, color: white),
                           ),
                           const SizedBox(height: 20),
                           EntryField(
@@ -76,7 +77,7 @@ class PasswordForgottenPage extends StatelessWidget {
                             child: ElevatedButton(
                               style: TextButton.styleFrom(
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                                shadowColor: Colors.black,
+                                shadowColor: dark,
                                 elevation: 5,
                                 minimumSize: const Size(double.infinity, 55),
                                 backgroundColor: const Color.fromARGB(249, 161, 119, 51),
@@ -89,7 +90,7 @@ class PasswordForgottenPage extends StatelessWidget {
                               },
                               child:Text(
                                 'Valider',
-                                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),)
+                                style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: white),)
                               ),
                             ),
                           ),

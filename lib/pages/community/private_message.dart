@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 /// Chat page for private conversations between users.
 class PrivateChatPage extends StatefulWidget {
@@ -112,7 +113,7 @@ Future<void> _initializeChat() async {
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isCurrentUser ? Colors.blue[300] : Colors.grey[300],
+          color: isCurrentUser ? userMessageBlue : otherMessageGray, 
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -120,7 +121,7 @@ Future<void> _initializeChat() async {
           children: [
             Text(
               messageData['pseudo'] ?? 'Anonyme',
-              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 15,color: Colors.black),),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 15,color: dark),),
               overflow: TextOverflow.ellipsis,
             ),
             Text(
@@ -183,16 +184,16 @@ Future<void> _initializeChat() async {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor:Colors.blue,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(recipientPseudo ?? 'Chargement ...', style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+        backgroundColor:blue,
+        iconTheme: IconThemeData(color: white),
+        title: Text(recipientPseudo ?? 'Chargement ...', style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: white),),
         ),
       ),
       body: Stack(
         children: [
           Positioned.fill(
             child: Container(
-              color:Color.fromARGB(255, 11, 22, 44),
+              color:deepNavy,
               ),
           ),
           SafeArea(
@@ -207,24 +208,24 @@ Future<void> _initializeChat() async {
                     children: <Widget>[
                       Expanded(
                         child: TextField(
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: white),
                           controller: _controller,
                           decoration: InputDecoration(
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: white),
                             hintText: 'Écrivez un message...',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Colors.blue),
+                              borderSide: BorderSide(color: blue),
                             ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       IconButton(
-                        icon: Icon(Icons.send, color: Colors.blue),
+                        icon: Icon(Icons.send, color: blue),
                         onPressed: _sendMessage,
                       ),
                     ],

@@ -9,6 +9,7 @@ import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dar
 import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 class HomeGamePage extends StatefulWidget {
   @override
   _HomeGamePageState createState() => _HomeGamePageState();
@@ -72,20 +73,20 @@ class _HomeGamePageState extends State<HomeGamePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: white),
           ),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme: const IconThemeData(color: white),
+        backgroundColor: midnightBlue,
       ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                skyBlue,
+                midnightBlue,
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.3, 0.7),
@@ -109,7 +110,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                           return ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Container(
-                              color: Colors.white,
+                              color: white,
                               child: Column(
                                 children: [
                                   Expanded(
@@ -177,7 +178,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: white,
                                         )),
                                   ),
                                 ],

@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 // Function to retrieve the user's pseudo from the database
 // Retrieves the pseudo associated with the user's UID
@@ -94,11 +95,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: midnightBlue,
+        iconTheme: IconThemeData(color: white),
         centerTitle: true,
       ),
       body: Center(
@@ -107,8 +108,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      skyBlue,
+                      midnightBlue,
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),
@@ -123,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Divider(
                         thickness: 1.5,
-                        color: Colors.white.withOpacity(0.5),
+                        color: white.withOpacity(0.5),
                         ),
                         Container(
                           height: 100,
@@ -195,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             return Text(
                                               'Error: ${snapshot.error}',
                                               style: TextStyle(
-                                                  color: Colors.white),
+                                                  color: white),
                                             );
                                           } else {
                                             var userData = snapshot.data!.data()
@@ -205,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   'No pseudo available',
                                               style: GoogleFonts.montserrat(
                                                 textStyle: TextStyle(
-                                                  color: Colors.white,
+                                                  color: white,
                                                   fontSize: 17,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -223,7 +224,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                               const Color.fromARGB(249, 153, 120, 67)),
                                       foregroundColor:
                                           MaterialStateProperty.all<Color>(
-                                              Colors.white),
+                                              white),
                                     ),
                                     onPressed: () {
                                       Navigator.push(
@@ -236,7 +237,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       'Mon Compte',
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
-                                          color: Colors.white,
+                                          color: white,
                                           fontSize: 10,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -268,7 +269,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Row(
                                           children: [
                                             Icon(Icons.person,
-                                                color: Colors.white),
+                                                color: white),
                                             TextButton(
                                               onPressed: () {
                                                 Navigator.push(
@@ -282,7 +283,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 "Mon Compte",
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white,
+                                                      color: white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -298,7 +299,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Row(
                                           children: [
                                             Icon(Icons.key,
-                                                color: Colors.white),
+                                                color: white),
                                             SizedBox(width: 5),
                                             TextButton(
                                               onPressed: () {
@@ -313,7 +314,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 "Sécurité",
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white,
+                                                      color: white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -329,7 +330,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Row(
                                           children: [
                                             Icon(Icons.settings,
-                                                color: Colors.white),
+                                                color: white),
                                             SizedBox(width: 5),
                                             TextButton(
                                               onPressed: () {
@@ -344,7 +345,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 "Réglages",
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white,
+                                                      color: white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -374,7 +375,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Row(
                                           children: [
                                             Icon(Icons.policy,
-                                                color: Colors.white),
+                                                color: white),
                                             SizedBox(width: 10),
                                             TextButton(
                                               onPressed: () {
@@ -389,7 +390,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 "Politique de confidentialité",
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white,
+                                                      color: white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -405,7 +406,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         child: Row(
                                           children: [
                                             Icon(Icons.contact_mail,
-                                                color: Colors.white),
+                                                color: white),
                                             SizedBox(width: 15),
                                             TextButton(
                                               onPressed: () {
@@ -420,7 +421,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 "Contactez-nous",
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white,
+                                                      color: white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -446,7 +447,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       horizontal: 20, vertical: 10),
                                   child: Row(
                                     children: [
-                                      Icon(Icons.key, color: Colors.white),
+                                      Icon(Icons.key, color: white),
                                       SizedBox(width: 15),
                                       TextButton(
                                           onPressed: () {
@@ -456,7 +457,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             "Déconnexion",
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
-                                                  color: Colors.white,
+                                                  color: white,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                           )),

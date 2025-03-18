@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/progressBar.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 // Widget representing the user's profile page.
 class OpenProfilePage extends StatefulWidget {
@@ -101,7 +102,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
           bio.isNotEmpty ? bio : 'No bio',
           style: GoogleFonts.nokora(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: white,
               fontSize: 15,
               fontWeight: FontWeight.w500,
               overflow: TextOverflow.clip,
@@ -144,11 +145,11 @@ Widget _profilePicture(){
     width: MediaQuery.of(context).size.width - 25,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Color(0xff0692C2),
+        color: Color.fromRGBO(6, 146, 194, 1),
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Color(0xff0692C2).withOpacity(0.5),
+            color: Color.fromARGB(255, 6, 146, 194).withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
             offset: Offset(0, 3), 
@@ -164,7 +165,7 @@ Widget _profilePicture(){
                     getlvlRank(lvl),
                     style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
-                        color: Colors.white,
+                        color: white,
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                       )
@@ -178,7 +179,7 @@ Widget _profilePicture(){
                         borderRadius:  BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: dark.withOpacity(0.15),
                             spreadRadius: 5,
                             blurRadius: 7,
                             offset: Offset(0, 3), 
@@ -193,7 +194,7 @@ Widget _profilePicture(){
                               TextSpan(
                                 text: 'Niv. ',
                                 style: TextStyle(
-                                  color: Colors.black.withOpacity(0.5), 
+                                  color: dark.withOpacity(0.5), 
                                   fontWeight: FontWeight.normal, 
                                   fontSize: 16, 
                                 ),
@@ -201,7 +202,7 @@ Widget _profilePicture(){
                               TextSpan(
                                 text: '$level', 
                                 style: TextStyle(
-                                  color: Colors.black, 
+                                  color: dark, 
                                   fontWeight: FontWeight.w800, 
                                   fontSize: 17, 
                                 ),
@@ -230,7 +231,7 @@ Widget _profilePicture(){
                 "$xp xp",
                 style: GoogleFonts.montserrat(
                   textStyle: TextStyle(
-                    color: Colors.white,
+                    color: white,
                     fontWeight: FontWeight.bold
                   )
                 ),
@@ -240,7 +241,7 @@ Widget _profilePicture(){
                 "$objXp xp",
                 style: GoogleFonts.montserrat(
                   textStyle: TextStyle(
-                    color: Colors.white,
+                    color: white,
                     fontWeight: FontWeight.bold
                   )
                 ),
@@ -262,7 +263,7 @@ Widget _badges(){
           'Badges : ',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: white,
               fontWeight: FontWeight.w600,
               fontSize: 25,
             )
@@ -304,7 +305,7 @@ Widget _Museum(){
           'Museum : ',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: white,
               fontWeight: FontWeight.w600,
               fontSize: 25,
             )
@@ -334,7 +335,7 @@ Widget _Museum(){
                     'Bronze',
                     style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
-                        color: Colors.white,
+                        color: white,
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                       )
@@ -350,7 +351,7 @@ Widget _Museum(){
                     'Bronze',
                     style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
-                        color: Colors.white,
+                        color: white,
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                       )
@@ -378,11 +379,11 @@ Widget _Museum(){
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: midnightBlue,
+        iconTheme: IconThemeData(color: white),
         centerTitle: true,
       ),
       body: Stack(
@@ -392,8 +393,8 @@ Widget _Museum(){
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
-                  Color.fromARGB(255, 11, 22, 44),
+                  skyBlue,
+                  midnightBlue,
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),

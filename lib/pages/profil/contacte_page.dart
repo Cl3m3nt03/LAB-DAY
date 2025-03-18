@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,11 +26,11 @@ class _ContactePageState extends State<ContactePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: midnightBlue,
+        iconTheme: IconThemeData(color: white),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -38,8 +39,8 @@ class _ContactePageState extends State<ContactePage> {
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      skyBlue,
+                      midnightBlue,
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),
@@ -51,7 +52,7 @@ class _ContactePageState extends State<ContactePage> {
                   children: [
                     Divider(
                       thickness: 1.5,
-                      color: Colors.white.withOpacity(0.5),
+                      color: white.withOpacity(0.5),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                     Padding(
@@ -83,7 +84,7 @@ class _ContactePageState extends State<ContactePage> {
                       ),
                       child: Text(
                         "Envoyer le message",
-                        style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 13,color: Colors.white),),                      
+                        style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 13,color: white),),                      
                         ),
                     ),
                   ],

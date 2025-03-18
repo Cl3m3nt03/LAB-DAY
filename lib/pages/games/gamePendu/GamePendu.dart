@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/rewardScreenXp.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 class GamePendu extends StatefulWidget {
   @override
@@ -75,12 +76,12 @@ class _GamePenduState extends State<GamePendu> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 24,
-                color: Colors.white),
+                color: white),
           ),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme: const IconThemeData(color: white),
+        backgroundColor: midnightBlue,
       ),
       body:  SingleChildScrollView(
             child: Column(
@@ -91,8 +92,8 @@ class _GamePenduState extends State<GamePendu> {
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        Color.fromRGBO(0, 113, 152, 1),
-                        Color.fromARGB(255, 11, 22, 44),
+                        skyBlue,
+                        midnightBlue,
                       ],
                       stops: [0.1, 0.9],
                       center: Alignment(-0.7, 0.7),
@@ -105,7 +106,7 @@ class _GamePenduState extends State<GamePendu> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.002),
                       Text('Essais restants: $attemptsLeft',
-                          style: TextStyle(fontSize: 24, color: Color.fromRGBO(11, 153, 253, 1),)),
+                          style: TextStyle(fontSize: 24, color: vibrantBlue,)),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.002),
                       Text(
@@ -114,7 +115,7 @@ class _GamePenduState extends State<GamePendu> {
                             .map((letter) =>
                                 guessedLetters.contains(letter) ? letter : '_')
                             .join(' '),
-                        style: TextStyle(fontSize: 32, color: const Color.fromARGB(255, 255, 255, 255)),
+                        style: TextStyle(fontSize: 32, color: pureWhite),
                       ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03),
@@ -128,7 +129,7 @@ class _GamePenduState extends State<GamePendu> {
                           return ElevatedButton(
                             style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                Color.fromRGBO(11, 153, 253, 1),
+                                vibrantBlue,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
@@ -140,7 +141,7 @@ class _GamePenduState extends State<GamePendu> {
                                 guessLetter(letter);
                                 _Victory();
                                 },
-                            child: Text(letter , style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
+                            child: Text(letter , style: TextStyle(fontSize: 24 , color: pureWhite)),
                             );
                         }).toList(),
                       ),
@@ -148,14 +149,14 @@ class _GamePenduState extends State<GamePendu> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                Color.fromRGBO(11, 153, 253, 1),
+                                vibrantBlue,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
                           ),
                         onPressed: startNewGame,
                         child: Text('Nouvelle Partie',
-                            style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
+                            style: TextStyle(fontSize: 24 , color: pureWhite)),
                       ),
                     ],
                   ),

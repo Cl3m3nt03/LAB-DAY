@@ -75,7 +75,7 @@ class _ProjectCardState extends State<ProjectCard> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black26,
+              color: const Color.fromARGB(66, 0, 0, 0),
               blurRadius: 4,
               offset: Offset(2, 2),
             )

@@ -11,7 +11,8 @@ import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:makeitcode/pages/community/list_message_page.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:makeitcode/pages/web_view/loadWebView.dart'; // Add this import
+import 'package:makeitcode/pages/web_view/loadWebView.dart';
+import 'package:makeitcode/widget/style_editor.dart'; // Add this import
 
 
 /// GlobalChatPage is a StatefulWidget that represents the user interface for a global chat.
@@ -108,7 +109,7 @@ void getpseudo() async {
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isCurrentUser ? Colors.blue[300] : Colors.grey[300],
+          color: isCurrentUser ? userMessageBlue : otherMessageGray,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -126,7 +127,7 @@ void getpseudo() async {
                   PopupMenuButton<String>(
                     icon: Icon(
                       Icons.more_vert,
-                      color: Colors.black,
+                      color: pureBlack,
                       size: 20,
                     ),
                     onSelected: (String value) {
@@ -230,13 +231,13 @@ void getpseudo() async {
         elevation: 0,
         title: Text(
           "CHAT GLOBAL",
-          style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+          style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: pureWhite),),
 
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.message, color: Colors.white),
+            icon: Icon(Icons.message, color: pureWhite),
             onPressed: () {
               Navigator.push(
                 context,
@@ -256,8 +257,8 @@ void getpseudo() async {
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
-                  Color.fromARGB(255, 11, 22, 44),
+                  skyBlue,
+                  deepNavy,
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),
@@ -278,24 +279,24 @@ void getpseudo() async {
                     children: <Widget>[
                       Expanded(
                         child: TextField(
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: pureWhite),
                           controller: _controller,
                           decoration: InputDecoration(
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: pureWhite),
                             hintText: 'Écrivez un message...',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Colors.blue),
+                              borderSide: BorderSide(color: blue),
                             ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       IconButton(
-                        icon: Icon(Icons.send, color: Colors.blue),
+                        icon: Icon(Icons.send, color: blue),
                         onPressed: _sendMessage,
                       ),
                     ],

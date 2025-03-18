@@ -167,9 +167,9 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
     child: Container(
       padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
+        border: Border.all(color: dark),
         borderRadius: BorderRadius.circular(8.0),
-        color: Colors.blue[100],
+        color: lightBlue,
       ),
       child: Text(
         text,
@@ -194,7 +194,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
     );
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B162C),
+      backgroundColor:midnightBlue,
     appBar: AppBar(
       centerTitle: true,
       actions: [
@@ -220,15 +220,15 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
             SizedBox(height: 8),
             LinearProgressIndicator(
               value: currentStep / 20.0, // 20.0 force la division à retourner un double
-              backgroundColor: Colors.grey.shade700,
-              color: Colors.white,
+              backgroundColor: darkGreyShade,
+              color: white,
               minHeight: 5,
             ),
           ],
         ),
       ),
-      backgroundColor: Color.fromRGBO(0, 113, 152, 1),
-      foregroundColor: Colors.white,
+      backgroundColor: skyBlue,
+      foregroundColor: white,
     ),
 
       body: KeyboardActions(
@@ -271,7 +271,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(104, 191, 199, 237),
+                  color: softLavender,
                   borderRadius: BorderRadius.circular(4),
                 ),
                 width: double.infinity,
@@ -308,7 +308,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 191, 199, 237),
+                  color: lightLavender,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
@@ -384,8 +384,8 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                     _nextStep();
                   } : null, // Désactive le bouton si la réponse est incorrecte
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color.fromARGB(255, 50, 52, 76),
-                    backgroundColor: const Color.fromARGB(255, 222, 226, 255),
+                    foregroundColor: deepSlateBlue,
+                    backgroundColor: darkPeriwinkle,
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),

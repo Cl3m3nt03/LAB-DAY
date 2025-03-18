@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
 import 'package:makeitcode/pages/games/projects/project_detail_page.dart';
 import 'package:makeitcode/widget/progressBar.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/widget/searchBar.dart';
@@ -60,7 +61,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
         fontFamily: 'Monsterrat',
         fontWeight: FontWeight.w800,
         fontSize: 36,
-        color: Colors.white,
+        color: white,
       ),
     );
   }
@@ -154,11 +155,11 @@ Widget _buildSearchResults() {
     height: _projectCardHeight,
     width: _projectCardWidth,
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: white,
       borderRadius: BorderRadius.circular(20),
       boxShadow: [
         BoxShadow(
-          color: Colors.black26,
+          color: semiTransparentBlack,
           blurRadius: 4,
           offset: Offset(2, 2),
         )
@@ -180,7 +181,7 @@ Widget _buildSearchResults() {
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Container(
-            color: Colors.black.withOpacity(0.92),
+            color: dark.withOpacity(0.92),
             height: _projectCardHeight,
             width: _projectCardWidth,
           ),
@@ -190,7 +191,7 @@ Widget _buildSearchResults() {
           child: Icon(
             Icons.lock, 
             size: 40, 
-            color: Colors.white,
+            color: white,
           ),
         ),
       ],
@@ -222,7 +223,7 @@ Widget _buildSearchResults() {
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return Text(
                 'Aucun projet trouvé.',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: white),
               );
             }
             return Center(
@@ -252,7 +253,7 @@ Widget _buildSearchResults() {
       text,
       style: TextStyle(
         fontFamily: 'Monsterrat',
-        color: Colors.white,
+        color: white,
         fontWeight: FontWeight.w600,
         fontSize: 25,
       ),
@@ -264,10 +265,10 @@ Widget _buildSearchResults() {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      iconTheme: IconThemeData(color: Colors.white),
-      title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+      iconTheme: IconThemeData(color: white),
+      title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: white),),
 ),
-      backgroundColor: Color.fromARGB(255, 11, 22, 44),
+      backgroundColor: midnightBlue,
       centerTitle: true,
     ),
     resizeToAvoidBottomInset: false,
@@ -278,8 +279,8 @@ Widget build(BuildContext context) {
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
-                  Color.fromARGB(255, 11, 22, 44),
+                  skyBlue,
+                  midnightBlue,
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),

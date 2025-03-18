@@ -8,6 +8,9 @@ const Color palePeriwinkle = Color(0xFFEDE7F6);
 const Color softOrchid = Color(0xFFF3E5F5); 
 
 
+
+
+
 const shadesOfPurpleTheme = {
   'root': TextStyle(backgroundColor: Color(0xFF2B2D42), color: Color(0xFFBFBFBF)),
   'title': TextStyle(color: Color(0xfffad000), fontWeight: FontWeight.normal),

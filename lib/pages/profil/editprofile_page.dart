@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:makeitcode/pages/profil/profile_page.dart';
 import 'package:makeitcode/widget/dialog_mdp.dart';
 import 'package:makeitcode/widget/edit_avatar.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -185,11 +186,11 @@ final FocusNode _focusNodeEmail = FocusNode();
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: midnightBlue,
+        iconTheme: IconThemeData(color: white),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -198,8 +199,8 @@ final FocusNode _focusNodeEmail = FocusNode();
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      skyBlue,
+                      midnightBlue,
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),
@@ -212,7 +213,7 @@ final FocusNode _focusNodeEmail = FocusNode();
                   children: [
                      Divider(
                       thickness: 1.5,
-                      color: Colors.white.withOpacity(0.5),
+                      color: white.withOpacity(0.5),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
                         Positioned(
@@ -286,7 +287,7 @@ final FocusNode _focusNodeEmail = FocusNode();
                             ),
                             child: Text(
                               "Enregistrer les modifications",
-                               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 13,color: Colors.white),),
+                               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 13,color: white),),
                             ),
                           ),
                         ],

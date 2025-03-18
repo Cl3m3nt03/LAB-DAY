@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'loadDataAndTemplate.dart'; 
 import 'package:makeitcode/widget/auth.dart';
 
@@ -50,10 +51,10 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rendu de votre protfolio', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20) ),
-        backgroundColor: Color.fromRGBO(0, 113, 152, 1),
+        title: Text('Rendu de votre protfolio', style: TextStyle(color: white,fontWeight: FontWeight.bold, fontSize: 20) ),
+        backgroundColor: skyBlue,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: white),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -62,7 +63,7 @@ class _WebViewPageState extends State<WebViewPage> {
         actions: [
           IconButton(
             icon: Icon(_isPhoneView ? Icons.phone_android : Icons.desktop_windows),
-            color: Colors.white,
+            color: white,
             onPressed: () async {
               setState(() {
                 _isPhoneView = !_isPhoneView;

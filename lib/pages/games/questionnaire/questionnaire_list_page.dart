@@ -8,6 +8,7 @@ import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 
 /// Widget for displaying the list of questionnaires with their details.
 
@@ -57,20 +58,20 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: white),
           ),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme: const IconThemeData(color: white),
+        backgroundColor: midnightBlue,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           gradient: RadialGradient(
             colors: [
-              Color.fromRGBO(0, 113, 152, 1),
-              Color.fromARGB(255, 11, 22, 44),
+              skyBlue,
+              midnightBlue,
             ],
             stops: [0.1, 0.9],
             center: Alignment(-0.7, 0.7),
@@ -86,7 +87,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(24, 37, 63, 0.8),
+                    color: Color.fromARGB(204, 24, 37, 63),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListTile(
@@ -98,21 +99,21 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                         textStyle: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                          color: white,
                         ),
                       ),
                     ),
                     subtitle: Text(
                       "20 Questions",
-                      style: TextStyle(color: Colors.white70, fontSize: 14),
+                      style: TextStyle(color: softWhite, fontSize: 14),
                     ),
                     trailing: Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.white24,
+                        color: semiTransparentWhite,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Icon(Icons.arrow_forward_ios, color: Colors.white),
+                      child: Icon(Icons.arrow_forward_ios, color: white),
                     ),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(10),

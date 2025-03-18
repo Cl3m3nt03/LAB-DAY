@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:makeitcode/widget/style_editor.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:makeitcode/widget/auth.dart';
@@ -128,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: TextButton(
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          shadowColor: Colors.black,
+          shadowColor: dark,
           elevation: 5,
           minimumSize: const Size(double.infinity, 55),
           backgroundColor: const Color.fromARGB(249, 161, 119, 51),
@@ -138,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
         },
         child:  Text(
           'INSCRIPTION',
-            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),)
+            style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: white),)
         ),
       ),
     );
@@ -149,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return  Text(
       "Créer votre compte",
         style:GoogleFonts.montserrat(textStyle: TextStyle(
-        color: Colors.white.withOpacity(1), 
+        color: white.withOpacity(1), 
         fontSize: 29, 
         fontWeight: FontWeight.bold,     
       ),
@@ -165,7 +166,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
       child: const Icon(
         Icons.arrow_back_ios,
-        color: Colors.white,
+        color: white,
       ),
     );
   }
@@ -183,7 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+                  colors: [skyBlue, midnightBlue],
                   stops: [0.2, 0.9],
                   begin: Alignment.bottomCenter,
                   end: Alignment.center,
