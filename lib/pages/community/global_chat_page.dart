@@ -247,6 +247,17 @@ void getpseudo() async {
             },
           ),
         ],
+        leading: IconButton(
+          icon: Icon(Icons.person, color: Colors.white),
+          onPressed: () { 
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OpenProfilePage(uid: uid),
+              ),
+            );
+          },
+        ),
       ),
       body: Stack(
         children: [

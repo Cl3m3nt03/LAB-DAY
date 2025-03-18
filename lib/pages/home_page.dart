@@ -69,8 +69,13 @@ class _HomePageState extends State<HomePage> {
 // Fetches the user's pseudo from authentication service.
 Future<void> fetchPseudo() async {
   try {
+    setState(() {
+      pseudo = ''; 
+    });
+
     String? fetchedPseudo = await Auth().recoveryPseudo();
-    if (mounted) { 
+
+    if (mounted) {
       setState(() {
         pseudo = fetchedPseudo ?? 'Pseudo non disponible';
       });
@@ -84,6 +89,7 @@ Future<void> fetchPseudo() async {
     }
   }
 }
+
   // Checks if the user's email is verified.
   void checkEmailVerification() {
     User? user = FirebaseAuth.instance.currentUser;
@@ -149,7 +155,9 @@ Widget _title(){
     children: [
       SizedBox(
         width: MediaQuery.of(context).size.width *0.6 ,
-        child: Text(
+            child: pseudo == null
+        ? CircularProgressIndicator() // Affichage du chargement
+        :  Text(
           'Salut, $pseudo 👋',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
@@ -159,9 +167,8 @@ Widget _title(){
               overflow: TextOverflow.clip
             )
           ),
-        )
-
         ),
+      ),
         SizedBox(height: 5,),
         Text(
           "Code en t'amusant",
