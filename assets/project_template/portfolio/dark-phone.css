@@ -18,7 +18,9 @@
     --surface-dark: #0f172a;
     --transition: all 0.3s ease;
 }
-
+a{
+    color : var(--accent);
+}
 /* Global Styles */
 html {
     scroll-behavior: smooth;

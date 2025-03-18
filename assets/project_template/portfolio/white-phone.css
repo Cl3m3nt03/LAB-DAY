@@ -14,7 +14,9 @@
             --light: #f8fafc;
             --transition: all 0.3s ease;
         }
-
+        a{
+            color : var(--accent);
+        }
         /* Global Styles */
         html {
             scroll-behavior: smooth;

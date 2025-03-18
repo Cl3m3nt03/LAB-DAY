@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'loadDataAndTemplate.dart'; 
 import 'package:makeitcode/widget/auth.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WebViewPage extends StatefulWidget {
   WebViewPage({Key? key}) : super(key: key); 
@@ -23,6 +24,14 @@ class _WebViewPageState extends State<WebViewPage> {
     _startLoad();
   }
 
+  void launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   Future<void> _startLoad() async {
     String userId = Auth().uid!;
     await _dataAndTemplate.generateHTMLFromFirestore(userId, 'index.html', _isPhoneView);
@@ -30,7 +39,6 @@ class _WebViewPageState extends State<WebViewPage> {
     final file = File(filePath);
     String rawHtml = await file.readAsString();
 
-    // Injecter la classe CSS appropriée (desktop ou mobile)
     String updatedHtml = rawHtml.replaceAll(
       '<body>',
       '<body class="${_isPhoneView ? 'mobile-view' : 'desktop-view'}">'
@@ -89,6 +97,15 @@ class _WebViewPageState extends State<WebViewPage> {
                       ),
                       onWebViewCreated: (controller) {
                         _webViewController = controller;
+                      },
+                    
+                      shouldOverrideUrlLoading: (controller, request) async {
+                        final url = request.request.url.toString(); 
+                        if (url.startsWith('http://') || url.startsWith('https://')) {
+                          launchURL(url); 
+                          return NavigationActionPolicy.CANCEL;
+                        }
+                        return NavigationActionPolicy.ALLOW; 
                       },
                     ),
                   ),
