@@ -738,6 +738,7 @@ Widget _confirmButton(screenHeight) {
   return Positioned(
     top: screenHeight / 1.13,
     left: (MediaQuery.of(context).size.width - 270) / 2,
+    right: (MediaQuery.of(context).size.width - 270) / 2,
     child: FutureBuilder<String>(
       future: _getButtonText(),  // Calling the asynchronous function
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -754,7 +755,7 @@ Widget _confirmButton(screenHeight) {
 
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
             backgroundColor: const Color(0xff121B38),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),

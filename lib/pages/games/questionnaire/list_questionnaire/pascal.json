@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Quel était le rôle de Pascal Soetens dans l'émission 'Pascal, le grand frère' ?",
+    "options": [
+      {"text": "Éducateur et coach"},
+      {"text": "Psychologue"},
+      {"text": "Animateur TV"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Pascal Soetens était éducateur et coach dans l'émission 'Pascal, le grand frère'. Il aidait les jeunes en difficulté à améliorer leur comportement et leurs relations familiales."},
+    "xp": 30
+  },
+  {
+    "question": "Sur quelle chaîne était diffusée l'émission 'Pascal, le grand frère' lors de son lancement en 2006 ?",
+    "options": [
+      {"text": "TF1"},
+      {"text": "M6"},
+      {"text": "France 2"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "L'émission 'Pascal, le grand frère' a été diffusée pour la première fois sur TF1 en 2006."},
+    "xp": 30
+  },
+  {
+    "question": "Quelle phrase culte Pascal Soetens disait-il souvent aux jeunes en difficulté ?",
+    "options": [
+      {"text": "Tu crois que c'est normal ?"},
+      {"text": "Tu vas te calmer !"},
+      {"text": "C'est moi le boss ici !"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Pascal Soetens répétait souvent la phrase 'Tu crois que c'est normal ?' pour faire réfléchir les jeunes sur leur comportement."},
+    "xp": 30
+  },
+  {
+    "question": "Comment Pascal Soetens aidait-il les jeunes dans l'émission ?",
+    "options": [
+      {"text": "En les confrontant à leurs problèmes"},
+      {"text": "En leur donnant de l'argent"},
+      {"text": "En les envoyant en colonie de vacances"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Pascal Soetens aidait les jeunes en les confrontant à leurs problèmes et en leur donnant des conseils pour changer leur comportement."},
+    "xp": 30
+  },
+  {
+    "question": "Quelle est la spécialité sportive de Pascal Soetens ?",
+    "options": [
+      {"text": "Le judo"},
+      {"text": "La boxe"},
+      {"text": "Le football"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Pascal Soetens est ceinture noire de judo et utilisait souvent cet art martial pour enseigner le respect et la discipline aux jeunes."},
+    "xp": 30
+  },
+  {
+    "question": "Pourquoi Pascal Soetens utilisait-il souvent des exercices physiques avec les jeunes ?",
+    "options": [
+      {"text": "Pour leur apprendre la discipline"},
+      {"text": "Pour les fatiguer"},
+      {"text": "Pour les punir"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Pascal utilisait des exercices physiques pour inculquer aux jeunes la discipline et le respect des règles."},
+    "xp": 30
+  },
+  {
+    "question": "Quelle était la durée moyenne d'un épisode de 'Pascal, le grand frère' ?",
+    "options": [
+      {"text": "90 minutes"},
+      {"text": "45 minutes"},
+      {"text": "30 minutes"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Chaque épisode de 'Pascal, le grand frère' durait environ 90 minutes."},
+    "xp": 30
+  },
+  {
+    "question": "En quelle année Pascal Soetens a-t-il quitté l'émission sur TF1 ?",
+    "options": [
+      {"text": "2012"},
+      {"text": "2010"},
+      {"text": "2015"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Pascal Soetens a quitté l'émission sur TF1 en 2012 avant de la reprendre plus tard sur NRJ12."},
+    "xp": 30
+  },
+  {
+    "question": "Quelle chaîne a repris 'Pascal, le grand frère' après son départ de TF1 ?",
+    "options": [
+      {"text": "NRJ12"},
+      {"text": "C8"},
+      {"text": "M6"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Après son départ de TF1, Pascal Soetens a continué l'émission sur NRJ12."},
+    "xp": 30
+  },
+  {
+    "question": "Quel est le vrai nom de Pascal, le grand frère ?",
+    "options": [
+      {"text": "Pascal Soetens"},
+      {"text": "Pascal Obispo"},
+      {"text": "Pascal Legitimus"}
+    ],
+    "solved": 0,
+    "selected": null,
+    "explication": {"text": "Le vrai nom de Pascal, le grand frère, est Pascal Soetens."},
+    "xp": 30
+  }
+]

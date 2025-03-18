@@ -34,15 +34,18 @@ class _HomePageState extends State<HomePage> {
   Uint8List? _avatarImage;
   
 
-    Future<void> _loadAvatar() async {
-    String? uid = Auth().currentUser?.uid;
-    if (uid != null) {
-      Uint8List? avatar = await AvatarService.getUserAvatar(uid);
+Future<void> _loadAvatar() async {
+  String? uid = Auth().currentUser?.uid;
+  if (uid != null) {
+    Uint8List? avatar = await AvatarService.getUserAvatar(uid);
+    if (mounted) {
       setState(() {
         _avatarImage = avatar;
       });
     }
   }
+}
+
   // Stream for projects that have begun.
   final Stream<QuerySnapshot> _projectsStreamBegan = FirebaseFirestore.instance
       .collection('Projects')

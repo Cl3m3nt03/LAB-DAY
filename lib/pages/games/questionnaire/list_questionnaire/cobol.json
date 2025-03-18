@@ -9,7 +9,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "La commande 'DISPLAY' est utilisée pour afficher du texte à l'écran en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour définir une variable dans COBOL ?",
@@ -21,7 +21,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "Le mot-clé 'PIC' est utilisé pour définir le format et la taille des variables dans COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quelle section d'un programme COBOL contient la déclaration des variables ?",
@@ -33,7 +33,7 @@
     "solved": 0,
     "selected": null,
     "explication": {"text": "Les variables sont déclarées dans la 'DATA DIVISION' en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel est le type de données utilisé pour stocker des nombres entiers en COBOL ?",
@@ -45,7 +45,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "En COBOL, 'PIC 9' est utilisé pour définir des variables numériques (entiers)." },
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour commencer la section exécutive d'un programme COBOL ?",
@@ -57,7 +57,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "La section 'PROCEDURE DIVISION' contient le code exécutable dans un programme COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quelle commande est utilisée pour effectuer un calcul dans COBOL ?",
@@ -69,7 +69,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "La commande 'COMPUTE' est utilisée pour effectuer des calculs dans COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour conditionner l'exécution d'une instruction dans COBOL ?",
@@ -81,7 +81,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "Le mot-clé 'IF' permet de tester des conditions dans un programme COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Comment une boucle est-elle définie dans COBOL ?",
@@ -93,7 +93,7 @@
     "solved": 0,
     "selected": null,
     "explication": {"text": "La commande 'PERFORM' est utilisée pour exécuter une boucle dans COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour définir un tableau dans COBOL ?",
@@ -105,7 +105,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "Le mot-clé 'OCCURS' permet de définir un tableau dans COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour afficher un message d'erreur en COBOL ?",
@@ -117,7 +117,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "La commande 'DISPLAY' peut être utilisée pour afficher un message d'erreur ou d'information en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel est le type de données utilisé pour stocker des chaînes de caractères en COBOL ?",
@@ -129,7 +129,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "En COBOL, 'PIC X' est utilisé pour définir des chaînes de caractères."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour déclarer une section de travail dans COBOL ?",
@@ -141,7 +141,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "La 'WORKING-STORAGE SECTION' est utilisée pour déclarer des variables temporaires dans COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour quitter une boucle dans COBOL ?",
@@ -153,7 +153,7 @@
     "solved": 0,
     "selected": null,
     "explication": {"text": "Le mot-clé 'EXIT' est utilisé pour sortir d'une boucle dans COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Comment est déclarée une constante en COBOL ?",
@@ -165,7 +165,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "Les constantes sont déclarées avec le niveau '77' suivi de 'VALUE' pour attribuer une valeur en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel est le mot-clé utilisé pour commencer une déclaration de fichier en COBOL ?",
@@ -177,7 +177,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "La 'FILE SECTION' est utilisée pour déclarer les fichiers dans un programme COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour lire un fichier en COBOL ?",
@@ -189,7 +189,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "La commande 'READ' est utilisée pour lire des enregistrements à partir d'un fichier en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour écrire dans un fichier en COBOL ?",
@@ -201,7 +201,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "La commande 'WRITE' permet d'écrire des enregistrements dans un fichier en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel est le mot-clé utilisé pour terminer un programme COBOL ?",
@@ -213,7 +213,7 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "La commande 'STOP RUN' termine l'exécution d'un programme COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel est le mot-clé utilisé pour initialiser une variable en COBOL ?",
@@ -225,7 +225,7 @@
     "solved": 1,
     "selected": null,
     "explication": {"text": "Le mot-clé 'INITIALIZE' est utilisé pour attribuer des valeurs par défaut aux variables en COBOL."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Comment est déclarée une variable de type booléen en COBOL ?",
@@ -237,7 +237,7 @@
     "solved": 0,
     "selected": null,
     "explication": {"text": "En COBOL, les booléens sont souvent définis comme 'PIC X(1)' avec des valeurs comme 'Y' ou 'N'."},
-    "xp": 5
+    "xp": 30
   },
   {
     "question": "Quel mot-clé est utilisé pour définir une section de rapport en COBOL ?",
@@ -249,6 +249,6 @@
     "solved": 2,
     "selected": null,
     "explication": {"text": "La 'REPORT SECTION' est utilisée pour déclarer des sections de rapport dans COBOL."},
-    "xp": 5
+    "xp": 30
   }
 ]

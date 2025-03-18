@@ -44,6 +44,10 @@
         "title": "Cobol",
         "image": "assets/icons/cobol.png",
         "link":"lib/pages/games/questionnaire/list_questionnaire/cobol.json"
+    },
+    {
+        "title": "Pascal",
+        "image": "assets/icons/pascal.png",
+        "link":"lib/pages/games/questionnaire/list_questionnaire/pascal.json"
     }
-
 ]

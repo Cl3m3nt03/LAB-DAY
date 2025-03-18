@@ -9,65 +9,23 @@ import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
+import 'package:makeitcode/pages/profil/open_profil.dart';
 
 /// A page that displays the list of contacts and their respective messages.
-class ContactPage extends StatefulWidget {
+class ListFriend extends StatefulWidget {
   /// The unique identifier of the user.
   final String uid1;
 
-  ContactPage({required this.uid1});
+  ListFriend({required this.uid1});
 
   @override
-  _ContactPageState createState() => _ContactPageState();
+  _ListFriend createState() => _ListFriend();
 }
 
 /// The state for the [ContactPage] widget.
-class _ContactPageState extends State<ContactPage> {
+class _ListFriend extends State<ListFriend> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   Uint8List? _avatarImage;
-
-  /// The unique identifier of the current authenticated user.
-  String get uid => _auth.currentUser!.uid;
-
-  /// Fetches messages where the current user is a participant, excluding those marked as visible.
-
-  Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
-      _fetchMessagesWithUid() {
-    return _firestore
-        .collection('Private_Chat')
-        .where('participants', arrayContains: uid)
-        .snapshots()
-        .map((snapshot) {
-      return snapshot.docs.where((doc) {
-        var data = doc.data();
-        List<dynamic> visibility = data['visibility'] ?? [];
-        return !visibility.contains(uid);
-      }).toList();
-    });
-  }
-
-  /// Marks a message as viewed by updating the unread count for the current user.
-  ///
-  /// [chatId] The unique identifier of the chat message.
-  Future<void> setMessageAsViewed(String chatId) async {
-    try {
-      DocumentReference docRef =
-          _firestore.collection('Private_Chat').doc(chatId);
-      DocumentSnapshot snapshot = await docRef.get();
-      if (snapshot.exists) {
-        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-        if (data.containsKey('unreadCount') && data['unreadCount'] is Map) {
-          Map<String, dynamic> unreadCount =
-              Map<String, dynamic>.from(data['unreadCount']);
-          unreadCount[uid] = 0;
-          await docRef.update({'unreadCount': unreadCount});
-        }
-      }
-    } catch (e) {
-      print('Erreur lors de la mise à jour du message en vu : $e');
-    }
-  }
 
   Future<void> _loadAvatar() async {
     String? uid = Auth().currentUser?.uid;
@@ -76,105 +34,6 @@ class _ContactPageState extends State<ContactPage> {
       setState(() {
         _avatarImage = avatar;
       });
-    }
-  }
-
-  /// Retrieves the unread count for a specific chat.
-  ///
-  /// [chatId] The unique identifier of the chat message.
-  /// Returns the number of unread messages.
-  Future<int> unreadCount(String chatId) async {
-    try {
-      DocumentSnapshot snapshot =
-          await _firestore.collection('Private_Chat').doc(chatId).get();
-      if (snapshot.exists) {
-        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-        if (data.containsKey('unreadCount') && data['unreadCount'] is Map) {
-          int count = data['unreadCount'][uid] ?? 0;
-          return count;
-        }
-      }
-      return 0;
-    } catch (e) {
-      print(
-          'Erreur lors de la récupération du nombre de messages non lus : $e');
-      return 0;
-    }
-  }
-
-  /// Retrieves the last message in the specified chat.
-  ///
-  /// [chatId] The unique identifier of the chat.
-  /// Returns the last message as a string.
-  Future<String> lastMessage(String chatId) async {
-    try {
-      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
-          .collection('Private_Chat')
-          .doc(chatId)
-          .collection('messages')
-          .orderBy('date', descending: true)
-          .limit(1)
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        Map<String, dynamic> data = querySnapshot.docs.first.data();
-        return data['message'] ?? 'Aucun contenu';
-      }
-      return 'Aucun message';
-    } catch (e) {
-      print('Erreur lors de la récupération du dernier message : $e');
-      return 'Erreur';
-    }
-  }
-
-  /// Retrieves the last message date in the specified chat.
-  ///
-  /// [chatId] The unique identifier of the chat.
-  /// Returns the last message date as a string formatted based on the current day.
-
-  Future<String> lastMessageDate(String chatId) async {
-    try {
-      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
-          .collection('Private_Chat')
-          .doc(chatId)
-          .collection('messages')
-          .orderBy('date', descending: true)
-          .limit(1)
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        Map<String, dynamic> data = querySnapshot.docs.first.data();
-        Timestamp timestamp = data['date'];
-        DateTime dateTime = timestamp.toDate();
-        DateTime now = DateTime.now();
-        String formattedTime;
-        if (dateTime.year == now.year &&
-            dateTime.month == now.month &&
-            dateTime.day == now.day) {
-          formattedTime =
-              "${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
-        } else {
-          formattedTime = DateFormat('dd/MM/yyyy').format(dateTime);
-        }
-        return formattedTime;
-      }
-      return '00:00';
-    } catch (e) {
-      print('Erreur lors de la récupération de la date : $e');
-      return 'Erreur';
-    }
-  }
-
-  /// Hides the message from the user's view by updating the visibility field in Firestore.
-  ///
-  /// [chatId] The unique identifier of the chat.
-  void noShowMessage(String chatId) async {
-    try {
-      await _firestore.collection('Private_Chat').doc(chatId).update({
-        'visibility': FieldValue.arrayUnion([uid])
-      });
-    } catch (e) {
-      print('Erreur lors de la mise à jour de la visibilité : $e');
     }
   }
 
@@ -202,7 +61,7 @@ class _ContactPageState extends State<ContactPage> {
         child: Column(
           children: [
             Text(
-              "MESSAGES",
+              "AMIS",
               style: GoogleFonts.montserrat(
                 textStyle: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -212,69 +71,116 @@ class _ContactPageState extends State<ContactPage> {
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
-            StreamBuilder<List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
-              stream: _fetchMessagesWithUid(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                      child:
-                          Text('Erreur lors de la récupération des contacts'));
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                List<QueryDocumentSnapshot<Map<String, dynamic>>> documents =
-                    snapshot.data ?? [];
-
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: documents.length,
-                    itemBuilder: (context, index) {
-                      QueryDocumentSnapshot<Map<String, dynamic>> document =
-                          documents[index];
-                      List<dynamic> participants = document['participants'];
-                      String uid2 = participants.firstWhere(
-                        (element) => element != widget.uid1,
-                        orElse: () => widget.uid1,
-                      );
-                      String chatId = document.id;
-
-                      return Slidable(
-                        key: ValueKey(chatId),
-                        startActionPane: ActionPane(
-                          motion: const ScrollMotion(),
-                          children: [
-                            SlidableAction(
-                              onPressed: (_) {
-                                noShowMessage(chatId);
-                              },
-                              backgroundColor: Color(0xFFFE4A49),
-                              foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                              label: 'Supprimer',
-                            ),
-                          ],
+            Expanded(
+              child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                future: _firestore
+                  .collection('Users')
+                  .doc(widget.uid1)
+                  .collection('Friends')
+                  .doc('friends')
+                  .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (!snapshot.hasData || !snapshot.data!.exists) {
+                    return Center(
+                      child: Text(
+                        'Aucun ami trouvé',
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: InkWell(
-                            onTap: () {
-                              setMessageAsViewed(chatId);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PrivateChatPage(
-                                    recipiaentuid: uid2,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Column(
+                      ),
+                    );
+                  }
+
+                  List<dynamic> friendIds = snapshot.data!.data()?['friends'] ?? [];
+                  if (friendIds.isEmpty) {
+                    return Center(
+                      child: Text(
+                        'Aucun ami trouvé',
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
+                  return FutureBuilder<List<Map<String, dynamic>?>>(
+                    future: Future.wait(friendIds.map((friendId) async {
+                      DocumentSnapshot<Map<String, dynamic>> friendSnapshot =
+                          await _firestore.collection('Users').doc(friendId).get();
+                      return friendSnapshot.data();
+                    })),
+                    builder: (context, friendSnapshot) {
+                      if (friendSnapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      if (!friendSnapshot.hasData) {
+                        return Center(
+                          child: Text(
+                            'Erreur lors de la récupération des amis',
+                            style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<Map<String, dynamic>?> friendsData = friendSnapshot.data!;
+                      return ListView.builder(
+                        itemCount: friendsData.length,
+                        itemBuilder: (context, index) {
+                          var friendData = friendsData[index];
+                          if (friendData == null) return SizedBox.shrink();
+
+                          return Slidable(
+                            key: ValueKey(friendData['uid']),
+                            startActionPane: ActionPane(
+                              motion: const ScrollMotion(),
                               children: [
-                                Row(
+                                SlidableAction(
+                                  onPressed: (_) {
+                                    _firestore
+                                        .collection('Users')
+                                        .doc(widget.uid1)
+                                        .collection('Friends')
+                                        .doc('friends')
+                                        .update({
+                                      'friends': FieldValue.arrayRemove(
+                                          [friendData['uid']])
+                                    }).then((_) {
+                                      setState(() {});
+                                    }).catchError((error) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content:
+                                              Text('Erreur lors de la suppression: $error'),
+                                        ),
+                                      );
+                                    });
+                                  },
+                                  backgroundColor: Color(0xFFFE4A49),
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Supprimer',
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: InkWell(
+
+                                child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.symmetric(
@@ -282,18 +188,15 @@ class _ContactPageState extends State<ContactPage> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
                                         child: FutureBuilder<Uint8List?>(
-                                          future:
-                                              AvatarService.getUserAvatar(uid2),
+                                          future: AvatarService.getUserAvatar(
+                                              friendData['uid']),
                                           builder: (context, avatarSnapshot) {
-                                            if (avatarSnapshot
-                                                    .connectionState ==
+                                            if (avatarSnapshot.connectionState ==
                                                 ConnectionState.waiting) {
                                               return CircleAvatar(
-                                                backgroundColor:
-                                                    Colors.grey[800],
+                                                backgroundColor: Colors.grey[800],
                                                 radius: 35,
-                                                child:
-                                                    CircularProgressIndicator(),
+                                                child: CircularProgressIndicator(),
                                               );
                                             }
                                             if (avatarSnapshot.hasError ||
@@ -313,196 +216,76 @@ class _ContactPageState extends State<ContactPage> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 10),
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          FutureBuilder<DocumentSnapshot>(
-                                            future: _firestore
-                                                .collection('Users')
-                                                .doc(uid2)
-                                                .get(),
-                                            builder: (context, snapshot) {
-                                              if (snapshot.connectionState ==
-                                                  ConnectionState.waiting) {
-                                                return Text(
-                                                  'Chargement...',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16),
-                                                );
-                                              }
-                                              if (snapshot.hasError) {
-                                                return Text(
-                                                  'Erreur',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16),
-                                                );
-                                              }
-                                              if (!snapshot.hasData ||
-                                                  !snapshot.data!.exists) {
-                                                return Text(
-                                                  'Utilisateur inconnu',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16),
-                                                );
-                                              }
-                                              var userData =
-                                                  snapshot.data!.data()
-                                                      as Map<String, dynamic>;
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    userData['pseudo'] ??
-                                                        'Pseudo inconnu',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                      textStyle: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          fontSize: 17,
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
+                                          Text(
+                                            friendData['pseudo'] ?? 'Inconnu',
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: 17,
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                           ),
                                           SizedBox(height: 7),
-                                          FutureBuilder<String>(
-                                            future: lastMessage(chatId),
-                                            builder: (context, snapshot) {
-                                              return FutureBuilder<int>(
-                                                  future: unreadCount(chatId),
-                                                  builder: (context,
-                                                      unreadSnapshot) {
-                                                    return Text(
-                                                      snapshot.data ??
-                                                          'Aucun message',
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                        textStyle: TextStyle(
-                                                            color: (unreadSnapshot
-                                                                            .data ??
-                                                                        0) >
-                                                                    0
-                                                                ? Colors.white
-                                                                : Colors
-                                                                    .white70,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            fontSize: 14),
-                                                      ),
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 1,
-                                                    );
-                                                  });
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(right: 10, top: 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          FutureBuilder<String>(
-                                            future: lastMessageDate(chatId),
-                                            builder: (context, snapshot) {
-                                              return Text(
-                                                snapshot.data ?? '00:00',
-                                                style: GoogleFonts.montserrat(
-                                                  textStyle: TextStyle(
-                                                      color: Colors.white70,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      fontSize: 13),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          SizedBox(height: 10),
-                                          Center(
-                                            child: FutureBuilder<int>(
-                                              future: unreadCount(chatId),
-                                              builder: (context, snapshot) {
-                                                if (snapshot.connectionState ==
-                                                    ConnectionState.waiting) {
-                                                  return CircularProgressIndicator(
-                                                    strokeWidth: 2,
-                                                  );
-                                                }
-                                                if (snapshot.hasError) {
-                                                  return Text(
-                                                    '!',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  );
-                                                }
-                                                int unreadCount =
-                                                    snapshot.data ?? 0;
-                                                return unreadCount > 0
-                                                    ? Container(
-                                                        height: 20,
-                                                        width: 20,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.red,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(50),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            unreadCount
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Container(
-                                                        height: 20,
-                                                        width: 20,
-                                                      );
-                                              },
+                                          Text(
+                                             'Niveau : '+friendData['currentLvl'].toString() ,
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: TextStyle(
+                                                color: Colors.white70,
+                                                fontWeight: FontWeight.w500,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
+                                      IconButton(
+                                        onPressed: (){
+                                          Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => OpenProfilePage(
+                                              uid: friendData['uid'] as String,
+                                            ),
+                                          ),
+                                        );
+                                          },
+                                          icon: Icon(Icons.person, color: Colors.white, size: 30,
+                                          )
+                                        ),
+                                        IconButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => PrivateChatPage(
+                                                recipiaentuid: friendData['uid'],
+                                              ),
+                                            ),
+                                          );
+                                       },
+                                          icon: Icon(Icons.message, color: Colors.white, size: 30,
+                                          )
+                                        )
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       );
                     },
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ],
         ),

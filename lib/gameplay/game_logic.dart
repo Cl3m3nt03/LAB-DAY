@@ -157,27 +157,32 @@ Future<void> saveUserData() async {
 
 
 Widget buildToolbarButton(String text, TextEditingController controller) {
-  return GestureDetector(
-    onTap: () {
-      setState(() {
-        controller.text += text;
-        _checkAnswer();
-      });
-    },
-    child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.blue[100],
+    return SizedBox(
+      width: 120,
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            controller.text += text;
+            _checkAnswer();
+          });
+        },
+        child: Container(
+          padding: EdgeInsets.all(9),
+          decoration: BoxDecoration(
+            border: Border.all(color: const Color.fromARGB(255, 221, 221, 221)),
+            borderRadius: BorderRadius.circular(8.0),
+            color: Color.fromRGBO(112, 134, 203, 100),
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 20.0, color: Colors.white),
+            ),
+          ),
+        ),
       ),
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 18.0),
-      ),
-    ),
-  );
-}
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

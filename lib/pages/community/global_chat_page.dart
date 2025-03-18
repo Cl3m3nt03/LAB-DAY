@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/gameplay/game_logic.dart';
+import 'package:makeitcode/pages/community/list_friend.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -129,7 +130,7 @@ void getpseudo() async {
                       color: Colors.black,
                       size: 20,
                     ),
-                    onSelected: (String value) {
+                    onSelected: (String value) async {
                       if (value == 'profil') {
                           Navigator.push(
                             context,
@@ -149,6 +150,14 @@ void getpseudo() async {
                             ),
                           );
                         }
+                        if (value == 'amis') {
+                          await _firestore.collection('Users').doc(Auth().uid).collection('Friends').doc('friends').set(
+                            {
+                              'friends': FieldValue.arrayUnion([messageData['uid']]),
+                            },
+                            SetOptions(merge: true),
+                          );
+                        }
                     },
                     itemBuilder: (BuildContext context) {
                       return [
@@ -159,6 +168,10 @@ void getpseudo() async {
                         PopupMenuItem(
                           value: 'message',
                           child: Text('Envoyer un message'),
+                        ),
+                        PopupMenuItem(
+                          value: 'amis',
+                          child: Text('Ajouter en ami'),
                         ),
                       ];
                     },
@@ -253,7 +266,7 @@ void getpseudo() async {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => OpenProfilePage(uid: uid),
+                builder: (context) => ListFriend(uid1: uid),
               ),
             );
           },
