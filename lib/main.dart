@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Make It Code',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        
       ),
       initialRoute: '/',
       routes: {
