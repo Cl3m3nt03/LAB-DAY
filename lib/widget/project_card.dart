@@ -118,7 +118,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   ),
                   SizedBox(height: 5),
                   if (widget.projet['state'] == 'began')
-                    percentageCompletion == 5
+                    percentageCompletion < 5
                         ? showMore()
                         : Progressbar(
                             percentageCompletion: percentageCompletion,
