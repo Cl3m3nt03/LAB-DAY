@@ -65,6 +65,8 @@ dependencies:
   flutter_inappwebview: ^6.1.5
   open_filex: ^4.7.0
   keyboard_actions: ^4.2.0
+  flutter_email_sender: ^7.0.0
+  mailer: ^6.4.1
 
 dev_dependencies:
   flutter_test:
