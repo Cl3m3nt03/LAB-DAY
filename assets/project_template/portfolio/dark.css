@@ -319,7 +319,9 @@ section {
     transition: var(--transition);
     color: white;
 }
-
+a{
+    color : var(--accent);
+}
 .form-input:focus,
 .form-textarea:focus {
     outline: none;

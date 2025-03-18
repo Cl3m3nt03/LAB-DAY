@@ -327,6 +327,9 @@ section {
     transform: translateY(-2px);
     box-shadow: none;
 }
+a{
+    color : var(--accent);
+}
 
 /* Footer */
 footer {

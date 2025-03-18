@@ -319,7 +319,9 @@ section {
     cursor: pointer;
     transition: var(--transition);
 }
-
+a{
+    color : var(--accent);
+}
 .btn:hover {
     background: var(--primary-light);
     transform: translateY(-2px);

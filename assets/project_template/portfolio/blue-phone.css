@@ -334,7 +334,9 @@
         text-align: center;
         border-top: 1px solid rgba(59, 130, 246, 0.1);
     }
-
+    a{
+        color : var(--accent);
+    }
     /* Media Queries */
     @media (max-width: 768px) {
         .nav-links {
@@ -358,4 +360,6 @@
         .personal-info div {
             padding: 1rem 0;
         }
+
+    
     }
