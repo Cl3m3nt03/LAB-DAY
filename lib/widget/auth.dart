@@ -83,7 +83,9 @@ Future<String?> recoveryPseudo() async {
       'objectiveXp':100,
     });
     await _firestore.collection('Users').doc(Auth().uid).collection('Friends').doc('friends').set({
-      'friends': [],
+      'friends': [
+        Auth().uid
+      ],
     });
   }
   // Sends a password reset email to the specified email address.

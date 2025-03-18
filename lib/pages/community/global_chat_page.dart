@@ -12,7 +12,8 @@ import 'package:makeitcode/pages/community/private_message.dart';
 import 'package:makeitcode/pages/community/list_message_page.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:makeitcode/pages/web_view/loadWebView.dart'; // Add this import
+import 'package:makeitcode/pages/web_view/loadWebView.dart';
+import 'package:makeitcode/widget/toastMessage.dart'; // Add this import
 
 
 /// GlobalChatPage is a StatefulWidget that represents the user interface for a global chat.
@@ -32,6 +33,7 @@ class _GlobalChatPageState extends State<GlobalChatPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser!.uid;
   final player = AudioPlayer();
+   final ToastMessage toast = ToastMessage();
   String? pseudo;
 
   /// This method is called when the widget is initialized.
@@ -157,6 +159,13 @@ void getpseudo() async {
                             },
                             SetOptions(merge: true),
                           );
+                          await _firestore.collection('Users').doc(messageData['uid']).collection('Friends').doc('friends').set(
+                            {
+                              'friends': FieldValue.arrayUnion([Auth().uid]),
+                            },
+                            SetOptions(merge: true),
+                          );
+                          toast.showToast( context,  "Vous avez ajoutez " + ( messageData['pseudo']?? 'Anonyme') + "!");
                         }
                     },
                     itemBuilder: (BuildContext context) {
@@ -187,8 +196,8 @@ void getpseudo() async {
                   fontSize: 14,
                 ),
               ),
-              softWrap: true, // Permet le retour à la ligne automatique
-              overflow: TextOverflow.visible, // Affiche tout le texte sans troncature
+              softWrap: true, 
+              overflow: TextOverflow.visible, 
             ),
             SizedBox(height: 5),
             Text(

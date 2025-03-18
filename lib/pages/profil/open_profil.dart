@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
-
+import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +21,7 @@ class OpenProfilePage extends StatefulWidget {
 
 class _OpenProfilePageState extends State<OpenProfilePage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final ToastMessage toast = ToastMessage();
   String bio = '';
   String name = '';
   int level = 0;
@@ -384,6 +385,26 @@ Widget _Museum(){
         backgroundColor: Color.fromARGB(255, 11, 22, 44),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () async {
+                await _firestore.collection('Users').doc(Auth().uid).collection('Friends').doc('friends').set(
+                            {
+                              'friends': FieldValue.arrayUnion([widget.uid]),
+                            },
+                            SetOptions(merge: true),
+                        );
+                await _firestore.collection('Users').doc(widget.uid).collection('Friends').doc('friends').set(
+                            {
+                              'friends': FieldValue.arrayUnion([Auth().uid]),
+                            },
+                            SetOptions(merge: true),
+                        );
+                toast.showToast( context,  "Vous avez ajoutez "+ name+"!");
+            },
+          ),
+        ],
       ),
       body: Stack(
          children: [
