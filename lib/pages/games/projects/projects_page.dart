@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
 import 'package:makeitcode/pages/games/projects/project_detail_page.dart';
+import 'package:makeitcode/theme/theme.dart';
 import 'package:makeitcode/widget/progressBar.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 import 'package:makeitcode/widget/project_card.dart';
@@ -92,6 +93,7 @@ Widget _buildSearchResults() {
       }
       if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
         return Container(
+
           height: 100,
           alignment: Alignment.center,
           child: Text('Aucun projet trouvé.'),
@@ -255,7 +257,7 @@ Widget _buildSearchResults() {
       text,
       style: TextStyle(
         fontFamily: 'Monsterrat',
-        color: Colors.white,
+        color: customColor?.white?? Colors.white,
         fontWeight: FontWeight.w600,
         fontSize: 25,
       ),
@@ -265,10 +267,11 @@ Widget _buildSearchResults() {
 @override
   // Builds the main UI for the Projects page
 Widget build(BuildContext context) {
+  customColor = Theme.of(context).extension<CustomColors>();
   return Scaffold(
     appBar: AppBar(
       iconTheme: IconThemeData(color: Colors.white),
-      title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+      title: Text('PROJECTS',style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: customColor?.white?? Colors.white),),
 ),
       backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       centerTitle: true,
@@ -281,7 +284,7 @@ Widget build(BuildContext context) {
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
+                  customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                   customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],

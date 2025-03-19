@@ -31,8 +31,9 @@ class CustomRadioTile extends StatelessWidget {
     ),
     child : ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-      title: Text(title),
+      title: Text(title, style: TextStyle(color: Colors.black),),
       trailing: Radio<int>(
+        fillColor: error? MaterialStateProperty.all(Colors.grey): MaterialStateProperty.all(Colors.black),
         value: value,
         groupValue: groupValue,
         onChanged: (int? value) {

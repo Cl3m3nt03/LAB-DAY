@@ -179,6 +179,7 @@ final FocusNode _focusNodeEmail = FocusNode();
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
     return Scaffold(
         appBar: AppBar(
@@ -189,11 +190,11 @@ final FocusNode _focusNodeEmail = FocusNode();
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: customColor?.white ??Colors.white),
           ),
         ),
         backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: customColor?. white ??Colors.white),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -202,7 +203,7 @@ final FocusNode _focusNodeEmail = FocusNode();
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
+                      customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                       customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                     ],
                     stops: [0.1, 0.9],
@@ -283,7 +284,7 @@ final FocusNode _focusNodeEmail = FocusNode();
                             );
                           },
                             style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(249, 153, 120, 67),
+                            backgroundColor: customColor?. vibrantBlue ?? Color.fromARGB(249, 153, 120, 67),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                         ),

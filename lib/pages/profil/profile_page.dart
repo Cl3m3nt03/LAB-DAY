@@ -89,6 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
 // Uses a radial gradient background for the page
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
             appBar: AppBar(
         title:Text(
@@ -98,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: customColor?.white ??Colors.white),
           ),
         ),
         backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
@@ -111,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
+                      customColor?.skyBlue ?? Color.fromRGBO(0, 113, 152, 1),
                       customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                     ],
                     stops: [0.1, 0.9],
@@ -139,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
                             ),
-                            color: const Color.fromRGBO(24, 37, 63, 0.4),
+                            color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -224,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all<Color>(
-                                              const Color.fromARGB(249, 153, 120, 67)),
+                                              customColor?.vibrantBlue ?? Color.fromARGB(249, 153, 120, 67)),
                                       foregroundColor:
                                           MaterialStateProperty.all<Color>(
                                               Colors.white),
@@ -261,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromRGBO(24, 37, 63, 0.4),
+                                  color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -367,7 +368,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromRGBO(24, 37, 63, 0.4),
+                                  color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -443,7 +444,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromRGBO(24, 37, 63, 0.4),
+                                  color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(

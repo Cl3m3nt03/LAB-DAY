@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Custom text field widget with optional password visibility toggle.
 class EntryField extends StatefulWidget {
@@ -17,9 +18,12 @@ class EntryField extends StatefulWidget {
 /// State class for `EntryField`, managing password visibility.
 class _EntryFieldState extends State<EntryField> {
   bool isPasswordVisible = true;
+  CustomColors? customColor;
+
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return TextField(
       controller: widget.controller,
       obscureText: widget.title == 'Mot de passe'  ? isPasswordVisible : false || widget.title == 'Confirmer le mot de passe' ? isPasswordVisible : false || widget.title == 'Confirmer le Mot de Passe' ? isPasswordVisible : false || widget.title == 'Nouveau Mot de Passe' ? isPasswordVisible : false || widget.title == 'Ancien Mot de Passe' ? isPasswordVisible : false,
@@ -47,7 +51,7 @@ class _EntryFieldState extends State<EntryField> {
           style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.bold),
         ),
         filled: true,
-        fillColor: Color.fromRGBO(24, 37, 63, 0.6),
+        fillColor: customColor?. Texfield ??Color.fromRGBO(24, 37, 63, 0.6),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.circular(15),

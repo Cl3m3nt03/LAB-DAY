@@ -134,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
           shadowColor: customColor?.dark ?? Colors.black,
           elevation: 5,
           minimumSize: const Size(double.infinity, 55),
-          backgroundColor: const Color.fromARGB(249, 161, 119, 51),
+          backgroundColor: customColor?.burntCaramel ?? Color.fromARGB(249, 161, 119, 51),
         ),
         onPressed: () async {
           await createUserWithEmailAndPassword();
@@ -152,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return  Text(
       "Créer votre compte",
         style:GoogleFonts.montserrat(textStyle: TextStyle(
-        color: Colors.white.withOpacity(1), 
+        color: customColor?.white ??Colors.white, 
         fontSize: 29, 
         fontWeight: FontWeight.bold,     
       ),
@@ -166,9 +166,9 @@ class _RegisterPageState extends State<RegisterPage> {
       onTap: () {
         Navigator.pop(context);
       },
-      child: const Icon(
+      child:  Icon(
         Icons.arrow_back_ios,
-        color: Colors.white,
+        color: customColor?.white ??Colors.white,
       ),
     );
   }
@@ -176,6 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
   // Builds the registration page UI
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
@@ -186,7 +187,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: MediaQuery.of(context).size.height,
               decoration:  BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color.fromRGBO(0, 113, 152, 1), customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),],
+                  colors: [customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1), customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),],
                   stops: [0.2, 0.9],
                   begin: Alignment.bottomCenter,
                   end: Alignment.center,

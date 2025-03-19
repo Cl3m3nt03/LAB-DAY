@@ -45,11 +45,12 @@ class _HomeGamePageState extends State<HomeGamePage> {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
       actions: [
       IconButton(
-        icon: Icon(Icons.book),
+        icon: Icon(Icons.book, color: customColor?.white ?? Colors.white),
         onPressed: () {
           Navigator.push(
             context,
@@ -59,7 +60,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
       ),
     ],
     leading: IconButton(
-      icon: Icon(Icons.leaderboard),
+      icon: Icon(Icons.leaderboard,color: customColor?.white ?? Colors.white),
       onPressed: () {
         Navigator.push(
             context,
@@ -74,7 +75,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: customColor?.white ?? Colors.white),
           ),
         ),
         centerTitle: true,
@@ -86,7 +87,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
+                customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                 customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
@@ -131,7 +132,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,color: Colors.black,),
                                       ),
                                     ),
                                   ),
@@ -143,6 +144,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.montserrat(
                                           textStyle: TextStyle(fontSize: 16),
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
@@ -150,7 +152,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          Color.fromRGBO(11, 153, 253, 1),
+                                           customColor?.vibrantBlue ??Color.fromRGBO(11, 153, 253, 1),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),

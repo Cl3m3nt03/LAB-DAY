@@ -114,7 +114,7 @@ void getpseudo() async {
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isCurrentUser ? Colors.blue[300] : Colors.grey[300],
+          color: isCurrentUser ?customColor?.userMessageBlue?? Colors.blue[300] : Colors.grey[300],
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -126,10 +126,11 @@ void getpseudo() async {
                 children: [
                   Text(
                     messageData['pseudo'] ?? 'Anonyme',
-                    style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 15),
+                    style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 15,color: customColor?.dark?? Colors.black,),
                     ),
                   ),
                   PopupMenuButton<String>(
+                    color: customColor?.whiteAll?? Colors.white,
                     icon: Icon(
                       Icons.more_vert,
                       color: customColor?.dark ?? Colors.black,
@@ -175,15 +176,15 @@ void getpseudo() async {
                       return [
                         PopupMenuItem(
                           value: 'profil',
-                          child: Text('Profil'),
+                          child: Text('Profil', style: TextStyle(color: customColor?.dark?? Colors.black,)),
                         ),
                         PopupMenuItem(
                           value: 'message',
-                          child: Text('Envoyer un message'),
+                          child: Text('Envoyer un message',style: TextStyle(color: customColor?.dark?? Colors.black,)),
                         ),
                         PopupMenuItem(
                           value: 'amis',
-                          child: Text('Ajouter en ami'),
+                          child: Text('Ajouter en ami',style: TextStyle(color: customColor?.dark?? Colors.black,)),
                         ),
                       ];
                     },
@@ -197,6 +198,7 @@ void getpseudo() async {
                 textStyle: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
+                  color: customColor?.dark?? Colors.black,
                 ),
               ),
               softWrap: true, 
@@ -205,7 +207,7 @@ void getpseudo() async {
             SizedBox(height: 5),
             Text(
               formattedDate,
-              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis,fontSize: 10),),
+              style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis,fontSize: 10),color: customColor?.dark?? Colors.black,),
             ),
           ],
         ),
@@ -293,7 +295,7 @@ void getpseudo() async {
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
+                  customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                   customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],
@@ -315,24 +317,24 @@ void getpseudo() async {
                     children: <Widget>[
                       Expanded(
                         child: TextField(
-                          style: TextStyle(color: customColor?.white?? Colors.white,),
+                          style: TextStyle(color: customColor?.whiteAll?? Colors.white,),
                           controller: _controller,
                           decoration: InputDecoration(
-                            hintStyle: TextStyle(color: customColor?.white?? Colors.white,),
+                            hintStyle: TextStyle(color: customColor?.whiteAll?? Colors.white,),
                             hintText: 'Écrivez un message...',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Colors.blue),
+                              borderSide: BorderSide(color: customColor?.whiteAll?? Colors.blue),
                             ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       IconButton(
-                        icon: Icon(Icons.send, color: Colors.blue),
+                        icon: Icon(Icons.send, color:customColor?.vibrantBlue?? Colors.blue),
                         onPressed: _sendMessage,
                       ),
                     ],

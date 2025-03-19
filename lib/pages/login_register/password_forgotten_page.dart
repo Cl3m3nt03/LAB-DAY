@@ -14,9 +14,10 @@ class PasswordForgottenPage extends StatelessWidget {
 // The main widget that builds the password reset page UI
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
-        iconTheme:  IconThemeData(color: Colors.white),
+        iconTheme:  IconThemeData(color: customColor?.white?? Colors.white),
         backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       // GestureDetector to dismiss the keyboard when tapping outside input field
@@ -37,7 +38,7 @@ class PasswordForgottenPage extends StatelessWidget {
                     decoration:  BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color.fromRGBO(0, 113, 152, 1),
+                          customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                           customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                         ],
                         stops: [0.2, 0.9],
@@ -52,18 +53,18 @@ class PasswordForgottenPage extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Vous avez oublié votre mot de passe ?',
-                            style: GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 20, color: customColor?.white?? Colors.white,fontWeight: FontWeight.bold)),
                           ),
-                          const Divider(color: Colors.amber),
+                           Divider(color: customColor?.amber?? Colors.amber),
                           const SizedBox(height: 15),
                              Text(
                             'Saisissez l\'adresse email associée à votre compte MakeitCode ',
-                            style:GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 15, color: Colors.white,fontWeight: FontWeight.w500,),),
+                            style:GoogleFonts.montserrat(textStyle : TextStyle(fontSize: 15, color: customColor?.white?? Colors.white,fontWeight: FontWeight.w500,),),
                           ),
                           const SizedBox(height: 20),
-                          const Text(
+                           Text(
                             'Un e-mail de réinitialisation vous sera envoyé.',
-                            style: TextStyle(fontSize: 15, color: Colors.white),
+                            style: TextStyle(fontSize: 15, color: customColor?.white??Colors.white),
                           ),
                           const SizedBox(height: 20),
                           EntryField(
@@ -80,7 +81,7 @@ class PasswordForgottenPage extends StatelessWidget {
                                 shadowColor: customColor?.dark ?? Colors.black,
                                 elevation: 5,
                                 minimumSize: const Size(double.infinity, 55),
-                                backgroundColor: const Color.fromARGB(249, 161, 119, 51),
+                                backgroundColor: customColor?.burntCaramel ?? Color.fromARGB(249, 161, 119, 51),
                               ),
                               onPressed: () {
                                 Auth().sendPasswordResetEmail(

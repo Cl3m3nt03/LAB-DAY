@@ -35,6 +35,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
   int objXp = 100;
   Uint8List? _avatarImage;
 
+
   /// Initializes the profile page and fetches the profile data and avatar.
   @override
   void initState() {
@@ -95,6 +96,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
 
   /// Returns the title section with name and bio.
   Widget _title(){
+    customColor = Theme.of(context).extension<CustomColors>();
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -105,7 +107,7 @@ class _OpenProfilePageState extends State<OpenProfilePage> {
           bio.isNotEmpty ? bio : 'No bio',
           style: GoogleFonts.nokora(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: customColor?. white ??Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.w500,
               overflow: TextOverflow.clip,
@@ -144,15 +146,16 @@ Widget _profilePicture(){
 }
   /// Displays the player's level with experience progress.
   Widget _playerLevel(){
+    customColor = Theme.of(context).extension<CustomColors>();
   return Container(
     width: MediaQuery.of(context).size.width - 25,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Color(0xff0692C2),
+        color: customColor?. blueback ?? Color(0xff0692C2),
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Color(0xff0692C2).withOpacity(0.5),
+            color: customColor?. BoxShadow ??Color(0xff0692C2).withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
             offset: Offset(0, 3), 
@@ -382,15 +385,15 @@ Widget _Museum(){
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: customColor?. white ??Colors.white),
           ),
         ),
         backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: customColor?. white ??Colors.white),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add , color: customColor?. white ??Colors.white),
             onPressed: () async {
                 await _firestore.collection('Users').doc(Auth().uid).collection('Friends').doc('friends').set(
                             {
@@ -416,7 +419,7 @@ Widget _Museum(){
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
+                  customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                   customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],

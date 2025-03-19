@@ -50,9 +50,13 @@ class _ListFriend extends State<ListFriend> {
     customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
+        backgroundColor:
+            customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: customColor?.white?? Colors.white,),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: customColor?.white ?? Colors.white,
+          ),
           padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
           onPressed: () {
             Navigator.pop(context);
@@ -67,21 +71,22 @@ class _ListFriend extends State<ListFriend> {
               "AMIS",
               style: GoogleFonts.montserrat(
                 textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    overflow: TextOverflow.ellipsis,
-                    fontSize: 30,
-                    color: customColor?.white?? Colors.white,),
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: 30,
+                  color: customColor?.white ?? Colors.white,
+                ),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
             Expanded(
               child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 future: _firestore
-                  .collection('Users')
-                  .doc(widget.uid1)
-                  .collection('Friends')
-                  .doc('friends')
-                  .get(),
+                    .collection('Users')
+                    .doc(widget.uid1)
+                    .collection('Friends')
+                    .doc('friends')
+                    .get(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
@@ -92,7 +97,7 @@ class _ListFriend extends State<ListFriend> {
                         'Aucun ami trouvé',
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: customColor?.white?? Colors.white,
+                            color: customColor?.white ?? Colors.white,
                             fontSize: 16,
                           ),
                         ),
@@ -100,14 +105,15 @@ class _ListFriend extends State<ListFriend> {
                     );
                   }
 
-                  List<dynamic> friendIds = snapshot.data!.data()?['friends'] ?? [];
+                  List<dynamic> friendIds =
+                      snapshot.data!.data()?['friends'] ?? [];
                   if (friendIds.isEmpty) {
                     return Center(
                       child: Text(
                         'Aucun ami trouvé',
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: customColor?.white?? Colors.white,
+                            color: customColor?.white ?? Colors.white,
                             fontSize: 16,
                           ),
                         ),
@@ -118,11 +124,15 @@ class _ListFriend extends State<ListFriend> {
                   return FutureBuilder<List<Map<String, dynamic>?>>(
                     future: Future.wait(friendIds.map((friendId) async {
                       DocumentSnapshot<Map<String, dynamic>> friendSnapshot =
-                          await _firestore.collection('Users').doc(friendId).get();
+                          await _firestore
+                              .collection('Users')
+                              .doc(friendId)
+                              .get();
                       return friendSnapshot.data();
                     })),
                     builder: (context, friendSnapshot) {
-                      if (friendSnapshot.connectionState == ConnectionState.waiting) {
+                      if (friendSnapshot.connectionState ==
+                          ConnectionState.waiting) {
                         return Center(child: CircularProgressIndicator());
                       }
                       if (!friendSnapshot.hasData) {
@@ -131,14 +141,15 @@ class _ListFriend extends State<ListFriend> {
                             'Erreur lors de la récupération des amis',
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
-                                color: customColor?.white?? Colors.white,
+                                color: customColor?.white ?? Colors.white,
                                 fontSize: 16,
                               ),
                             ),
                           ),
                         );
                       }
-                      List<Map<String, dynamic>?> friendsData = friendSnapshot.data!;
+                      List<Map<String, dynamic>?> friendsData =
+                          friendSnapshot.data!;
                       return ListView.builder(
                         itemCount: friendsData.length,
                         itemBuilder: (context, index) {
@@ -163,16 +174,18 @@ class _ListFriend extends State<ListFriend> {
                                     }).then((_) {
                                       setState(() {});
                                     }).catchError((error) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         SnackBar(
-                                          content:
-                                              Text('Erreur lors de la suppression: $error'),
+                                          content: Text(
+                                              'Erreur lors de la suppression: $error'),
                                         ),
                                       );
                                     });
                                   },
                                   backgroundColor: Color(0xFFFE4A49),
-                                  foregroundColor: customColor?.white?? Colors.white,
+                                  foregroundColor:
+                                      customColor?.white ?? Colors.white,
                                   icon: Icons.delete,
                                   label: 'Supprimer',
                                 ),
@@ -181,7 +194,6 @@ class _ListFriend extends State<ListFriend> {
                             child: Padding(
                               padding: EdgeInsets.all(10),
                               child: InkWell(
-
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -194,12 +206,15 @@ class _ListFriend extends State<ListFriend> {
                                           future: AvatarService.getUserAvatar(
                                               friendData['uid']),
                                           builder: (context, avatarSnapshot) {
-                                            if (avatarSnapshot.connectionState ==
+                                            if (avatarSnapshot
+                                                    .connectionState ==
                                                 ConnectionState.waiting) {
                                               return CircleAvatar(
-                                                backgroundColor: Colors.grey[800],
+                                                backgroundColor:
+                                                    Colors.grey[800],
                                                 radius: 35,
-                                                child: CircularProgressIndicator(),
+                                                child:
+                                                    CircularProgressIndicator(),
                                               );
                                             }
                                             if (avatarSnapshot.hasError ||
@@ -231,16 +246,19 @@ class _ListFriend extends State<ListFriend> {
                                                 fontWeight: FontWeight.bold,
                                                 overflow: TextOverflow.ellipsis,
                                                 fontSize: 17,
-                                                color: customColor?.white?? Colors.white,
+                                                color: customColor?.white ??
+                                                    Colors.white,
                                               ),
                                             ),
                                           ),
                                           SizedBox(height: 7),
                                           Text(
-                                             'Niveau : '+friendData['currentLvl'].toString() ,
+                                            'Niveau : ' +
+                                                friendData['currentLvl']
+                                                    .toString(),
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
-                                                color: Colors.white70,
+                                                color: customColor?.softWhite ??Colors.white70,
                                                 fontWeight: FontWeight.w500,
                                                 overflow: TextOverflow.ellipsis,
                                                 fontSize: 14,
@@ -250,34 +268,44 @@ class _ListFriend extends State<ListFriend> {
                                         ],
                                       ),
                                     ),
-                                      IconButton(
-                                        onPressed: (){
-                                          Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => OpenProfilePage(
-                                              uid: friendData['uid'] as String,
-                                            ),
-                                          ),
-                                        );
-                                          },
-                                          icon: Icon(Icons.person, color: customColor?.white?? Colors.white, size: 30,
-                                          )
-                                        ),
-                                        IconButton(
+                                    IconButton(
                                         onPressed: () {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => PrivateChatPage(
-                                                recipiaentuid: friendData['uid'],
+                                              builder: (context) =>
+                                                  OpenProfilePage(
+                                                uid:
+                                                    friendData['uid'] as String,
                                               ),
                                             ),
                                           );
-                                       },
-                                          icon: Icon(Icons.message, color: customColor?.white?? Colors.white, size: 30,
-                                          )
-                                        )
+                                        },
+                                        icon: Icon(
+                                          Icons.person,
+                                          color: customColor?.white ??
+                                              Colors.white,
+                                          size: 30,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PrivateChatPage(
+                                                recipiaentuid:
+                                                    friendData['uid'],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.message,
+                                          color: customColor?.white ??
+                                              Colors.white,
+                                          size: 30,
+                                        ))
                                   ],
                                 ),
                               ),

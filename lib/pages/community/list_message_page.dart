@@ -189,6 +189,7 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
@@ -399,8 +400,7 @@ class _ContactPageState extends State<ContactPage> {
                                                                         0) >
                                                                     0
                                                                 ? customColor?.white?? Colors.white
-                                                                : Colors
-                                                                    .white70,
+                                                                : customColor?.softWhite ??Colors.white70,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             overflow:
@@ -432,7 +432,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 snapshot.data ?? '00:00',
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
-                                                      color: Colors.white70,
+                                                      color: customColor?.softWhite ??Colors.white70,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       overflow:

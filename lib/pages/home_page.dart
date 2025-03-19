@@ -395,7 +395,7 @@ Widget _projects(stream){
               gradient: RadialGradient(
                 colors: [
                   customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
-                   customColor?.midnightBlue ?? Color.fromRGBO(0, 113, 152, 1),
+                   customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),
@@ -447,7 +447,7 @@ Widget _projects(stream){
                             'Tout voir',
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
-                                color: Color(0xffC6C6C6)
+                                color: customColor?. mediumGrey??Color(0xffC6C6C6)
                               )
                             ),
                           ))

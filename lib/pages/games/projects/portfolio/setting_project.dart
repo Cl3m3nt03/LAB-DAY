@@ -69,6 +69,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
 
   @override
   Widget build(BuildContext context) {
+      customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
            appBar: AppBar(
         title: Text(
@@ -78,7 +79,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: customColor?. white ??Colors.white),
           ),
         ),
         leading: IconButton(
@@ -88,7 +89,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
           },
         ),
         centerTitle: true,
-        iconTheme:  IconThemeData(color: Colors.white),
+        iconTheme:  IconThemeData(color: customColor?. white ??Colors.white),
         backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Center(
@@ -96,7 +97,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
+                customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
                 customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
@@ -114,7 +115,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                         textStyle: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: customColor?. white ?? Colors.white),
                       ),
                     ),
                     Padding(padding: EdgeInsets.only(top: 15)),
@@ -150,14 +151,15 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black),
                                       ),
                                     ),
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          Color.fromRGBO(11, 153, 253, 1),
+                                          customColor?. Button ??Color.fromRGBO(11, 153, 253, 1),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),
@@ -191,7 +193,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(11, 153, 253, 1),
+                        backgroundColor: customColor?. Button ?? Color.fromRGBO(11, 153, 253, 1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),

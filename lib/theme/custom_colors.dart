@@ -71,8 +71,20 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color blue;
   final Color deepNavy;
   final Color blueback;
+  final Color navbutton;
+  final Color whiteAll;
+  final Color Texfield;
+  final Color BoxShadow;
+  final Color bluebackShadow;
+  final Color cardlistquestion;
+  final Color  Button;
+  final Color buttonProject;
+  final Color questionnaireFond;
+  final Color backGameLogic;
 
   const CustomColors({
+    required this.whiteAll,
+    required this.navbutton,
     required this.midnightBlue,
     required this.dark,
     required this.white,
@@ -141,21 +153,30 @@ class CustomColors extends ThemeExtension<CustomColors> {
     required this.blue,
     required this.deepNavy,
     required this.blueback,
+    required this.Texfield,
+    required this.BoxShadow,
+    required this.bluebackShadow,
+    required this.cardlistquestion,
+    required this.Button,
+    required this.buttonProject,
+    required this.questionnaireFond,
+    required this.backGameLogic,
   });
 
   @override
-  CustomColors copyWith({Color? blue2, Color? orange2, Color? customGreen}) {
+  CustomColors copyWith() {
     return CustomColors(
-
+      whiteAll: whiteAll ?? this.whiteAll,
+      navbutton: navbutton ?? this.navbutton,
       midnightBlue: midnightBlue ?? this.midnightBlue,
       dark: dark ?? this.dark,
       white: white ?? this.white,
       softWhite: softWhite ?? this.softWhite,
       skyBlue: skyBlue ?? this.skyBlue,
-      pureWhite: pureWhite ?? this.pureWhite, 
+      pureWhite: pureWhite ?? this.pureWhite,
       pureBlack: pureBlack ?? this.pureBlack,
       amber: amber ?? this.amber,
-      oceanBlue:oceanBlue  ?? this.oceanBlue,
+      oceanBlue: oceanBlue ?? this.oceanBlue,
       deepAqua: deepAqua ?? this.deepAqua,
       vibrantBlue: vibrantBlue ?? this.vibrantBlue,
       sandyBrown: sandyBrown ?? this.sandyBrown,
@@ -215,6 +236,14 @@ class CustomColors extends ThemeExtension<CustomColors> {
       blue: blue ?? this.blue,
       deepNavy: deepNavy ?? this.deepNavy,
       blueback: blueback ?? this.blueback,
+      Texfield: Texfield ?? this.Texfield,
+      BoxShadow: BoxShadow ?? this.BoxShadow,
+      bluebackShadow: bluebackShadow ?? this.bluebackShadow,
+      cardlistquestion: cardlistquestion ?? this.cardlistquestion,
+      buttonProject: buttonProject ?? this.buttonProject,
+      Button:   Button ?? this.Button,
+      questionnaireFond: questionnaireFond ?? this.questionnaireFond,
+      backGameLogic: backGameLogic ?? this.backGameLogic,
     );
   }
 
@@ -222,7 +251,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
   CustomColors lerp(CustomColors? other, double t) {
     if (other == null) return this;
     return CustomColors(
-      midnightBlue: Color.lerp(midnightBlue, other.midnightBlue, t) ?? midnightBlue,  
+      whiteAll: Color.lerp(whiteAll, other.whiteAll, t) ?? whiteAll,
+      navbutton: Color.lerp(navbutton, other.navbutton, t) ?? navbutton,
+      midnightBlue:
+          Color.lerp(midnightBlue, other.midnightBlue, t) ?? midnightBlue,
       dark: Color.lerp(dark, other.dark, t) ?? dark,
       white: Color.lerp(white, other.white, t) ?? white,
       softWhite: Color.lerp(softWhite, other.softWhite, t) ?? softWhite,
@@ -234,62 +266,99 @@ class CustomColors extends ThemeExtension<CustomColors> {
       deepAqua: Color.lerp(deepAqua, other.deepAqua, t) ?? deepAqua,
       vibrantBlue: Color.lerp(vibrantBlue, other.vibrantBlue, t) ?? vibrantBlue,
       sandyBrown: Color.lerp(sandyBrown, other.sandyBrown, t) ?? sandyBrown,
-      semiTransparentBlack: Color.lerp(semiTransparentBlack, other.semiTransparentBlack, t) ?? semiTransparentBlack,
-      deepSlateBlue: Color.lerp(deepSlateBlue, other.deepSlateBlue, t) ?? deepSlateBlue,
-      darkPeriwinkle: Color.lerp(darkPeriwinkle, other.darkPeriwinkle, t) ?? darkPeriwinkle,
+      semiTransparentBlack:
+          Color.lerp(semiTransparentBlack, other.semiTransparentBlack, t) ??
+              semiTransparentBlack,
+      deepSlateBlue:
+          Color.lerp(deepSlateBlue, other.deepSlateBlue, t) ?? deepSlateBlue,
+      darkPeriwinkle:
+          Color.lerp(darkPeriwinkle, other.darkPeriwinkle, t) ?? darkPeriwinkle,
       mistySlate: Color.lerp(mistySlate, other.mistySlate, t) ?? mistySlate,
       slateGrey: Color.lerp(slateGrey, other.slateGrey, t) ?? slateGrey,
-      semiTransparentWhite: Color.lerp(semiTransparentWhite, other.semiTransparentWhite, t) ?? semiTransparentWhite,
-      softLavender: Color.lerp(softLavender, other.softLavender, t) ?? softLavender,
-      lightLavender: Color.lerp(lightLavender, other.lightLavender, t) ?? lightLavender,
-      paleLavender: Color.lerp(paleLavender, other.paleLavender, t) ?? paleLavender,
-      lightSteelBlue: Color.lerp(lightSteelBlue, other.lightSteelBlue, t) ?? lightSteelBlue,
+      semiTransparentWhite:
+          Color.lerp(semiTransparentWhite, other.semiTransparentWhite, t) ??
+              semiTransparentWhite,
+      softLavender:
+          Color.lerp(softLavender, other.softLavender, t) ?? softLavender,
+      lightLavender:
+          Color.lerp(lightLavender, other.lightLavender, t) ?? lightLavender,
+      paleLavender:
+          Color.lerp(paleLavender, other.paleLavender, t) ?? paleLavender,
+      lightSteelBlue:
+          Color.lerp(lightSteelBlue, other.lightSteelBlue, t) ?? lightSteelBlue,
       darkPurple: Color.lerp(darkPurple, other.darkPurple, t) ?? darkPurple,
       deepShadow: Color.lerp(deepShadow, other.deepShadow, t) ?? deepShadow,
-      seafoamGreen: Color.lerp(seafoamGreen, other.seafoamGreen, t) ?? seafoamGreen,
-      goldenrodYellow: Color.lerp(goldenrodYellow, other.goldenrodYellow, t) ?? goldenrodYellow,
-      midnightBlueDark: Color.lerp(midnightBlueDark, other.midnightBlueDark, t) ?? midnightBlueDark,
+      seafoamGreen:
+          Color.lerp(seafoamGreen, other.seafoamGreen, t) ?? seafoamGreen,
+      goldenrodYellow: Color.lerp(goldenrodYellow, other.goldenrodYellow, t) ??
+          goldenrodYellow,
+      midnightBlueDark:
+          Color.lerp(midnightBlueDark, other.midnightBlueDark, t) ??
+              midnightBlueDark,
       deepBlue: Color.lerp(deepBlue, other.deepBlue, t) ?? deepBlue,
       steelBlue: Color.lerp(steelBlue, other.steelBlue, t) ?? steelBlue,
       softGreen: Color.lerp(softGreen, other.softGreen, t) ?? softGreen,
       fieryRed: Color.lerp(fieryRed, other.fieryRed, t) ?? fieryRed,
-      mutedAmethyst: Color.lerp(mutedAmethyst, other.mutedAmethyst, t) ?? mutedAmethyst,
-      twilightPurple: Color.lerp(twilightPurple, other.twilightPurple, t) ?? twilightPurple,
-      lightIceBlue: Color.lerp(lightIceBlue, other.lightIceBlue, t) ?? lightIceBlue,
+      mutedAmethyst:
+          Color.lerp(mutedAmethyst, other.mutedAmethyst, t) ?? mutedAmethyst,
+      twilightPurple:
+          Color.lerp(twilightPurple, other.twilightPurple, t) ?? twilightPurple,
+      lightIceBlue:
+          Color.lerp(lightIceBlue, other.lightIceBlue, t) ?? lightIceBlue,
       yellow: Color.lerp(yellow, other.yellow, t) ?? yellow,
       grey: Color.lerp(grey, other.grey, t) ?? grey,
-      midnightIndigo: Color.lerp(midnightIndigo, other.midnightIndigo, t) ?? midnightIndigo,
-      darkSlateBlue: Color.lerp(darkSlateBlue, other.darkSlateBlue, t) ?? darkSlateBlue,
+      midnightIndigo:
+          Color.lerp(midnightIndigo, other.midnightIndigo, t) ?? midnightIndigo,
+      darkSlateBlue:
+          Color.lerp(darkSlateBlue, other.darkSlateBlue, t) ?? darkSlateBlue,
       mutedPurple: Color.lerp(mutedPurple, other.mutedPurple, t) ?? mutedPurple,
-      lightSkyBlue: Color.lerp(lightSkyBlue, other.lightSkyBlue, t) ?? lightSkyBlue,
+      lightSkyBlue:
+          Color.lerp(lightSkyBlue, other.lightSkyBlue, t) ?? lightSkyBlue,
       paleCyan: Color.lerp(paleCyan, other.paleCyan, t) ?? paleCyan,
-      burntCaramel: Color.lerp(burntCaramel, other.burntCaramel, t) ?? burntCaramel,
+      burntCaramel:
+          Color.lerp(burntCaramel, other.burntCaramel, t) ?? burntCaramel,
       goldenOak: Color.lerp(goldenOak, other.goldenOak, t) ?? goldenOak,
       shadowBlack: Color.lerp(shadowBlack, other.shadowBlack, t) ?? shadowBlack,
-      twilightShadow: Color.lerp(twilightShadow, other.twilightShadow, t) ?? twilightShadow,
-      translucentWhite: Color.lerp(translucentWhite, other.translucentWhite, t) ?? translucentWhite,
+      twilightShadow:
+          Color.lerp(twilightShadow, other.twilightShadow, t) ?? twilightShadow,
+      translucentWhite:
+          Color.lerp(translucentWhite, other.translucentWhite, t) ??
+              translucentWhite,
       lightGrey: Color.lerp(lightGrey, other.lightGrey, t) ?? lightGrey,
       mediumGrey: Color.lerp(mediumGrey, other.mediumGrey, t) ?? mediumGrey,
       darkNight: Color.lerp(darkNight, other.darkNight, t) ?? darkNight,
       deepOcean: Color.lerp(deepOcean, other.deepOcean, t) ?? deepOcean,
       blackShadow: Color.lerp(blackShadow, other.blackShadow, t) ?? blackShadow,
       darkSlate: Color.lerp(darkSlate, other.darkSlate, t) ?? darkSlate,
-      deepBlueShade: Color.lerp(deepBlueShade, other.deepBlueShade, t) ?? deepBlueShade,
+      deepBlueShade:
+          Color.lerp(deepBlueShade, other.deepBlueShade, t) ?? deepBlueShade,
       offWhite: Color.lerp(offWhite, other.offWhite, t) ?? offWhite,
       beigeTan: Color.lerp(beigeTan, other.beigeTan, t) ?? beigeTan,
       lightGray: Color.lerp(lightGray, other.lightGray, t) ?? lightGray,
       warmGray: Color.lerp(warmGray, other.warmGray, t) ?? warmGray,
       goldenGlow: Color.lerp(goldenGlow, other.goldenGlow, t) ?? goldenGlow,
       smokyPurple: Color.lerp(smokyPurple, other.smokyPurple, t) ?? smokyPurple,
-      otherMessageGray: Color.lerp(otherMessageGray, other.otherMessageGray, t) ?? otherMessageGray,
-      userMessageBlue: Color.lerp(userMessageBlue, other.userMessageBlue, t) ?? userMessageBlue,
+      otherMessageGray:
+          Color.lerp(otherMessageGray, other.otherMessageGray, t) ??
+              otherMessageGray,
+      userMessageBlue: Color.lerp(userMessageBlue, other.userMessageBlue, t) ??
+          userMessageBlue,
       lightBlue: Color.lerp(lightBlue, other.lightBlue, t) ?? lightBlue,
-      darkGreyShade: Color.lerp(darkGreyShade, other.darkGreyShade, t) ?? darkGreyShade,
+      darkGreyShade:
+          Color.lerp(darkGreyShade, other.darkGreyShade, t) ?? darkGreyShade,
       darkGrey: Color.lerp(darkGrey, other.darkGrey, t) ?? darkGrey,
       red: Color.lerp(red, other.red, t) ?? red,
       blue: Color.lerp(blue, other.blue, t) ?? blue,
       deepNavy: Color.lerp(deepNavy, other.deepNavy, t) ?? deepNavy,
       blueback: Color.lerp(blueback, other.blueback, t) ?? blueback,
+      Texfield: Color.lerp(Texfield, other.Texfield, t) ?? Texfield,
+      BoxShadow: Color.lerp(BoxShadow, other.BoxShadow, t) ?? BoxShadow,
+      bluebackShadow:Color.lerp(bluebackShadow, other.bluebackShadow, t) ?? bluebackShadow,
+      cardlistquestion:Color.lerp(cardlistquestion, other.cardlistquestion, t) ?? cardlistquestion,
+      Button:Color.lerp(Button, other.Button, t) ?? Button,
+      buttonProject:Color.lerp(buttonProject, other.buttonProject, t) ?? buttonProject,
+      questionnaireFond:Color.lerp(questionnaireFond, other.questionnaireFond, t) ?? questionnaireFond,
+      backGameLogic:Color.lerp(backGameLogic, other.backGameLogic, t) ?? backGameLogic,
     );
   }
 }

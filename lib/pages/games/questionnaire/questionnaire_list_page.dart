@@ -51,6 +51,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -60,11 +61,11 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: customColor?. white ??Colors.white),
           ),
         ),
         centerTitle: true,
-        iconTheme:  IconThemeData(color: Colors.white),
+        iconTheme:  IconThemeData(color: customColor?. white ??Colors.white),
         backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Container(
@@ -72,7 +73,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
         decoration: BoxDecoration(
           gradient: RadialGradient(
             colors: [
-              Color.fromRGBO(0, 113, 152, 1),
+              customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
               customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
             ],
             stops: [0.1, 0.9],
@@ -89,7 +90,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(24, 37, 63, 0.8),
+                    color: customColor?. cardlistquestion ?? Color.fromRGBO(24, 37, 63, 0.8),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListTile(
@@ -112,7 +113,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                     trailing: Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.white24,
+                        color: customColor?. semiTransparentWhite ??Colors.white24,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(Icons.arrow_forward_ios, color: Colors.white),
