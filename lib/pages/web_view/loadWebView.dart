@@ -58,7 +58,7 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rendu de votre protfolio', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20) ),
+        title: Text('Rendu de votre portfolio', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20) ),
         backgroundColor: Color.fromRGBO(0, 113, 152, 1),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),

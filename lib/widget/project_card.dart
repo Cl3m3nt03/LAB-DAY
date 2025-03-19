@@ -177,6 +177,7 @@ class _ProjectCardState extends State<ProjectCard> {
           ),
         ),
         onPressed: () {
+          if(widget.projet['name'] == "Portfolio"){
           Navigator.push(
           context,
           MaterialPageRoute(
@@ -188,6 +189,7 @@ class _ProjectCardState extends State<ProjectCard> {
             },
           ),
         );
+          }
         },
         child: Text(
           'Commencer',
