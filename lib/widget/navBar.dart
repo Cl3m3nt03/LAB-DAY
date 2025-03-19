@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Custom Navbar widget with tabs for navigation and styling.
 class CustomNavbar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTabChange;
+  
+  CustomColors? customColor;
 
-  const CustomNavbar({
-    Key? key,
+   CustomNavbar({
+
     required this.selectedIndex,
     required this.onTabChange,
-  }) : super(key: key);
+  });
   /// Builds the custom navbar with icons and labels, styled using Google Fonts.
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return SingleChildScrollView(
       child : Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: const Color.fromARGB(255, 19, 19, 25).withOpacity(0.2), width: 1),
+          top: BorderSide(color: customColor?.deepOcean.withOpacity(0.2)??const Color.fromARGB(255, 19, 19, 25).withOpacity(0.2), width: 1),
         ),
-        color: Color.fromRGBO(11, 22, 44, 1),
+        color: customColor?.deepOcean??Color.fromRGBO(11, 22, 44, 1),
         boxShadow: [
           BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1)),
         ],
@@ -35,7 +39,7 @@ class CustomNavbar extends StatelessWidget {
             iconSize: 24,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             duration: const Duration(milliseconds: 400),
-            tabBackgroundColor: const Color.fromRGBO(0, 113, 152, 1),
+            tabBackgroundColor: customColor?.navbutton?? Color.fromRGBO(0, 113, 152, 1),
             tabs: [
               GButton(
                 icon: Icons.chat,

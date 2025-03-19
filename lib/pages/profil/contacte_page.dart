@@ -3,6 +3,8 @@ import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 /// Page widget for displaying a contact form.
 class ContactePage extends StatefulWidget {
@@ -14,6 +16,7 @@ class ContactePage extends StatefulWidget {
 
 /// State class for the ContactePage widget.
 class _ContactePageState extends State<ContactePage> {
+  CustomColors? customColor;
   // Declare controllers for the text fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
@@ -22,6 +25,7 @@ class _ContactePageState extends State<ContactePage> {
   /// a header with a back button, and input fields for email and bio.
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -31,11 +35,11 @@ class _ContactePageState extends State<ContactePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: customColor?. white ??Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: customColor?. white ?? Colors.white),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -44,8 +48,8 @@ class _ContactePageState extends State<ContactePage> {
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+                customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.7, 0.7),
@@ -105,7 +109,7 @@ class _ContactePageState extends State<ContactePage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(249, 153, 120, 67),
+                  backgroundColor: customColor?. vibrantBlue ??Color.fromARGB(249, 153, 120, 67),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

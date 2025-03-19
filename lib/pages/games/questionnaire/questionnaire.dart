@@ -7,6 +7,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:makeitcode/widget/rewardScreenXp.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 
 /// Widget to display the questionnaire page with questions and answers.
@@ -25,6 +26,7 @@ class QuestionnairePage extends StatefulWidget {
 }
 
 class _QuestionnairePageState extends State<QuestionnairePage> with SingleTickerProviderStateMixin {
+  CustomColors? customColor;
   Artboard? _artboard;
   late ScrollController _scrollController;
   List<dynamic> questions = [];
@@ -109,9 +111,10 @@ class _QuestionnairePageState extends State<QuestionnairePage> with SingleTicker
     }
   }
 Widget submitAnswer(Map<String, dynamic> question) {
+  customColor = Theme.of(context).extension<CustomColors>();
   return Container(
     width: double.infinity,
-    color: const Color.fromARGB(255, 11, 22, 44),
+    color:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
     child: Column(
       mainAxisSize: MainAxisSize.min, // Permet d'adapter la hauteur
       children: [
@@ -119,7 +122,7 @@ Widget submitAnswer(Map<String, dynamic> question) {
           SlideTransition(
             position: _slideAnimation,
             child: Container(
-              color: const Color.fromARGB(255, 30, 40, 60),
+              color: customColor?. questionnaireFond ??Color.fromARGB(255, 30, 40, 60),
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -175,7 +178,7 @@ Widget submitAnswer(Map<String, dynamic> question) {
           child: TextButton(
             style: question['selected'] == -1
                 ? TextButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 95, 105, 135),
+                    backgroundColor: Color.fromARGB(255, 95, 105, 135),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -183,7 +186,7 @@ Widget submitAnswer(Map<String, dynamic> question) {
                 : TextButton.styleFrom(
                     backgroundColor: error
                         ? const Color.fromARGB(255, 220, 53, 69)
-                        : Colors.blue,
+                        : customColor?. Button ??Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -302,6 +305,8 @@ void validateAnswer() {
 
   /// Displays the progress bar for the current question.
     Widget progressIndicatorRow(BuildContext context) {
+        customColor = Theme.of(context).extension<CustomColors>();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
       child: ClipRRect(
@@ -310,7 +315,7 @@ void validateAnswer() {
           value: actuallyquestion / questions.length,
           minHeight: 10,
           backgroundColor: Colors.grey[300],
-          valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+          valueColor:AlwaysStoppedAnimation<Color>(customColor?. vibrantBlue ??Colors.blue),
         ),
       ),
     );
@@ -321,7 +326,7 @@ Widget buildQuestionCard() {
   final options = question['options'] ?? [];
   return Container(
     child: Card(
-      color: Color.fromARGB(255, 11, 22, 44),
+      color: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
@@ -345,7 +350,7 @@ Widget buildQuestionCard() {
                 style:  GoogleFonts.montserrat(textStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: customColor?. white ??Colors.white,
                   overflow: TextOverflow.clip
                 ),
                 ),
@@ -401,13 +406,14 @@ Widget buildQuestionCard() {
 /// Builds the main UI of the questionnaire page, showing the question and answer options.
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     if (questions.isEmpty || !riveLoaded) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+          backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
           title: const Text('Questionnaire', style: TextStyle(color: Colors.white)),
           centerTitle: true,
-          iconTheme: const IconThemeData(color: Colors.white),
+          iconTheme:  IconThemeData(color: customColor?. white ??Colors.white),
         ),
         body: Column(
           children: [
@@ -419,18 +425,18 @@ Widget buildQuestionCard() {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
-        title: Text(widget.title, style:  GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 25)),),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
+        title: Text(widget.title, style:  GoogleFonts.montserrat(textStyle: TextStyle(color: customColor?. white ??Colors.white,fontWeight: FontWeight.bold, fontSize: 25)),),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme:IconThemeData(color: customColor?. white ??Colors.white),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
           child: 
             Text(
               '${actuallyquestion + 1} / ${questions.length}',
-              style: const TextStyle(
-                color: Colors.white,
+              style:TextStyle(
+                color: customColor?. white ??Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -438,7 +444,7 @@ Widget buildQuestionCard() {
           ),
         ],
       ),
-      backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+      backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       body: Stack(
         children: [
           SingleChildScrollView(

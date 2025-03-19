@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Chat page for private conversations between users.
 class PrivateChatPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class PrivateChatPage extends StatefulWidget {
 }
 /// State for the private chat page.
 class _PrivateChatPageState extends State<PrivateChatPage> {
+  CustomColors? customColor;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _controller = TextEditingController();
@@ -112,7 +114,7 @@ Future<void> _initializeChat() async {
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isCurrentUser ? Colors.blue[300] : Colors.grey[300],
+          color: isCurrentUser ?customColor?.blue?? Colors.blue : Colors.grey[300],
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -129,6 +131,7 @@ Future<void> _initializeChat() async {
                 textStyle: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
+                  color: customColor?.dark ?? Colors.black,
                 ),
               ),
               softWrap: true, // Permet le retour à la ligne automatique
@@ -137,7 +140,7 @@ Future<void> _initializeChat() async {
             SizedBox(height: 5),
             Text(
               formattedDate,
-               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis,fontSize: 10),)),
+               style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.w400,overflow: TextOverflow.ellipsis,fontSize: 10),color: customColor?.dark ?? Colors.black,)),
           ],
         ),
       ),
@@ -180,10 +183,11 @@ Future<void> _initializeChat() async {
     }
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor:Colors.blue,
+        backgroundColor:customColor?.blue?? Colors.blue,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(recipientPseudo ?? 'Chargement ...', style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
         ),
@@ -192,7 +196,7 @@ Future<void> _initializeChat() async {
         children: [
           Positioned.fill(
             child: Container(
-              color:Color.fromARGB(255, 11, 22, 44),
+              color:customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ),
           ),
           SafeArea(
@@ -207,24 +211,24 @@ Future<void> _initializeChat() async {
                     children: <Widget>[
                       Expanded(
                         child: TextField(
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: customColor?.whiteAll?? Colors.white,),
                           controller: _controller,
                           decoration: InputDecoration(
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: customColor?.whiteAll?? Colors.white,),
                             hintText: 'Écrivez un message...',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Colors.blue),
+                              borderSide: BorderSide(color: customColor?.whiteAll?? Colors.blue),
                             ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       IconButton(
-                        icon: Icon(Icons.send, color: Colors.blue),
+                        icon: Icon(Icons.send, color:customColor?.vibrantBlue?? Colors.blue),
                         onPressed: _sendMessage,
                       ),
                     ],

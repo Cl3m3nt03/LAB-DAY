@@ -11,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 // Function to retrieve the user's pseudo from the database
 // Retrieves the pseudo associated with the user's UID
@@ -56,6 +58,8 @@ class ProfilePage extends StatefulWidget {
 // Calls the function to load the user's avatar when the page is initialized
 
 class _ProfilePageState extends State<ProfilePage> {
+  CustomColors? customColor;
+
   Uint8List? _avatarImage;
 
   @override
@@ -85,6 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
 // Uses a radial gradient background for the page
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
             appBar: AppBar(
         title:Text(
@@ -94,10 +99,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: customColor?.white ??Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
@@ -107,8 +112,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      customColor?.skyBlue ?? Color.fromRGBO(0, 113, 152, 1),
+                      customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),
@@ -135,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
                             ),
-                            color: const Color.fromRGBO(24, 37, 63, 0.4),
+                            color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -220,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all<Color>(
-                                              const Color.fromARGB(249, 153, 120, 67)),
+                                              customColor?.vibrantBlue ?? Color.fromARGB(249, 153, 120, 67)),
                                       foregroundColor:
                                           MaterialStateProperty.all<Color>(
                                               Colors.white),
@@ -257,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromRGBO(24, 37, 63, 0.4),
+                                  color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -363,7 +368,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromRGBO(24, 37, 63, 0.4),
+                                  color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -439,7 +444,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width - 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromRGBO(24, 37, 63, 0.4),
+                                  color: customColor?.twilightShadow ?? Color.fromRGBO(24, 37, 63, 0.4),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(

@@ -10,6 +10,7 @@ import 'package:makeitcode/pages/web_view/loadDataAndTemplate.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 class SettingProjectPage extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class SettingProjectPage extends StatefulWidget {
 }
 
 class _SettingProjectPageState extends State<SettingProjectPage> {
+  CustomColors? customColor;
 
   String userId = FirebaseAuth.instance.currentUser!.uid;
   final loadDataAndTemplate _dataAndTemplate = loadDataAndTemplate();
@@ -67,6 +69,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
 
   @override
   Widget build(BuildContext context) {
+      customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
            appBar: AppBar(
         title: Text(
@@ -76,7 +79,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: customColor?. white ??Colors.white),
           ),
         ),
         leading: IconButton(
@@ -86,16 +89,16 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
           },
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme:  IconThemeData(color: customColor?. white ??Colors.white),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+                customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.3, 0.7),
@@ -112,7 +115,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                         textStyle: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: customColor?. white ?? Colors.white),
                       ),
                     ),
                     Padding(padding: EdgeInsets.only(top: 15)),
@@ -148,14 +151,15 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black),
                                       ),
                                     ),
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          Color.fromRGBO(11, 153, 253, 1),
+                                          customColor?. Button ??Color.fromRGBO(11, 153, 253, 1),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),
@@ -189,7 +193,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(11, 153, 253, 1),
+                        backgroundColor: customColor?. Button ?? Color.fromRGBO(11, 153, 253, 1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),

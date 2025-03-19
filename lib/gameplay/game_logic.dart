@@ -9,6 +9,7 @@ import'package:makeitcode/pages/web_view/loadWebView.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 
 class GameLogic extends StatefulWidget {
@@ -24,6 +25,7 @@ class GameLogic extends StatefulWidget {
 }
 
 class _GameLogicState extends State<GameLogic> {
+  CustomColors? customColor;
   String title = "Chargement...";
   String heading = "Chargement...";
   String instruction = "Chargement...";
@@ -157,6 +159,7 @@ Future<void> saveUserData() async {
 
 
 Widget buildToolbarButton(String text, TextEditingController controller) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return SizedBox(
       width: 120,
       child: GestureDetector(
@@ -169,14 +172,14 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
         child: Container(
           padding: EdgeInsets.all(9),
           decoration: BoxDecoration(
-            border: Border.all(color: const Color.fromARGB(255, 221, 221, 221)),
+            border: Border.all(color:  Color.fromARGB(255, 221, 221, 221)),
             borderRadius: BorderRadius.circular(8.0),
             color: Color.fromRGBO(112, 134, 203, 100),
           ),
           child: Center(
             child: Text(
               text,
-              style: TextStyle(fontSize: 20.0, color: Colors.white),
+              style: TextStyle(fontSize: 20.0, color: customColor?.white?? Colors.white,),
             ),
           ),
         ),
@@ -186,6 +189,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     final code = EditorModel(
       files: [
         FileEditor(
@@ -199,7 +203,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
     );
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0B162C),
+      backgroundColor: customColor?.backGameLogic?? const Color(0xFF0B162C),
     appBar: AppBar(
       centerTitle: true,
       actions: [
@@ -226,14 +230,14 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
             LinearProgressIndicator(
               value: currentStep / 20.0, // 20.0 force la division à retourner un double
               backgroundColor: Colors.grey.shade700,
-              color: Colors.white,
+              color: customColor?.white?? Colors.white,
               minHeight: 5,
             ),
           ],
         ),
       ),
-      backgroundColor: Color.fromRGBO(0, 113, 152, 1),
-      foregroundColor: Colors.white,
+      backgroundColor: customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+      foregroundColor: customColor?.white?? Colors.white,
     ),
 
       body: KeyboardActions(
@@ -276,7 +280,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(104, 191, 199, 237),
+                  color: Color.fromARGB(104, 191, 199, 237),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 width: double.infinity,
@@ -313,7 +317,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 191, 199, 237),
+                  color: customColor?. lightLavender ??Color.fromARGB(255, 191, 199, 237),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
@@ -387,9 +391,9 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                 child: ElevatedButton(
                   onPressed: _isValid ? () {
                     _nextStep();
-                  } : null, // Désactive le bouton si la réponse est incorrecte
+                  } : null,
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color.fromARGB(255, 50, 52, 76),
+                    foregroundColor: Colors.grey,
                     backgroundColor: const Color.fromARGB(255, 222, 226, 255),
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(

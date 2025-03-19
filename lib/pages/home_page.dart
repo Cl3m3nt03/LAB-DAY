@@ -11,10 +11,11 @@ import 'package:makeitcode/widget/project_card.dart';
 import 'package:makeitcode/pages/games/projects/projects_page.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
-
+import 'package:makeitcode/theme/custom_colors.dart';
 /// The HomePage widget is the main screen of the app, displaying user information,
 /// level progress, and ongoing projects.
 class HomePage extends StatefulWidget {
+  
   // Creates the state for HomePage.
   @override
   _HomePageState createState() => _HomePageState();
@@ -26,6 +27,11 @@ class HomePage extends StatefulWidget {
 
 // State for HomePage, handles UI and data fetching
 class _HomePageState extends State<HomePage> {
+    CustomColors? customColor;
+
+
+
+
   String emailVerified = '';
   String pseudo = '';
   int lvl = 0;
@@ -164,7 +170,7 @@ Widget _title(){
           'Salut, $pseudo 👋',
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: customColor?.white?? Colors.white,
               fontSize: MediaQuery.of(context).size.width * 0.06,
               fontWeight: FontWeight.w700,
               overflow: TextOverflow.clip
@@ -177,7 +183,7 @@ Widget _title(){
           "Code en t'amusant",
           style: GoogleFonts.montserrat(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: customColor?.white?? Colors.white,
               fontSize: 17,
               fontWeight: FontWeight.w400
             )
@@ -217,11 +223,11 @@ Widget _playerLevel() {
       return Container(
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: Color(0xff0692C2),
+          color: customColor?.blueback?? Color(0xff0692C2),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-              color: Color(0xff0692C2).withOpacity(0.5),
+              color: customColor?.blueback?? Color(0xff0692C2).withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 3),
@@ -237,7 +243,7 @@ Widget _playerLevel() {
                   getlvlRank(currentLvl),
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                      color: Colors.white,
+                      color: customColor?.white?? Colors.white,
                       fontWeight: FontWeight.w800,
                       fontSize: 19,
                     ),
@@ -275,7 +281,7 @@ Widget _playerLevel() {
                               text: '$currentLvl',
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
-                                  color: Colors.black,
+                                  color: customColor?.dark ?? Colors.black,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 17,
                                 ),
@@ -308,7 +314,7 @@ Widget _playerLevel() {
                   "${currentXp.toStringAsFixed(0)} xp",
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                      color: Colors.white,
+                      color: customColor?.white?? Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -318,7 +324,7 @@ Widget _playerLevel() {
                   "${objectiveXp.toStringAsFixed(0)} xp",
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                      color: Colors.white,
+                      color: customColor?.white?? Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -352,7 +358,7 @@ Widget _projects(stream){
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return Text(
                 'Aucun projet trouvé.',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: customColor?.white?? Colors.white,),
               );
             }
 
@@ -378,6 +384,8 @@ Widget _projects(stream){
   Widget build(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;
 
+    customColor = Theme.of(context).extension<CustomColors>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -386,8 +394,8 @@ Widget _projects(stream){
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  Color.fromRGBO(0, 113, 152, 1),
-                  Color.fromARGB(255, 11, 22, 44),
+                  customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+                   customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),
@@ -419,7 +427,7 @@ Widget _projects(stream){
                           'LES PROJETS',
                           style: GoogleFonts.montserrat(
                             textStyle: TextStyle(
-                              color: Colors.white,
+                              color: customColor?.white?? Colors.white,
                               fontWeight: FontWeight.w800,
                               fontSize: 27
                             )
@@ -439,7 +447,7 @@ Widget _projects(stream){
                             'Tout voir',
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
-                                color: Color(0xffC6C6C6)
+                                color: customColor?. mediumGrey??Color(0xffC6C6C6)
                               )
                             ),
                           ))

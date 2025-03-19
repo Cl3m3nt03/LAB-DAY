@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:makeitcode/widget/style_editor.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Glossary page widget, used to display the glossary interface.
 class GlossaryPage extends StatefulWidget {
@@ -14,17 +15,19 @@ class GlossaryPage extends StatefulWidget {
 
 /// Glossary content page displaying glossary items and descriptions.
 class _GlossaryPage extends State<GlossaryPage> {
+  CustomColors? customColor;
   /// Builds the GlossaryContentPage layout with a gradient background and glossary items.
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       backgroundColor: const Color(0xFF0B162C),
-      appBar: AppBar(backgroundColor: Color.fromRGBO(0, 113, 152, 1), foregroundColor: Colors.white,),
+      appBar: AppBar(backgroundColor: customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1), foregroundColor: Colors.white,),
       body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)],
+              colors: [customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)],
               stops: [0.2, 0.9],
               begin: Alignment.topCenter,
               end: Alignment.center,
@@ -41,6 +44,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 titreGlossaire(texte: "HTML - Les bases"),
                 const SizedBox(height: 8),
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Structure de base",
@@ -54,6 +58,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Balises de structure",
@@ -67,6 +72,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Titres",
@@ -80,6 +86,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Paragraphes",
@@ -93,6 +100,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Liens",
@@ -106,6 +114,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Listes",
@@ -119,6 +128,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Images",
@@ -132,6 +142,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Tableaux",
@@ -145,6 +156,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "HTML - Formulaires",
@@ -163,6 +175,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 titreGlossaire(texte: "CSS - Styles"),
                 const SizedBox(height: 8),
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Couleurs",
@@ -176,6 +189,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Police de caractères",
@@ -189,6 +203,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Taille de police",
@@ -202,6 +217,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Espacement",
@@ -215,6 +231,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Bordures",
@@ -228,6 +245,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Alignement",
@@ -241,6 +259,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Positionnement",
@@ -254,6 +273,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Flexbox",
@@ -267,6 +287,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Grille",
@@ -280,6 +301,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "CSS - Ombres",
@@ -296,6 +318,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 titreGlossaire(texte: "JavaScript - Logique"),
                 const SizedBox(height: 8),
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Fonction",
@@ -309,6 +332,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Variables",
@@ -322,6 +346,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Conditions",
@@ -335,6 +360,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Boucles",
@@ -348,6 +374,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Tableaux",
@@ -361,6 +388,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Objets",
@@ -374,6 +402,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Evénements",
@@ -387,6 +416,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Promesses",
@@ -400,6 +430,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Asynchrone",
@@ -413,6 +444,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "JavaScript - Modules",
@@ -430,6 +462,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 titreGlossaire(texte: "Programmation générale"),
                 const SizedBox(height: 8),
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Boucle",
@@ -443,6 +476,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Condition",
@@ -456,6 +490,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Liste",
@@ -469,6 +504,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Fonction",
@@ -482,6 +518,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Map",
@@ -495,6 +532,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                  context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Exception",
@@ -508,6 +546,7 @@ class _GlossaryPage extends State<GlossaryPage> {
                 const SizedBox(height: 8),
 
                 buttonGlossaire(
+                   context: context,
                   onPressed: () => showDescription(
                     context,
                     "Programmation - Classe",
@@ -532,6 +571,7 @@ class _GlossaryPage extends State<GlossaryPage> {
 
   /// Displays a description dialog with a glossary item's details and code sample.
   void showDescription(BuildContext context, String title, String langage, String description, String code) {
+    customColor = Theme.of(context).extension<CustomColors>();
 
     showModalBottomSheet(
       context: context,
@@ -540,11 +580,13 @@ class _GlossaryPage extends State<GlossaryPage> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
       ),
       builder: (BuildContext context) {
+        
         return SingleChildScrollView(
+
         child :  Container(
           width: double.maxFinite,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 169, 186, 220), // Couleur de fond
+          decoration:  BoxDecoration(
+            color: customColor?. lightSteelBlue ??Color.fromARGB(255, 169, 186, 220), // Couleur de fond
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
 
@@ -590,7 +632,6 @@ class _GlossaryPage extends State<GlossaryPage> {
   }
 }
 /// Displays a glossary item title with specific text style.
-
 Text titreGlossaire({required String texte}){
   return  Text(
       texte,
@@ -598,22 +639,26 @@ Text titreGlossaire({required String texte}){
   );
 }
 
+
 /// Creates a stylized button for glossary items with an icon and text.
 ElevatedButton buttonGlossaire({
+  required BuildContext context,
+  CustomColors? customColor,
   required VoidCallback onPressed,
   required IconData icon,
   required String texte,
 }) {
-  return ElevatedButton(
+    customColor = Theme.of(context).extension<CustomColors>();
+    return ElevatedButton(
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color.fromRGBO(119, 146, 155, 0.7),
+      backgroundColor: customColor?. mistySlate ??Color.fromRGBO(119, 146, 155, 0.7),
       foregroundColor: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
-        side: const BorderSide(
-          color: Color.fromARGB(255, 79, 89, 115),
+        side:  BorderSide(
+          color: customColor?. slateGrey ??Color.fromARGB(255, 79, 89, 115),
           width: 2,
         ),
       ),
@@ -624,7 +669,7 @@ ElevatedButton buttonGlossaire({
         Icon(
           icon,
           size: 24,
-          color: const Color.fromARGB(255, 232, 228, 243),
+          color: customColor?. paleLavender ??Color.fromARGB(255, 232, 228, 243),
         ),
         const SizedBox(width: 20),
         Text(
@@ -640,3 +685,4 @@ ElevatedButton buttonGlossaire({
     ),
   );
 }
+

@@ -8,6 +8,8 @@ import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 /// Widget for displaying the list of questionnaires with their details.
 
@@ -19,6 +21,7 @@ class QuestionnaireListPage extends StatefulWidget {
 }
 
 class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
+  CustomColors? customColor;
   List<dynamic> questionnaire = [];
   @override
   void initState() {
@@ -48,6 +51,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -57,20 +61,20 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: customColor?. white ??Colors.white),
           ),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme:  IconThemeData(color: customColor?. white ??Colors.white),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           gradient: RadialGradient(
             colors: [
-              Color.fromRGBO(0, 113, 152, 1),
-              Color.fromARGB(255, 11, 22, 44),
+              customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+              customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
             ],
             stops: [0.1, 0.9],
             center: Alignment(-0.7, 0.7),
@@ -86,7 +90,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(24, 37, 63, 0.8),
+                    color: customColor?. cardlistquestion ?? Color.fromRGBO(24, 37, 63, 0.8),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListTile(
@@ -109,7 +113,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
                     trailing: Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.white24,
+                        color: customColor?. semiTransparentWhite ??Colors.white24,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(Icons.arrow_forward_ios, color: Colors.white),

@@ -8,11 +8,11 @@ import 'package:makeitcode/pages/games/projects/levelMap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
   final String projetName;
-
   const ProjectDetailPage({super.key, required this.projet, required this.projetName});
 
   @override
@@ -25,6 +25,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
   int _selectedIndex = 0;
   int _currentStep = 0;
   String _titleStep = "";
+  CustomColors? customColor;
+
 
   void _cheangeIndex(int index){
       setState(() {
@@ -147,14 +149,14 @@ Widget _ImagePoster(){
               borderRadius: 30,
               rotate: 90,
               boxShadows: [
-                PolygonBoxShadow(color: Colors.black, elevation: 1.0),
-                PolygonBoxShadow(color: Color(0xff5FC2BA), elevation: 5.0),
+                PolygonBoxShadow(color: customColor?.dark ?? Colors.black, elevation: 1.0),
+                PolygonBoxShadow(color: Color.fromARGB(255, 246, 255, 254), elevation: 5.0),
               ],
               child: Container(
                 height: 200, // Ajustez la hauteur
                 width: 400, // Ajustez la largeur
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: customColor?.dark ?? Colors.black,
                   image: DecorationImage(
                       image: AssetImage('assets/images/${widget.projet['name']}.jpg'),
                       fit: BoxFit.cover,
@@ -198,7 +200,7 @@ Widget _title(screenHeight){
                       widget.projet['name'], 
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
-                          color: Colors.white,
+                          color: customColor?.whiteAll?? Colors.white,
                           fontWeight: FontWeight.w900,
                           fontSize: 32,
                         ),
@@ -210,7 +212,7 @@ Widget _title(screenHeight){
                         'Gratuit',
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: Color(0xffE8B228),
+                            color: customColor?.blueback?? Color(0xffE8B228),
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                           ),
@@ -223,14 +225,14 @@ Widget _title(screenHeight){
                   children: [
                     Icon(
                       Icons.star_outline_rounded, 
-                      color: Colors.white,
+                      color:  customColor?.blueback?? Colors.white,
                     ),
                     SizedBox(width: 4),
                     Text(
                       '5',
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
+                          color: customColor?.blueback?? Colors.white.withOpacity(0.7),
                           fontWeight: FontWeight.w600
                         ),
                       )
@@ -269,7 +271,7 @@ Widget _selector(screenHeight) {
                 height: 40.1,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Color(0xff0B0F2C),
+                  color: customColor?.midnightIndigo?? Color(0xff0B0F2C),
                 ),
               )
             ),
@@ -286,7 +288,7 @@ Widget _selector(screenHeight) {
               width: _calculateButtonWidth(_selectedIndex, buttonTexts), // Largeur dynamique de chaque bouton
               height: 40, // Hauteur du fond
               decoration: BoxDecoration(
-                color: Color(0xff346094), // Couleur du fond
+                color:customColor?.blueback??  Color.fromARGB(255, 30, 123, 230), // Couleur du fond
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
@@ -342,14 +344,15 @@ double _calculateButtonWidth(int index, List<String> buttonTexts) {
 // Widget to generate a step card with information about each project step.
 
 Widget _stepCard(String title, int step) {
+  customColor = Theme.of(context).extension<CustomColors>();
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: customColor?.blueback ?? Color(0xff0692C2),
       boxShadow: [
         BoxShadow(
-          color: Color(0xff346094),
+          color: customColor?.blueback?? Color(0xff346094),
           blurRadius: 4,
           offset: Offset(0, 3)
         )
@@ -394,6 +397,7 @@ Widget _stepCard(String title, int step) {
 // Widget to generate project description text from Firestore data.
 
 Widget _descriptionTextGeneration() {
+  customColor = Theme.of(context).extension<CustomColors>();
   return StreamBuilder<QuerySnapshot>(
     stream: FirebaseFirestore.instance
         .collection('Projects')
@@ -480,7 +484,7 @@ Widget _userRatings(){
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: customColor?.blueback?? Color(0xff0692C2),
       boxShadow: [
         BoxShadow(
           color: Color(0xff346094),
@@ -544,7 +548,7 @@ Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: customColor?.blueback?? Color(0xff0692C2),
       boxShadow: [
         BoxShadow(
           color: Color(0xff346094),
@@ -609,7 +613,7 @@ Container(
     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 17),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: Color(0xff0692C2),
+      color: customColor?.blueback?? Color(0xff0692C2),
       boxShadow: [
         BoxShadow(
           color: Color(0xff346094),
@@ -756,7 +760,7 @@ Widget _confirmButton(screenHeight) {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            backgroundColor: const Color(0xff121B38),
+            backgroundColor: customColor?. midnightIndigo ?? Color(0xff121B38),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
@@ -819,15 +823,16 @@ Widget _confirmButton(screenHeight) {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+                colors: [ customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1), customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)],
                 stops: [0.2, 0.9],
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,

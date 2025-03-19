@@ -8,20 +8,24 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 // Represents the ranking page with a floating action button to view the leaderboard.
 class RankingPage extends StatefulWidget {
   // Constructor for the RankingPage widget.
   const RankingPage({super.key});
-  
+
   @override
   State<StatefulWidget> createState() {
     return _Classement();
   }
 }
+
 // The state class for managing the ranking page.
 class _Classement extends State<RankingPage> {
-    // Handles the button press to navigate to the ranking page.
+  CustomColors? customColor;
+
+  // Handles the button press to navigate to the ranking page.
   void onButtonPressed() {
     Navigator.push(
       context,
@@ -38,7 +42,10 @@ class _Classement extends State<RankingPage> {
         backgroundColor: Color.fromARGB(255, 209, 223, 255),
         foregroundColor: Color(0xFF5E4F73),
         tooltip: 'Classement',
-        child: const Icon(Icons.emoji_events, size: 30,),
+        child: const Icon(
+          Icons.emoji_events,
+          size: 30,
+        ),
       ),
     );
   }
@@ -46,6 +53,8 @@ class _Classement extends State<RankingPage> {
 
 // Displays the leaderboard with users ranked by their points.
 class ClassementPage extends StatelessWidget {
+  CustomColors? customColor;
+
   // Stream that fetches user ranking data from Firestore.
   final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance
       .collection('Users')
@@ -55,8 +64,10 @@ class ClassementPage extends StatelessWidget {
   Future<String?> getCurrentUserPseudo() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentSnapshot userDoc =
-          await FirebaseFirestore.instance.collection('Users').doc(user.uid).get();
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user.uid)
+          .get();
       return userDoc['pseudo'];
     }
     return null;
@@ -67,6 +78,7 @@ class ClassementPage extends StatelessWidget {
     // Fetch user avatar from AvatarService.
     return AvatarService.getUserAvatar(uid);
   }
+
   // Returns the current user's UID.
   Future<String> getCurrentUid() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -75,16 +87,21 @@ class ClassementPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(0, 113, 152, 1),
+        backgroundColor: customColor?.skyBlue ?? Color.fromRGBO(0, 113, 152, 1),
         foregroundColor: Colors.white,
+        iconTheme:  IconThemeData(color: customColor?.white ?? Colors.white),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+            colors: [
+              customColor?.skyBlue ?? Color.fromRGBO(0, 113, 152, 1),
+              customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)
+            ],
             stops: [0.2, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.center,
@@ -100,7 +117,7 @@ class ClassementPage extends StatelessWidget {
                   "LES MEILLEURS CODEURS",
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                      color: Colors.white,
+                      color: customColor?. white ??Colors.white,
                       fontSize: MediaQuery.of(context).size.width / 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -110,10 +127,12 @@ class ClassementPage extends StatelessWidget {
               // Builds the ranking list using a stream of user data.
               StreamBuilder<QuerySnapshot>(
                 stream: _rankingStream,
-                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
                     // Error handling for snapshot.
-                    return Center(child: Text('Something went wrong: ${snapshot.error}'));
+                    return Center(
+                        child: Text('Something went wrong: ${snapshot.error}'));
                   }
                   // Loading state while fetching data.
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -122,31 +141,39 @@ class ClassementPage extends StatelessWidget {
                   // Displays the user ranking.
                   return FutureBuilder<String?>(
                     future: getCurrentUserPseudo(),
-                    builder: (BuildContext context, AsyncSnapshot<String?> userPseudoSnapshot) {
-                     // Waiting state for user pseudo data.
-                      if (userPseudoSnapshot.connectionState == ConnectionState.waiting) {
+                    builder: (BuildContext context,
+                        AsyncSnapshot<String?> userPseudoSnapshot) {
+                      // Waiting state for user pseudo data.
+                      if (userPseudoSnapshot.connectionState ==
+                          ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
                       }
 
                       String? currentUserPseudo = userPseudoSnapshot.data;
 
                       return Column(
-                        children: snapshot.data!.docs.asMap().entries.map((entry) {
+                        children:
+                            snapshot.data!.docs.asMap().entries.map((entry) {
                           int rank = entry.key + 1;
                           DocumentSnapshot document = entry.value;
-                          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
                           String playerPseudo = data['pseudo'];
-                          String playerUid = document.id; // Assuming UID is stored as the document ID
+                          String playerUid = document
+                              .id; // Assuming UID is stored as the document ID
                           Color textColor = playerPseudo == currentUserPseudo
-                              ? const Color.fromARGB(255, 141, 227, 255)
+                              ? customColor?. paleCyan ?? Color.fromARGB(255, 141, 227, 255)
                               : Colors.white;
 
                           // FutureBuilder to load the user avatar.
                           return FutureBuilder<Uint8List?>(
                             future: getAvatarForUser(playerUid),
-                            builder: (BuildContext context, AsyncSnapshot<Uint8List?> avatarSnapshot) {
-                              if (avatarSnapshot.connectionState == ConnectionState.waiting) {
-                                return const Center(child: CircularProgressIndicator());
+                            builder: (BuildContext context,
+                                AsyncSnapshot<Uint8List?> avatarSnapshot) {
+                              if (avatarSnapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
                               }
 
                               Uint8List? avatarImage = avatarSnapshot.data;
@@ -154,12 +181,15 @@ class ClassementPage extends StatelessWidget {
                               return classementCard(
                                 rank: rank,
                                 name: playerPseudo,
-                                url: "debug-master", // Replace with the correct avatar URL
+                                url:
+                                    "debug-master", // Replace with the correct avatar URL
                                 points: data['currentLvl'].toString(),
                                 textColor: textColor,
-                                avatarImage: avatarImage,  // Pass avatar image to the card
+                                avatarImage:
+                                    avatarImage, // Pass avatar image to the card
                                 context: context,
-                                playerUid: playerUid, // Pass player UID to the card
+                                playerUid:
+                                    playerUid, // Pass player UID to the card
                               );
                             },
                           );
@@ -185,43 +215,47 @@ Widget classementCard({
   required String points,
   required Color textColor,
   required Uint8List? avatarImage,
-  required BuildContext context, 
+  required BuildContext context,
   required String playerUid, // UID ajouté ici
 }) {
-  // Builds the card for displaying player rank, name, points, and avatar.
-
+  CustomColors? customColor = Theme.of(context).extension<CustomColors>();
   return Container(
+    
     margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
     padding: const EdgeInsets.all(8.0),
     decoration: BoxDecoration(
-      color: const Color(0xFF5E4F73).withOpacity(0.85),
+      color: customColor?. smokyPurple ?? Color(0xFF5E4F73).withOpacity(0.85),
       borderRadius: BorderRadius.circular(12),
-      border: rank <= 3 ? Border.all(color: Colors.amber, width: 2) : null,
+      border: rank <= 3 ? Border.all(color: customColor?. amber ??Colors.amber, width: 2) : null,
     ),
-    
     child: Row(
       // Displays the rank number.
       children: [
         Text(
           "$rank.",
-          style: GoogleFonts.montserrat(textStyle: TextStyle(
+          style: GoogleFonts.montserrat(
+              textStyle: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: rank <= 3 ? Colors.amber : Colors.white,
+            color: rank <= 3 ? customColor?. amber ??Colors.amber : Colors.white,
           )),
         ),
-        const SizedBox(width: 10 ,),
+        const SizedBox(
+          width: 10,
+        ),
         CircleAvatar(
           radius: 28,
           backgroundImage: avatarImage != null
               ? MemoryImage(avatarImage)
-              : const AssetImage("assets/splashscreen/icon.png") as ImageProvider,
+              : const AssetImage("assets/splashscreen/icon.png")
+                  as ImageProvider,
         ),
-        const SizedBox(width: 15,),
+        const SizedBox(
+          width: 15,
+        ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            
             children: [
               Text(
                 name,
@@ -239,26 +273,28 @@ Widget classementCard({
                   fontSize: 16,
                 ),
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               TextButton(
                 style: TextButton.styleFrom(
-                //backgroundColor: const Color.fromARGB(255, 243, 33, 229),
-                padding: EdgeInsets.zero,
-                minimumSize: Size.zero, // Supprime la taille minimale
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Réduit la marge
-                
-  
-              ),
+                  //backgroundColor: const Color.fromARGB(255, 243, 33, 229),
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size.zero, // Supprime la taille minimale
+                  tapTargetSize:
+                      MaterialTapTargetSize.shrinkWrap, // Réduit la marge
+                ),
                 onPressed: () async {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => OpenProfilePage(uid: playerUid), // Passer l'uid au constructeur
+                      builder: (context) => OpenProfilePage(
+                          uid: playerUid), // Passer l'uid au constructeur
                     ),
                   );
                 },
-                child : Text(
-                  "Voir le profil", 
+                child: Text(
+                  "Voir le profil",
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
               )
@@ -266,7 +302,7 @@ Widget classementCard({
           ),
         ),
         const SizedBox(width: 10),
-       //const Icon(Icons.star, size: 28, color: Color.fromARGB(255, 252, 175, 88)),
+        //const Icon(Icons.star, size: 28, color: Color.fromARGB(255, 252, 175, 88)),
       ],
     ),
   );

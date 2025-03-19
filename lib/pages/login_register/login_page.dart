@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:makeitcode/theme/theme.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/pages/login_register/password_forgotten_page.dart';
 import 'package:makeitcode/pages/login_register/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:makeitcode/theme/custom_colors.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +21,7 @@ class LoginPage extends StatefulWidget {
 } 
 
 class _LoginPageState extends State <LoginPage>{
+  CustomColors? customColor;
   bool isLogin = true;
   bool isPasswordVisible = true;
   bool suffixIcon = false;
@@ -52,10 +54,10 @@ class _LoginPageState extends State <LoginPage>{
     child:TextButton(
     style: TextButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      shadowColor: Colors.black,
+      shadowColor: customColor?.dark ?? Colors.black,
       elevation: 5,
       minimumSize: const Size(double.infinity, 55),
-      backgroundColor: Color.fromARGB(249, 161, 119, 51),
+      backgroundColor: customColor?.goldenOak??Color.fromARGB(249, 161, 119, 51),
 
     ),
     onPressed:  signInWithEmailAndPassword, 
@@ -73,7 +75,7 @@ class _LoginPageState extends State <LoginPage>{
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) =>  PasswordForgottenPage()));
           },
-          child: Text('Mot de passe oublié ?',style: GoogleFonts.montserrat(textStyle: TextStyle(color: Color.fromARGB(249, 161, 119, 51),fontWeight: FontWeight.bold),),),
+          child: Text('Mot de passe oublié ?',style: GoogleFonts.montserrat(textStyle: TextStyle(color:customColor?.goldenOak?? Color.fromARGB(249, 161, 119, 51),fontWeight: FontWeight.bold),),),
         ),
       ],
     );
@@ -82,7 +84,7 @@ class _LoginPageState extends State <LoginPage>{
     Widget _title(){
     return Text(
       "Connectez-vous",style:GoogleFonts.montserrat(textStyle: TextStyle(
-        color: Colors.white.withOpacity(1), 
+        color: customColor?.whiteAll??Colors.white.withOpacity(1), 
         fontSize: 30, 
         fontWeight: FontWeight.bold,     
       ),
@@ -91,19 +93,19 @@ class _LoginPageState extends State <LoginPage>{
   }
     // Text widget for the "Or connect with" message
     Widget _moreConnexion(){
-    return  Text('Ou connectez-vous avec',style:GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),);
+    return  Text('Ou connectez-vous avec',style:GoogleFonts.montserrat(textStyle: TextStyle(color: customColor?.white?? Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold),),);
   }
     // Widget asking if the user has an account and showing the sign-up link
       Widget _noAccount(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Vous n'avez pas de compte ?",style: GoogleFonts.montserrat(textStyle:TextStyle(color: Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold,fontSize: 11.5),),),
+        Text("Vous n'avez pas de compte ?",style: GoogleFonts.montserrat(textStyle:TextStyle(color: customColor?.white?? Colors.white.withOpacity(0.5),fontWeight: FontWeight.bold,fontSize: 11.5),),),
         TextButton(
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
           },
-          child: Text('Inscrivez-vous',style: GoogleFonts.montserrat(textStyle:TextStyle(color: Color.fromARGB(248, 211, 157, 70),fontWeight: FontWeight.bold,fontSize: 12.5),),),
+          child: Text('Inscrivez-vous',style: GoogleFonts.montserrat(textStyle:TextStyle(color: customColor?.goldenOak?? Color.fromARGB(248, 211, 157, 70),fontWeight: FontWeight.bold,fontSize: 12.5),),),
         ),
       ],
     );
@@ -122,7 +124,7 @@ class _LoginPageState extends State <LoginPage>{
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          shadowColor: Colors.black,
+          shadowColor: customColor?.dark ?? Colors.black,
           elevation: 5,
           backgroundColor: const Color.fromRGBO(166, 32, 54, 1),
           padding: const EdgeInsets.symmetric(vertical: 15), 
@@ -153,13 +155,14 @@ class _LoginPageState extends State <LoginPage>{
 
   @override
   Widget build (BuildContext context){
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       resizeToAvoidBottomInset: false, 
       body:Container(
         height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)], 
+            colors: [customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)], 
             stops: [0.2, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.center, 

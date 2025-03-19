@@ -11,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 Future<String> getUserPseudo(String uid) async {
   final userDoc =
@@ -22,6 +24,8 @@ Future<String> getUserPseudo(String uid) async {
 }
 
 class EditCompte extends StatelessWidget {
+  CustomColors? customColor;
+
   EditCompte({super.key});
 
   final TextEditingController EditPrenomController = TextEditingController();
@@ -175,6 +179,7 @@ final FocusNode _focusNodeEmail = FocusNode();
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
     return Scaffold(
         appBar: AppBar(
@@ -185,11 +190,11 @@ final FocusNode _focusNodeEmail = FocusNode();
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 22,
-                color: Colors.white),
+                color: customColor?.white ??Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
+        iconTheme: IconThemeData(color: customColor?. white ??Colors.white),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -198,8 +203,8 @@ final FocusNode _focusNodeEmail = FocusNode();
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+                      customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),
@@ -279,7 +284,7 @@ final FocusNode _focusNodeEmail = FocusNode();
                             );
                           },
                             style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(249, 153, 120, 67),
+                            backgroundColor: customColor?. vibrantBlue ?? Color.fromARGB(249, 153, 120, 67),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                         ),

@@ -7,6 +7,7 @@ import 'package:makeitcode/widget/progressBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/pages/games/home_game.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Screen that displays the user's progress, step details, and rewards for a project.
 class RewardscreenXp extends StatefulWidget {
@@ -22,6 +23,8 @@ class RewardscreenXp extends StatefulWidget {
 
 /// Manages the state of the RewardscreenXp, including level, XP, and project step details.
 class _RewardscreenXpState extends State<RewardscreenXp> {
+  CustomColors? customColor;
+
   int lvl = 0;
   double xp = 0;
   double objXp = 100;
@@ -262,7 +265,7 @@ ThreeDSlider(
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 11, 22, 44),
+      backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       body: Stack(
         children: [
           /// CONTENU PRINCIPAL CENTRÉ

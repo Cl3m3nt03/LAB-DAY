@@ -1,36 +1,36 @@
-// Permet de lancer l'application et de definir que la page de départ est la page
-//de connexion(Widget Tree) sans la NavBar
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:makeitcode/pages/games/home_game.dart';
+import 'package:provider/provider.dart';
+import 'package:makeitcode/theme/themeData.dart';
 import 'package:makeitcode/widget/tree.dart';
+import 'package:makeitcode/theme/themeProvider.dart';
 
-/// Entry point of the application.
-/// Initializes Firebase and runs the app.
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  await Firebase.initializeApp(); // Initialisation Firebase
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()), // Ajoute ThemeProvider
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-/// Root widget of the application
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
-  /// Builds the application with a defined theme and initial route.
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       title: 'Make It Code',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const WidgetTree(),
-      },
+      theme: themeProvider.currentTheme, 
+      home: const WidgetTree(),
     );
   }
 }

@@ -9,12 +9,14 @@ import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dar
 import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 class HomeGamePage extends StatefulWidget {
   @override
   _HomeGamePageState createState() => _HomeGamePageState();
 }
 
 class _HomeGamePageState extends State<HomeGamePage> {
+  CustomColors? customColor;
   List<dynamic> game = [];
 
   Future<void> loadGame() async {
@@ -43,11 +45,12 @@ class _HomeGamePageState extends State<HomeGamePage> {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
       actions: [
       IconButton(
-        icon: Icon(Icons.book),
+        icon: Icon(Icons.book, color: customColor?.white ?? Colors.white),
         onPressed: () {
           Navigator.push(
             context,
@@ -57,7 +60,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
       ),
     ],
     leading: IconButton(
-      icon: Icon(Icons.leaderboard),
+      icon: Icon(Icons.leaderboard,color: customColor?.white ?? Colors.white),
       onPressed: () {
         Navigator.push(
             context,
@@ -72,20 +75,20 @@ class _HomeGamePageState extends State<HomeGamePage> {
                 fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 20,
-                color: Colors.white),
+                color: customColor?.white ?? Colors.white),
           ),
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                customColor?.skyBlue?? Color.fromRGBO(0, 113, 152, 1),
+                customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.3, 0.7),
@@ -129,7 +132,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                       style: GoogleFonts.montserrat(
                                         textStyle: TextStyle(
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,color: Colors.black,),
                                       ),
                                     ),
                                   ),
@@ -141,6 +144,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.montserrat(
                                           textStyle: TextStyle(fontSize: 16),
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
@@ -148,7 +152,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          Color.fromRGBO(11, 153, 253, 1),
+                                           customColor?.vibrantBlue ??Color.fromRGBO(11, 153, 253, 1),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),

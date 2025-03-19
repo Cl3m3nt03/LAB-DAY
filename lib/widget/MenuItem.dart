@@ -1,35 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 import 'package:popover/popover.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// A custom popover menu widget triggered by a tap event.
 class popoverMenu extends StatelessWidget {
-  const popoverMenu({super.key});
+    CustomColors? customColor;
+
+   popoverMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return GestureDetector(
       onTap:() => showPopover(context: context, bodyBuilder: (context) => Listitem(),
       width: MediaQuery.of(context).size.width - 40,
       height: 200,
       ),
-      child: Icon(Icons.menu, size: 40,color: Color.fromARGB(250, 175, 142, 88),),
+      child: Icon(Icons.menu, size: 40,color: customColor?. vibrantBlue ?? Color.fromARGB(250, 175, 142, 88),),
     );
   }
 }
 
 /// A list of language options in the popover, each with a switch to toggle the language.
 class Listitem extends StatelessWidget {
-  const Listitem({super.key});
+   Listitem({super.key});
+  CustomColors? customColor;
 
   @override
   Widget build(BuildContext context) {
+    
+    customColor = Theme.of(context).extension<CustomColors>();
+
     return  Column(
       children: [
         //1st menu options
         Container(
           height: 200,
-          color: Color.fromARGB(250, 175, 142, 88),
+          color: customColor?. vibrantBlue ?? Color.fromARGB(250, 175, 142, 88),
           child: Column(
             children: [
               Column(
@@ -50,7 +58,7 @@ class Listitem extends StatelessWidget {
                                 value: true,
                                 onChanged: (value) {},
                                 activeTrackColor: Color.fromARGB(66, 255, 255, 255),
-                                activeColor: Color.fromARGB(250, 175, 142, 88),
+                                activeColor: customColor?. vibrantBlue ??Color.fromARGB(250, 175, 142, 88),
                               ),
                             ],
                           ),
@@ -74,7 +82,7 @@ class Listitem extends StatelessWidget {
                                 value: true,
                                 onChanged: (value) {},
                                 activeTrackColor: Color.fromARGB(66, 255, 255, 255),
-                                activeColor: Color.fromARGB(250, 175, 142, 88),
+                                activeColor: customColor?. vibrantBlue ?? Color.fromARGB(250, 175, 142, 88),
                               ),
                             ],
                           ),
@@ -98,7 +106,7 @@ class Listitem extends StatelessWidget {
                                 value: true,
                                 onChanged: (value) {},
                                 activeTrackColor: Color.fromARGB(66, 255, 255, 255),
-                                activeColor: Color.fromARGB(250, 175, 142, 88),
+                                activeColor: customColor?.vibrantBlue ??Color.fromARGB(250, 175, 142, 88),
                               ),
                             ],
                           ),
