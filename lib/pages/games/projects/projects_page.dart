@@ -73,45 +73,34 @@ class _ProjectsPageState extends State<ProjectsPage> {
 // Filters projects based on the search query
 Widget _buildSearchResults() {
   return StreamBuilder<QuerySnapshot>(
-    stream: FirebaseFirestore.instance
-        .collection('Projects')
-        .snapshots(), // On récupère tous les projets
+    stream: FirebaseFirestore.instance.collection('Projects').snapshots(),
     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Container(
-          height: 100,
-          alignment: Alignment.center,
-          child: CircularProgressIndicator(),
-        );
+        return Center(child: CircularProgressIndicator());
       }
       if (snapshot.hasError) {
-        return Container(
-          height: 100,
-          alignment: Alignment.center,
-          child: Text('Erreur lors du chargement des résultats.'),
-        );
+        return Center(child: Text('Erreur lors du chargement des résultats.'));
       }
       if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-        return Container(
-
-          height: 100,
-          alignment: Alignment.center,
-          child: Text('Aucun projet trouvé.'),
-        );
+        return Center(child: Text('Aucun projet trouvé.'));
       }
-      // Filters the documents based on the search query
+
+      // Vérifier si la requête de recherche est vide
+      String query = _searchQuery.trim().toLowerCase();
+      print("Search Query: $query"); // Debug
+
       final filteredDocs = snapshot.data!.docs.where((document) {
         final project = document.data() as Map<String, dynamic>;
         final name = (project['name'] ?? '').toString().toLowerCase();
-        return name.contains(_searchQuery);
+        
+        // Ne filtrer que si la requête de recherche n'est pas vide
+        if (query.isEmpty) return true;  
+        
+        return name.contains(query);
       }).toList();
 
       if (filteredDocs.isEmpty) {
-        return Container(
-          height: 100,
-          alignment: Alignment.center,
-          child: Text('Aucun projet trouvé pour "$_searchQuery".'),
-        );
+        return Center(child: Text('Aucun projet trouvé pour "$_searchQuery".'));
       }
 
       return ListView(
@@ -120,37 +109,35 @@ Widget _buildSearchResults() {
         children: filteredDocs.map((DocumentSnapshot document) {
           final project = document.data() as Map<String, dynamic>;
           return ListTile(
-              leading: Icon(Icons.school),
-              title: Text(
-                project['name'],
-                style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
-                      fontWeight: FontWeight.w500
-                    )
-                )
+            leading: Icon(Icons.school, color: Colors.black),
+            title: Text(
+              project['name'],
+              style: GoogleFonts.montserrat(
+                textStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
               ),
-              onTap: (){
-                if(project['name'] == "Portfolio"){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return ProjectDetailPage(
-                          projet: project,
-                          projetName: project['name'],
-                        );
-                      },
-                    ),
-                  );
-                }
-              
-              },
+            ),
+            onTap: () {
+              if (project['name'] == "Portfolio") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ProjectDetailPage(
+                        projet: project,
+                        projetName: project['name'],
+                      );
+                    },
+                  ),
+                );
+              }
+            },
           );
         }).toList(),
       );
     },
   );
 }
+
 
   // Builds the project card for locked projects
   // Displays a locked project with a lock icon
@@ -311,7 +298,7 @@ Widget build(BuildContext context) {
         ),
           Align(
             alignment: Alignment.topCenter,
-            child: Searchbar(searchBuilder: _buildSearchResults()),
+            child: Searchbar(),
           ),
       ],
     ),
