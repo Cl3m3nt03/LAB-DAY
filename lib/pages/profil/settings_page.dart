@@ -18,6 +18,26 @@ class _SettingsPageState extends State<SettingsPage> {
   // Boolean to control notifications
   bool light1 = true;
 
+  void _loadDarkMode() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String uid = user.uid;
+      final userDoc =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (userDoc.exists) {
+        setState(() {
+          light = userDoc.data()?['darkmode'] ?? false;
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDarkMode();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +81,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         thickness: 1.5,
                         color: Colors.white.withOpacity(0.5),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
@@ -74,7 +95,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                 color: const Color.fromARGB(116, 24, 37, 63),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 child: Column(
                                   children: [
                                     Container(
@@ -82,7 +104,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                         children: [
                                           Icon(
                                             Icons.light_mode,
-                                            color: Color.fromARGB(250, 175, 142, 88),
+                                            color: Color.fromARGB(
+                                                250, 175, 142, 88),
                                           ),
                                           SizedBox(width: 10),
                                           Text(
@@ -90,7 +113,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w600,
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   fontSize: 14,
                                                   color: Colors.white),
                                             ),
@@ -98,15 +122,23 @@ class _SettingsPageState extends State<SettingsPage> {
                                           SizedBox(width: 10),
                                           Switch(
                                             value: light,
-                                            activeColor: Color.fromARGB(250, 175, 142, 88),
+                                            activeColor: Color.fromARGB(
+                                                250, 175, 142, 88),
                                             onChanged: (bool value) async {
-                                              User? user = FirebaseAuth.instance.currentUser;
+                                              User? user = FirebaseAuth
+                                                  .instance.currentUser;
                                               if (user != null) {
                                                 String uid = user.uid;
-                                                final userDoc = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+                                                final userDoc =
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection('Users')
+                                                        .doc(uid)
+                                                        .get();
 
                                                 NotificationService.init();
-                                                NotificationService.showInstantNotification(
+                                                NotificationService
+                                                    .showInstantNotification(
                                                   "Notification",
                                                   "Vous avez changé de mode",
                                                 );
@@ -119,12 +151,14 @@ class _SettingsPageState extends State<SettingsPage> {
                                                   FirebaseFirestore.instance
                                                       .collection('Users')
                                                       .doc(uid)
-                                                      .update({'darkmode': true});
+                                                      .update(
+                                                          {'darkmode': true});
                                                 } else {
                                                   FirebaseFirestore.instance
                                                       .collection('Users')
                                                       .doc(uid)
-                                                      .update({'darkmode': false});
+                                                      .update(
+                                                          {'darkmode': false});
                                                 }
                                               }
                                             },
@@ -132,13 +166,16 @@ class _SettingsPageState extends State<SettingsPage> {
                                         ],
                                       ),
                                     ),
-                                    Divider(color: const Color.fromARGB(70, 255, 255, 255)),
+                                    Divider(
+                                        color: const Color.fromARGB(
+                                            70, 255, 255, 255)),
                                     Container(
                                       child: Row(
                                         children: [
                                           Icon(
                                             Icons.notifications,
-                                            color: Color.fromARGB(250, 175, 142, 88),
+                                            color: Color.fromARGB(
+                                                250, 175, 142, 88),
                                           ),
                                           SizedBox(width: 10),
                                           Text(
@@ -146,7 +183,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w600,
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   fontSize: 14,
                                                   color: Colors.white),
                                             ),
@@ -154,50 +192,62 @@ class _SettingsPageState extends State<SettingsPage> {
                                           SizedBox(width: 10),
                                           Switch(
                                             value: light1,
-                                            activeColor: Color.fromARGB(250, 175, 142, 88),
+                                            activeColor: Color.fromARGB(
+                                                250, 175, 142, 88),
                                             onChanged: (bool value) {
                                               setState(() {
                                                 light1 = value;
                                                 if (light1) {
                                                   NotificationService.init();
-                                                  NotificationService.showInstantNotification(
-                                                      "Notification",
-                                                      "Vous avez activé les notifications");
-                                                }
-                                                else {
-                                                   
-                                                }
+                                                  NotificationService
+                                                      .showInstantNotification(
+                                                          "Notification",
+                                                          "Vous avez activé les notifications");
+                                                } else {}
                                               });
                                             },
                                           ),
                                         ],
                                       ),
                                     ),
-                                    Divider(color: const Color.fromARGB(70, 255, 255, 255)),
+                                    Divider(
+                                        color: const Color.fromARGB(
+                                            70, 255, 255, 255)),
                                     Container(
                                       child: Row(
                                         children: [
                                           Container(
                                             child: Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 10),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
                                               child: Row(
                                                 children: [
                                                   Icon(
                                                     Icons.language,
-                                                    color: Color.fromARGB(250, 175, 142, 88),
+                                                    color: Color.fromARGB(
+                                                        250, 175, 142, 88),
                                                   ),
                                                   SizedBox(width: 10),
                                                   Text(
                                                     "Langue",
-                                                    style: GoogleFonts.montserrat(
+                                                    style:
+                                                        GoogleFonts.montserrat(
                                                       textStyle: TextStyle(
-                                                          fontWeight: FontWeight.w600,
-                                                          overflow: TextOverflow.ellipsis,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                           fontSize: 14,
                                                           color: Colors.white),
                                                     ),
                                                   ),
-                                                  SizedBox(width: MediaQuery.of(context).size.width - 220),
+                                                  SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width -
+                                                              220),
                                                   popoverMenu(),
                                                 ],
                                               ),

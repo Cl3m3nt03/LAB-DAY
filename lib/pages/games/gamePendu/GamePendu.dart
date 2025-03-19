@@ -8,6 +8,7 @@ class GamePendu extends StatefulWidget {
 }
 
 class _GamePenduState extends State<GamePendu> {
+  //List words to guess
   final List<String> words = [
     "variable",
     "fonction",
@@ -30,15 +31,19 @@ class _GamePenduState extends State<GamePendu> {
     startNewGame();
   }
 
+// function for starting a new game
   void startNewGame() {
     setState(() {
+      // Shuffle list and take firts word
       words.shuffle();
       selectedWord = words.first;
+      // Reset letter for new game
       guessedLetters = [];
       attemptsLeft = 6;
     });
   }
 
+// function for guessing a letter
   void guessLetter(String letter) {
     setState(() {
       if (!guessedLetters.contains(letter)) {
@@ -50,20 +55,26 @@ class _GamePenduState extends State<GamePendu> {
     });
   }
 
+// function for win the game
   void _Victory() {
-    if (selectedWord.split('').every((letter) => guessedLetters.contains(letter))) {
+    if (selectedWord
+        .split('')
+        .every((letter) => guessedLetters.contains(letter))) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RewardscreenXp(xpToAdd: 50, title: 'Vous avez trouvé le mot : $selectedWord !\n\nVous avez gagné 50 xp'),
+          builder: (context) => RewardscreenXp(
+              xpToAdd: 50,
+              title:
+                  'Vous avez trouvé le mot : $selectedWord !\n\nVous avez gagné 50 xp'),
         ),
       );
-    }
-    else if (attemptsLeft == 0) {
+    } else if (attemptsLeft == 0) {
       print('Perdu !');
     }
   }
 
+// display the game
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,88 +93,99 @@ class _GamePenduState extends State<GamePendu> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: const Color.fromARGB(255, 11, 22, 44),
       ),
-      body:  SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-MediaQuery.of(context).padding.top,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      colors: [
-                        Color.fromRGBO(0, 113, 152, 1),
-                        Color.fromARGB(255, 11, 22, 44),
-                      ],
-                      stops: [0.1, 0.9],
-                      center: Alignment(-0.7, 0.7),
-                      radius: 0.8,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height -
+                  AppBar().preferredSize.height -
+                  MediaQuery.of(context).padding.top,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    Color.fromRGBO(0, 113, 152, 1),
+                    Color.fromARGB(255, 11, 22, 44),
+                  ],
+                  stops: [0.1, 0.9],
+                  center: Alignment(-0.7, 0.7),
+                  radius: 0.8,
+                ),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.002),
+                    Text('Essais restants: $attemptsLeft',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Color.fromRGBO(11, 153, 253, 1),
+                        )),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.002),
+                    //Display letters of the word to guess
+                    Text(
+                      selectedWord
+                          .split('')
+                          .map((letter) =>
+                              guessedLetters.contains(letter) ? letter : '_')
+                          .join(' '),
+                      style: TextStyle(
+                          fontSize: 32,
+                          color: const Color.fromARGB(255, 255, 255, 255)),
                     ),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                    children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.002),
-                      Text('Essais restants: $attemptsLeft',
-                          style: TextStyle(fontSize: 24, color: Color.fromRGBO(11, 153, 253, 1),)),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.002),
-                      Text(
-                        selectedWord
-                            .split('')
-                            .map((letter) =>
-                                guessedLetters.contains(letter) ? letter : '_')
-                            .join(' '),
-                        style: TextStyle(fontSize: 32, color: const Color.fromARGB(255, 255, 255, 255)),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.03),
-                      Wrap(
-                        spacing: MediaQuery.of(context).size.width * 1 / 30,
-                        runSpacing: 3,
-                        alignment: WrapAlignment.center,
-                        children: 'abcdefghijklmnopqrstuvwxyz'
-                            .split('')
-                            .map((letter) {
-                          return ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Color.fromRGBO(11, 153, 253, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            ),
-                            onPressed: guessedLetters.contains(letter) ||
-                                attemptsLeft == 0
-                              ? null
-                              : () {
-                                guessLetter(letter);
-                                _Victory();
-                                },
-                            child: Text(letter , style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
-                            );
-                        }).toList(),
-                      ),
-                   
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Color.fromRGBO(11, 153, 253, 1),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    //Display the letters to guess
+                    Wrap(
+                      spacing: MediaQuery.of(context).size.width * 1 / 30,
+                      runSpacing: 3,
+                      alignment: WrapAlignment.center,
+                      children:
+                          'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) {
+                        return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(11, 153, 253, 1),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
                           ),
-                        onPressed: startNewGame,
-                        child: Text('Nouvelle Partie',
-                            style: TextStyle(fontSize: 24 , color: const Color.fromARGB(255, 255, 255, 255))),
+                          onPressed: guessedLetters.contains(letter) ||
+                                  attemptsLeft == 0
+                              ? null
+                              : () {
+                                  guessLetter(letter);
+                                  _Victory();
+                                },
+                          child: Text(letter,
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  color: const Color.fromARGB(
+                                      255, 255, 255, 255))),
+                        );
+                      }).toList(),
+                    ),
+                    //Button for starting a new game
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(11, 153, 253, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                       ),
-                    ],
-                  ),
+                      onPressed: startNewGame,
+                      child: Text('Nouvelle Partie',
+                          style: TextStyle(
+                              fontSize: 24,
+                              color: const Color.fromARGB(255, 255, 255, 255))),
+                    ),
+                  ],
                 ),
-                ),
-              ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
     );
   }
 }
