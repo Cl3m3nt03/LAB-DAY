@@ -69,25 +69,36 @@ Future<String?> recoveryPseudo() async {
   }
 }
   // Initializes the user data in Firestore upon account creation.
-  Future<void>initializeUser({
-    required String email,
-    required String username,
-  }) async{
-    await _firestore.collection('Users').doc( Auth().uid).set({
+Future<void> initializeUser({
+  required String email,
+  required String username,
+}) async {
+  DocumentReference userDoc = _firestore.collection('Users').doc(Auth().uid);
+
+  // Vérifie si le document utilisateur existe déjà
+  DocumentSnapshot userSnapshot = await userDoc.get();
+
+  if (!userSnapshot.exists) {
+    // Si l'utilisateur n'existe pas, on l'initialise
+    await userDoc.set({
       'email': email,
       'uid': Auth().uid,
       'pseudo': username,
-      'bio': 'L/Utilisateur n/a pas encore défini de bio',
+      'bio': "L'utilisateur n'a pas encore défini de bio",
       'currentLvl': 1,
       'currentXp': 0,
-      'objectiveXp':100,
+      'objectiveXp': 100,
+      'darkmode': true,
     });
-    await _firestore.collection('Users').doc(Auth().uid).collection('Friends').doc('friends').set({
-      'friends': [
-        Auth().uid
-      ],
+
+    await userDoc.collection('Friends').doc('friends').set({
+      'friends': [Auth().uid],
     });
+  } else {
+    print("L'utilisateur existe déjà, initialisation ignorée.");
   }
+}
+
   // Sends a password reset email to the specified email address.
   Future<void> sendPasswordResetEmail(String email, context) async {
     try {

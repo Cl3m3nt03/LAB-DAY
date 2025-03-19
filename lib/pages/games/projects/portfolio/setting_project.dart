@@ -10,6 +10,7 @@ import 'package:makeitcode/pages/web_view/loadDataAndTemplate.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 class SettingProjectPage extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class SettingProjectPage extends StatefulWidget {
 }
 
 class _SettingProjectPageState extends State<SettingProjectPage> {
+  CustomColors? customColor;
 
   String userId = FirebaseAuth.instance.currentUser!.uid;
   final loadDataAndTemplate _dataAndTemplate = loadDataAndTemplate();
@@ -86,8 +88,8 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
           },
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme:  IconThemeData(color: Colors.white),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Center(
         child: Container(
@@ -95,7 +97,7 @@ class _SettingProjectPageState extends State<SettingProjectPage> {
             gradient: RadialGradient(
               colors: [
                 Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.3, 0.7),

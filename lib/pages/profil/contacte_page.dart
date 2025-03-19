@@ -3,6 +3,8 @@ import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 /// Page widget for displaying a contact form.
 class ContactePage extends StatefulWidget {
@@ -14,6 +16,7 @@ class ContactePage extends StatefulWidget {
 
 /// State class for the ContactePage widget.
 class _ContactePageState extends State<ContactePage> {
+  CustomColors? customColor;
   // Declare controllers for the text fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
@@ -34,7 +37,7 @@ class _ContactePageState extends State<ContactePage> {
                 color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
@@ -45,7 +48,7 @@ class _ContactePageState extends State<ContactePage> {
             gradient: RadialGradient(
               colors: [
                 Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.7, 0.7),

@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// A page that displays the list of contacts and their respective messages.
 class ListFriend extends StatefulWidget {
@@ -24,6 +25,7 @@ class ListFriend extends StatefulWidget {
 
 /// The state for the [ContactPage] widget.
 class _ListFriend extends State<ListFriend> {
+  CustomColors? customColor;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Uint8List? _avatarImage;
 
@@ -45,11 +47,12 @@ class _ListFriend extends State<ListFriend> {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: Icon(Icons.arrow_back_ios, color: customColor?.white?? Colors.white,),
           padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
           onPressed: () {
             Navigator.pop(context);
@@ -57,7 +60,7 @@ class _ListFriend extends State<ListFriend> {
         ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 11, 22, 44),
+        color: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         child: Column(
           children: [
             Text(
@@ -67,7 +70,7 @@ class _ListFriend extends State<ListFriend> {
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 30,
-                    color: Colors.white),
+                    color: customColor?.white?? Colors.white,),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
@@ -89,7 +92,7 @@ class _ListFriend extends State<ListFriend> {
                         'Aucun ami trouvé',
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: Colors.white,
+                            color: customColor?.white?? Colors.white,
                             fontSize: 16,
                           ),
                         ),
@@ -104,7 +107,7 @@ class _ListFriend extends State<ListFriend> {
                         'Aucun ami trouvé',
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: Colors.white,
+                            color: customColor?.white?? Colors.white,
                             fontSize: 16,
                           ),
                         ),
@@ -128,7 +131,7 @@ class _ListFriend extends State<ListFriend> {
                             'Erreur lors de la récupération des amis',
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
-                                color: Colors.white,
+                                color: customColor?.white?? Colors.white,
                                 fontSize: 16,
                               ),
                             ),
@@ -169,7 +172,7 @@ class _ListFriend extends State<ListFriend> {
                                     });
                                   },
                                   backgroundColor: Color(0xFFFE4A49),
-                                  foregroundColor: Colors.white,
+                                  foregroundColor: customColor?.white?? Colors.white,
                                   icon: Icons.delete,
                                   label: 'Supprimer',
                                 ),
@@ -228,7 +231,7 @@ class _ListFriend extends State<ListFriend> {
                                                 fontWeight: FontWeight.bold,
                                                 overflow: TextOverflow.ellipsis,
                                                 fontSize: 17,
-                                                color: Colors.white,
+                                                color: customColor?.white?? Colors.white,
                                               ),
                                             ),
                                           ),
@@ -258,7 +261,7 @@ class _ListFriend extends State<ListFriend> {
                                           ),
                                         );
                                           },
-                                          icon: Icon(Icons.person, color: Colors.white, size: 30,
+                                          icon: Icon(Icons.person, color: customColor?.white?? Colors.white, size: 30,
                                           )
                                         ),
                                         IconButton(
@@ -272,7 +275,7 @@ class _ListFriend extends State<ListFriend> {
                                             ),
                                           );
                                        },
-                                          icon: Icon(Icons.message, color: Colors.white, size: 30,
+                                          icon: Icon(Icons.message, color: customColor?.white?? Colors.white, size: 30,
                                           )
                                         )
                                   ],

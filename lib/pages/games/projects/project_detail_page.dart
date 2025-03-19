@@ -8,11 +8,11 @@ import 'package:makeitcode/pages/games/projects/levelMap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   final Map<String, dynamic> projet;
   final String projetName;
-
   const ProjectDetailPage({super.key, required this.projet, required this.projetName});
 
   @override
@@ -25,6 +25,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
   int _selectedIndex = 0;
   int _currentStep = 0;
   String _titleStep = "";
+  CustomColors? customColor;
+
 
   void _cheangeIndex(int index){
       setState(() {
@@ -147,14 +149,14 @@ Widget _ImagePoster(){
               borderRadius: 30,
               rotate: 90,
               boxShadows: [
-                PolygonBoxShadow(color: Colors.black, elevation: 1.0),
+                PolygonBoxShadow(color: customColor?.dark ?? Colors.black, elevation: 1.0),
                 PolygonBoxShadow(color: Color(0xff5FC2BA), elevation: 5.0),
               ],
               child: Container(
                 height: 200, // Ajustez la hauteur
                 width: 400, // Ajustez la largeur
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: customColor?.dark ?? Colors.black,
                   image: DecorationImage(
                       image: AssetImage('assets/images/${widget.projet['name']}.jpg'),
                       fit: BoxFit.cover,
@@ -819,15 +821,16 @@ Widget _confirmButton(screenHeight) {
 
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+                colors: [Color.fromRGBO(0, 113, 152, 1), customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)],
                 stops: [0.2, 0.9],
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,

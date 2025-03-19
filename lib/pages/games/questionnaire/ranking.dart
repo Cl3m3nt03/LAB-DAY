@@ -8,19 +8,24 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 // Represents the ranking page with a floating action button to view the leaderboard.
 class RankingPage extends StatefulWidget {
+  
   // Constructor for the RankingPage widget.
   const RankingPage({super.key});
   
   @override
   State<StatefulWidget> createState() {
+    
     return _Classement();
   }
 }
 // The state class for managing the ranking page.
 class _Classement extends State<RankingPage> {
+  
+
     // Handles the button press to navigate to the ranking page.
   void onButtonPressed() {
     Navigator.push(
@@ -46,6 +51,8 @@ class _Classement extends State<RankingPage> {
 
 // Displays the leaderboard with users ranked by their points.
 class ClassementPage extends StatelessWidget {
+    CustomColors? customColor;
+
   // Stream that fetches user ranking data from Firestore.
   final Stream<QuerySnapshot> _rankingStream = FirebaseFirestore.instance
       .collection('Users')
@@ -82,9 +89,9 @@ class ClassementPage extends StatelessWidget {
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1), Color.fromARGB(255, 11, 22, 44)],
+            colors: [Color.fromRGBO(0, 113, 152, 1), customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)],
             stops: [0.2, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.center,

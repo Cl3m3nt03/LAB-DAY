@@ -9,9 +9,11 @@ import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/system_getAvatar.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// A page that displays the list of contacts and their respective messages.
 class ContactPage extends StatefulWidget {
+  
   /// The unique identifier of the user.
   final String uid1;
 
@@ -23,6 +25,7 @@ class ContactPage extends StatefulWidget {
 
 /// The state for the [ContactPage] widget.
 class _ContactPageState extends State<ContactPage> {
+  CustomColors? customColor;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Uint8List? _avatarImage;
@@ -188,9 +191,9 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: Icon(Icons.arrow_back_ios, color: customColor?.white?? Colors.white,),
           padding: EdgeInsets.fromLTRB(30, 10, 0, 0),
           onPressed: () {
             Navigator.pop(context);
@@ -198,7 +201,7 @@ class _ContactPageState extends State<ContactPage> {
         ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 11, 22, 44),
+        color: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         child: Column(
           children: [
             Text(
@@ -208,7 +211,7 @@ class _ContactPageState extends State<ContactPage> {
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 30,
-                    color: Colors.white),
+                    color: customColor?.white?? Colors.white,),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
@@ -249,7 +252,7 @@ class _ContactPageState extends State<ContactPage> {
                                 noShowMessage(chatId);
                               },
                               backgroundColor: Color(0xFFFE4A49),
-                              foregroundColor: Colors.white,
+                              foregroundColor: customColor?.white?? Colors.white,
                               icon: Icons.delete,
                               label: 'Supprimer',
                             ),
@@ -330,7 +333,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 return Text(
                                                   'Chargement...',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: customColor?.white?? Colors.white,
                                                       fontSize: 16),
                                                 );
                                               }
@@ -338,7 +341,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 return Text(
                                                   'Erreur',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: customColor?.white?? Colors.white,
                                                       fontSize: 16),
                                                 );
                                               }
@@ -347,7 +350,7 @@ class _ContactPageState extends State<ContactPage> {
                                                 return Text(
                                                   'Utilisateur inconnu',
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: customColor?.white?? Colors.white,
                                                       fontSize: 16),
                                                 );
                                               }
@@ -370,7 +373,7 @@ class _ContactPageState extends State<ContactPage> {
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           fontSize: 17,
-                                                          color: Colors.white),
+                                                          color: customColor?.white?? Colors.white,),
                                                     ),
                                                   ),
                                                 ],
@@ -395,7 +398,7 @@ class _ContactPageState extends State<ContactPage> {
                                                                             .data ??
                                                                         0) >
                                                                     0
-                                                                ? Colors.white
+                                                                ? customColor?.white?? Colors.white
                                                                 : Colors
                                                                     .white70,
                                                             fontWeight:
@@ -454,7 +457,7 @@ class _ContactPageState extends State<ContactPage> {
                                                   return Text(
                                                     '!',
                                                     style: TextStyle(
-                                                        color: Colors.white),
+                                                        color: customColor?.white?? Colors.white,),
                                                   );
                                                 }
                                                 int unreadCount =
@@ -476,7 +479,7 @@ class _ContactPageState extends State<ContactPage> {
                                                                 .toString(),
                                                             style: TextStyle(
                                                               color:
-                                                                  Colors.white,
+                                                                  customColor?.white?? Colors.white,
                                                               fontSize: 12,
                                                             ),
                                                           ),

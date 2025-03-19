@@ -9,6 +9,7 @@ import'package:makeitcode/pages/web_view/loadWebView.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/rewardScreen.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 
 class GameLogic extends StatefulWidget {
@@ -24,6 +25,7 @@ class GameLogic extends StatefulWidget {
 }
 
 class _GameLogicState extends State<GameLogic> {
+  CustomColors? customColor;
   String title = "Chargement...";
   String heading = "Chargement...";
   String instruction = "Chargement...";
@@ -169,14 +171,14 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
         child: Container(
           padding: EdgeInsets.all(9),
           decoration: BoxDecoration(
-            border: Border.all(color: const Color.fromARGB(255, 221, 221, 221)),
+            border: Border.all(color:  Color.fromARGB(255, 221, 221, 221)),
             borderRadius: BorderRadius.circular(8.0),
             color: Color.fromRGBO(112, 134, 203, 100),
           ),
           child: Center(
             child: Text(
               text,
-              style: TextStyle(fontSize: 20.0, color: Colors.white),
+              style: TextStyle(fontSize: 20.0, color: customColor?.white?? Colors.white,),
             ),
           ),
         ),
@@ -226,14 +228,14 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
             LinearProgressIndicator(
               value: currentStep / 20.0, // 20.0 force la division à retourner un double
               backgroundColor: Colors.grey.shade700,
-              color: Colors.white,
+              color: customColor?.white?? Colors.white,
               minHeight: 5,
             ),
           ],
         ),
       ),
       backgroundColor: Color.fromRGBO(0, 113, 152, 1),
-      foregroundColor: Colors.white,
+      foregroundColor: customColor?.white?? Colors.white,
     ),
 
       body: KeyboardActions(

@@ -7,7 +7,7 @@ import 'package:makeitcode/pages/login_register/register_page.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:makeitcode/widget/toastMessage.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:makeitcode/theme/custom_colors.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 } 
 
 class _LoginPageState extends State <LoginPage>{
+  CustomColors? customColor;
   bool isLogin = true;
   bool isPasswordVisible = true;
   bool suffixIcon = false;
@@ -52,7 +53,7 @@ class _LoginPageState extends State <LoginPage>{
     child:TextButton(
     style: TextButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      shadowColor: Colors.black,
+      shadowColor: customColor?.dark ?? Colors.black,
       elevation: 5,
       minimumSize: const Size(double.infinity, 55),
       backgroundColor: Color.fromARGB(249, 161, 119, 51),
@@ -122,7 +123,7 @@ class _LoginPageState extends State <LoginPage>{
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          shadowColor: Colors.black,
+          shadowColor: customColor?.dark ?? Colors.black,
           elevation: 5,
           backgroundColor: const Color.fromRGBO(166, 32, 54, 1),
           padding: const EdgeInsets.symmetric(vertical: 15), 
@@ -159,7 +160,7 @@ class _LoginPageState extends State <LoginPage>{
         height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)], 
+            colors: [Color.fromRGBO(0, 113, 152, 1),customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)], 
             stops: [0.2, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.center, 

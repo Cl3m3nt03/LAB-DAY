@@ -9,12 +9,14 @@ import 'package:makeitcode/pages/games/questionnaire/questionnaire_list_page.dar
 import 'package:makeitcode/pages/games/questionnaire/ranking.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 class HomeGamePage extends StatefulWidget {
   @override
   _HomeGamePageState createState() => _HomeGamePageState();
 }
 
 class _HomeGamePageState extends State<HomeGamePage> {
+  CustomColors? customColor;
   List<dynamic> game = [];
 
   Future<void> loadGame() async {
@@ -77,7 +79,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Center(
         child: Container(
@@ -85,7 +87,7 @@ class _HomeGamePageState extends State<HomeGamePage> {
             gradient: RadialGradient(
               colors: [
                 Color.fromRGBO(0, 113, 152, 1),
-                Color.fromARGB(255, 11, 22, 44),
+                customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ],
               stops: [0.1, 0.9],
               center: Alignment(-0.3, 0.7),

@@ -13,7 +13,9 @@ import 'package:makeitcode/pages/community/list_message_page.dart';
 import 'package:makeitcode/pages/profil/open_profil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/pages/web_view/loadWebView.dart';
-import 'package:makeitcode/widget/toastMessage.dart'; // Add this import
+import 'package:makeitcode/widget/toastMessage.dart'; 
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 
 /// GlobalChatPage is a StatefulWidget that represents the user interface for a global chat.
@@ -29,6 +31,7 @@ class GlobalChatPage extends StatefulWidget {
 /// It includes functionality for sending messages, displaying messages,
 /// and managing user authentication and profile details.
 class _GlobalChatPageState extends State<GlobalChatPage> {
+  CustomColors? customColor;
   final TextEditingController _controller = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser!.uid;
@@ -129,7 +132,7 @@ void getpseudo() async {
                   PopupMenuButton<String>(
                     icon: Icon(
                       Icons.more_vert,
-                      color: Colors.black,
+                      color: customColor?.dark ?? Colors.black,
                       size: 20,
                     ),
                     onSelected: (String value) async {
@@ -245,6 +248,7 @@ void getpseudo() async {
   /// @return The widget tree for the GlobalChatPage.
   @override
   Widget build(BuildContext context) {
+    customColor = Theme.of(context).extension<CustomColors>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -252,13 +256,13 @@ void getpseudo() async {
         elevation: 0,
         title: Text(
           "CHAT GLOBAL",
-          style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: Colors.white),),
+          style: GoogleFonts.montserrat(textStyle: TextStyle( fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,fontSize: 20,color: customColor?.white?? Colors.white,),),
 
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.message, color: Colors.white),
+            icon: Icon(Icons.message, color: customColor?.white?? Colors.white,),
             onPressed: () {
               Navigator.push(
                 context,
@@ -270,7 +274,7 @@ void getpseudo() async {
           ),
         ],
         leading: IconButton(
-          icon: Icon(Icons.person, color: Colors.white),
+          icon: Icon(Icons.person, color: customColor?.white?? Colors.white,),
           onPressed: () { 
             Navigator.push(
               context,
@@ -290,7 +294,7 @@ void getpseudo() async {
               gradient: RadialGradient(
                 colors: [
                   Color.fromRGBO(0, 113, 152, 1),
-                  Color.fromARGB(255, 11, 22, 44),
+                  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),
@@ -311,10 +315,10 @@ void getpseudo() async {
                     children: <Widget>[
                       Expanded(
                         child: TextField(
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: customColor?.white?? Colors.white,),
                           controller: _controller,
                           decoration: InputDecoration(
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: customColor?.white?? Colors.white,),
                             hintText: 'Écrivez un message...',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),

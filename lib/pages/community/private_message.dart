@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Chat page for private conversations between users.
 class PrivateChatPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class PrivateChatPage extends StatefulWidget {
 }
 /// State for the private chat page.
 class _PrivateChatPageState extends State<PrivateChatPage> {
+  CustomColors? customColor;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _controller = TextEditingController();
@@ -192,7 +194,7 @@ Future<void> _initializeChat() async {
         children: [
           Positioned.fill(
             child: Container(
-              color:Color.fromARGB(255, 11, 22, 44),
+              color:customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
               ),
           ),
           SafeArea(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/rewardScreenXp.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 class GamePendu extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class GamePendu extends StatefulWidget {
 }
 
 class _GamePenduState extends State<GamePendu> {
+  CustomColors? customColor;
   final List<String> words = [
     "variable",
     "fonction",
@@ -80,7 +83,7 @@ class _GamePenduState extends State<GamePendu> {
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body:  SingleChildScrollView(
             child: Column(
@@ -92,7 +95,7 @@ class _GamePenduState extends State<GamePendu> {
                     gradient: RadialGradient(
                       colors: [
                         Color.fromRGBO(0, 113, 152, 1),
-                        Color.fromARGB(255, 11, 22, 44),
+                        customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                       ],
                       stops: [0.1, 0.9],
                       center: Alignment(-0.7, 0.7),

@@ -8,6 +8,8 @@ import 'package:makeitcode/widget/customRadioTile.dart';
 import 'package:makeitcode/pages/games/projects/glossary_page.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 /// Widget for displaying the list of questionnaires with their details.
 
@@ -19,6 +21,7 @@ class QuestionnaireListPage extends StatefulWidget {
 }
 
 class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
+  CustomColors? customColor;
   List<dynamic> questionnaire = [];
   @override
   void initState() {
@@ -61,8 +64,8 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
           ),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 11, 22, 44),
+        iconTheme:  IconThemeData(color: Colors.white),
+        backgroundColor:  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -70,7 +73,7 @@ class _QuestionnaireListPageState extends State<QuestionnaireListPage> {
           gradient: RadialGradient(
             colors: [
               Color.fromRGBO(0, 113, 152, 1),
-              Color.fromARGB(255, 11, 22, 44),
+              customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
             ],
             stops: [0.1, 0.9],
             center: Alignment(-0.7, 0.7),

@@ -8,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:makeitcode/widget/progressBar.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 // Widget representing the user's profile page.
 class OpenProfilePage extends StatefulWidget {
@@ -20,6 +22,7 @@ class OpenProfilePage extends StatefulWidget {
 }
 
 class _OpenProfilePageState extends State<OpenProfilePage> {
+  CustomColors? customColor;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final ToastMessage toast = ToastMessage();
   String bio = '';
@@ -382,7 +385,7 @@ Widget _Museum(){
                 color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         actions: [
@@ -414,7 +417,7 @@ Widget _Museum(){
               gradient: RadialGradient(
                 colors: [
                   Color.fromRGBO(0, 113, 152, 1),
-                  Color.fromARGB(255, 11, 22, 44),
+                  customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                 ],
                 stops: [0.1, 0.9],
                 center: Alignment(-0.7, 0.7),

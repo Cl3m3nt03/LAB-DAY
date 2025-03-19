@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Custom Navbar widget with tabs for navigation and styling.
 class CustomNavbar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTabChange;
+  
+  CustomColors? customColor;
 
-  const CustomNavbar({
-    Key? key,
+   CustomNavbar({
+
     required this.selectedIndex,
     required this.onTabChange,
-  }) : super(key: key);
+  });
   /// Builds the custom navbar with icons and labels, styled using Google Fonts.
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class CustomNavbar extends StatelessWidget {
         border: Border(
           top: BorderSide(color: const Color.fromARGB(255, 19, 19, 25).withOpacity(0.2), width: 1),
         ),
-        color: Color.fromRGBO(11, 22, 44, 1),
+        color: customColor?.deepOcean??Color.fromRGBO(11, 22, 44, 1),
         boxShadow: [
           BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1)),
         ],

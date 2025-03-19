@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:makeitcode/widget/textField.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 // Widget for password update page layout.
 class SecuritePage extends StatefulWidget {
@@ -12,6 +13,7 @@ class SecuritePage extends StatefulWidget {
 }
 
 class _SecuritePageState extends State<SecuritePage> {
+  CustomColors? customColor;
   bool isPasswordVisible = true;
 
     @override
@@ -29,7 +31,7 @@ class _SecuritePageState extends State<SecuritePage> {
                 color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
@@ -41,7 +43,7 @@ class _SecuritePageState extends State<SecuritePage> {
                   gradient: RadialGradient(
                     colors: [
                       Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),

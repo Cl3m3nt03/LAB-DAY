@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:makeitcode/widget/style_editor.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
 
 /// Glossary page widget, used to display the glossary interface.
 class GlossaryPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class GlossaryPage extends StatefulWidget {
 
 /// Glossary content page displaying glossary items and descriptions.
 class _GlossaryPage extends State<GlossaryPage> {
+  CustomColors? customColor;
   /// Builds the GlossaryContentPage layout with a gradient background and glossary items.
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class _GlossaryPage extends State<GlossaryPage> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color.fromRGBO(0, 113, 152, 1),Color.fromARGB(255, 11, 22, 44)],
+              colors: [Color.fromRGBO(0, 113, 152, 1),customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44)],
               stops: [0.2, 0.9],
               begin: Alignment.topCenter,
               end: Alignment.center,

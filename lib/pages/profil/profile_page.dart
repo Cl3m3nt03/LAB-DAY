@@ -11,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makeitcode/widget/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:makeitcode/theme/custom_colors.dart';
+
 
 // Function to retrieve the user's pseudo from the database
 // Retrieves the pseudo associated with the user's UID
@@ -56,6 +58,8 @@ class ProfilePage extends StatefulWidget {
 // Calls the function to load the user's avatar when the page is initialized
 
 class _ProfilePageState extends State<ProfilePage> {
+  CustomColors? customColor;
+
   Uint8List? _avatarImage;
 
   @override
@@ -97,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 11, 22, 44),
+        backgroundColor: customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
@@ -108,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   gradient: RadialGradient(
                     colors: [
                       Color.fromRGBO(0, 113, 152, 1),
-                      Color.fromARGB(255, 11, 22, 44),
+                      customColor?.midnightBlue ?? Color.fromARGB(255, 11, 22, 44),
                     ],
                     stops: [0.1, 0.9],
                     center: Alignment(-0.7, 0.7),

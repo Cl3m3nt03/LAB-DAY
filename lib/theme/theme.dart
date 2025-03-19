@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
 // Définition des couleurs
+
+
+const Color midnightBlue = Color.fromARGB(255, 11, 22, 44);
 const Color dark = Colors.black;
 const Color white = Colors.white;
 const Color softWhite = Colors.white70;
-const Color midnightBlue = Color.fromARGB(255, 11, 22, 44);
 const Color skyBlue = Color.fromRGBO(0, 113, 152, 1);
 const Color pureWhite = Color.fromARGB(255, 255, 255, 255);
 const Color pureBlack = Color.fromARGB(255, 0, 0, 0);
 const Color amber = Colors.amber;
 const Color oceanBlue = Color.fromARGB(255, 6, 146, 194);
+
 const Color deepAqua = Color.fromRGBO(6, 146, 194, 1);
 const Color vibrantBlue = Color.fromRGBO(11, 153, 253, 1);
 const Color sandyBrown = Color.fromARGB(250, 175, 142, 88);
@@ -73,7 +76,6 @@ const Color deepNavy = Color.fromARGB(255, 11, 22, 44);
 class AppThemes{
 
   static final ThemeData lightTheme = ThemeData(
-    deepNavy : Color.fromARGB(255, 11, 22, 44),   
     
   );
 }
