@@ -27,7 +27,8 @@ class HomePage extends StatefulWidget {
 
 // State for HomePage, handles UI and data fetching
 class _HomePageState extends State<HomePage> {
-    CustomColors? customColor;
+  CustomColors? customColor;
+  bool isLoading = false;
 
 
 
@@ -77,25 +78,28 @@ Future<void> _loadAvatar() async {
   
 // Fetches the user's pseudo from authentication service.
 Future<void> fetchPseudo() async {
-  try {
+  setState(() {
+    isLoading = true; // Active le chargement
+    pseudo = ''; // Réinitialise le pseudo pour éviter un affichage incorrect
+  });
+
+  String? fetchedPseudo;
+
+  while (fetchedPseudo == null || fetchedPseudo.isEmpty) {
+    try {
+      fetchedPseudo = await Auth().recoveryPseudo();
+    } catch (e) {
+      print('Erreur lors de la récupération du pseudo : $e');
+    }
+
+    await Future.delayed(Duration(milliseconds: 500)); // Petite pause pour éviter une boucle infinie trop rapide
+  }
+
+  if (mounted) {
     setState(() {
-      pseudo = ''; 
+      pseudo = fetchedPseudo!;
+      isLoading = false; // Désactive le chargement
     });
-
-    String? fetchedPseudo = await Auth().recoveryPseudo();
-
-    if (mounted) {
-      setState(() {
-        pseudo = fetchedPseudo ?? 'Pseudo non disponible';
-      });
-    }
-  } catch (e) {
-    print('Erreur lors de la récupération du pseudo : $e');
-    if (mounted) {
-      setState(() {
-        pseudo = 'Pseudo non disponible';
-      });
-    }
   }
 }
 
@@ -164,8 +168,8 @@ Widget _title(){
     children: [
       SizedBox(
         width: MediaQuery.of(context).size.width *0.6 ,
-            child: pseudo == null
-        ? CircularProgressIndicator() // Affichage du chargement
+            child:   isLoading
+        ? CircularProgressIndicator() // 🔄 Affiche le loader tant que le pseudo n'est pas chargé
         :  Text(
           'Salut, $pseudo 👋',
           style: GoogleFonts.montserrat(
