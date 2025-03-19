@@ -14,20 +14,25 @@ class loadDataAndTemplate {
   }
 
 Future<void> generateHTMLFromFirestore(String userId, String templateName, bool _isPhoneView) async {
+
+  // Load user data from Firestore
   Map<String, dynamic> userData = await _getUserDataFromFirestore(userId);
 
+  // Load HTML template and CSS
   String htmlContent = await _loadHtmlTemplate(templateName);
-
   String cssContent = await _loadCss(userData['css'], _isPhoneView);
 
+  // Replace data in HTML template
   htmlContent = _replaceData(htmlContent, userData, cssContent);
 
+  // Save HTML file
   final filePath = await getHtmlFilePath(templateName);
   final file = File(filePath);
   await file.writeAsString(htmlContent);
 }
 
   Future<String> _loadCss(themeCss, bool isPhoneView) async {
+    // Load CSS content from assets based on the theme selected by the user 
     String cssContent;
     if (isPhoneView) {
       cssContent = await rootBundle.loadString('assets/project_template/portfolio/$themeCss-phone.css');
@@ -35,13 +40,14 @@ Future<void> generateHTMLFromFirestore(String userId, String templateName, bool 
       cssContent = await rootBundle.loadString('assets/project_template/portfolio/$themeCss.css');
     }
     return cssContent;
-}
-
+} 
+  // Load HTML template from assets based on the template name
   Future<String> _loadHtmlTemplate(templateName) async {
     final String htmlTemplate = await rootBundle.loadString('assets/project_template/portfolio/$templateName');
     return htmlTemplate;
   }
 
+// Replace data in HTML template with user data and CSS content
 String _replaceData(String htmlContent, Map<String, dynamic> userData, String cssContent) {
   htmlContent = htmlContent.replaceAll('{{title}}', userData['title']);
   htmlContent = htmlContent.replaceAll('{{about}}', userData['about']);
