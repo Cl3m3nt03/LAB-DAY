@@ -327,6 +327,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                     children: [
                       Expanded(
                         child: TextField(
+                          cursorColor: customColor?. dark?? Colors.black,
                           autocorrect: false,      
                           enableSuggestions: false, 
                           textInputAction: TextInputAction.done,
@@ -334,9 +335,21 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                           controller: _firstFieldController,
                           decoration: InputDecoration(
                             labelText: 'Balise Ouverture',
-                            labelStyle: TextStyle(fontSize: 12),
+                            labelStyle: TextStyle(
+                              fontSize: 12,
+                              color: customColor?.dark ?? Colors.black,
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: customColor?.dark ?? Colors.black), // Bordure active (quand sélectionné)
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: customColor?.dark ?? Colors.black), // Bordure inactive (par défaut)
+                            ),
                           ),
-                          style: TextStyle(fontSize: 10),
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: customColor?. dark?? Colors.black
+                            ),
                           onChanged: (text) {
                             _checkAnswer();
                           },
@@ -347,6 +360,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                         visible: secondFieldFromJson, // Utilise la variable de state
                         child: Expanded(
                           child: TextField(
+                            cursorColor: customColor?. dark?? Colors.black,
                             autocorrect: false,      
                             enableSuggestions: false, 
                             textInputAction: TextInputAction.done,
@@ -354,9 +368,17 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                             controller: _secondFieldController, // Ajout du controller
                             decoration: InputDecoration(
                               labelText: 'Insérer votre texte',
-                              labelStyle: TextStyle(fontSize: 10),
+                              labelStyle: TextStyle(fontSize: 10, 
+                                color: customColor?. dark?? Colors.black),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: customColor?.dark ?? Colors.black), // Bordure active (quand sélectionné)
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: customColor?.dark ?? Colors.black), // Bordure inactive (par défaut)
+                              ),
                             ),
-                            style: TextStyle(fontSize: 8),
+                            style: TextStyle(fontSize: 8,
+                            color: customColor?. dark?? Colors.black),
                             onChanged: (text) {
                               _checkAnswer();
                             },
@@ -366,6 +388,7 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                       SizedBox(width: 16),
                       Expanded(
                         child: TextField(
+                          cursorColor: customColor?. dark?? Colors.black,
                           autocorrect: false,      
                           enableSuggestions: false, 
                           textInputAction: TextInputAction.done,
@@ -373,9 +396,17 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                           controller: _lastFieldController,
                           decoration: InputDecoration(
                             labelText: 'Balise Fermeture',
-                            labelStyle: TextStyle(fontSize: 12),
+                            labelStyle: TextStyle(fontSize: 12,
+                            color: customColor?. dark?? Colors.black),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: customColor?.dark ?? Colors.black), // Bordure active (quand sélectionné)
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: customColor?.dark ?? Colors.black), // Bordure inactive (par défaut)
+                              ),
                           ),
-                          style: TextStyle(fontSize: 10),
+                          style: TextStyle(fontSize: 10,
+                            color: customColor?. dark?? Colors.black),
                           onChanged: (text) {
                             _checkAnswer();
                           },
@@ -386,32 +417,35 @@ Widget buildToolbarButton(String text, TextEditingController controller) {
                 ),
               ),
               SizedBox(height: 24),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ElevatedButton(
-                  onPressed: _isValid ? () {
-                    _nextStep();
-                  } : null,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.grey,
-                    backgroundColor: const Color.fromARGB(255, 222, 226, 255),
-                    minimumSize: Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+              Visibility(
+                visible: _isValid, // Affiche le bouton seulement si _isValid est vrai
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ElevatedButton(
+                    onPressed: _isValid ? () {
+                      _nextStep();
+                    } : null,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Color.fromARGB(255, 50, 52, 76),
+                      backgroundColor: const Color.fromARGB(255, 222, 226, 255),
+                      minimumSize: Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'CONFIRMER',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(width: 10),
+                      ],
                     ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'CONFIRMER',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(width: 10),
-                    ],
-                  ),
                 ),
-              ),
+              ), 
               SizedBox(height: 20),
             ],
           ),
